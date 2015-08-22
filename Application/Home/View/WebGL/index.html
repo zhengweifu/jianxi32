@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>WebGL View</title>
+
+    <script src="__PUBLIC__/js/sea-2.3.0.min.js"></script>
+    <script src="__PUBLIC__/js/jquery-2.0.0.min.js"></script>
+</head>
+<body>
+<div>
+    <input type="file" id="webgl_open_btn" value="打开场景"/>
+    <input type="file" id="webgl_import_btn" value="导入模型"/>
+</div>
+
+<div>
+    <canvas width="800" height="800" id="webgl_canvas" style="border : 1px solid #ccc;"></canvas>
+</div>
+
+<script>
+    seajs.use("__PUBLIC__/webgl/src/JXEntry.js", function (JXEntry) {
+        var inParameters = {
+            canvas3D : document.getElementById("webgl_canvas")
+
+        };
+
+
+        JXEntry(inParameters);
+
+
+        var reader = new FileReader();
+
+        console.log(reader);
+
+        $("#webgl_open_btn").on("change", function() {
+            console.log(this.files[ 0 ]);
+        });
+    });
+</script>
+
+</body>
+</html>
