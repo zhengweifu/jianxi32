@@ -49,6 +49,6 @@ define(function (require) {
         }
     };
 
-    return JXMaterialManager;
+    return JXScriptManager;
 
 });

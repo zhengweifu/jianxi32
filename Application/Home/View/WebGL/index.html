@@ -9,8 +9,10 @@
 </head>
 <body>
 <div>
-    <input type="file" id="webgl_open_btn" value="打开场景"/>
-    <input type="file" id="webgl_import_btn" value="导入模型"/>
+    <input type="button" id="webgl_open_btn"  value="打开场景"/>
+    <input type="file" id="webgl_open_file" style="display: none;"/>
+    <input type="button" id="webgl_import_btn" value="导入模型"/>
+    <input type="file" id="webgl_import_file" style="display: none;" />
 </div>
 
 <div>
@@ -24,17 +26,28 @@
 
         };
 
+        var entry = new JXEntry(inParameters);
 
-        JXEntry(inParameters);
 
-
-        var reader = new FileReader();
-
-        console.log(reader);
-
-        $("#webgl_open_btn").on("change", function() {
+        $("#webgl_open_file").on("change", function() {
             console.log(this.files[ 0 ]);
+            entry.loadProject(this.files[ 0 ]);
         });
+
+        $("#webgl_open_btn").on("click", function () {
+            $("#webgl_open_file").click();
+        });
+
+
+        $("#webgl_import_file").on("change", function() {
+            console.log(this.files[ 0 ]);
+            entry.loadFile(this.files[ 0 ]);
+        });
+
+        $("#webgl_import_btn").on("click", function () {
+            $("#webgl_import_file").click();
+        });
+
     });
 </script>
 

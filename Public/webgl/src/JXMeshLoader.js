@@ -58,22 +58,22 @@ define(function ( require ) {
                         text += String.fromCharCode( charArray[ offset + i ]);
                     }
                     return text;
-                };
+                }
 
                 function parseUChar8(data, offset) {
                     var charArray = new Uint8Array(data, offset, 1);
                     return charArray[0];
-                };
+                }
 
                 function parseUInt32(data, offset) {
                     var intArray = new Uint32Array(data.slice(offset, offset+4), 0, 1);
                     return intArray[0];
-                };
+                }
 
                 function parseFloat32(data, offset) {
                     var floatArray = new Float32Array(data.slice(offset, offset+4), 0, 1);
                     return floatArray[0];
-                };
+                }
 
                 var point = 0,
                     i, j;
@@ -82,7 +82,7 @@ define(function ( require ) {
 
                 point += 1;
 
-                var uv_counts = new Array();
+                var uv_counts = [];
                 for(i=0; i<uvLayers; i++) {
                     uv_counts.push(parseUInt32(data, point));
                     point += 4;
@@ -148,7 +148,8 @@ define(function ( require ) {
             var geometry = new THREE.Geometry();
 
             // uuid
-            geometry.uuid = JX.getRelativePath(JX.PROJECTPATH, url);
+            if(url !== undefined)
+                geometry.uuid = JX.getRelativePath(JX.PROJECTPATH, url);
 
 
             // vertices

@@ -3,12 +3,16 @@ define(function (require) {
 
     var JXMaterialManager = function (textures) {
         this.materials = {};
-        this.textures = textures;
+        this.textures = ( textures !== undefined ) ? textures : {};
         this.editable_materials = [];
         this.record = [];
     };
 
     JXMaterialManager.prototype = {
+        setTextures : function (textures) {
+            this.textures = ( textures !== undefined ) ? textures : [];
+        },
+
         setValues: function (material, parameters) {
             // set common parameters
             if (parameters.color !== undefined) material.color.setHex(parameters.color);
@@ -85,6 +89,10 @@ define(function (require) {
                 }
             }
             material.needsUpdate = true;
+        },
+
+        clear : function () {
+
         },
 
         //记录材质信息
@@ -235,20 +243,14 @@ define(function (require) {
                     "bumpMap",
                     "lightMap"
                 ];
+
                 for (var i in map_parameters) {
                     if (m[map_parameters[i]] !== undefined && m[map_parameters[i]] !== null) {
                         e_result[map_parameters[i]] = m[map_parameters[i]]["uuid"];
                     }
                 }
 
-
-                var temp = false;
-                for (var e in e_result) {
-                    temp = true;
-                    break;
-                }
-
-                if (temp) result.push(e_result);
+                if ( e_result != {} ) result.push(e_result);
             }
 
             return [result, result_face_materials];

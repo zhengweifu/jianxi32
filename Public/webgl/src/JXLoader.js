@@ -4,69 +4,103 @@
 
 define(function (require) {
     var THREE = require("./libs/three.js");
+    var JXMeshLoader = require('./JXMeshLoader');
 
-    var JXLoader = function() {
+    var JXLoader = {
 
-    };
+        loadFile : function ( file, editorManager ) {
 
-    JXLoader.prototype.loadFile = function ( file ) {
+            var filename = file.name;
+            var extension = filename.split( '.' ).pop().toLowerCase();
 
-        var filename = file.name;
-        var extension = filename.split( '.' ).pop().toLowerCase();
+            var reader = new FileReader();
 
-        var reader = new FileReader();
+            switch ( extension ) {
+                case 'mesh':
+                    reader.addEventListener ( 'load', function ( event ) {
+                        var contents = event.target.result;
 
-        switch ( extension ) {
-            case 'obj':
+                        var geometry = new JXMeshLoader().parse( contents );
 
-                reader.addEventListener( 'load', function ( event ) {
+                        var material = new THREE.MeshPhongMaterial();
 
-                    var contents = event.target.result;
+                        var mesh = new THREE.Mesh(geometry, material);
 
-                    var object = new THREE.OBJLoader().parse( contents );
-                    object.name = filename;
+                        editorManager.addObject( mesh );
+                        editorManager.select( mesh );
 
-                    //editor.addObject( object );
-                    //editor.select( object );
+                        editorManager.addMaterial(material);
 
-                }, false );
-                reader.readAsText( file );
 
-                break;
+                    }, false);
 
-            case 'stl' :
-
-                reader.addEventListener( 'load', function ( event ) {
-
-                    var contents = event.target.result;
-
-                    var geometry = new THREE.STLLoader().parse( contents );
-                    geometry.sourceType = "stl";
-                    geometry.sourceFile = file.name;
-
-                    var material = new THREE.MeshPhongMaterial();
-
-                    var mesh = new THREE.Mesh( geometry, material );
-                    mesh.name = filename;
-
-                    //editor.addObject( mesh );
-                    //editor.select( mesh );
-
-                }, false );
-
-                if ( reader.readAsBinaryString !== undefined ) {
-
-                    reader.readAsBinaryString( file );
-
-                } else {
+                    //if ( reader.readAsBinaryString !== undefined ) {
+                    //
+                    //    reader.readAsBinaryString( file );
+                    //
+                    //} else {
 
                     reader.readAsArrayBuffer( file );
 
-                }
+                    //}
 
-                break;
+                    break;
+
+
+                case 'obj':
+
+                    reader.addEventListener( 'load', function ( event ) {
+
+                        var contents = event.target.result;
+
+                        var object = new THREE.OBJLoader().parse( contents );
+                        object.name = filename;
+
+                        editorManager.addObject( object );
+                        editorManager.select( object );
+
+                    }, false );
+                    reader.readAsText( file );
+
+                    break;
+
+                case 'stl' :
+
+                    reader.addEventListener( 'load', function ( event ) {
+
+                        var contents = event.target.result;
+
+                        var geometry = new THREE.STLLoader().parse( contents );
+                        geometry.sourceType = "stl";
+                        geometry.sourceFile = file.name;
+
+                        var material = new THREE.MeshPhongMaterial();
+
+                        var mesh = new THREE.Mesh( geometry, material );
+                        mesh.name = filename;
+
+                        editorManager.addObject( mesh );
+                        editorManager.select( mesh );
+
+                        editorManager.addMaterial( material );
+
+                    }, false );
+
+                    if ( reader.readAsBinaryString !== undefined ) {
+
+                        reader.readAsBinaryString( file );
+
+                    } else {
+
+                        reader.readAsArrayBuffer( file );
+
+                    }
+
+                    break;
+            }
         }
+
     };
 
-    return JXLoader();
+    return JXLoader;
 });

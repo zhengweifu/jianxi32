@@ -4,12 +4,17 @@ define(function (require) {
     var JXMeshLoader = require("./JXMeshLoader");
 
     var JXObjectManager = function (materials) {
-        this.materials = materials;
+        this.materials = ( materials !== undefined ) ? materials : {};
         this.geometries = [];
         this.objects = [];
     }
 
     JXObjectManager.prototype = {
+
+        setMaterials : function(materials) {
+            this.materials = materials;
+        },
+
         read: function (json) {
 
             var count = json.objects.length;
