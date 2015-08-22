@@ -119,6 +119,36 @@ define(function (require) {
          */
         select : function (object) {
 
+        },
+
+        /**
+         * 计算boungingBox
+         * @param mesh
+         */
+        getBoundingBox : function (mesh) {
+            if ( !(mesh instanceof Array) ) {
+                mesh = [ mesh ];
+            }
+
+            var box1 = new THREE.Box3(), box2 = new THREE.Box3();
+            for ( var i=0; i<mesh.length; i++ ) {
+                mesh.updateMatrixWorld(true);
+                mesh.geometry.computeBoundingBox();
+
+                if ( i === 0 ) {
+                    box1.copy(geometry.boundingBox);
+                    box1.applyMatrix4(mesh.matrixWorld);
+                } else {
+                    box2.copy(geometry.boundingBox);
+                    box2.applyMatrix4(mesh.matrixWorld);
+
+                    box1.min.set( Math.min( box1.min.x, box2.min.x ), Math.min( box1.min.y, box2.min.y ), Math.min( box1.min.z, box2.min.z ));
+                    box1.max.set( Math.max( box1.max.x, box2.max.x ), Math.max( box1.max.y, box2.max.y ), Math.max( box1.max.z, box2.max.z ));
+                }
+            }
+
+            return box1;
+
         }
     };
 
