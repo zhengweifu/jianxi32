@@ -100,9 +100,9 @@ define(function (require) {
         /**
          * 添加材质
          * @param matrial
-         */
-        addMaterial : function (material) {
             this.materialManager.materials[material.uuid] = material;
+            */
+            addMaterial : function (material) {
         },
 
         /**
