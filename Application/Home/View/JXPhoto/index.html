@@ -4,7 +4,16 @@
     <meta charset="UTF-8">
     <title>JX Photo</title>
 
+    <script src="__PUBLIC__/js/sea-2.3.0.min.js"></script>
+    <script src="__PUBLIC__/js/jquery-2.0.0.min.js"></script>
+    <script src="__PUBLIC__/js/alloyimage.js"></script>
+
     <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
         .container-painting {
             background-color: #204d74;
             height: 800px;
@@ -26,39 +35,112 @@
             position: absolute;
             top: 2%;
             left: 2%;
+            border: 1px solid;
+
+            border-radius: 6px;
 
             overflow: hidden;
         }
 
+        .container-attribute .head-group {
+            background-color: #666;
+            height: 50px;
+        }
+
         .container-attribute .head-group .classify {
             height: 50px;
-            width: 33.33333333%;
+            width: 33.33333%;
             background-color: #204d74;
             float: left;
+            border-bottom: 1px solid;
         }
 
         .container-attribute .head-group .classify .each-attribute {
-            margin: 30px 10px;
+            width: 100%;
+            /*margin: auto;*/
+            text-align: center;
+            line-height: 50px;
+            display: inline-block;
         }
 
-        .container-attribute .view-group .view-list-group {
+        .container-attribute .view-group-product .view-list-group {
             /*overflow: auto;*/
+            margin-top: 10px;
         }
 
-        .container-attribute .view-group .view-list-group .view {
-            background-color: #e4b9b9;
+        .container-attribute .view-group-product .view-list-group .view {
+            /*background-color: #e4b9b9;*/
             height: 120px;
             width: 33.33333%;
             float: left;
         }
-        .container-attribute .view-group .view-list-group .view .view-sub {
+        .container-attribute .view-group-product .view-list-group .view .view-sub {
             background-color: #a94442;
             width: 90%;
             height: 90%;
             margin: 6% 5%;
         }
 
+        ul {
+            list-style: none;
+        }
 
+        div .head-group ul li {
+            float: left;
+            width: 33.333%;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #f00;
+        }
+
+        .active {
+            background-color: #888;
+        }
+
+        .container-attribute .view-group-product .view-classify {
+            background-color: #777;
+            height: 30px;
+
+            margin-top: 10px;
+        }
+
+        div .view-classify ul li {
+            float: left;
+            width: 20%;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .font-list {
+            background-color: #f7e1b5;
+            height: 400px;
+        }
+
+        .font-list .font-cls {
+            height: 40px;
+            margin-top: 10px;
+        }
+
+        div .font-cls a {
+            line-height: 40px;
+            text-align: center;
+            margin-left: 15px;
+        }
+
+        .font-list .font-cls:hover {
+            background-color: #204d74;
+        }
+
+        .font-list-group {
+            margin-top: 20px;
+        }
 
     </style>
 </head>
@@ -69,99 +151,141 @@
     <div class="container-painting">
         <div class="container-attribute">
             <div class="head-group">
-                <div class="classify">
-                    <span class="each-attribute">品类</span>
-                </div>
-                <div class="classify">
-                    <span class="each-attribute">图片</span>
-                </div>
-                <div class="classify">
-                    <span class="each-attribute">文字</span>
-                </div>
+                <!--<div class="classify">-->
+                    <!--<span class="each-attribute">品类</span>-->
+                <!--</div>-->
+                <!--<div class="classify">-->
+                    <!--<span class="each-attribute">图片</span>-->
+                <!--</div>-->
+                <!--<div class="classify">-->
+                    <!--<span class="each-attribute">文字</span>-->
+                <!--</div>-->
+                <ul>
+                    <li class="active">
+                        <a href="" title="简兮商品分类">品类</a>
+                    </li>
+                    <li>
+                        <a href=""  title="简兮图片库">图片</a>
+                    </li>
+                    <li>
+                        <a href="" title="简兮文字编辑">文字</a>
+                    </li>
+                </ul>
             </div>
 
-            <div class="view-group">
-                <div class="view-list-group">
-                    <div class="view">
-                        <div class="view-sub"></div>
+            <!--<div class="view-group-product">-->
+                <!--<div class="view-classify">-->
+                    <!--<ul>-->
+                        <!--<li>-->
+                            <!--<a href="">服装</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="">家纺</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+
+                <!--<div class="view-list-group">-->
+                    <!--<div class="view">-->
+                        <!--<div class="view-sub"></div>-->
+                    <!--</div>-->
+                    <!--<div class="view">-->
+                        <!--<div class="view-sub"></div>-->
+                    <!--</div>-->
+                    <!--<div class="view">-->
+                        <!--<div class="view-sub"></div>-->
+                    <!--</div>-->
+                    <!--<div class="view">-->
+                        <!--<div class="view-sub"></div>-->
+                    <!--</div>-->
+                    <!--<div class="view">-->
+                        <!--<div class="view-sub"></div>-->
+                    <!--</div>-->
+                    <!--<div class="view">-->
+                        <!--<div class="view-sub"></div>-->
+                    <!--</div>-->
+                    <!--<div class="view">-->
+                        <!--<div class="view-sub"></div>-->
+                    <!--</div>-->
+                    <!--<div class="view">-->
+                        <!--<div class="view-sub"></div>-->
+                    <!--</div>-->
+                    <!--<div class="view">-->
+                        <!--<div class="view-sub"></div>-->
+                    <!--</div>-->
+                    <!--<div class="view">-->
+                        <!--<div class="view-sub"></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="view-group-image"></div>
+
+            <div class="view-group-text">
+                <div>
+                    <span>请输入您想要添加的文字:</span>
+                    <textarea type="text" placeholder="请在这里输入文本"/></textarea>
+                    <div>
+                    <span>文字大小</span>
+                    <div>－<input type="text"/>＋<button>添加文字</button></div>
                     </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
+                    <div class="font-list-group">
+                        <sapn>请选择字体:</sapn>
+                        <div class="font-list">
+                            <div class="font-cls">
+                                <a href="" style="font-family:verdana">爱心字体</a>
+                            </div>
+
+                            <div class="font-cls">
+                                <a href="">爱心字体</a>
+                            </div>
+
+                            <div class="font-cls">
+                                <a href="">爱心字体</a>
+                            </div>
+
+                            <div class="font-cls">
+                                <a href="">爱心字体</a>
+                            </div>
+
+                            <div class="font-cls">
+                                <a href="">爱心字体</a>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
-                    <div class="view">
-                        <div class="view-sub"></div>
-                    </div>
+
+
                 </div>
+
             </div>
 
         </div>
-        <canvas class="painting"></canvas>
+        <canvas class="painting" id="painting_canvas"></canvas>
     </div>
 
 </div>
+
+
+<script>
+    seajs.use("__PUBLIC__/jxphoto/js/JXPhotoEntry.js", function (JXPhotoEntry) {
+        var inParameters = {
+            canvas : document.getElementById("painting_canvas")
+
+        };
+
+        var entry = new JXPhotoEntry(inParameters);
+
+        entry.init();
+
+        var img = new Image();
+        img.onload = function () {
+            AlloyImage(this).act("toGray").replace(this);
+            document.body.appendChild(img);
+        };
+        img.src = "__PUBLIC__/jxphoto/img/a.jpg";
+    });
+</script>
 
 </body>
 </html>
