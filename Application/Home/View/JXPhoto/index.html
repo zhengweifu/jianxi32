@@ -223,6 +223,7 @@
 
             <div class="view-group-text">
                 <div>
+                    <input type="file" id="open-image-file"/>
                     <span>请输入您想要添加的文字:</span>
                     <textarea type="text" placeholder="请在这里输入文本"/></textarea>
                     <div>
@@ -270,20 +271,35 @@
 <script>
     seajs.use("__PUBLIC__/jxphoto/js/JXPhotoEntry.js", function (JXPhotoEntry) {
         var inParameters = {
-            canvas : document.getElementById("painting_canvas")
-
+            canvas : document.getElementById("painting_canvas"),
+            rootPath :" __ROOT__"
         };
 
         var entry = new JXPhotoEntry(inParameters);
 
-        entry.init();
 
-        var img = new Image();
-        img.onload = function () {
-            AlloyImage(this).act("toGray").replace(this);
-            document.body.appendChild(img);
-        };
-        img.src = "__PUBLIC__/jxphoto/img/a.jpg";
+        entry.addImage("__PUBLIC__/jxphoto/img/b.png", function(img) {
+            entry.setMaskImage(img);
+        });
+
+        entry.addText();
+
+        $("#open-image-file").on("change", function() {
+            entry.openFile(this.files[0], function(url) {
+                entry.addImage(url, function(img) {
+//                    entry.context.clearRect(0, 0, entry.canvas.clientWidth, entry.canvas.clientHeight);
+                    entry.updateCurrentImageInfo(img);
+                    entry.render();
+                });
+            });
+        });
+
+//        var img = new Image();
+//        img.onload = function () {
+//            AlloyImage(this).act("toGray").replace(this);
+//            document.body.appendChild(img);
+//        };
+//        img.src = "__PUBLIC__/jxphoto/img/a.jpg";
     });
 </script>
 
