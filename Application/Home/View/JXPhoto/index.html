@@ -179,7 +179,7 @@
 
         .plane .container {
             /*background-color: #f2dede;*/
-            margin: 10px 10px;
+            margin: 10px 0px;
         }
 
         .plane .container:after {
@@ -189,10 +189,10 @@
         }
 
         .plane .container .view-image {
-            border: 1px solid;
-            border-radius: 3px;
-            /*border-top: 1px solid;*/
-            /*border-bottom: 1px solid;*/
+            /*border: 1px solid;*/
+            /*border-radius: 3px;*/
+            border-top: 1px solid;
+            border-bottom: 1px solid;
             width: 321px;
             height: 300px;
             margin: 10px 0px;
@@ -203,7 +203,7 @@
 
         .plane .container .view-image .view-div {
             border: 1px solid;
-            border-radius: 2px;
+            /*border-radius: 2px;*/
             border-color: #204d74;
             width: 100px;
             height: 100px;
@@ -215,7 +215,7 @@
 
         .plane .container .option {
             position: absolute;
-            bottom: 10px;
+            bottom: 5px;
             right: 5px;
             display: inline-flex;
         }
@@ -228,8 +228,9 @@
             margin-right: 5px;
         }
 
-        .plane span {
+        .plane .container .plane-title {
             font-size: 15px;
+            margin-left: 10px;
         }
 
         .default-btn {
@@ -253,11 +254,12 @@
         <div class="plane image-plane">
             <div class="box-close"></div>
             <div class="container">
-                <span>选择一张图片</span>
+                <span class="plane-title">选择一张图片</span>
                 <div class="view-image">
-                    <div class="view-div">
+                    <div class="view-div view-import-div">
                         <span style="font-size: 50px;text-align: center;line-height: 100px;width: 100%;display: inline-block"><a
                                 href="#">+</a></span>
+                        <input type="file" id="import-pictrue" style="display: none"/>
                     </div>
                 </div>
                 <div class="option">
@@ -271,7 +273,7 @@
         <div class="plane filter-plane">
             <div class="box-close"></div>
             <div class="container">
-                <span>选择一种滤镜</span>
+                <span class="plane-title">选择一种滤镜</span>
                 <div class="view-image"></div>
                 <div class="option">
                     <button class="default-btn back">上一步</button>
@@ -284,8 +286,7 @@
         <div class="plane mask-plane">
             <div class="box-close"></div>
             <div class="container">
-
-                <span>选择一个蒙版</span>
+                <span class="plane-title">选择一个蒙版</span>
                 <div class="view-image"></div>
                 <div class="option">
                     <button class="default-btn back">上一步</button>
@@ -527,21 +528,46 @@
             $('.filter-plane').css("display", "block");
         });
 
-        var _ip_view_div, _selected_ip_view_div;
-        <foreach name="jxphoto_pictrues" item="vo">
+        $('.view-import-div').on('click', function () {
+            document.getElementById("import-pictrue").click();
+        });
 
-            _ip_view_div= $('<div></div>');
-
-            _ip_view_div.addClass("view-div");
-
-            _ip_view_div.css({
-                "background-image": "url(__ROOT__/{$vo})"
+        $('#import-pictrue').on('change', function () {
+            entry.openFile(this.files[0], function (url) {
+                entry.addImage(url, function (img) {
+                    entry.updateCurrentImageInfo(img);
+                    entry.render();
+                    createImageView($(".image-plane .container .view-image"), url);
+                });
             });
+        });
+
+        var  _selected_ip_view_div;
+        var createImageView = function (parent, img) {
+            var view_canvas= $('<canvas></canvas>');
+
+            view_canvas.addClass("view-div");
+
+            var _context = view_canvas[0].getContext("2d");
+
+//            view_canvas[0].width = view_canvas[0].clientWidth;
+//            view_canvas[0].height = view_canvas[0].clientHeight;
+            view_canvas[0].width = 100;
+            view_canvas[0].height = 100;
+
+            var _min = Math.min(img.width, img.height);
+            var _width = 100;
+            _context.scale(_width/_min, _width/_min);
+            _context.drawImage(img, 0, 0);
+
+//            view_canvas.css({
+//                "background-image": "url(" + url + ")"
+//            });
 
 
-            $(".image-plane .container .view-image").append(_ip_view_div);
+            parent.append(view_canvas);
 
-            _ip_view_div.bind("click", function() {
+            view_canvas.bind("click", function() {
                 if(_selected_ip_view_div) {
                     _selected_ip_view_div.css({
                         "border-color" : "#204d74"
@@ -554,6 +580,16 @@
 
                 _selected_ip_view_div = $(this);
             });
+        };
+
+
+        <foreach name="jxphoto_pictrues" item="vo">
+
+        entry.addImage("__ROOT__/{$vo}", function (img) {
+//            entry.updateCurrentImageInfo(img);
+//            entry.render();
+            createImageView($(".image-plane .container .view-image"), img);
+        });
 
         </foreach>
 
