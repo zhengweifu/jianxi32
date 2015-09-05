@@ -254,7 +254,12 @@
             <div class="box-close"></div>
             <div class="container">
                 <span>选择一张图片</span>
-                <div class="view-image"></div>
+                <div class="view-image">
+                    <div class="view-div">
+                        <span style="font-size: 50px;text-align: center;line-height: 100px;width: 100%;display: inline-block"><a
+                                href="#">+</a></span>
+                    </div>
+                </div>
                 <div class="option">
                     <!--<button class="default-btn">上一步</button>-->
                     <button class="default-btn next">下一步</button>
@@ -422,7 +427,7 @@
         var entry = new JXPhotoEntry(inParameters);
 
 
-        entry.addImage("__PUBLIC__/jxphoto/img/b.png", function (img) {
+        entry.addImage("__PUBLIC__/jxphoto/imgs/masks/b.png", function (img) {
             entry.setMaskImage(img);
         });
 
@@ -522,26 +527,35 @@
             $('.filter-plane').css("display", "block");
         });
 
+        var _ip_view_div, _selected_ip_view_div;
+        <foreach name="jxphoto_pictrues" item="vo">
 
-        for (var i = 0; i < 6; i++) {
-
-            var _ip_view_div = $('<div></div>');
+            _ip_view_div= $('<div></div>');
 
             _ip_view_div.addClass("view-div");
 
             _ip_view_div.css({
-                "background-image": "url(__PUBLIC__/jxphoto/img/a.jpg)"
+                "background-image": "url(__ROOT__/{$vo})"
             });
 
 
             $(".image-plane .container .view-image").append(_ip_view_div);
 
             _ip_view_div.bind("click", function() {
+                if(_selected_ip_view_div) {
+                    _selected_ip_view_div.css({
+                        "border-color" : "#204d74"
+                    });
+                }
+
                 $(this).css({
                     "border-color" : "#0f0"
                 });
+
+                _selected_ip_view_div = $(this);
             });
-        }
+
+        </foreach>
 
     });
 </script>
