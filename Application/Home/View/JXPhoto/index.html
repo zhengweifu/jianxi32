@@ -142,126 +142,270 @@
             margin-top: 20px;
         }
 
+        .plane {
+            background-color: #c0dce6;
+            border: 1px solid;
+            border-radius: 3px;
+            /*width: 300px;*/
+            /*height: 300px;*/
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            z-index: 601;
+        }
+
+        .plane .box-close {
+            height: 20px;
+            width: 20px;
+            background-color: #fa6900;
+            border-radius: 2px;
+            position: absolute;
+            top: 3px;
+            right: 3px;
+        }
+
+        .plane .box-close:after {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: "\d7";
+            color: #fff;
+            /*background-color: #fff;*/
+            text-align: center;
+            line-height: 20px;
+        }
+
+        .plane .container {
+            /*background-color: #f2dede;*/
+            margin: 10px 10px;
+        }
+
+        .plane .container:after {
+            content: "";
+            line-height: 25px;
+            display: inline-block;
+        }
+
+        .plane .container .view-image {
+            border: 1px solid;
+            border-radius: 3px;
+            /*border-top: 1px solid;*/
+            /*border-bottom: 1px solid;*/
+            width: 321px;
+            height: 300px;
+            margin: 10px 0px;
+            padding-left: 5px;
+            padding-top: 5px;
+            overflow: scroll;
+        }
+
+        .plane .container .view-image .view-div {
+            border: 1px solid;
+            border-radius: 2px;
+            border-color: #204d74;
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            background-size : cover;
+        }
+
+        .plane .container .option {
+            position: absolute;
+            bottom: 10px;
+            right: 5px;
+            display: inline-flex;
+        }
+
+        .plane .container .option button {
+            height: 25px;
+            /*background-color: #0345ff;*/
+            border: 1px solid;
+            min-width: 50px;
+            margin-right: 5px;
+        }
+
+        .plane span {
+            font-size: 15px;
+        }
+
+        .default-btn {
+            background-color: #38c0ff;
+        }
+
+        .ok-btn {
+            background-color: #42a342;
+        }
+
+        .cancel-btn {
+            background-color: #ff0000;
+        }
+
     </style>
 </head>
 <body>
 
 <div class="container">
-
-    <div class="container-painting">
-        <div class="container-attribute">
-            <div class="head-group">
-                <!--<div class="classify">-->
-                    <!--<span class="each-attribute">品类</span>-->
-                <!--</div>-->
-                <!--<div class="classify">-->
-                    <!--<span class="each-attribute">图片</span>-->
-                <!--</div>-->
-                <!--<div class="classify">-->
-                    <!--<span class="each-attribute">文字</span>-->
-                <!--</div>-->
-                <ul>
-                    <li class="active">
-                        <a href="" title="简兮商品分类">品类</a>
-                    </li>
-                    <li>
-                        <a href=""  title="简兮图片库">图片</a>
-                    </li>
-                    <li>
-                        <a href="" title="简兮文字编辑">文字</a>
-                    </li>
-                </ul>
+    <div class="image-controller">
+        <div class="plane image-plane">
+            <div class="box-close"></div>
+            <div class="container">
+                <span>选择一张图片</span>
+                <div class="view-image"></div>
+                <div class="option">
+                    <!--<button class="default-btn">上一步</button>-->
+                    <button class="default-btn next">下一步</button>
+                    <button class="ok-btn">确定</button>
+                    <!--<button class="cancel-btn">取消</button>-->
+                </div>
             </div>
+        </div>
+        <div class="plane filter-plane">
+            <div class="box-close"></div>
+            <div class="container">
+                <span>选择一种滤镜</span>
+                <div class="view-image"></div>
+                <div class="option">
+                    <button class="default-btn back">上一步</button>
+                    <button class="default-btn next">下一步</button>
+                    <button class="ok-btn">确定</button>
+                    <!--<button class="cancel-btn">取消</button>-->
+                </div>
+            </div>
+        </div>
+        <div class="plane mask-plane">
+            <div class="box-close"></div>
+            <div class="container">
 
-            <!--<div class="view-group-product">-->
-                <!--<div class="view-classify">-->
-                    <!--<ul>-->
-                        <!--<li>-->
-                            <!--<a href="">服装</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">家纺</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-
-                <!--<div class="view-list-group">-->
-                    <!--<div class="view">-->
-                        <!--<div class="view-sub"></div>-->
-                    <!--</div>-->
-                    <!--<div class="view">-->
-                        <!--<div class="view-sub"></div>-->
-                    <!--</div>-->
-                    <!--<div class="view">-->
-                        <!--<div class="view-sub"></div>-->
-                    <!--</div>-->
-                    <!--<div class="view">-->
-                        <!--<div class="view-sub"></div>-->
-                    <!--</div>-->
-                    <!--<div class="view">-->
-                        <!--<div class="view-sub"></div>-->
-                    <!--</div>-->
-                    <!--<div class="view">-->
-                        <!--<div class="view-sub"></div>-->
-                    <!--</div>-->
-                    <!--<div class="view">-->
-                        <!--<div class="view-sub"></div>-->
-                    <!--</div>-->
-                    <!--<div class="view">-->
-                        <!--<div class="view-sub"></div>-->
-                    <!--</div>-->
-                    <!--<div class="view">-->
-                        <!--<div class="view-sub"></div>-->
-                    <!--</div>-->
-                    <!--<div class="view">-->
-                        <!--<div class="view-sub"></div>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <span>选择一个蒙版</span>
+                <div class="view-image"></div>
+                <div class="option">
+                    <button class="default-btn back">上一步</button>
+                    <!--<button class="default-btn">下一步</button>-->
+                    <button class="ok-btn">确定</button>
+                    <!--<button class="cancel-btn">取消</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-painting">
+        <!--<div class="container-attribute">-->
+            <!--<div class="head-group">-->
+                <!--&lt;!&ndash;<div class="classify">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="each-attribute">品类</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="classify">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="each-attribute">图片</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="classify">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="each-attribute">文字</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--<ul>-->
+                    <!--<li class="active">-->
+                        <!--<a href="" title="简兮商品分类">品类</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href=""  title="简兮图片库">图片</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="" title="简兮文字编辑">文字</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
             <!--</div>-->
 
-            <div class="view-group-image"></div>
+            <!--&lt;!&ndash;<div class="view-group-product">&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="view-classify">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<ul>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="">服装</a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="">家纺</a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-            <div class="view-group-text">
-                <div>
-                    <input type="file" id="open-image-file"/>
-                    <span>请输入您想要添加的文字:</span>
-                    <textarea type="text" placeholder="请在这里输入文本"/></textarea>
-                    <div>
-                    <span>文字大小</span>
-                    <div>－<input type="text"/>＋<button>添加文字</button></div>
-                    </div>
-                    <div class="font-list-group">
-                        <sapn>请选择字体:</sapn>
-                        <div class="font-list">
-                            <div class="font-cls">
-                                <a href="" style="font-family:verdana">爱心字体</a>
-                            </div>
+                <!--&lt;!&ndash;<div class="view-list-group">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-                            <div class="font-cls">
-                                <a href="">爱心字体</a>
-                            </div>
+            <!--<div class="view-group-image"></div>-->
 
-                            <div class="font-cls">
-                                <a href="">爱心字体</a>
-                            </div>
+            <!--<div class="view-group-text">-->
+                <!--<div>-->
+                    <!--<input type="file" id="open-image-file"/>-->
+                    <!--<span>请输入您想要添加的文字:</span>-->
+                    <!--<textarea type="text" placeholder="请在这里输入文本"/></textarea>-->
+                    <!--<div>-->
+                    <!--<span>文字大小</span>-->
+                    <!--<div>－<input type="text"/>＋<button>添加文字</button></div>-->
+                    <!--</div>-->
+                    <!--<div class="font-list-group">-->
+                        <!--<sapn>请选择字体:</sapn>-->
+                        <!--<div class="font-list">-->
+                            <!--<div class="font-cls">-->
+                                <!--<a href="" style="font-family:verdana">爱心字体</a>-->
+                            <!--</div>-->
 
-                            <div class="font-cls">
-                                <a href="">爱心字体</a>
-                            </div>
+                            <!--<div class="font-cls">-->
+                                <!--<a href="">爱心字体</a>-->
+                            <!--</div>-->
 
-                            <div class="font-cls">
-                                <a href="">爱心字体</a>
-                            </div>
+                            <!--<div class="font-cls">-->
+                                <!--<a href="">爱心字体</a>-->
+                            <!--</div>-->
 
-                        </div>
-                    </div>
+                            <!--<div class="font-cls">-->
+                                <!--<a href="">爱心字体</a>-->
+                            <!--</div>-->
+
+                            <!--<div class="font-cls">-->
+                                <!--<a href="">爱心字体</a>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
 
 
-                </div>
+                <!--</div>-->
 
-            </div>
+            <!--</div>-->
 
-        </div>
+        <!--</div>-->
+
         <canvas class="painting" id="painting_canvas"></canvas>
     </div>
 
@@ -271,22 +415,22 @@
 <script>
     seajs.use("__PUBLIC__/jxphoto/js/JXPhotoEntry.js", function (JXPhotoEntry) {
         var inParameters = {
-            canvas : document.getElementById("painting_canvas"),
-            rootPath :" __ROOT__"
+            canvas: document.getElementById("painting_canvas"),
+            rootPath: " __ROOT__"
         };
 
         var entry = new JXPhotoEntry(inParameters);
 
 
-        entry.addImage("__PUBLIC__/jxphoto/img/b.png", function(img) {
+        entry.addImage("__PUBLIC__/jxphoto/img/b.png", function (img) {
             entry.setMaskImage(img);
         });
 
         entry.addText();
 
-        $("#open-image-file").on("change", function() {
-            entry.openFile(this.files[0], function(url) {
-                entry.addImage(url, function(img) {
+        $("#open-image-file").on("change", function () {
+            entry.openFile(this.files[0], function (url) {
+                entry.addImage(url, function (img) {
 //                    entry.context.clearRect(0, 0, entry.canvas.clientWidth, entry.canvas.clientHeight);
                     entry.updateCurrentImageInfo(img);
                     entry.render();
@@ -294,12 +438,111 @@
             });
         });
 
-//        var img = new Image();
-//        img.onload = function () {
-//            AlloyImage(this).act("toGray").replace(this);
-//            document.body.appendChild(img);
-//        };
-//        img.src = "__PUBLIC__/jxphoto/img/a.jpg";
+
+        // callback
+        var pointer_old = {"x": 0, "y": 0}, pointer = {"x": 0, "y": 0};
+
+        var onMouseDown = function (event) {
+
+            pointer_old.x = event.clientX;
+            pointer_old.y = event.clientY;
+
+        };
+
+        var onMouseMove = function (element, event) {
+
+            pointer.x = event.clientX;
+            pointer.y = event.clientY;
+
+            var _offset = element.offset();
+
+
+            element.css({
+                "left": _offset.left + pointer.x - pointer_old.x + "px",
+                "top": _offset.top + pointer.y - pointer_old.y + "px"
+            });
+
+            pointer_old.x = pointer.x;
+            pointer_old.y = pointer.y;
+        };
+
+        var onMouseUp = function (element, event) {
+
+            element.unbind("mousemove");
+            element.unbind("mouseout");
+            element.unbind("mouseup");
+
+        };
+
+        $(".plane").bind("mousedown", function (event) {
+
+            onMouseDown(event);
+
+            $(this).bind("mousemove", function (event) {
+
+                onMouseMove($(this), event);
+
+            });
+
+            $(this).bind("mouseup", function () {
+                onMouseUp($(this), event);
+            });
+
+            $(this).bind("mouseout", function () {
+                onMouseUp($(this), event);
+            });
+        });
+
+        $(".plane .box-close").bind("click", function () {
+            $(".plane").css("display", "none");
+        });
+
+        // 隐藏图片面板
+        $(".plane").css("display", "none");
+
+        $(".image-plane").css("display", "block");
+
+        $(".image-plane .option .next").bind('click', function () {
+            $('.image-plane').css("display", "none");
+            $('.filter-plane').css("display", "block");
+        });
+
+        $(".filter-plane .option .next").bind('click', function () {
+            $('.filter-plane').css("display", "none");
+            $('.mask-plane').css("display", "block");
+        });
+
+        $(".filter-plane .option .back").bind('click', function () {
+            $('.filter-plane').css("display", "none");
+            $('.image-plane').css("display", "block");
+        });
+
+        $(".mask-plane .option .back").bind('click', function () {
+            $('.mask-plane').css("display", "none");
+            $('.filter-plane').css("display", "block");
+        });
+
+
+        for (var i = 0; i < 6; i++) {
+
+            var _ip_view_div = $('<div></div>');
+
+            _ip_view_div.addClass("view-div");
+
+            _ip_view_div.css({
+                "background-image": "url(__PUBLIC__/jxphoto/img/a.jpg)"
+            });
+
+
+            $(".image-plane .container .view-image").append(_ip_view_div);
+
+            _ip_view_div.bind("click", function() {
+                $(this).css({
+                    "border-color" : "#0f0"
+                });
+            });
+        }
+
     });
 </script>
 
