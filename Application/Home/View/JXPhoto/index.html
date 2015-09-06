@@ -7,245 +7,7 @@
     <script src="__PUBLIC__/js/sea-2.3.0.min.js"></script>
     <script src="__PUBLIC__/js/jquery-2.0.0.min.js"></script>
     <script src="__PUBLIC__/js/alloyimage.js"></script>
-
-    <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
-
-        .container-painting {
-            background-color: #204d74;
-            height: 800px;
-            position: relative;
-
-        }
-
-        .container-painting .painting {
-            background-color: #f0c040;
-            width: 100%;
-            height: 100%;
-
-        }
-
-        .container-attribute {
-            background-color: #888;
-            width: 300px;
-            height: 96%;
-            position: absolute;
-            top: 2%;
-            left: 2%;
-            border: 1px solid;
-
-            border-radius: 6px;
-
-            overflow: hidden;
-        }
-
-        .container-attribute .head-group {
-            background-color: #666;
-            height: 50px;
-        }
-
-        .container-attribute .head-group .classify {
-            height: 50px;
-            width: 33.33333%;
-            background-color: #204d74;
-            float: left;
-            border-bottom: 1px solid;
-        }
-
-        .container-attribute .head-group .classify .each-attribute {
-            width: 100%;
-            /*margin: auto;*/
-            text-align: center;
-            line-height: 50px;
-            display: inline-block;
-        }
-
-        .container-attribute .view-group-product .view-list-group {
-            /*overflow: auto;*/
-            margin-top: 10px;
-        }
-
-        .container-attribute .view-group-product .view-list-group .view {
-            /*background-color: #e4b9b9;*/
-            height: 120px;
-            width: 33.33333%;
-            float: left;
-        }
-        .container-attribute .view-group-product .view-list-group .view .view-sub {
-            background-color: #a94442;
-            width: 90%;
-            height: 90%;
-            margin: 6% 5%;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        div .head-group ul li {
-            float: left;
-            width: 33.333%;
-            line-height: 50px;
-            text-align: center;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #f00;
-        }
-
-        .active {
-            background-color: #888;
-        }
-
-        .container-attribute .view-group-product .view-classify {
-            background-color: #777;
-            height: 30px;
-
-            margin-top: 10px;
-        }
-
-        div .view-classify ul li {
-            float: left;
-            width: 20%;
-            line-height: 30px;
-            text-align: center;
-        }
-
-        .font-list {
-            background-color: #f7e1b5;
-            height: 400px;
-        }
-
-        .font-list .font-cls {
-            height: 40px;
-            margin-top: 10px;
-        }
-
-        div .font-cls a {
-            line-height: 40px;
-            text-align: center;
-            margin-left: 15px;
-        }
-
-        .font-list .font-cls:hover {
-            background-color: #204d74;
-        }
-
-        .font-list-group {
-            margin-top: 20px;
-        }
-
-        .plane {
-            background-color: #c0dce6;
-            border: 1px solid;
-            border-radius: 3px;
-            /*width: 300px;*/
-            /*height: 300px;*/
-            position: absolute;
-            top: 100px;
-            left: 100px;
-            z-index: 601;
-        }
-
-        .plane .box-close {
-            height: 20px;
-            width: 20px;
-            background-color: #fa6900;
-            border-radius: 2px;
-            position: absolute;
-            top: 3px;
-            right: 3px;
-        }
-
-        .plane .box-close:after {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            content: "\d7";
-            color: #fff;
-            /*background-color: #fff;*/
-            text-align: center;
-            line-height: 20px;
-        }
-
-        .plane .container {
-            /*background-color: #f2dede;*/
-            margin: 10px 0px;
-        }
-
-        .plane .container:after {
-            content: "";
-            line-height: 25px;
-            display: inline-block;
-        }
-
-        .plane .container .view-image {
-            /*border: 1px solid;*/
-            /*border-radius: 3px;*/
-            border-top: 1px solid;
-            border-bottom: 1px solid;
-            width: 321px;
-            height: 300px;
-            margin: 10px 0px;
-            padding-left: 5px;
-            padding-top: 5px;
-            overflow: scroll;
-        }
-
-        .plane .container .view-image .view-div {
-            border: 1px solid;
-            /*border-radius: 2px;*/
-            border-color: #204d74;
-            width: 100px;
-            height: 100px;
-            float: left;
-            margin-right: 5px;
-            margin-bottom: 5px;
-            background-size : cover;
-        }
-
-        .plane .container .option {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            display: inline-flex;
-        }
-
-        .plane .container .option button {
-            height: 25px;
-            /*background-color: #0345ff;*/
-            border: 1px solid;
-            min-width: 50px;
-            margin-right: 5px;
-        }
-
-        .plane .container .plane-title {
-            font-size: 15px;
-            margin-left: 10px;
-        }
-
-        .default-btn {
-            background-color: #38c0ff;
-        }
-
-        .ok-btn {
-            background-color: #42a342;
-        }
-
-        .cancel-btn {
-            background-color: #ff0000;
-        }
-
-    </style>
+    <link rel="stylesheet" href="__PUBLIC__/jxphoto/css/jxphoto_main.css"/>
 </head>
 <body>
 
@@ -256,7 +18,7 @@
             <div class="container">
                 <span class="plane-title">选择一张图片</span>
                 <div class="view-image">
-                    <div class="view-div view-import-div">
+                    <div class="view-div view-import-div" title="添加一张图片">
                         <span style="font-size: 50px;text-align: center;line-height: 100px;width: 100%;display: inline-block"><a
                                 href="#">+</a></span>
                         <input type="file" id="import-pictrue" style="display: none"/>
@@ -298,120 +60,6 @@
         </div>
     </div>
     <div class="container-painting">
-        <!--<div class="container-attribute">-->
-            <!--<div class="head-group">-->
-                <!--&lt;!&ndash;<div class="classify">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<span class="each-attribute">品类</span>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="classify">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<span class="each-attribute">图片</span>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="classify">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<span class="each-attribute">文字</span>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--<ul>-->
-                    <!--<li class="active">-->
-                        <!--<a href="" title="简兮商品分类">品类</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href=""  title="简兮图片库">图片</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="" title="简兮文字编辑">文字</a>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-
-            <!--&lt;!&ndash;<div class="view-group-product">&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="view-classify">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<ul>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<li>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a href="">服装</a>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<li>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a href="">家纺</a>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                <!--&lt;!&ndash;<div class="view-list-group">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="view">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="view-sub"></div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-            <!--<div class="view-group-image"></div>-->
-
-            <!--<div class="view-group-text">-->
-                <!--<div>-->
-                    <!--<input type="file" id="open-image-file"/>-->
-                    <!--<span>请输入您想要添加的文字:</span>-->
-                    <!--<textarea type="text" placeholder="请在这里输入文本"/></textarea>-->
-                    <!--<div>-->
-                    <!--<span>文字大小</span>-->
-                    <!--<div>－<input type="text"/>＋<button>添加文字</button></div>-->
-                    <!--</div>-->
-                    <!--<div class="font-list-group">-->
-                        <!--<sapn>请选择字体:</sapn>-->
-                        <!--<div class="font-list">-->
-                            <!--<div class="font-cls">-->
-                                <!--<a href="" style="font-family:verdana">爱心字体</a>-->
-                            <!--</div>-->
-
-                            <!--<div class="font-cls">-->
-                                <!--<a href="">爱心字体</a>-->
-                            <!--</div>-->
-
-                            <!--<div class="font-cls">-->
-                                <!--<a href="">爱心字体</a>-->
-                            <!--</div>-->
-
-                            <!--<div class="font-cls">-->
-                                <!--<a href="">爱心字体</a>-->
-                            <!--</div>-->
-
-                            <!--<div class="font-cls">-->
-                                <!--<a href="">爱心字体</a>-->
-                            <!--</div>-->
-
-                        <!--</div>-->
-                    <!--</div>-->
-
-
-                <!--</div>-->
-
-            <!--</div>-->
-
-        <!--</div>-->
-
         <canvas class="painting" id="painting_canvas"></canvas>
     </div>
 
@@ -427,22 +75,23 @@
 
         var entry = new JXPhotoEntry(inParameters);
 
+        var filters = {
+            "softenFace" : null,
+            "sketch" : null,
+            "softEnhancement" : null,
+            "purpleStyle" : null,
+            "soften" : null,
+            "vintage" : null,
+            "gray" : null,
+            "warmAutumn" : null,
+            "carveStyle" : null,
+            "rough" : null
+        };
 
-        entry.addImage("__PUBLIC__/jxphoto/imgs/masks/b.png", function (img) {
-            entry.setMaskImage(img);
-        });
+        var currentImage = new Image();
 
-        entry.addText();
+        var currentFilter = new Image();
 
-        $("#open-image-file").on("change", function () {
-            entry.openFile(this.files[0], function (url) {
-                entry.addImage(url, function (img) {
-//                    entry.context.clearRect(0, 0, entry.canvas.clientWidth, entry.canvas.clientHeight);
-                    entry.updateCurrentImageInfo(img);
-                    entry.render();
-                });
-            });
-        });
 
 
         // callback
@@ -511,6 +160,12 @@
         $(".image-plane .option .next").bind('click', function () {
             $('.image-plane').css("display", "none");
             $('.filter-plane').css("display", "block");
+            var _image = new Image();
+            for(var eachFilter in filters) {
+                _image.src = AlloyImage(currentImage).ps(eachFilter).save(0, 1);
+
+                updateFilterView(filters[eachFilter], _image, eachFilter);
+            }
         });
 
         $(".filter-plane .option .next").bind('click', function () {
@@ -535,42 +190,34 @@
         $('#import-pictrue').on('change', function () {
             entry.openFile(this.files[0], function (url) {
                 entry.addImage(url, function (img) {
-                    entry.updateCurrentImageInfo(img);
-                    entry.render();
-                    createImageView($(".image-plane .container .view-image"), url);
+                    updateImageView(initImageView($(".image-plane .container .view-image")), img);
                 });
             });
         });
 
-        var  _selected_ip_view_div;
-        var createImageView = function (parent, img) {
+        var  _selected_ip_view_div, _selected_fp_view_div, _selected_mp_view_div;
+
+        var initCommonView = function(parent) {
             var view_canvas= $('<canvas></canvas>');
 
             view_canvas.addClass("view-div");
 
-            var _context = view_canvas[0].getContext("2d");
+            parent.append(view_canvas);
 
-//            view_canvas[0].width = view_canvas[0].clientWidth;
-//            view_canvas[0].height = view_canvas[0].clientHeight;
             view_canvas[0].width = 100;
             view_canvas[0].height = 100;
 
-            var _min = Math.min(img.width, img.height);
-            var _width = 100;
-            _context.scale(_width/_min, _width/_min);
-            _context.drawImage(img, 0, 0);
+            return view_canvas;
+        };
 
-//            view_canvas.css({
-//                "background-image": "url(" + url + ")"
-//            });
+        var initImageView = function (parent) {
 
-
-            parent.append(view_canvas);
+            var view_canvas = initCommonView(parent);
 
             view_canvas.bind("click", function() {
                 if(_selected_ip_view_div) {
                     _selected_ip_view_div.css({
-                        "border-color" : "#204d74"
+                        "border-color" : "hsl(0, 0%, 80%)"
                     });
                 }
 
@@ -578,17 +225,112 @@
                     "border-color" : "#0f0"
                 });
 
+                currentImage.src = view_canvas[0].toDataURL();
+
+                entry.updateCurrentImageInfo(view_canvas.zImage);
+
+
                 _selected_ip_view_div = $(this);
             });
+
+            return view_canvas;
         };
 
+        var updateImageView = function(vc, img) {
 
-        <foreach name="jxphoto_pictrues" item="vo">
+            var _context = vc[0].getContext('2d');
 
-        entry.addImage("__ROOT__/{$vo}", function (img) {
-//            entry.updateCurrentImageInfo(img);
-//            entry.render();
-            createImageView($(".image-plane .container .view-image"), img);
+            var _min = Math.min(img.width, img.height);
+
+            _context.scale(100/_min, 100/_min);
+
+            _context.drawImage(img, 0, 0);
+
+            vc.zImage = img;
+        };
+
+        var initFilterView = function (parent) {
+
+            var view_canvas = initCommonView(parent);
+
+            view_canvas.bind("click", function() {
+                if(_selected_fp_view_div) {
+                    _selected_fp_view_div.css({
+                        "border-color" : "hsl(0, 0%, 80%)"
+                    });
+                }
+
+                $(this).css({
+                    "border-color" : "#0f0"
+                });
+
+                currentFilter = view_canvas.zImage;
+
+                entry.currentImageInfo.filter = view_canvas.zFilter;
+
+                entry.updateCurrentImageInfo();
+
+                _selected_fp_view_div = $(this);
+            });
+
+            return view_canvas;
+        };
+
+        var updateFilterView = function(vc, img, filter) {
+
+            vc.zFilter = filter;
+
+            var _context = vc[0].getContext('2d');
+
+            var _min = Math.min(img.width, img.height);
+
+            _context.scale(100/_min, 100/_min);
+
+            _context.drawImage(img, 0, 0);
+
+            vc.zImage = img;
+        };
+
+        var initMaskView = function (parent) {
+
+            var view_canvas = initCommonView(parent);
+
+            view_canvas.bind("click", function() {
+                if(_selected_mp_view_div) {
+                    _selected_mp_view_div.css({
+                        "border-color" : "hsl(0, 0%, 80%)"
+                    });
+                }
+
+                $(this).css({
+                    "border-color" : "#0f0"
+                });
+
+                entry.currentMaskImage = view_canvas.zImage;
+
+                _selected_mp_view_div = $(this);
+            });
+
+            return view_canvas;
+        };
+
+        for(var eachFilter in filters) {
+            filters[eachFilter] = initImageView($(".filter-plane .container .view-image"));
+        }
+
+
+        <foreach name="jxphoto_pictrues" item="vo_pic">
+
+        entry.addImage("__ROOT__/{$vo_pic}", function (img) {
+            updateImageView(initImageView($(".image-plane .container .view-image")), img);
+        });
+
+        </foreach>
+
+        <foreach name="jxphoto_masks" item="vo_mask">
+
+        entry.addImage("__ROOT__/{$vo_mask}", function (img) {
+            initMaskView($(".mask-plane .container .view-image"));
         });
 
         </foreach>
