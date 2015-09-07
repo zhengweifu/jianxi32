@@ -26,8 +26,8 @@
                 </div>
                 <div class="option">
                     <!--<button class="default-btn">上一步</button>-->
-                    <button class="default-btn next">下一步</button>
-                    <button class="ok-btn">确定</button>
+                    <button class="default-btn next" disabled="true">下一步</button>
+                    <button class="ok-btn" disabled="true">确定</button>
                     <!--<button class="cancel-btn">取消</button>-->
                 </div>
             </div>
@@ -39,8 +39,8 @@
                 <div class="view-image"></div>
                 <div class="option">
                     <button class="default-btn back">上一步</button>
-                    <button class="default-btn next">下一步</button>
-                    <button class="ok-btn">确定</button>
+                    <button class="default-btn next" disabled="true">下一步</button>
+                    <button class="ok-btn" disabled="true">确定</button>
                     <!--<button class="cancel-btn">取消</button>-->
                 </div>
             </div>
@@ -53,11 +53,16 @@
                 <div class="option">
                     <button class="default-btn back">上一步</button>
                     <!--<button class="default-btn">下一步</button>-->
-                    <button class="ok-btn">确定</button>
+                    <button class="ok-btn" disabled="true">确定</button>
                     <!--<button class="cancel-btn">取消</button>-->
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="header-painting">
+        <button class="default-btn visible-image-btn">图片</button>
+        <button class="default-btn visible-text-btn">文字</button>
     </div>
     <div class="container-painting">
         <canvas class="painting" id="painting_canvas"></canvas>
@@ -87,6 +92,8 @@
             "carveStyle" : null,
             "rough" : null
         };
+
+        var masks = [];
 
         var currentImage = new Image();
 
@@ -155,7 +162,6 @@
         // 隐藏图片面板
         $(".plane").css("display", "none");
 
-        $(".image-plane").css("display", "block");
 
         $(".image-plane .option .next").bind('click', function () {
             $('.image-plane').css("display", "none");
@@ -171,6 +177,9 @@
         $(".filter-plane .option .next").bind('click', function () {
             $('.filter-plane').css("display", "none");
             $('.mask-plane').css("display", "block");
+            for(var i=0; i<masks.length; i++) {
+                updateMaskView(masks[i][1], currentFilter, masks[i][0]);
+            }
         });
 
         $(".filter-plane .option .back").bind('click', function () {
@@ -183,6 +192,11 @@
             $('.filter-plane').css("display", "block");
         });
 
+        $(".plane .container .option .ok-btn").bind('click', function() {
+            entry.updateCurrentImageInfo();
+            entry.render();
+        });
+
         $('.view-import-div').on('click', function () {
             document.getElementById("import-pictrue").click();
         });
@@ -193,6 +207,10 @@
                     updateImageView(initImageView($(".image-plane .container .view-image")), img);
                 });
             });
+        });
+
+        $(".visible-image-btn").bind('click', function () {
+            $(".image-plane").css("display", "block");
         });
 
         var  _selected_ip_view_div, _selected_fp_view_div, _selected_mp_view_div;
@@ -227,10 +245,13 @@
 
                 currentImage.src = view_canvas[0].toDataURL();
 
-                entry.updateCurrentImageInfo(view_canvas.zImage);
+                entry.updateCurrentImageInfo(view_canvas.zImage, false);
 
 
                 _selected_ip_view_div = $(this);
+
+                $(".image-plane .container .option .next").attr("disabled", false);
+                $(".image-plane .container .option .ok-btn").attr("disabled", false);
             });
 
             return view_canvas;
@@ -264,13 +285,16 @@
                     "border-color" : "#0f0"
                 });
 
-                currentFilter = view_canvas.zImage;
+                currentFilter.src = view_canvas[0].toDataURL();
 
                 entry.currentImageInfo.filter = view_canvas.zFilter;
 
-                entry.updateCurrentImageInfo();
+//                entry.updateCurrentImageInfo(null, false);
 
                 _selected_fp_view_div = $(this);
+
+                $(".filter-plane .container .option .next").attr("disabled", false);
+                $(".filter-plane .container .option .ok-btn").attr("disabled", false);
             });
 
             return view_canvas;
@@ -309,13 +333,32 @@
                 entry.currentMaskImage = view_canvas.zImage;
 
                 _selected_mp_view_div = $(this);
+
+                $(".mask-plane .container .option .ok-btn").attr("disabled", false);
             });
 
             return view_canvas;
         };
 
+        var updateMaskView = function(vc, img, mask_img) {
+
+            var _context = vc[0].getContext('2d');
+
+            var _min = Math.min(img.width, img.height);
+
+            _context.scale(100/_min, 100/_min);
+
+            _context.drawImage(img, 0, 0);
+
+            _context.globalCompositeOperation = "destination-in";
+            _context.drawImage(mask_img, 0, 0, 100, 100);
+            _context.globalCompositeOperation = "source-over";
+
+            vc.zImage = mask_img;
+        };
+
         for(var eachFilter in filters) {
-            filters[eachFilter] = initImageView($(".filter-plane .container .view-image"));
+            filters[eachFilter] = initFilterView($(".filter-plane .container .view-image"));
         }
 
 
@@ -330,7 +373,8 @@
         <foreach name="jxphoto_masks" item="vo_mask">
 
         entry.addImage("__ROOT__/{$vo_mask}", function (img) {
-            initMaskView($(".mask-plane .container .view-image"));
+            masks.push([img, initMaskView($(".mask-plane .container .view-image"))]);
+
         });
 
         </foreach>

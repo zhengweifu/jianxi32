@@ -15,7 +15,7 @@ class JXPhotoController extends Controller {
 
         $pictrues = array("Public/jxphoto/imgs/pictrues/a.jpg", "Public/jxphoto/imgs/pictrues/b.jpg");
 
-        $masks = array("Public/jxphoto/imgs/masks/b.png", "Public/jxphoto/imgs/masks/c.png");
+        $masks = array("Public/jxphoto/imgs/masks/a.png", "Public/jxphoto/imgs/masks/b.png", "Public/jxphoto/imgs/masks/c.png");
 
         $this->assign('jxphoto_pictrues', $pictrues);
 

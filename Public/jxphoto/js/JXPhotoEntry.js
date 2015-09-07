@@ -36,7 +36,7 @@ define(function (require) {
 
             "img" : null,
 
-            "filter" : "vintage",
+            "filter" : "",
 
             "draw_img" : new Image(),
 
@@ -56,7 +56,7 @@ define(function (require) {
          * 绘制区域限制
          * @type {{x: number, y: number, width: number, height: number}}
          */
-        this.drawArea = {x : 500, y : 100, width : 300, height : 500};
+        this.drawArea = {x : 500, y : 100, width : 500, height : 500};
 
 
         var self = this;
@@ -188,10 +188,13 @@ define(function (require) {
             }
         },
 
-        updateCurrentImageInfo : function(img) {
-            if( img !== undefined ) {
+        updateCurrentImageInfo : function(img, toFilter) {
+            toFilter = (toFilter !== undefined) ? toFilter : true;
+            if( img ) {
                 this.currentImageInfo.img = img;
             }
+
+            if(!toFilter) return;
 
             if(this.currentImageInfo.img) {
                 if(this.currentImageInfo.filter) {
