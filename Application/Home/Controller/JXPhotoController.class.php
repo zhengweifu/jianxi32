@@ -24,4 +24,8 @@ class JXPhotoController extends Controller {
         $this->display();
 
     }
+
+    public function less_test() {
+        $this->display();
+    }
 }

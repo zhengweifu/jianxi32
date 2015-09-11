@@ -1,0 +1,143 @@
+$plane-bg-color-base: #e1e1e1;
+$plane-border-color-base: #c1c1c1;
+
+$plane-header-bg-clolor: #d1d1d1;
+
+@import "../../lib/sass/mixins/base.scss";
+
+@mixin close($width:20px, $height:20px, $bg-color:#fa6900, $border-radius:2px) {
+  height: $width;
+  width: $height;
+  background-color: $bg-color;
+  border-radius: $border-radius;
+  @include shadow(1px, 1px, 1px, 0px, rgba(0,0,0,0.1));
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "\d7";
+    color: #fff;
+
+    text-align: center;
+    line-height: $height;
+  }
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.container-painting {
+  height: 800px;
+  position: relative;
+
+  .painting {
+    background-color: hsl(0, 0%, 70%);
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+div .head-group ul li {
+  float: left;
+  width: 33.333%;
+  line-height: 50px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    color: #f00;
+  }
+}
+
+.active {
+  background-color: #888;
+}
+
+.plane {
+  background-color: $plane-bg-color-base;
+  border: 1px $plane-border-color-base solid;
+  @include round(3px);
+
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  z-index: 601;
+  @include shadow;
+
+  .plane-header {
+    background-color: $plane-header-bg-clolor;
+    border-bottom: 1px $plane-border-color-base solid;
+    height: 30px;
+    .plane-title {
+      font-size: 15px;
+      margin-left: 10px;
+      line-height: 30px;
+    }
+    .box-close {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      @include close;
+    }
+  }
+
+  .plane-container {
+    border-top: 1px lighten($plane-bg-color-base, 5%) solid;
+    border-bottom: 1px lighten($plane-bg-color-base, 5%) solid;
+    width: 321px;
+    height: 300px;
+    padding-left: 5px;
+    padding-top: 5px;
+    overflow: scroll;
+
+    .view-div {
+      border: 1px #dcdcdc solid;
+      background-color: #f6f6f6;
+      width: 100px;
+      height: 100px;
+      float: left;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      background-size: cover;
+      &:hover{
+        border-color: #588ecb;
+      }
+    }
+  }
+
+  .plane-footer {
+    background-color: $plane-header-bg-clolor;
+    border-top: 1px $plane-border-color-base solid;
+    height: 40px;
+    position: relative;
+    .btn-group {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+    }
+  }
+}
+
+
+.header-painting {
+  height: 60px;
+  background-color: hsl(0, 0%, 80%);
+
+  &:before {
+    content: "JianXi Photo";
+    width: 100px;
+    line-height: 60px;
+    margin: 0px 30px;
+  }
+}

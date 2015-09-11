@@ -1,169 +1,111 @@
 * {
-    margin: 0px;
-    padding: 0px;
-}
+  margin: 0px;
+  padding: 0px; }
 
 .container-painting {
-    background-color: #204d74;
-    height: 800px;
-    position: relative;
-
-}
-
-.container-painting .painting {
-    background-color: hsl(0, 0%, 70%);
+  height: 800px;
+  position: relative; }
+  .container-painting .painting {
+    background-color: #b3b3b3;
     width: 100%;
     height: 100%;
-    cursor: crosshair;
-}
+    cursor: crosshair; }
 
 ul {
-    list-style: none;
-}
+  list-style: none; }
 
 div .head-group ul li {
-    float: left;
-    width: 33.333%;
-    line-height: 50px;
-    text-align: center;
-}
+  float: left;
+  width: 33.333%;
+  line-height: 50px;
+  text-align: center; }
 
 a {
-    text-decoration: none;
-}
-
-a:hover {
-    color: #f00;
-}
+  text-decoration: none; }
+  a:hover {
+    color: #f00; }
 
 .active {
-    background-color: #888;
-}
+  background-color: #888; }
 
 .plane {
-    background-color: hsl(0, 0%, 91%);
-    border: 1px solid;
-    border-radius: 3px;
-    border-color: hsl(0, 0%, 80%);
-    /*width: 300px;*/
-    /*height: 300px;*/
-    position: absolute;
-    top: 100px;
-    left: 100px;
-    z-index: 601;
-    -webkit-box-shadow: 10px 10px 10px rgba(0, 0, 0, .3);
-    -moz-box-shadow: 10px 10px 10px rgba(0, 0, 0, .3);
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, .3);
-}
-
-.plane .box-close {
-    height: 20px;
-    width: 20px;
-    background-color: #fa6900;
-    border-radius: 2px;
-    position: absolute;
-    top: 3px;
-    right: 3px;
-}
-
-.plane .box-close:after {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    content: "\d7";
-    color: #fff;
-    /*background-color: #fff;*/
-    text-align: center;
-    line-height: 20px;
-}
-
-.plane .container {
-    /*background-color: #f2dede;*/
-    margin: 10px 0px;
-}
-
-.plane .container:after {
-    content: "";
-    line-height: 25px;
-    display: inline-block;
-}
-
-.plane .container .view-image {
-    /*border: 1px solid;*/
-    /*border-radius: 3px;*/
-    border-top: 1px solid;
-    border-bottom: 1px solid;
-    border-color: hsl(0, 0%, 80%);
+  background-color: #e1e1e1;
+  border: 1px #c1c1c1 solid;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  z-index: 601;
+  -webkit-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.3); }
+  .plane .plane-header {
+    background-color: #d1d1d1;
+    border-bottom: 1px #c1c1c1 solid;
+    height: 30px; }
+    .plane .plane-header .plane-title {
+      font-size: 15px;
+      margin-left: 10px;
+      line-height: 30px; }
+    .plane .plane-header .box-close {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      height: 20px;
+      width: 20px;
+      background-color: #fa6900;
+      border-radius: 2px;
+      -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
+      box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1); }
+      .plane .plane-header .box-close:after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        content: "\d7";
+        color: #fff;
+        text-align: center;
+        line-height: 20px; }
+  .plane .plane-container {
+    border-top: 1px #eeeeee solid;
+    border-bottom: 1px #eeeeee solid;
     width: 321px;
     height: 300px;
-    margin: 10px 0px;
     padding-left: 5px;
     padding-top: 5px;
-    overflow: scroll;
-}
-
-.plane .container .view-image .view-div {
-    border: 1px solid;
-    /*border-radius: 2px;*/
-    border-color: #dcdcdc;
-    background-color: #f6f6f6;
-    width: 100px;
-    height: 100px;
-    float: left;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    background-size : cover;
-}
-
-.plane .container .option {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    display: inline-flex;
-}
-
-.plane .container .option button {
-    height: 25px;
-    /*background-color: #0345ff;*/
-    border: 1px solid;
-    border-color: hsl(0, 0%, 70%);
-    min-width: 50px;
-    margin-right: 5px;
-}
-
-.plane .container .plane-title {
-    font-size: 15px;
-    margin-left: 10px;
-}
-
-.default-btn {
-    background-color: #38c0ff;
-}
-
-.ok-btn {
-    background-color: #42a342;
-}
-
-.cancel-btn {
-    background-color: #ff0000;
-}
+    overflow: scroll; }
+    .plane .plane-container .view-div {
+      border: 1px #dcdcdc solid;
+      background-color: #f6f6f6;
+      width: 100px;
+      height: 100px;
+      float: left;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      background-size: cover; }
+      .plane .plane-container .view-div:hover {
+        border-color: #588ecb; }
+  .plane .plane-footer {
+    background-color: #d1d1d1;
+    border-top: 1px #c1c1c1 solid;
+    height: 40px;
+    position: relative; }
+    .plane .plane-footer .btn-group {
+      position: absolute;
+      bottom: 5px;
+      right: 5px; }
 
 .header-painting {
-    height: 60px;
-    background-color: hsl(0, 0%, 80%);
-}
-
-.header-painting:before {
+  height: 60px;
+  background-color: #cccccc; }
+  .header-painting:before {
     content: "JianXi Photo";
     width: 100px;
     line-height: 60px;
-    margin: 0px 30px;
-}
+    margin: 0px 30px; }
 
-.header-painting button {
-    display: inline-block;
-    padding: 5px 20px;
-    margin: 10px 0px;
-}
+/*# sourceMappingURL=jxphoto_main.css.map */

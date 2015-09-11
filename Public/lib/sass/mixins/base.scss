@@ -1,0 +1,12 @@
+
+@mixin round($radius: 5px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin shadow($h-shadow:10px, $v-shadow:10px, $blur:10px, $spread:0px, $color:rgba(0, 0, 0, 0.3)) {
+  -webkit-box-shadow: $h-shadow $v-shadow $blur $spread $color;
+  -moz-box-shadow: $h-shadow $v-shadow $blur $spread $color;
+  box-shadow: $h-shadow $v-shadow $blur $spread $color;
+}

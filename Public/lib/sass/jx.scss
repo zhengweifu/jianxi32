@@ -1,0 +1,59 @@
+$btn-default-bg-color: #e3e3e3;
+$btn-info-bg-color: #5bc0de;
+$btn-primary-bg-color: #3f57e0;
+$btn-success-bg-color: #5cb85c;
+$base-border-color: #c9cec9;
+$btn-color1: #393f40;
+$btn-color2: #e1f6fa;
+
+@import "mixins/base.scss";
+
+@mixin btn-temp($bg-color, $color) {
+  border: 1px darken($bg-color, 10%) solid;
+  background-color: $bg-color;
+  color: $color;
+  &:hover {
+    background-color: darken($bg-color, 10%);
+  }
+}
+
+.btn-group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn {
+  border: 1px solid tranparent;
+  display: inline-block;
+  padding: 5px 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 12px;
+  font-weight: 400;
+  outline:none;
+  @include  round(4px);
+  @include shadow(1px, 1px, 1px, 1px, rgba(0,0,0,0.1));
+}
+
+.btn-default {
+  @include btn-temp($btn-default-bg-color, $btn-color1);
+}
+
+.btn-info {
+  @include btn-temp($btn-info-bg-color, $btn-color2);
+}
+
+.btn-primary {
+  @include btn-temp($btn-primary-bg-color, $btn-color2);
+}
+
+.btn-success {
+  @include btn-temp($btn-success-bg-color, $btn-color2);
+}

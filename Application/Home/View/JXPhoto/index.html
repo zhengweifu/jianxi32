@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>JX Photo</title>
 
-    <script src="__PUBLIC__/js/sea-2.3.0.min.js"></script>
-    <script src="__PUBLIC__/js/jquery-2.0.0.min.js"></script>
-    <script src="__PUBLIC__/js/alloyimage.js"></script>
+    <script src="__PUBLIC__/lib/js/sea-2.3.0.min.js"></script>
+    <script src="__PUBLIC__/lib/js/jquery-2.0.0.min.js"></script>
+    <script src="__PUBLIC__/lib/js/alloyimage.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/lib/css/jx.css"/>
     <link rel="stylesheet" href="__PUBLIC__/jxphoto/css/jxphoto_main.css"/>
 </head>
 <body>
@@ -14,55 +15,97 @@
 <div class="container">
     <div class="image-controller">
         <div class="plane image-plane">
-            <div class="box-close"></div>
-            <div class="container">
+            <div class="plane-header">
                 <span class="plane-title">选择一张图片</span>
-                <div class="view-image">
-                    <div class="view-div view-import-div" title="添加一张图片">
-                        <span style="font-size: 50px;text-align: center;line-height: 100px;width: 100%;display: inline-block"><a
-                                href="#">+</a></span>
-                        <input type="file" id="import-pictrue" style="display: none"/>
-                    </div>
+                <div class="box-close"></div>
+            </div>
+
+            <div class="plane-container">
+                <div class="view-div view-import-div" title="添加一张图片">
+                    <span style="font-size: 50px;text-align: center;line-height: 100px;width: 100%;display: inline-block"><a
+                            href="#">+</a></span>
+                    <input type="file" id="import-pictrue" style="display: none"/>
                 </div>
-                <div class="option">
-                    <!--<button class="default-btn">上一步</button>-->
-                    <button class="default-btn next" disabled="true">下一步</button>
-                    <button class="ok-btn" disabled="true">确定</button>
-                    <!--<button class="cancel-btn">取消</button>-->
+            </div>
+
+            <div class="plane-footer">
+                <div class="btn-group">
+                    <button class="btn btn-info next" disabled="true">下一步</button>
+                    <button class="btn btn-success ok-btn" disabled="true">确定</button>
                 </div>
             </div>
         </div>
         <div class="plane filter-plane">
-            <div class="box-close"></div>
-            <div class="container">
+            <div class="plane-header">
                 <span class="plane-title">选择一种滤镜</span>
-                <div class="view-image"></div>
-                <div class="option">
-                    <button class="default-btn back">上一步</button>
-                    <button class="default-btn next" disabled="true">下一步</button>
-                    <button class="ok-btn" disabled="true">确定</button>
-                    <!--<button class="cancel-btn">取消</button>-->
+                <div class="box-close"></div>
+            </div>
+
+            <div class="plane-container">
+            </div>
+
+            <div class="plane-footer">
+                <div class="btn-group">
+                    <button class="btn btn-info back">上一步</button>
+                    <button class="btn btn-info next" disabled="true">下一步</button>
+                    <button class="btn btn-success ok-btn" disabled="true">确定</button>
                 </div>
             </div>
         </div>
         <div class="plane mask-plane">
-            <div class="box-close"></div>
-            <div class="container">
+            <div class="plane-header">
                 <span class="plane-title">选择一个蒙版</span>
-                <div class="view-image"></div>
-                <div class="option">
-                    <button class="default-btn back">上一步</button>
-                    <!--<button class="default-btn">下一步</button>-->
-                    <button class="ok-btn" disabled="true">确定</button>
-                    <!--<button class="cancel-btn">取消</button>-->
+                <div class="box-close"></div>
+            </div>
+
+            <div class="plane-container">
+            </div>
+
+            <div class="plane-footer">
+                <div class="btn-group">
+                    <button class="btn btn-info next">上一步</button>
+                    <button class="btn btn-success ok-btn" disabled="true">确定</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="plane text-plane">
+
+        <div class="plane-header">
+            <span class="plane-title">文字控制</span>
+            <div class="box-close"></div>
+        </div>
+
+        <div class="plane-container">
+            <div class="text-contr-sub">
+                <div class="text-size-div">
+                    <span>文字大小:</span>
+                </div>
+                <div class="text-size-div">
+                    <span>-</span>
+                    <span>10</span>
+                    <span>+</span>
+                </div>
+            </div>
+            <div class="text-contr-sub">
+                <span>字体:</span>
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <div class="plane-footer">
+            <div class="btn-group">
+                <button class="btn btn-success" disabled="true">确定</button>
+            </div>
+        </div>
+
+    </div>
+
     <div class="header-painting">
-        <button class="default-btn visible-image-btn">图片</button>
-        <button class="default-btn visible-text-btn">文字</button>
+        <button class="btn btn-primary visible-image-btn">图片</button>
+        <button class="btn btn-primary visible-text-btn">文字</button>
     </div>
     <div class="container-painting">
         <canvas class="painting" id="painting_canvas"></canvas>
@@ -155,7 +198,7 @@
             });
         });
 
-        $(".plane .box-close").bind("click", function () {
+        $(".plane .plane-header .box-close").bind("click", function () {
             $(".plane").css("display", "none");
         });
 
@@ -163,7 +206,7 @@
         $(".plane").css("display", "none");
 
 
-        $(".image-plane .option .next").bind('click', function () {
+        $(".image-plane .plane-footer .btn-group .next").bind('click', function () {
             $('.image-plane').css("display", "none");
             $('.filter-plane').css("display", "block");
             var _image = new Image();
@@ -174,7 +217,7 @@
             }
         });
 
-        $(".filter-plane .option .next").bind('click', function () {
+        $(".filter-plane .plane-footer .btn-group .next").bind('click', function () {
             $('.filter-plane').css("display", "none");
             $('.mask-plane').css("display", "block");
             for(var i=0; i<masks.length; i++) {
@@ -182,17 +225,17 @@
             }
         });
 
-        $(".filter-plane .option .back").bind('click', function () {
+        $(".filter-plane .plane-footer .btn-group .back").bind('click', function () {
             $('.filter-plane').css("display", "none");
             $('.image-plane').css("display", "block");
         });
 
-        $(".mask-plane .option .back").bind('click', function () {
+        $(".mask-plane .plane-footer .btn-group .back").bind('click', function () {
             $('.mask-plane').css("display", "none");
             $('.filter-plane').css("display", "block");
         });
 
-        $(".plane .container .option .ok-btn").bind('click', function() {
+        $(".plane .plane-footer .btn-group .btn-success").bind('click', function() {
             entry.updateCurrentImageInfo();
             entry.render();
         });
@@ -201,16 +244,30 @@
             document.getElementById("import-pictrue").click();
         });
 
+
+        /**
+         * 从本地导入图片
+         */
         $('#import-pictrue').on('change', function () {
             entry.openFile(this.files[0], function (url) {
                 entry.addImage(url, function (img) {
-                    updateImageView(initImageView($(".image-plane .container .view-image")), img);
+                    updateImageView(initImageView($(".image-plane .plane-container")), img);
                 });
             });
         });
 
+        /**
+         * 显示图片控制面板
+         */
         $(".visible-image-btn").bind('click', function () {
             $(".image-plane").css("display", "block");
+        });
+
+        /**
+         * 显示文字控制面板
+         */
+        $(".visible-text-btn").bind('click', function () {
+            $(".text-plane").css("display", "block");
         });
 
         var  _selected_ip_view_div, _selected_fp_view_div, _selected_mp_view_div;
@@ -250,8 +307,8 @@
 
                 _selected_ip_view_div = $(this);
 
-                $(".image-plane .container .option .next").attr("disabled", false);
-                $(".image-plane .container .option .ok-btn").attr("disabled", false);
+                $(".image-plane .plane-footer .btn-group .next").attr("disabled", false);
+                $(".filter-plane .plane-footer .btn-group .btn-success").attr("disabled", false);
             });
 
             return view_canvas;
@@ -293,8 +350,8 @@
 
                 _selected_fp_view_div = $(this);
 
-                $(".filter-plane .container .option .next").attr("disabled", false);
-                $(".filter-plane .container .option .ok-btn").attr("disabled", false);
+                $(".filter-plane .plane-footer .btn-group .next").attr("disabled", false);
+                $(".filter-plane .plane-footer .btn-group .btn-success").attr("disabled", false);
             });
 
             return view_canvas;
@@ -334,7 +391,7 @@
 
                 _selected_mp_view_div = $(this);
 
-                $(".mask-plane .container .option .ok-btn").attr("disabled", false);
+                $(".mask-plane .plane-footer .btn-group .btn-success").attr("disabled", false);
             });
 
             return view_canvas;
@@ -358,14 +415,14 @@
         };
 
         for(var eachFilter in filters) {
-            filters[eachFilter] = initFilterView($(".filter-plane .container .view-image"));
+            filters[eachFilter] = initFilterView($(".filter-plane .plane-container"));
         }
 
 
         <foreach name="jxphoto_pictrues" item="vo_pic">
 
         entry.addImage("__ROOT__/{$vo_pic}", function (img) {
-            updateImageView(initImageView($(".image-plane .container .view-image")), img);
+            updateImageView(initImageView($(".image-plane .plane-container")), img);
         });
 
         </foreach>
@@ -373,7 +430,7 @@
         <foreach name="jxphoto_masks" item="vo_mask">
 
         entry.addImage("__ROOT__/{$vo_mask}", function (img) {
-            masks.push([img, initMaskView($(".mask-plane .container .view-image"))]);
+            masks.push([img, initMaskView($(".mask-plane .plane-container"))]);
 
         });
 
