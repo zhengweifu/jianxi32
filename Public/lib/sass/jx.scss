@@ -2,9 +2,14 @@ $btn-default-bg-color: #e3e3e3;
 $btn-info-bg-color: #5bc0de;
 $btn-primary-bg-color: #3f57e0;
 $btn-success-bg-color: #5cb85c;
-$base-border-color: #c9cec9;
+$base-border-color: #828182;
 $btn-color1: #393f40;
 $btn-color2: #e1f6fa;
+$number-width: 30px;
+$number-height: 20px;
+$number-bg-color-hover: #0f0;
+$selected-bg-color: #a0aec3;
+
 
 @import "mixins/base.scss";
 
@@ -39,7 +44,7 @@ $btn-color2: #e1f6fa;
   font-weight: 400;
   outline:none;
   @include  round(4px);
-  @include shadow(1px, 1px, 1px, 1px, rgba(0,0,0,0.1));
+  @include shadow(1px, 1px, 1px, 1px, rgba(0,0,0,0.2));
 }
 
 .btn-default {
@@ -56,4 +61,51 @@ $btn-color2: #e1f6fa;
 
 .btn-success {
   @include btn-temp($btn-success-bg-color, $btn-color2);
+}
+
+.number-sub {
+  @include border-split(1px, $base-border-color, 1px, $base-border-color, 1px, $base-border-color, 0px, $base-border-color);
+  @include round-split(3px, 0px, 3px, 0px);
+  float: left;
+  height: $number-height;
+  width: $number-width/2;
+  line-height: $number-height;
+  text-align: center;
+  vertical-align: middle;
+  &:hover{
+    background-color: $number-bg-color-hover;
+  }
+}
+
+.number-add {
+  @include border-split(1px, $base-border-color, 1px, $base-border-color, 0px, $base-border-color, 1px, $base-border-color);
+  @include round-split(0px, 3px, 0px, 3px);
+  float: left;
+  height: $number-height;
+  width: $number-width/2;
+  line-height: $number-height;
+  text-align: center;
+  vertical-align: middle;
+  &:hover{
+    background-color: $number-bg-color-hover;
+  }
+}
+
+.number-visible {
+  float: left;
+  border: 1px $base-border-color solid;
+  outline: none;
+  background-color: transparent;
+  height: $number-height;
+  width: $number-width;
+  text-align: center;
+  vertical-align: middle;
+  &:hover{
+    background-color: $number-bg-color-hover;
+  }
+}
+
+.number-group {
+  display: inline-block;
+  //vertical-align: middle;
 }

@@ -21,9 +21,9 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1); }
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2); }
 
 .btn-default {
   border: 1px #cacaca solid;
@@ -52,5 +52,72 @@
   color: #e1f6fa; }
   .btn-success:hover {
     background-color: #449d44; }
+
+.number-sub {
+  border-top: 1px #828182 solid;
+  border-bottom: 1px #828182 solid;
+  border-left: 1px #828182 solid;
+  border-right: 0px #828182 solid;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 0px;
+  -webkit-border-bottom-left-radius: 3px;
+  -webkit-border-bottom-right-radius: 0px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 0px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 0px;
+  float: left;
+  height: 20px;
+  width: 15px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle; }
+  .number-sub:hover {
+    background-color: #0f0; }
+
+.number-add {
+  border-top: 1px #828182 solid;
+  border-bottom: 1px #828182 solid;
+  border-left: 0px #828182 solid;
+  border-right: 1px #828182 solid;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 0px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomleft: 0px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 3px;
+  float: left;
+  height: 20px;
+  width: 15px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle; }
+  .number-add:hover {
+    background-color: #0f0; }
+
+.number-visible {
+  float: left;
+  border: 1px #828182 solid;
+  outline: none;
+  background-color: transparent;
+  height: 20px;
+  width: 30px;
+  text-align: center;
+  vertical-align: middle; }
+  .number-visible:hover {
+    background-color: #0f0; }
+
+.number-group {
+  display: inline-block; }
 
 /*# sourceMappingURL=jx.css.map */

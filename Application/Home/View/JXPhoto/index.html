@@ -22,8 +22,7 @@
 
             <div class="plane-container">
                 <div class="view-div view-import-div" title="添加一张图片">
-                    <span style="font-size: 50px;text-align: center;line-height: 100px;width: 100%;display: inline-block"><a
-                            href="#">+</a></span>
+                    <span>+</span>
                     <input type="file" id="import-pictrue" style="display: none"/>
                 </div>
             </div>
@@ -63,7 +62,7 @@
 
             <div class="plane-footer">
                 <div class="btn-group">
-                    <button class="btn btn-info next">上一步</button>
+                    <button class="btn btn-info back">上一步</button>
                     <button class="btn btn-success ok-btn" disabled="true">确定</button>
                 </div>
             </div>
@@ -79,20 +78,31 @@
 
         <div class="plane-container">
             <div class="text-contr-sub">
-                <div class="text-size-div">
-                    <span>文字大小:</span>
+                <span class="text-size">文字大小:</span>
+                <div class="number-group">
+                    <span class="number-sub">-</span>
+                    <input type="text" value="10" maxlength="4" class="number-visible">
+                    <span class="number-add">+</span>
                 </div>
-                <div class="text-size-div">
-                    <span>-</span>
-                    <span>10</span>
-                    <span>+</span>
-                </div>
+                <button class="btn btn-primary">添加文字</button>
             </div>
-            <div class="text-contr-sub">
-                <span>字体:</span>
-            </div>
-            <div>
 
+            <div class="text-contr-sub">
+                <span class="text-font">字体:</span>
+            </div>
+
+            <div class="use-font-group">
+                <a href="#" class="use-font">ConsolasFutura</a>
+                <a href="#" class="use-font">Arial</a>
+                <a href="#" class="use-font">Arial Black</a>
+                <a href="#" class="use-font">Arial Narrow</a>
+                <a href="#" class="use-font">Arial unicode </a>
+                <a href="#" class="use-font">msCalibri04b08</a>
+                <a href="#" class="use-font">Helvetica</a>
+                <a href="#" class="use-font">Helvetica </a>
+                <a href="#" class="use-font">NeueTimesMs </a>
+                <a href="#" class="use-font">mincho </a>
+                <a href="#" class="use-font">GothamImpact</a>
             </div>
         </div>
         <div class="plane-footer">
@@ -291,14 +301,10 @@
 
             view_canvas.bind("click", function() {
                 if(_selected_ip_view_div) {
-                    _selected_ip_view_div.css({
-                        "border-color" : "hsl(0, 0%, 80%)"
-                    });
+                    _selected_ip_view_div.removeClass("active");
                 }
 
-                $(this).css({
-                    "border-color" : "#0f0"
-                });
+                $(this).addClass("active");
 
                 currentImage.src = view_canvas[0].toDataURL();
 
@@ -333,14 +339,10 @@
 
             view_canvas.bind("click", function() {
                 if(_selected_fp_view_div) {
-                    _selected_fp_view_div.css({
-                        "border-color" : "hsl(0, 0%, 80%)"
-                    });
+                    _selected_fp_view_div.removeClass("active");
                 }
 
-                $(this).css({
-                    "border-color" : "#0f0"
-                });
+                $(this).addClass("active");
 
                 currentFilter.src = view_canvas[0].toDataURL();
 
@@ -378,14 +380,10 @@
 
             view_canvas.bind("click", function() {
                 if(_selected_mp_view_div) {
-                    _selected_mp_view_div.css({
-                        "border-color" : "hsl(0, 0%, 80%)"
-                    });
+                    _selected_mp_view_div.removeClass("active");
                 }
 
-                $(this).css({
-                    "border-color" : "#0f0"
-                });
+                $(this).addClass("active");
 
                 entry.currentMaskImage = view_canvas.zImage;
 

@@ -1,14 +1,20 @@
-$plane-bg-color-base: #e1e1e1;
-$plane-border-color-base: #c1c1c1;
+$plane-bg-color-base: #dfe2ea;
+$plane-border-color-base: #828182;
 
-$plane-header-bg-clolor: #d1d1d1;
+$plane-header-bg-clolor: #cbcacd;
+
+$view-border-color: #bbbbbb;
+$view-bg-color: #f6f6f6;
+
+$plane-border-raduis: 5px;
 
 @import "../../lib/sass/mixins/base.scss";
 
-@mixin close($width:20px, $height:20px, $bg-color:#fa6900, $border-radius:2px) {
+@mixin close($width:14px, $height:14px, $bg-color:#fa6900, $border-radius:2px) {
   height: $width;
   width: $height;
   background-color: $bg-color;
+  border: 1px darken($bg-color, 5%) solid;
   border-radius: $border-radius;
   @include shadow(1px, 1px, 1px, 0px, rgba(0,0,0,0.1));
   &:after {
@@ -19,9 +25,19 @@ $plane-header-bg-clolor: #d1d1d1;
     right: 0;
     content: "\d7";
     color: #fff;
+    @if $width < $height {
+      font-size: $width;
+    } @else {
+      font-size: $height;
+    }
+
 
     text-align: center;
     line-height: $height;
+  }
+
+  &:hover {
+    background-color: lighten($bg-color, 10%);
   }
 }
 
@@ -61,40 +77,39 @@ a {
 }
 
 .active {
-  background-color: #888;
+  border: 1px #0f0 solid !important;
 }
 
 .plane {
-  background-color: $plane-bg-color-base;
-  border: 1px $plane-border-color-base solid;
-  @include round(3px);
+  @include round($plane-border-raduis);
 
   position: absolute;
   top: 100px;
   left: 100px;
   z-index: 601;
-  @include shadow;
+  @include shadow(3px,3px,2px,0px, rgba(0,0,0,0.1));
 
   .plane-header {
     background-color: $plane-header-bg-clolor;
-    border-bottom: 1px $plane-border-color-base solid;
+    border: 1px $plane-border-color-base solid;
+    @include round-split($plane-border-raduis, $plane-border-raduis, 0px, 0px);
     height: 30px;
     .plane-title {
-      font-size: 15px;
+      font-size: 14px;
       margin-left: 10px;
       line-height: 30px;
     }
     .box-close {
       position: absolute;
-      top: 3px;
-      right: 3px;
+      top: 5px;
+      right: 5px;
       @include close;
     }
   }
 
   .plane-container {
-    border-top: 1px lighten($plane-bg-color-base, 5%) solid;
-    border-bottom: 1px lighten($plane-bg-color-base, 5%) solid;
+    background-color: $plane-bg-color-base;
+    @include border-split(1px, lighten($plane-bg-color-base, 5%), 1px, $plane-border-color-base, 1px, $plane-border-color-base, 1px, $plane-border-color-base);
     width: 321px;
     height: 300px;
     padding-left: 5px;
@@ -102,8 +117,10 @@ a {
     overflow: scroll;
 
     .view-div {
-      border: 1px #dcdcdc solid;
-      background-color: #f6f6f6;
+      border: 1px $view-border-color solid;
+      background-color: $view-bg-color;
+      @include round(3px);
+      //@include shadow(1px, 1px, 1px, 1px, rgba(0, 0, 0, 0.2));
       width: 100px;
       height: 100px;
       float: left;
@@ -113,12 +130,24 @@ a {
       &:hover{
         border-color: #588ecb;
       }
+
+      span {
+        text-align: center;
+        line-height: 100px;
+        width: 100%;
+        display: inline-block;
+        font-size: 40px;
+        color: #697588;
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+      }
     }
   }
 
   .plane-footer {
     background-color: $plane-header-bg-clolor;
-    border-top: 1px $plane-border-color-base solid;
+    border: 1px $plane-border-color-base solid;
+    @include border-split(1px, lighten($plane-bg-color-base, 5%), 1px, $plane-border-color-base, 1px, $plane-border-color-base, 1px, $plane-border-color-base);
+    @include round-split(0px, 0px, $plane-border-raduis, $plane-border-raduis);
     height: 40px;
     position: relative;
     .btn-group {
@@ -129,15 +158,49 @@ a {
   }
 }
 
-
+$painting-header-bg-color: #5f5f5f;
 .header-painting {
+  @include border-split(2px, darken($painting-header-bg-color, 20%), 2px, darken($painting-header-bg-color, 20%), 0px, $painting-header-bg-color, 0px, $painting-header-bg-color);
   height: 60px;
-  background-color: hsl(0, 0%, 80%);
+  background-color: $painting-header-bg-color;
 
   &:before {
     content: "JianXi Photo";
     width: 100px;
     line-height: 60px;
     margin: 0px 30px;
+  }
+}
+
+.text-contr-sub {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  @include border-split(0px, $plane-border-color-base, 1px, $plane-border-color-base, 0px, $plane-border-color-base, 0px, $plane-border-color-base);
+  .text-size, .text-font {
+    font-size: 14px;
+    line-height: 20px;
+    vertical-align: middle;
+  }
+
+  .number-group {
+    margin-left: 30px;
+    margin-right: 40px;
+    vertical-align: middle;
+    line-height: 20px;
+  }
+
+}
+
+.use-font-group {
+  margin-right: 5px;
+  .use-font {
+    display: block;
+    padding: 5px 10px;
+    font-size: 16px;
+
+    &:hover {
+      background-color: #a0aec3;
+    }
   }
 }
