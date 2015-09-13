@@ -56,7 +56,7 @@ define(function (require) {
          * 绘制区域限制
          * @type {{x: number, y: number, width: number, height: number}}
          */
-        this.drawArea = {x : 500, y : 100, width : 500, height : 500};
+        this.drawArea = paras.drawArea;
 
 
         var self = this;

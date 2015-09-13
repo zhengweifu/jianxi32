@@ -110,35 +110,36 @@ a {
   .plane-container {
     background-color: $plane-bg-color-base;
     @include border-split(1px, lighten($plane-bg-color-base, 5%), 1px, $plane-border-color-base, 1px, $plane-border-color-base, 1px, $plane-border-color-base);
-    width: 321px;
-    height: 300px;
-    padding-left: 5px;
-    padding-top: 5px;
-    overflow: scroll;
+    .view-div-group {
+      width: 321px;
+      height: 300px;
+      padding-left: 5px;
+      padding-top: 5px;
+      overflow: scroll;
+      .view-div {
+        border: 1px $view-border-color solid;
+        background-color: $view-bg-color;
+        @include round(3px);
+        //@include shadow(1px, 1px, 1px, 1px, rgba(0, 0, 0, 0.2));
+        width: 100px;
+        height: 100px;
+        float: left;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        background-size: cover;
+        &:hover {
+          border-color: #588ecb;
+        }
 
-    .view-div {
-      border: 1px $view-border-color solid;
-      background-color: $view-bg-color;
-      @include round(3px);
-      //@include shadow(1px, 1px, 1px, 1px, rgba(0, 0, 0, 0.2));
-      width: 100px;
-      height: 100px;
-      float: left;
-      margin-right: 5px;
-      margin-bottom: 5px;
-      background-size: cover;
-      &:hover{
-        border-color: #588ecb;
-      }
-
-      span {
-        text-align: center;
-        line-height: 100px;
-        width: 100%;
-        display: inline-block;
-        font-size: 40px;
-        color: #697588;
-        text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+        span {
+          text-align: center;
+          line-height: 100px;
+          width: 100%;
+          display: inline-block;
+          font-size: 40px;
+          color: #697588;
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+        }
       }
     }
   }
@@ -172,11 +173,58 @@ $painting-header-bg-color: #5f5f5f;
   }
 }
 
-.text-contr-sub {
-  margin-right: 5px;
+.text-control-group {
+  width: 300px;
+  //height: 400px;
+  .text-tab-ul {
+    //background-color: $plane-header-bg-clolor;
+    display: inline-table;
+    width: 100%;
+    //overflow: visible;
+    text-align: center;
+    margin-top: 10px;
+    @include border-split(1px, $plane-border-color-base, 1px, $plane-border-color-base, 0px, $plane-border-color-base, 0px, $plane-border-color-base);
+    .text-tab-il {
+      line-height: 30px;
+      padding: 5px 20px 0px 20px;
+      float: left;
+      @include border-split(0px, $plane-border-color-base, 0px, $plane-border-color-base, 0px, $plane-border-color-base, 1px, lighten($plane-border-color-base, 30%));
+      display: inline-block;
+      vertical-align: middle;
+      &:hover {
+        background-color: darken($plane-header-bg-clolor, 10%);
+      }
+      .color-view {
+        width: 20px;
+        height:20px;
+        background-color: #cba44b;
+        display: inline-block;
+      }
+    }
+  }
+  .div-line {
+    margin: 10px 0px;
+
+    position: relative;
+    @include border-split(2px, green, 0px, $plane-border-color-base, 0px, $plane-border-color-base, 0px, $plane-border-color-base);
+
+    .div-triangle {
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 10px solid green;
+      position: absolute;
+      left: 88px;
+      top: -10px;
+    }
+  }
+}
+
+.text-size-group {
   margin-bottom: 5px;
   padding-bottom: 5px;
-  @include border-split(0px, $plane-border-color-base, 1px, $plane-border-color-base, 0px, $plane-border-color-base, 0px, $plane-border-color-base);
+  //@include border-split(0px, $plane-border-color-base, 1px, $plane-border-color-base, 0px, $plane-border-color-base, 0px, $plane-border-color-base);
   .text-size, .text-font {
     font-size: 14px;
     line-height: 20px;
@@ -190,17 +238,71 @@ $painting-header-bg-color: #5f5f5f;
     line-height: 20px;
   }
 
+
+  .color-view {
+    width: 20px;
+    height:20px;
+    background-color: #cba44b;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 20px;
+  }
 }
 
-.use-font-group {
-  margin-right: 5px;
+.text-color-group {
+  display: inline-block;
+  margin: 0px 50px;
+}
+
+.text-font-group {
   .use-font {
     display: block;
     padding: 5px 10px;
     font-size: 16px;
 
     &:hover {
+      background-color: #7bc387;
+    }
+
+    .selected {
       background-color: #a0aec3;
     }
+  }
+}
+
+.text-group-hidden {
+  display: none;
+}
+
+@mixin textediter($bg-color, $width, $height) {
+  //background-color: $bg-color;
+  width: $width;
+  height: $height;
+  float: left;
+}
+
+.textediter-group {
+  position: absolute;
+  top: 300px;
+  left: 500px;
+  .textediter-move {
+    position: absolute;
+    left: -32px;
+    background: url("../imgs/icons/crosshair.png");
+    background-size: cover;
+    @include textediter(#213acb, 32px, 32px);
+  }
+  .textediter-scale {
+    @include textediter(#213acb, 32px, 32px);
+  }
+  .textediter-containter {
+    background-color: transparent;
+    float: left;
+    max-width: 500px;
+    border: 1px $plane-border-color-base solid;
+    font-size: 20px;
+    //resize: none;
+    //width: 300px;
+    //height: 40px;
   }
 }
