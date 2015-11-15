@@ -1,11 +1,18 @@
+$bg_gray: #f4f4f4;
+$base_font_gray: #969696;
 
-@mixin round($radius: 5px) {
+$base_orange: #ff8d5c;
+$base_green: #43b579;
+$base_blue: #178cd0;
+
+
+@mixin jxround($radius: 5px) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   border-radius: $radius;
 }
 
-@mixin round-split($topLeft: 5px, $topRight: 5px, $bottomLeft: 5px, $bottomRight: 5px) {
+@mixin jxround-split($topLeft: 5px, $topRight: 5px, $bottomLeft: 5px, $bottomRight: 5px) {
   -webkit-border-top-left-radius: $topLeft;
   -webkit-border-top-right-radius: $topRight;
   -webkit-border-bottom-left-radius: $bottomLeft;
@@ -20,15 +27,26 @@
   border-bottom-right-radius: $bottomRight;
 }
 
-@mixin border-split($topSize:1px, $topColor:#333, $bottomSize:1px, $bottomColor:#333, $leftSize:1px, $leftColor:#333, $rightSize:1px, $rightColor:#333) {
+@mixin jxborder-split($topSize:1px, $topColor:#333, $bottomSize:1px, $bottomColor:#333, $leftSize:1px, $leftColor:#333, $rightSize:1px, $rightColor:#333) {
   border-top: $topSize $topColor solid;
   border-bottom: $bottomSize $bottomColor solid;
   border-left: $leftSize $leftColor solid;
   border-right: $rightSize $rightColor solid;
 }
 
-@mixin shadow($h-shadow:10px, $v-shadow:10px, $blur:10px, $spread:0px, $color:rgba(0, 0, 0, 0.3)) {
+@mixin jxshadow($h-shadow:10px, $v-shadow:10px, $blur:10px, $spread:0px, $color:rgba(0, 0, 0, 0.3)) {
   -webkit-box-shadow: $h-shadow $v-shadow $blur $spread $color;
   -moz-box-shadow: $h-shadow $v-shadow $blur $spread $color;
   box-shadow: $h-shadow $v-shadow $blur $spread $color;
+}
+
+@mixin jxclearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
 }

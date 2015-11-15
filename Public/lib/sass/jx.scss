@@ -1,35 +1,41 @@
-$btn-default-bg-color: #e3e3e3;
-$btn-info-bg-color: #5bc0de;
-$btn-primary-bg-color: #3f57e0;
-$btn-success-bg-color: #5cb85c;
+$jxbtn-default-bg-color: #e3e3e3;
+$jxbtn-info-bg-color: #5bc0de;
+$jxbtn-primary-bg-color: #3f57e0;
+$jxbtn-success-bg-color: #5cb85c;
 $base-border-color: #828182;
-$btn-color1: #393f40;
-$btn-color2: #e1f6fa;
-$number-width: 30px;
-$number-height: 20px;
-$number-bg-color-hover: #0f0;
+$jxbtn-color1: #393f40;
+$jxbtn-color2: #e6fbff;
+$jxnumber-width: 30px;
+$jxnumber-height: 20px;
+$jxnumber-bg-color-hover: #0f0;
 $selected-bg-color: #a0aec3;
+
+//$jxnav-pills-border-radius
 
 
 @import "mixins/base.scss";
 
-@mixin btn-temp($bg-color, $color) {
+@mixin jxbtn-temp($bg-color, $color) {
   border: 1px darken($bg-color, 10%) solid;
   background-color: $bg-color;
   color: $color;
   &:hover {
     background-color: darken($bg-color, 10%);
+    color: $color;
+  }
+  &:focus {
+    text-decoration: none;
   }
 }
 
-.btn-group {
+.jxbtn-group {
   position: relative;
   display: inline-block;
   vertical-align: middle;
 }
 
-.btn {
-  border: 1px solid tranparent;
+.jxbtn {
+  //border: 1px solid tranparent;
   display: inline-block;
   padding: 5px 10px;
   margin-bottom: 0px;
@@ -40,54 +46,68 @@ $selected-bg-color: #a0aec3;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 400;
   outline:none;
-  @include  round(4px);
-  @include shadow(1px, 1px, 1px, 1px, rgba(0,0,0,0.2));
+  text-decoration: none;
+  
+  //@include jx round(4px);
+  //@include jxshadow(1px, 1px, 1px, 1px, rgba(0,0,0,0.2));
 }
 
-.btn-default {
-  @include btn-temp($btn-default-bg-color, $btn-color1);
+.jxbtn-default {
+  @include jxbtn-temp($jxbtn-default-bg-color, $jxbtn-color1);
 }
 
-.btn-info {
-  @include btn-temp($btn-info-bg-color, $btn-color2);
+.jxbtn-info {
+  @include jxbtn-temp($jxbtn-info-bg-color, $jxbtn-color2);
 }
 
-.btn-primary {
-  @include btn-temp($btn-primary-bg-color, $btn-color2);
+.jxbtn-primary {
+  @include jxbtn-temp($jxbtn-primary-bg-color, $jxbtn-color2);
 }
 
-.btn-success {
-  @include btn-temp($btn-success-bg-color, $btn-color2);
+.jxbtn-success {
+  @include jxbtn-temp($jxbtn-success-bg-color, $jxbtn-color2);
+}
+
+.jxbtn-orange {
+  @include jxbtn-temp($base_orange, $jxbtn-color2);
+}
+
+.jxbtn-green {
+  @include jxbtn-temp($base_green, $jxbtn-color2);
+}
+
+.jxbtn-blue {
+  @include jxbtn-temp($base_blue, $jxbtn-color2);
 }
 
 .number-sub {
-  @include border-split(1px, $base-border-color, 1px, $base-border-color, 1px, $base-border-color, 0px, $base-border-color);
-  @include round-split(3px, 0px, 3px, 0px);
+  @include jxborder-split(1px, $base-border-color, 1px, $base-border-color, 1px, $base-border-color, 0px, $base-border-color);
+  @include jxround-split(3px, 0px, 3px, 0px);
   float: left;
-  height: $number-height;
-  width: $number-width/2;
-  line-height: $number-height;
+  height: $jxnumber-height;
+  width: $jxnumber-width/2;
+  line-height: $jxnumber-height;
   text-align: center;
   vertical-align: middle;
   &:hover{
-    background-color: $number-bg-color-hover;
+    background-color: $jxnumber-bg-color-hover;
   }
 }
 
-.number-add {
-  @include border-split(1px, $base-border-color, 1px, $base-border-color, 0px, $base-border-color, 1px, $base-border-color);
-  @include round-split(0px, 3px, 0px, 3px);
+.jxnumber-add {
+  @include jxborder-split(1px, $base-border-color, 1px, $base-border-color, 0px, $base-border-color, 1px, $base-border-color);
+  @include jxround-split(0px, 3px, 0px, 3px);
   float: left;
-  height: $number-height;
-  width: $number-width/2;
-  line-height: $number-height;
+  height: $jxnumber-height;
+  width: $jxnumber-width/2;
+  line-height: $jxnumber-height;
   text-align: center;
   vertical-align: middle;
   &:hover{
-    background-color: $number-bg-color-hover;
+    background-color: $jxnumber-bg-color-hover;
   }
 }
 
@@ -96,16 +116,90 @@ $selected-bg-color: #a0aec3;
   border: 1px $base-border-color solid;
   outline: none;
   background-color: transparent;
-  height: $number-height;
-  width: $number-width;
+  height: $jxnumber-height;
+  width: $jxnumber-width;
   text-align: center;
   vertical-align: middle;
   &:hover{
-    background-color: $number-bg-color-hover;
+    background-color: $jxnumber-bg-color-hover;
   }
 }
 
 .number-group {
   display: inline-block;
   //vertical-align: middle;
+}
+
+.jxnav {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  @include jxclearfix;
+  li {
+    position: relative;
+    display: block;
+
+    a {
+      position: relative;
+      display: block;
+      text-decoration: none;
+      font-size: 16px;
+      color: $base_font_gray;
+      &:focus {
+        color: lighten($base_font_gray, 0.2);
+      }
+    }
+    
+    .active {
+      color: $base_orange;
+    }
+  }
+
+  &:after {
+    display: table;
+    content: ' ';
+  }
+}
+
+.jxnav-rows {
+  li {
+    float : left;
+    margin-right: 2px;
+    a {
+      padding: 10px 40px;
+    }
+  }
+}
+
+
+.jxnavbar {
+  position: relative;
+  width: 100%;
+  @include jxclearfix;
+
+  .jxnav {
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+  }
+
+  img {
+    position: absolute;
+    left: 10%;
+    bottom: 25%;
+  }
+}
+
+.jxnavbar-default {
+  min-height: 84px;
+  background-color: rgba(230, 230, 230, 0.95);
+}
+
+.jxnavbar-fixed-top {
+  position: fixed;
+  z-index: 5;
+}
+
+.jxnavbar-bottom-red {
+  border-bottom: 2px $base_orange solid;
 }

@@ -1,10 +1,9 @@
-.btn-group {
+.jxbtn-group {
   position: relative;
   display: inline-block;
   vertical-align: middle; }
 
-.btn {
-  border: 1px solid tranparent;
+.jxbtn {
   display: inline-block;
   padding: 5px 10px;
   margin-bottom: 0px;
@@ -15,43 +14,80 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 400;
   outline: none;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2); }
+  text-decoration: none; }
 
-.btn-default {
+.jxbtn-default {
   border: 1px #cacaca solid;
   background-color: #e3e3e3;
   color: #393f40; }
-  .btn-default:hover {
-    background-color: #cacaca; }
+  .jxbtn-default:hover {
+    background-color: #cacaca;
+    color: #393f40; }
+  .jxbtn-default:focus {
+    text-decoration: none; }
 
-.btn-info {
+.jxbtn-info {
   border: 1px #31b0d5 solid;
   background-color: #5bc0de;
-  color: #e1f6fa; }
-  .btn-info:hover {
-    background-color: #31b0d5; }
+  color: #e6fbff; }
+  .jxbtn-info:hover {
+    background-color: #31b0d5;
+    color: #e6fbff; }
+  .jxbtn-info:focus {
+    text-decoration: none; }
 
-.btn-primary {
+.jxbtn-primary {
   border: 1px #213acb solid;
   background-color: #3f57e0;
-  color: #e1f6fa; }
-  .btn-primary:hover {
-    background-color: #213acb; }
+  color: #e6fbff; }
+  .jxbtn-primary:hover {
+    background-color: #213acb;
+    color: #e6fbff; }
+  .jxbtn-primary:focus {
+    text-decoration: none; }
 
-.btn-success {
+.jxbtn-success {
   border: 1px #449d44 solid;
   background-color: #5cb85c;
-  color: #e1f6fa; }
-  .btn-success:hover {
-    background-color: #449d44; }
+  color: #e6fbff; }
+  .jxbtn-success:hover {
+    background-color: #449d44;
+    color: #e6fbff; }
+  .jxbtn-success:focus {
+    text-decoration: none; }
+
+.jxbtn-orange {
+  border: 1px #ff6929 solid;
+  background-color: #ff8d5c;
+  color: #e6fbff; }
+  .jxbtn-orange:hover {
+    background-color: #ff6929;
+    color: #e6fbff; }
+  .jxbtn-orange:focus {
+    text-decoration: none; }
+
+.jxbtn-green {
+  border: 1px #359060 solid;
+  background-color: #43b579;
+  color: #e6fbff; }
+  .jxbtn-green:hover {
+    background-color: #359060;
+    color: #e6fbff; }
+  .jxbtn-green:focus {
+    text-decoration: none; }
+
+.jxbtn-blue {
+  border: 1px #126da2 solid;
+  background-color: #178cd0;
+  color: #e6fbff; }
+  .jxbtn-blue:hover {
+    background-color: #126da2;
+    color: #e6fbff; }
+  .jxbtn-blue:focus {
+    text-decoration: none; }
 
 .number-sub {
   border-top: 1px #828182 solid;
@@ -79,7 +115,7 @@
   .number-sub:hover {
     background-color: #0f0; }
 
-.number-add {
+.jxnumber-add {
   border-top: 1px #828182 solid;
   border-bottom: 1px #828182 solid;
   border-left: 0px #828182 solid;
@@ -102,7 +138,7 @@
   line-height: 20px;
   text-align: center;
   vertical-align: middle; }
-  .number-add:hover {
+  .jxnumber-add:hover {
     background-color: #0f0; }
 
 .number-visible {
@@ -119,5 +155,65 @@
 
 .number-group {
   display: inline-block; }
+
+.jxnav {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+  .jxnav:before, .jxnav:after {
+    content: " ";
+    display: table; }
+  .jxnav:after {
+    clear: both; }
+  .jxnav li {
+    position: relative;
+    display: block; }
+    .jxnav li a {
+      position: relative;
+      display: block;
+      text-decoration: none;
+      font-size: 16px;
+      color: #969696; }
+      .jxnav li a:focus {
+        color: #979797; }
+    .jxnav li .active {
+      color: #ff8d5c; }
+  .jxnav:after {
+    display: table;
+    content: ' '; }
+
+.jxnav-rows li {
+  float: left;
+  margin-right: 2px; }
+  .jxnav-rows li a {
+    padding: 10px 40px; }
+
+.jxnavbar {
+  position: relative;
+  width: 100%; }
+  .jxnavbar:before, .jxnavbar:after {
+    content: " ";
+    display: table; }
+  .jxnavbar:after {
+    clear: both; }
+  .jxnavbar .jxnav {
+    position: absolute;
+    right: 10%;
+    bottom: 10%; }
+  .jxnavbar img {
+    position: absolute;
+    left: 10%;
+    bottom: 25%; }
+
+.jxnavbar-default {
+  min-height: 84px;
+  background-color: rgba(230, 230, 230, 0.95); }
+
+.jxnavbar-fixed-top {
+  position: fixed;
+  z-index: 5; }
+
+.jxnavbar-bottom-red {
+  border-bottom: 2px #ff8d5c solid; }
 
 /*# sourceMappingURL=jx.css.map */

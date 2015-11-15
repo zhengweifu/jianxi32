@@ -2,3 +2,4 @@
 .idea
 Runtime
 .sass-cache
+*.map
