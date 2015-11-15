@@ -1,5 +1,5 @@
 .DS_Store
 .idea
 Runtime
-.sass-cache
+Public/lib/.sass-cache
 *.map
