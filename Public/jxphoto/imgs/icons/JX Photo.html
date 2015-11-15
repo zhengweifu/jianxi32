@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<!-- saved from url=(0048)http://localhost/jianxi32/index.php/Home/JXPhoto -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./JX Photo_files/ga.js"></script><script async="" src="http://clkfeed.com/adServe/feed?callback=jQuery19106694589278195053_1442131148901&pid=22276&cid=DP2900AAAAAA&ar=sr&format=jsonp&q=http%3A%2F%2Flocalhost%2Fjianxi32%2Findex.php%2FHome%2FJXPhoto&num=10&ip=199.48.230.176&ref=http%3A%2F%2Flocalhost%2Fjianxi32%2Findex.php%2FHome%2FJXPhoto&ua=Mozilla%2F5.0+(Macintosh%3B+Intel+Mac+OS+X+10_10_1)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F45.0.2454.85+Safari%2F537.36&_=1442131148903"></script>
     <meta charset="UTF-8">
     <title>JX Photo</title>
 
-    <script src="__PUBLIC__/lib/js/sea-2.3.0.min.js"></script>
-    <script src="__PUBLIC__/lib/js/jquery-2.0.0.min.js"></script>
-    <script src="__PUBLIC__/lib/js/farbtastic.js"></script>
-    <script src="__PUBLIC__/lib/js/alloyimage.js"></script>
-    <script src="__PUBLIC__/lib/js/jx.js"></script>
-    <link rel="stylesheet" href="__PUBLIC__/lib/css/farbtastic.css"/>
-    <link rel="stylesheet" href="__PUBLIC__/lib/css/jx.css"/>
-    <link rel="stylesheet" href="__PUBLIC__/jxphoto/css/jxphoto_main.css"/>
+    <script type="text/javascript" src="./JX Photo_files/jquery.js"></script><script src="./JX Photo_files/sea-2.3.0.min.js"></script><script src="./JX Photo_files/get-js"></script><style type="text/css"></style>
+    <script src="./JX Photo_files/jquery-2.0.0.min.js"></script>
+    <script src="./JX Photo_files/alloyimage.js"></script>
+    <script src="./JX Photo_files/jx.js"></script>
+    <link rel="stylesheet" href="./JX Photo_files/jx.css">
+    <link rel="stylesheet" href="./JX Photo_files/jxphoto_main.css">
 </head>
 <body>
 
 <div class="container">
     <div class="image-controller">
-        <div class="plane image-plane">
+        <div class="plane image-plane" style="display: none;">
             <div class="plane-header">
                 <span class="plane-title">选择一张图片</span>
                 <div class="box-close"></div>
@@ -27,9 +25,9 @@
                 <div class="view-div-group">
                     <div class="view-div view-import-div" title="添加一张图片">
                         <span>+</span>
-                        <input type="file" id="import-pictrue" style="display: none"/>
+                        <input type="file" id="import-pictrue" style="display: none">
                     </div>
-                </div>
+                <canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas></div>
             </div>
 
             <div class="plane-footer">
@@ -39,14 +37,14 @@
                 </div>
             </div>
         </div>
-        <div class="plane filter-plane">
+        <div class="plane filter-plane" style="display: none;">
             <div class="plane-header">
                 <span class="plane-title">选择一种滤镜</span>
                 <div class="box-close"></div>
             </div>
 
             <div class="plane-container">
-                <div class="view-div-group"></div>
+                <div class="view-div-group"><canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas></div>
             </div>
 
             <div class="plane-footer">
@@ -57,14 +55,14 @@
                 </div>
             </div>
         </div>
-        <div class="plane mask-plane">
+        <div class="plane mask-plane" style="display: none;">
             <div class="plane-header">
                 <span class="plane-title">选择一个蒙版</span>
                 <div class="box-close"></div>
             </div>
 
             <div class="plane-container">
-                <div class="view-div-group"></div>
+                <div class="view-div-group"><canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas><canvas class="view-div" width="100" height="100"></canvas></div>
             </div>
 
             <div class="plane-footer">
@@ -76,7 +74,54 @@
         </div>
     </div>
 
-    <div class="plane text-plane">
+    <!--<div class="plane text-plane">-->
+
+        <!--<div class="plane-header">-->
+            <!--<span class="plane-title">文字控制</span>-->
+            <!--<div class="box-close"></div>-->
+        <!--</div>-->
+
+        <!--<div class="plane-container">-->
+            <!--<div class="text-contr-sub">-->
+                <!--<span class="text-size">大小:</span>-->
+                <!--<div class="number-group">-->
+                    <!--<span class="number-sub">-</span>-->
+                    <!--<input type="text" value="10" maxlength="4" class="number-visible">-->
+                    <!--<span class="number-add">+</span>-->
+                <!--</div>-->
+                <!--<button class="btn btn-primary">添加文字</button>-->
+            <!--</div>-->
+
+            <!--<div class="text-contr-sub">-->
+                <!--<span class="text-font">颜色:</span>-->
+                <!--<div class="color-view"></div>-->
+            <!--</div>-->
+
+            <!--<div class="text-contr-sub">-->
+                <!--<span class="text-font">字体:</span>-->
+            <!--</div>-->
+
+            <!--<div class="use-font-group">-->
+                <!--<a href="#" class="use-font">Arial</a>-->
+                <!--<a href="#" class="use-font">Arial Black</a>-->
+                <!--<a href="#" class="use-font">Arial Narrow</a>-->
+                <!--<a href="#" class="use-font">Arial unicode </a>-->
+                <!--<a href="#" class="use-font">msCalibri04b08</a>-->
+                <!--<a href="#" class="use-font">Helvetica</a>-->
+                <!--<a href="#" class="use-font">Helvetica </a>-->
+                <!--<a href="#" class="use-font">NeueTimesMs </a>-->
+                <!--<a href="#" class="use-font">mincho </a>-->
+                <!--<a href="#" class="use-font">GothamImpact</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="plane-footer">-->
+            <!--<div class="btn-group">-->
+                <!--<button class="btn btn-success" disabled="true">确定</button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
+    <div class="plane text-plane" style="display: block; left: 118px; top: 121px;">
 
         <div class="plane-header">
             <span class="plane-title">文字控制</span>
@@ -85,38 +130,44 @@
 
         <div class="plane-container">
             <div class="text-control-group">
-                <ul class="text-tab-ul">
-                    <li class="text-tab-il" id="text-size" title="文字大小">10</li>
-                    <li class="text-tab-il" id="text-color" title="文字颜色"><span class="color-view" id="text-color-id"></span></li>
-                    <li class="text-tab-il" id="text-font" title="文字字体">Arial</li>
-                </ul>
-
-                <div class="div-line">
-                    <div class="div-triangle"></div>
-                </div>
-
-                <div class="text-size-group text-group-hidden">
-                    <div class="number-group">
-                        <span class="number-sub">-</span>
-                        <input type="text" value="10" maxlength="4" class="number-visible">
-                        <span class="number-add">+</span>
-                    </div>
-                </div>
-
-                <div class="text-color-group">
-                    <div id="colorpicker"></div>
-                </div>
-
-                <div class="text-font-group text-group-hidden">
-                    <a href="#" class="use-font" style="font-family: Arial">Arial</a>
-                    <a href="#" class="use-font" style="font-family: sans-serif">sans-serif</a>
-                    <a href="#" class="use-font" style="font-family: Helvetica">Helvetica</a>
-                    <a href="#" class="use-font" style="font-family: cursive">cursive</a>
-                    <a href="#" class="use-font" style="font-family: fantasy">fantasy</a>
-                    <a href="#" class="use-font" style="font-family: monospace">monospace</a>
-                    <a href="#" class="use-font" style="font-family: courier">courier</a>
+                <div class="text-tab-ul">
+                    <span class="text-tab-il">10</span>
+                    <span class="text-tab-il"><a href="http://localhost/jianxi32/index.php/Home/JXPhoto#" class="color-view"></a></span>
+                    <span class="text-tab-il">Arial</span>
                 </div>
             </div>
+
+            <!--<div class="text-contr-sub">-->
+                <!--<span class="text-size">大小:</span>-->
+                <!--<div class="number-group">-->
+                    <!--<span class="number-sub">-</span>-->
+                    <!--<input type="text" value="10" maxlength="4" class="number-visible">-->
+                    <!--<span class="number-add">+</span>-->
+                <!--</div>-->
+                <!--<button class="btn btn-primary">添加文字</button>-->
+            <!--</div>-->
+
+            <!--<div class="text-contr-sub">-->
+                <!--<span class="text-font">颜色:</span>-->
+                <!--<div class="color-view"></div>-->
+            <!--</div>-->
+
+            <!--<div class="text-contr-sub">-->
+                <!--<span class="text-font">字体:</span>-->
+            <!--</div>-->
+
+            <!--<div class="use-font-group">-->
+                <!--<a href="#" class="use-font">Arial</a>-->
+                <!--<a href="#" class="use-font">Arial Black</a>-->
+                <!--<a href="#" class="use-font">Arial Narrow</a>-->
+                <!--<a href="#" class="use-font">Arial unicode </a>-->
+                <!--<a href="#" class="use-font">msCalibri04b08</a>-->
+                <!--<a href="#" class="use-font">Helvetica</a>-->
+                <!--<a href="#" class="use-font">Helvetica </a>-->
+                <!--<a href="#" class="use-font">NeueTimesMs </a>-->
+                <!--<a href="#" class="use-font">mincho </a>-->
+                <!--<a href="#" class="use-font">GothamImpact</a>-->
+            <!--</div>-->
         </div>
         <div class="plane-footer">
             <div class="btn-group">
@@ -131,7 +182,7 @@
         <button class="btn btn-primary visible-text-btn">文字</button>
     </div>
     <div class="container-painting">
-        <canvas class="painting" id="painting_canvas"></canvas>
+        <canvas class="painting" id="painting_canvas" width="911" height="800"></canvas>
     </div>
     
     <div class="textediter-group">
@@ -150,10 +201,10 @@
 
 
 <script>
-    seajs.use("__PUBLIC__/jxphoto/js/JXPhotoEntry.js", function (JXPhotoEntry) {
+    seajs.use("/jianxi32/Public/jxphoto/js/JXPhotoEntry.js", function (JXPhotoEntry) {
         var inParameters = {
             canvas: document.getElementById("painting_canvas"),
-            rootPath: " __ROOT__",
+            rootPath: " /jianxi32",
             drawArea: {x : 500, y : 100, width : 500, height : 500}
         };
 
@@ -178,18 +229,9 @@
 
         var currentFilter = new Image();
 
-        // 文字 colorpicker
-        var text_colorpicher = $.farbtastic('#colorpicker').linkTo('#text-color-id');
-        var text_color_str = $('#text-color-id').css("backgroundColor");
-        if(text_color_str.match(/#/g)) {
-            text_colorpicher.setColor(text_color_str);
-        } else if(text_color_str.match(/rgb/g)) {
-            text_colorpicher.setColor(jxjs.RGB2Hex(text_color_str));
-        }
 
 
-//        $.farbtastic('#colorpicker').setColor($('#text-color-id').css("backgroundColor"));
-
+        // callback
         // 控制面板移动
         $(".plane").each(function() {
             jxjs.controlElementMove($(this), $(this));
@@ -197,36 +239,6 @@
 
         // 控制文字移动
         jxjs.controlElementMove($(".textediter-move"), $(".textediter-group"));
-
-        // 三角形移动
-        $("#text-size").bind('click', function(event) {
-            $(".div-triangle").animate({"left": "25px"});
-            if($(".text-size-group").hasClass("text-group-hidden"))
-                $(".text-size-group").removeClass("text-group-hidden");
-            if(!$(".text-color-group").hasClass("text-group-hidden"))
-                $(".text-color-group").addClass("text-group-hidden");
-            if(!$(".text-font-group").hasClass("text-group-hidden"))
-                $(".text-font-group").addClass("text-group-hidden");
-        });
-        $("#text-color").bind('click', function(event) {
-            $(".div-triangle").animate({"left": "88px"});
-            if(!$(".text-size-group").hasClass("text-group-hidden"))
-                $(".text-size-group").addClass("text-group-hidden");
-            if($(".text-color-group").hasClass("text-group-hidden"))
-                $(".text-color-group").removeClass("text-group-hidden");
-            if(!$(".text-font-group").hasClass("text-group-hidden"))
-                $(".text-font-group").addClass("text-group-hidden");
-        });
-        $("#text-font").bind('click', function(event) {
-            $(".div-triangle").animate({"left": "160px"});
-            if(!$(".text-size-group").hasClass("text-group-hidden"))
-                $(".text-size-group").addClass("text-group-hidden");
-            if(!$(".text-color-group").hasClass("text-group-hidden"))
-                $(".text-color-group").addClass("text-group-hidden");
-            if($(".text-font-group").hasClass("text-group-hidden"))
-                $(".text-font-group").removeClass("text-group-hidden");
-        });
-
 
         $(".plane .plane-header .box-close").bind("click", function () {
             $(".plane").css("display", "none");
@@ -437,25 +449,23 @@
         }
 
 
-        <foreach name="jxphoto_pictrues" item="vo_pic">
-
-        entry.addImage("__ROOT__/{$vo_pic}", function (img) {
+        entry.addImage("/jianxi32/Public/jxphoto/imgs/pictrues/a.jpg", function (img) {
+            updateImageView(initImageView($(".image-plane .plane-container .view-div-group")), img);
+        });entry.addImage("/jianxi32/Public/jxphoto/imgs/pictrues/b.jpg", function (img) {
             updateImageView(initImageView($(".image-plane .plane-container .view-div-group")), img);
         });
+        entry.addImage("/jianxi32/Public/jxphoto/imgs/masks/a.png", function (img) {
+            masks.push([img, initMaskView($(".mask-plane .plane-container .view-div-group"))]);
 
-        </foreach>
+        });entry.addImage("/jianxi32/Public/jxphoto/imgs/masks/b.png", function (img) {
+            masks.push([img, initMaskView($(".mask-plane .plane-container .view-div-group"))]);
 
-        <foreach name="jxphoto_masks" item="vo_mask">
-
-        entry.addImage("__ROOT__/{$vo_mask}", function (img) {
+        });entry.addImage("/jianxi32/Public/jxphoto/imgs/masks/c.png", function (img) {
             masks.push([img, initMaskView($(".mask-plane .plane-container .view-div-group"))]);
 
         });
-
-        </foreach>
-
     });
 </script>
 
-</body>
-</html>
+
+<div id="cli_dialog"></div></body></html>

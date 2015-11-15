@@ -1,0 +1,27 @@
+@base-color: rgba(255, 0, 0, 0.42);
+@test-color: #9dff4b;
+@the-border: 20px;
+
+@import "../../less/base";
+
+div {
+  height: 100px;
+  background-color: @base-color;
+  .rounded-corner(@the-border);
+}
+
+div {
+
+  span {
+    color: @test-color;
+
+    &:hover {
+      color: @base-color;
+    }
+  }
+
+  &:after {
+    content: "jianxiamei";
+  }
+
+}
