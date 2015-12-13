@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>简兮网络</title>
     <link rel="stylesheet" href="__PUBLIC__/lib/css/bootstrap.min.css">
     <link rel="stylesheet" href="__PUBLIC__/lib/css/unslider.css">
@@ -13,178 +13,220 @@
 
     <script src="__PUBLIC__/lib/js/sea-2.3.0.min.js"></script>
     <script src="__PUBLIC__/lib/js/jquery-2.0.0.min.js"></script>
-    <!--<script src="__PUBLIC__/lib/js/bootstrap.min.js"></script>-->
+    <script src="__PUBLIC__/lib/js/bootstrap.min.js"></script>
     <!--<script src="//code.jquery.com/jquery-2.1.4.js"></script>-->
     <script src="__PUBLIC__/lib/js/unslider-min.js"></script>
 </head>
-<body>
+<body data-spy="scroll" data-target="#myScrollspy">
 
-<div class="jxnavbar jxnavbar-default jxnavbar-bottom-red jxnavbar-fixed-top">
-    <img class="jx-logo" src="__PUBLIC__/lib/imgs/logo.png" alt="logo">
-
-    <ul class="jxnav jxnav-rows">
-        <li><a class="active" href="#jx-home-label">首页</a></li>
-        <li><a href="#jx-product-label">产品展示</a></li>
-        <li><a href="#jx-introdution-label">公司简介</a></li>
-        <li><a href="#jx-about-label">联系我们</a></li>
-    </ul>
-</div>
-
-<div class="jxbanner" id="jx-home-label">
-    <ul>
-        <li>
-            <img src="__PUBLIC__/lib/imgs/banner01.jpg" alt=""/>
-            <div class="jxbanner-introdution-group">
-                <p class="jxbanner-introdution-title size-30px">简兮DIY</p>
-                <div class="jxbanner-introdution-content">
-                    <p class="size-18px" >服装、陶瓷、DengDengDengDeng...<br>你的设计将呈现在你手中，看得见，更摸得着</p>
-                </div>
-
-                <button class="jxbtn jxbtn-orange">
-                    马上体验
-                    <span class="glyphicon glyphicon-menu-right"></span>
+    <nav id="myScrollspy" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#example-navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
+                <a class="navbar-logo" href="#">
+                    <img class="jx-logo" src="__PUBLIC__/lib/imgs/logo.png" alt="logo">
+                </a>
             </div>
-        </li>
-        <li>
-            <img src="__PUBLIC__/lib/imgs/banner01.jpg" alt=""/>
-            <div class="jxbanner-introdution-group">
-                <p class="jxbanner-introdution-title size-30px">简兮DIY</p>
-                <div class="jxbanner-introdution-content">
-                    <p class="size-18px">服装、陶瓷、DengDengDengDeng...<br>你的设计将呈现在你手中，看得见，更摸得着</p>
-                </div>
-
-                <button class="jxbtn jxbtn-green">
-                    马上体验
-                    <span class="glyphicon glyphicon-menu-right"></span>
-                </button>
-            </div>
-        </li>
-        <li>
-            <img src="__PUBLIC__/lib/imgs/banner01.jpg" alt=""/>
-            <div class="jxbanner-introdution-group">
-                <p class="jxbanner-introdution-title size-30px">简兮DIY</p>
-                <div class="jxbanner-introdution-content">
-                    <p class="size-18px">服装、陶瓷、DengDengDengDeng...<br>你的设计将呈现在你手中，看得见，更摸得着</p>
-                </div>
-
-                <button class="jxbtn jxbtn-blue">
-                    马上体验
-                    <span class="glyphicon glyphicon-menu-right"></span>
-                </button>
-            </div>
-        </li>
-    </ul>
-</div>
-
-<div class="jx-split"></div>
-
-<div class="container" id="jx-product-label">
-
-    <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-4">
-            <div class="jxproduct-group">
-                <img src="__PUBLIC__/lib/imgs/product01.jpg" alt="">
-                <div>
-                    <p class="size-30px">简衣定制</p>
-                    <p class="size-16px">在这里,个性化服饰变得无比丰富、简单、 乐趣无穷。</p>
-                    <a href="#" class="jxbtn jxbtn-orange">
-                        马上体验
-                        <span class="glyphicon glyphicon-menu-right"></span>
-                    </a>
-                </div>
+            <div class="collapse navbar-collapse bs-js-navbar-scrollspy" id="example-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#jx-home-label">首页</a></li>
+                    <li><a href="#jx-product-label">产品展示</a></li>
+                    <li><a href="#jx-introdution-label">公司简介</a></li>
+                    <li><a href="#jx-about-label">联系我们</a></li>
+                </ul>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-            <div class="jxproduct-group">
-                <img src="__PUBLIC__/lib/imgs/product02.jpg" alt="">
-                <div>
-                    <p class="size-30px">简陶定制</p>
-                    <p class="size-16px">杯具定制可一点儿也不悲剧哦，生活中的 小物件也可以如此多姿多彩。</p>
-                    <a class="jxbtn jxbtn-green">
-                        马上体验
-                        <span class="glyphicon glyphicon-menu-right"></span>
-                    </a>
+    </nav>
+
+    <div id="jx-home-label">
+        <div class="carousel slide" id="myCarousel">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="__PUBLIC__/lib/imgs/banner01.jpg" alt="First slide">
+                    <div class="carousel-caption jxbanner-introdution-group">
+                        <p class="jxbanner-introdution-title size-30px">简兮DIY</p>
+                        <div class="jxbanner-introdution-content">
+                            <p class="size-18px" >服装、陶瓷、DengDengDengDeng...<br>你的设计将呈现在你手中，看得见，更摸得着</p>
+                        </div>
+                        <button class="jxbtn jxbtn-orange">
+                            马上体验
+                            <span class="glyphicon glyphicon-menu-right"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="__PUBLIC__/lib/imgs/banner01.jpg" alt="Second slide">
+                    <div class="carousel-caption jxbanner-introdution-group">
+                        <p class="jxbanner-introdution-title size-30px">简兮DIY</p>
+                        <div class="jxbanner-introdution-content">
+                            <p class="size-18px">服装、陶瓷、DengDengDengDeng...<br>你的设计将呈现在你手中，看得见，更摸得着</p>
+                        </div>
+
+                        <button class="jxbtn jxbtn-green">
+                            马上体验
+                            <span class="glyphicon glyphicon-menu-right"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="__PUBLIC__/lib/imgs/banner01.jpg" alt="Third slide">
+                    <div class="carousel-caption jxbanner-introdution-group">
+                        <p class="jxbanner-introdution-title size-30px">简兮DIY</p>
+                        <div class="jxbanner-introdution-content">
+                            <p class="size-18px">服装、陶瓷、DengDengDengDeng...<br>你的设计将呈现在你手中，看得见，更摸得着</p>
+                        </div>
+
+                        <button class="jxbtn jxbtn-blue">
+                            马上体验
+                            <span class="glyphicon glyphicon-menu-right"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
+
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            <!-- 轮播（Carousel）导航 -->
+            <!--<a class="carousel-control left" href="#myCarousel"-->
+            <!--data-slide="prev">&lsaquo;</a>-->
+            <!--<a class="carousel-control right" href="#myCarousel"-->
+            <!--data-slide="next">&rsaquo;</a>-->
         </div>
-        <div class="col-sm-6 col-md-4 col-lg-4">
-            <div class="jxproduct-group">
-                <img src="__PUBLIC__/lib/imgs/product03.jpg" alt="">
-                <div>
-                    <p class="size-30px">3D.AR</p>
-                    <p class="size-16px">这里是汽车AR的简要介绍，要体现出满满的 科技感。</p>
-                    <a class="jxbtn jxbtn-blue">
-                        马上体验
-                        <span class="glyphicon glyphicon-menu-right"></span>
-                    </a>
+        <div class="jx-split"></div>
+    </div>
+
+    <div class="container" id="jx-product-label">
+
+        <div class="row show-grid">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="jxproduct-group">
+                    <img src="__PUBLIC__/lib/imgs/product01.jpg" alt="">
+                    <div>
+                        <p class="size-30px">简衣定制</p>
+                        <p class="size-16px">在这里,个性化服饰变得无比丰富、简单、 乐趣无穷。</p>
+                        <a href="#" class="jxbtn jxbtn-orange">
+                            马上体验
+                            <span class="glyphicon glyphicon-menu-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="jxproduct-group">
+                    <img src="__PUBLIC__/lib/imgs/product02.jpg" alt="">
+                    <div>
+                        <p class="size-30px">简陶定制</p>
+                        <p class="size-16px">杯具定制可一点儿也不悲剧哦，生活中的 小物件也可以如此多姿多彩。</p>
+                        <a class="jxbtn jxbtn-green">
+                            马上体验
+                            <span class="glyphicon glyphicon-menu-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="jxproduct-group">
+                    <img src="__PUBLIC__/lib/imgs/product03.jpg" alt="">
+                    <div>
+                        <p class="size-30px">3D.AR</p>
+                        <p class="size-16px">这里是汽车AR的简要介绍，要体现出满满的 科技感。</p>
+                        <a class="jxbtn jxbtn-blue">
+                            马上体验
+                            <span class="glyphicon glyphicon-menu-right"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="jx-split"></div>
-<div class="jx-label-bg-gray">
-<div class="container" id="jx-introdution-label">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="jx-intr-g">
-                <img src="__PUBLIC__/lib/imgs/tt01.png" alt="">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="jx-intr-g">
-                <p class="size-24px">理想</p>
-                <p class="size-18px">简兮简兮.方将万舞</p>
-                <p class="size-14px">世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个舞台也许还不够庞大，但个性与精致在这里不停地生长，我们希望更多的人站上这个舞台，如诗经云：简兮简兮.方将万舞。这里是示例文案。世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个平台也许还不够庞大，但个性与精致在这里不停地生长。这里是示例文案。
-                世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个平台也许还不够庞大，但个性与精致在这里不停地生长。这里是示例文案。</p>
-            </div>
-            </div>
-        <div class="col-md-6">
-            <div class="jx-intr-g">
-                <p class="size-24px">行动</p>
-                <p class="size-18px">简兮简兮.方将万舞</p>
-                <p class="size-14px">世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个舞台也许还不够庞大，但个性与精致在这里不停地生长，我们希望更多的人站上这个舞台，如诗经云：简兮简兮.方将万舞。这里是示例文案。世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个平台也许还不够庞大，但个性与精致在这里不停地生长。这里是示例文案。
-                世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个平台也许还不够庞大，但个性与精致在这里不停地生长。这里是示例文案。</p>
-            </div>
-            </div>
-        <div class="col-md-6">
-            <div class="jx-intr-g">
-                <img src="__PUBLIC__/lib/imgs/tt01.png" alt="">
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<div class="jx-split"></div>
-<img src="__PUBLIC__/lib/imgs/technological_process.jpg" alt="" style="max-width: 100%">
-<div class="jx-split"></div>
-<div class="jx-label-bg-gray">
-    <div class="container" id="jx-about-label">
+    <div class="jx-split"></div>
+
+    <div class="jx-label-bg-gray">
+        <div class="container" id="jx-introdution-label">
         <div class="row">
             <div class="col-md-6">
-                <div>
-                <p class="size-18px">联系方式</p>
-                <p><span class="glyphicon glyphicon-map-marker"></span>     上海市松江区莘砖公路518号漕河泾工业园</p>
-                <p><span class="glyphicon glyphicon-earphone"></span>     400-8200820</p>
-                <p><span class="glyphicon glyphicon-envelope"></span>     Janexi@21cn.com</p>
+                <div class="jx-intr-g">
+                    <img src="__PUBLIC__/lib/imgs/tt01.png" alt="">
                 </div>
             </div>
             <div class="col-md-6">
-                <p  class="size-18px">合作伙伴</p>
+                <div class="jx-intr-g">
+                    <p class="size-24px">理想</p>
+                    <p class="size-18px">简兮简兮.方将万舞</p>
+                    <p class="size-14px">世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个舞台也许还不够庞大，但个性与精致在这里不停地生长，我们希望更多的人站上这个舞台，如诗经云：简兮简兮.方将万舞。这里是示例文案。世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个平台也许还不够庞大，但个性与精致在这里不停地生长。这里是示例文案。
+                    世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个平台也许还不够庞大，但个性与精致在这里不停地生长。这里是示例文案。</p>
+                </div>
+                </div>
+            <div class="col-md-6">
+                <div class="jx-intr-g">
+                    <p class="size-24px">行动</p>
+                    <p class="size-18px">简兮简兮.方将万舞</p>
+                    <p class="size-14px">世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个舞台也许还不够庞大，但个性与精致在这里不停地生长，我们希望更多的人站上这个舞台，如诗经云：简兮简兮.方将万舞。这里是示例文案。世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个平台也许还不够庞大，但个性与精致在这里不停地生长。这里是示例文案。
+                    世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个平台也许还不够庞大，但个性与精致在这里不停地生长。这里是示例文案。</p>
+                </div>
+                </div>
+            <div class="col-md-6">
+                <div class="jx-intr-g">
+                    <img src="__PUBLIC__/lib/imgs/tt01.png" alt="">
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="jx-split"></div>
-<p style="margin: 5px 0; text-align: center;">© 2015-2018 简兮网络版权所有 沪ICP备05036958号</p>
-<script>
-    $('.jxbanner').unslider({
-        arrows: false,
-        fluid: true,
-        dots: true
-    });
+    </div>
+    <div class="jx-split"></div>
+    <img src="__PUBLIC__/lib/imgs/technological_process.jpg" alt="" style="max-width: 100%">
+    <div class="jx-split"></div>
 
-</script>
+
+    <div class="jx-label-bg-gray">
+        <div class="container" id="jx-about-label">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                    <p class="size-18px">联系方式</p>
+                    <p><span class="glyphicon glyphicon-map-marker"></span>     上海市松江区莘砖公路518号漕河泾工业园</p>
+                    <p><span class="glyphicon glyphicon-earphone"></span>     400-8200820</p>
+                    <p><span class="glyphicon glyphicon-envelope"></span>     Janexi@21cn.com</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p  class="size-18px">合作伙伴</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jx-split"></div>
+    <p style="margin: 5px 0; text-align: center;">© 2015-2018 简兮网络版权所有 沪ICP备05036958号</p>
+
+    <script>
+        $('body').scrollspy({ target: '#myScrollspy' });
+//        $('.carousel').carousel();
+
+        $(document).ready(function() {
+            $("#myScrollspy").css("width", $("body").css("width"));
+        });
+
+        $(window).on("resize", function () {
+            $("#myScrollspy").css("width", $("body").css("width"));
+        });
+    </script>
 </body>
 </html>

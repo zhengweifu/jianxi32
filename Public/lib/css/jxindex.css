@@ -1,16 +1,14 @@
 @charset "UTF-8";
 * {
   margin: 0;
-  padding: 0;
-  font-family: 微软雅黑,Microsoft YaHei,Georgia,Serif;
-  font-weight: normal; }
+  padding: 0; }
 
-p {
-  color: #969696; }
-
-.jx-logo {
-  margin-left: 100px; }
-
+@media (min-width: 768px) {
+  .jx-logo {
+    margin-left: 100px; } }
+@media (max-width: 767px) {
+  .jx-logo {
+    margin-left: 15px; } }
 .jxbanner {
   position: relative;
   overflow: auto; }
@@ -78,6 +76,7 @@ p {
   border-bottom: 2px #ff8d5c solid; }
 
 .jxproduct-group {
+  margin: auto;
   border: 2px #f4f4f4 solid;
   width: 100%; }
   .jxproduct-group img {
@@ -106,5 +105,46 @@ p {
 
 .size-14px {
   font-size: 14px; }
+
+.navbar-nav > li > a {
+  padding-top: 44.8px;
+  padding-bottom: 19.2px;
+  padding-left: 35px;
+  padding-right: 35px; }
+
+.navbar-nav > .active > a {
+  background-color: #ffd4c2 !important;
+  color: #ff8d5c !important; }
+
+.navbar-default {
+  background-color: rgba(230, 230, 230, 0.95);
+  border-bottom: 2px solid #ff8d5c; }
+
+.navbar-logo {
+  line-height: 84px; }
+
+.navbar-toggle {
+  margin-top: 25px;
+  margin-bottom: 25px; }
+
+.navbar-nav {
+  float: right; }
+
+.carousel-indicators .active {
+  background-color: #ff8d5c; }
+
+.carousel-control.left,
+.carousel-control.right {
+  background-image: none; }
+
+@media (min-width: 1024px) {
+  .navbar-nav {
+    margin-right: 10%; } }
+.navbar {
+  border-radius: 0;
+  margin-bottom: 0; }
+
+#jx-home-label {
+  padding-top: 84px; }
 
 /*# sourceMappingURL=jxindex.css.map */

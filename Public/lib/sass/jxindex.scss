@@ -3,16 +3,23 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 微软雅黑,Microsoft YaHei,Georgia,Serif;
-  font-weight:normal;
+  //font-family: 微软雅黑,Microsoft YaHei,Georgia,Serif;
+  //font-weight:normal;
 }
 
-p {
-  color: $base_font_gray;
-}
+//p {
+//  color: $base_font_gray;
+//}
 
-.jx-logo {
-  margin-left: 100px;
+@media (min-width: 768px) {
+  .jx-logo {
+    margin-left: 100px;
+  }
+}
+@media (max-width: 767px) {
+  .jx-logo {
+    margin-left: 15px;
+  }
 }
 
 .jxbanner {
@@ -116,6 +123,9 @@ p {
 }
 
 .jxproduct-group {
+  //display: inline-block;
+  //overflow: hidden;
+  margin: auto;
   border: 2px $bg_gray solid;
   width: 100%;
 
@@ -158,4 +168,70 @@ p {
 .size-14px {
   font-size: 14px;
   //line-height: 20px;
+}
+
+$jxindex_navbar_height : 84px;
+$jxindex_navbar_word_height : 20px;
+$jxindex_logo_height : 42px;
+$jxindex_navbar_button_height : 34px;
+$jxindex_navbar_padding_lr : 35px;
+.navbar-nav>li>a {
+  padding-top: ($jxindex_navbar_height - $jxindex_navbar_word_height) * 0.7;
+  padding-bottom: ($jxindex_navbar_height - $jxindex_navbar_word_height) * 0.3;
+  padding-left: $jxindex_navbar_padding_lr;
+  padding-right: $jxindex_navbar_padding_lr;
+}
+
+.navbar-nav {
+  > .active {
+    > a {
+      background-color: lighten($base_orange, 20%) !important;
+      color: $base_orange !important;
+    }
+  }
+}
+
+.navbar-default {
+  background-color: rgba(230, 230, 230, 0.95);
+  border-bottom: 2px solid $base_orange;
+}
+
+.navbar-logo {
+  line-height: $jxindex_navbar_height;
+}
+
+.navbar-toggle {
+  margin-top: ($jxindex_navbar_height  - $jxindex_navbar_button_height)/2;
+  margin-bottom: ($jxindex_navbar_height  - $jxindex_navbar_button_height)/2;
+}
+
+.navbar-nav {
+  float: right;
+  //margin-right: 10%;
+}
+
+.carousel-indicators {
+  .active {
+    background-color: $base_orange;
+  }
+}
+
+.carousel-control.left,
+.carousel-control.right {
+  background-image: none;
+}
+
+@media (min-width: 1024px) {
+  .navbar-nav {
+    margin-right: 10%;
+  }
+}
+
+.navbar {
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+#jx-home-label {
+  padding-top: $jxindex_navbar_height;
 }
