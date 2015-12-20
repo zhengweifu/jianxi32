@@ -3,8 +3,12 @@
 * {
   margin: 0;
   padding: 0;
-  //font-family: 微软雅黑,Microsoft YaHei,Georgia,Serif;
-  //font-weight:normal;
+
+}
+
+body {
+  font-family: Microsoft YaHei,Georgia,Serif;
+  font-weight:normal;
 }
 
 //p {
@@ -126,7 +130,7 @@
   //display: inline-block;
   //overflow: hidden;
   margin: auto;
-  border: 2px $bg_gray solid;
+  //border: 2px $bg_gray solid;
   width: 100%;
 
   img {
@@ -185,8 +189,8 @@ $jxindex_navbar_padding_lr : 35px;
 .navbar-nav {
   > .active {
     > a {
-      background-color: lighten($base_orange, 20%) !important;
-      color: $base_orange !important;
+      background-color: $base_orange !important;
+      color: #fff !important;
     }
   }
 }
@@ -233,5 +237,9 @@ $jxindex_navbar_padding_lr : 35px;
 }
 
 #jx-home-label {
-  padding-top: $jxindex_navbar_height;
+  //padding-top: $jxindex_navbar_height;
+}
+
+.carousel-caption {
+  padding-bottom: 60px;
 }

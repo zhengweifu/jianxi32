@@ -3,6 +3,10 @@
   margin: 0;
   padding: 0; }
 
+body {
+  font-family: Microsoft YaHei,Georgia,Serif;
+  font-weight: normal; }
+
 @media (min-width: 768px) {
   .jx-logo {
     margin-left: 100px; } }
@@ -77,7 +81,6 @@
 
 .jxproduct-group {
   margin: auto;
-  border: 2px #f4f4f4 solid;
   width: 100%; }
   .jxproduct-group img {
     width: inherit; }
@@ -113,8 +116,8 @@
   padding-right: 35px; }
 
 .navbar-nav > .active > a {
-  background-color: #ffd4c2 !important;
-  color: #ff8d5c !important; }
+  background-color: #ff8d5c !important;
+  color: #fff !important; }
 
 .navbar-default {
   background-color: rgba(230, 230, 230, 0.95);
@@ -144,7 +147,7 @@
   border-radius: 0;
   margin-bottom: 0; }
 
-#jx-home-label {
-  padding-top: 84px; }
+.carousel-caption {
+  padding-bottom: 60px; }
 
 /*# sourceMappingURL=jxindex.css.map */

@@ -20,7 +20,7 @@
   text-decoration: none; }
 
 .jxbtn-default {
-  border: 1px #cacaca solid;
+  border: 1px #e3e3e3 solid;
   background-color: #e3e3e3;
   color: #393f40; }
   .jxbtn-default:hover {
@@ -30,7 +30,7 @@
     text-decoration: none; }
 
 .jxbtn-info {
-  border: 1px #31b0d5 solid;
+  border: 1px #5bc0de solid;
   background-color: #5bc0de;
   color: #e6fbff; }
   .jxbtn-info:hover {
@@ -40,7 +40,7 @@
     text-decoration: none; }
 
 .jxbtn-primary {
-  border: 1px #213acb solid;
+  border: 1px #3f57e0 solid;
   background-color: #3f57e0;
   color: #e6fbff; }
   .jxbtn-primary:hover {
@@ -50,7 +50,7 @@
     text-decoration: none; }
 
 .jxbtn-success {
-  border: 1px #449d44 solid;
+  border: 1px #5cb85c solid;
   background-color: #5cb85c;
   color: #e6fbff; }
   .jxbtn-success:hover {
@@ -60,7 +60,7 @@
     text-decoration: none; }
 
 .jxbtn-orange {
-  border: 1px #ff6929 solid;
+  border: 1px #ff8d5c solid;
   background-color: #ff8d5c;
   color: #e6fbff; }
   .jxbtn-orange:hover {
@@ -70,7 +70,7 @@
     text-decoration: none; }
 
 .jxbtn-green {
-  border: 1px #359060 solid;
+  border: 1px #43b579 solid;
   background-color: #43b579;
   color: #e6fbff; }
   .jxbtn-green:hover {
@@ -80,7 +80,7 @@
     text-decoration: none; }
 
 .jxbtn-blue {
-  border: 1px #126da2 solid;
+  border: 1px #178cd0 solid;
   background-color: #178cd0;
   color: #e6fbff; }
   .jxbtn-blue:hover {
