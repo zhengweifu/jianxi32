@@ -24,6 +24,7 @@
   background-color: #e3e3e3;
   color: #393f40; }
   .jxbtn-default:hover {
+    text-decoration: none;
     background-color: #cacaca;
     color: #393f40; }
   .jxbtn-default:focus {
@@ -34,6 +35,7 @@
   background-color: #5bc0de;
   color: #e6fbff; }
   .jxbtn-info:hover {
+    text-decoration: none;
     background-color: #31b0d5;
     color: #e6fbff; }
   .jxbtn-info:focus {
@@ -44,6 +46,7 @@
   background-color: #3f57e0;
   color: #e6fbff; }
   .jxbtn-primary:hover {
+    text-decoration: none;
     background-color: #213acb;
     color: #e6fbff; }
   .jxbtn-primary:focus {
@@ -54,6 +57,7 @@
   background-color: #5cb85c;
   color: #e6fbff; }
   .jxbtn-success:hover {
+    text-decoration: none;
     background-color: #449d44;
     color: #e6fbff; }
   .jxbtn-success:focus {
@@ -64,6 +68,7 @@
   background-color: #ff8d5c;
   color: #e6fbff; }
   .jxbtn-orange:hover {
+    text-decoration: none;
     background-color: #ff6929;
     color: #e6fbff; }
   .jxbtn-orange:focus {
@@ -74,6 +79,7 @@
   background-color: #43b579;
   color: #e6fbff; }
   .jxbtn-green:hover {
+    text-decoration: none;
     background-color: #359060;
     color: #e6fbff; }
   .jxbtn-green:focus {
@@ -84,6 +90,7 @@
   background-color: #178cd0;
   color: #e6fbff; }
   .jxbtn-blue:hover {
+    text-decoration: none;
     background-color: #126da2;
     color: #e6fbff; }
   .jxbtn-blue:focus {

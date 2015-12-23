@@ -21,6 +21,7 @@ $selected-bg-color: #a0aec3;
   background-color: $bg-color;
   color: $color;
   &:hover {
+    text-decoration: none;
     background-color: darken($bg-color, 10%);
     color: $color;
   }

@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   margin: 0;
   padding: 0; }
@@ -36,7 +35,6 @@ body {
       .jxbanner > ul > li .jxbanner-introdution-group .jxbanner-introdution-content {
         background-color: rgba(255, 255, 255, 0.3); }
         .jxbanner > ul > li .jxbanner-introdution-group .jxbanner-introdution-content span {
-          font-family: “微软雅黑”;
           font-size: 18px; }
   .jxbanner .dots {
     position: absolute;
@@ -149,5 +147,10 @@ body {
 
 .carousel-caption {
   padding-bottom: 60px; }
+  .carousel-caption .jxbtn {
+    text-shadow: none; }
+
+.jxbtn .glyphicon {
+  top: 4px; }
 
 /*# sourceMappingURL=jxindex.css.map */
