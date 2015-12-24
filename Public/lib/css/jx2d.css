@@ -1,0 +1,20 @@
+.control-left, .control-right {
+  background-color: #eee; }
+
+.viewport-2d {
+  width: 100%; }
+
+.viewport-2d, .project-template-group, .spot-place {
+  border: 1px solid #666; }
+
+.viewport-group {
+  margin-bottom: 20px; }
+
+.spot-place {
+  height: 50px;
+  margin-top: 20px; }
+
+.control-right {
+  height: 600px; }
+
+/*# sourceMappingURL=jx2d.css.map */

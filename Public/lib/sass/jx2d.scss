@@ -1,0 +1,32 @@
+.control-left, .control-right {
+    background-color: #eee;
+    //width: 500px;
+}
+
+.viewport-2d {
+    width: 100%;
+}
+
+.viewport-2d, .project-template-group, .spot-place {
+    border: 1px solid #666;
+}
+
+.viewport-group {
+    margin-bottom: 20px; 
+}
+
+
+.spot-place {
+    height: 50px;
+    margin-top: 20px; 
+}
+
+.project-template-group {
+    //height: 100px;
+}
+
+.control-right {
+    //width: 400px;
+    height: 600px;
+    // padding-left: 20px;
+}
