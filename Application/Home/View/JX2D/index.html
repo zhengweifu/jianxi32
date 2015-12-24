@@ -1,1 +1,43 @@
-正在努力开发...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>简衣制造</title>
+    <link rel="stylesheet" href="__PUBLIC__/lib/css/bootstrap.min.css">
+    <script src="__PUBLIC__/lib/js/sea-2.3.0.min.js"></script>
+    <script src="__PUBLIC__/lib/js/jquery-2.0.0.min.js"></script>
+    <script src="__PUBLIC__/lib/js/bootstrap.min.js"></script>
+    <style>
+        .control-left {
+            width: 500px;
+        }
+        canvas, .project-template {
+            border: 1px solid #666;
+        }
+
+        .project-template {
+            height: 100px;
+        }
+
+        #template-group {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+	<div class="container">
+        <div class="control-left">
+            <canvas width="500" height="500"></canvas>
+
+            <div class="row" id="template-group">
+                <div class="col-lg-3 col-md-3 project-template"></div>
+                <div class="col-lg-3 col-md-3 project-template"></div>
+                <div class="col-lg-3 col-md-3 project-template"></div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
