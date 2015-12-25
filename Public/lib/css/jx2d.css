@@ -16,5 +16,8 @@
 
 .control-right {
   height: 600px; }
+  .control-right .color-group {
+    background-color: #777;
+    height: 30px; }
 
 /*# sourceMappingURL=jx2d.css.map */
