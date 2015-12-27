@@ -1,5 +1,13 @@
+.jx2d-container {
+  width: 920px;
+  margin: auto; }
+
+.control-left {
+  width: 500px; }
+
 .control-left, .control-right {
-  background-color: #eee; }
+  background-color: #eee;
+  float: left; }
 
 .viewport-2d {
   width: 100%; }
@@ -15,9 +23,16 @@
   margin-top: 20px; }
 
 .control-right {
-  height: 600px; }
+  width: 400px;
+  height: 600px;
+  margin-left: 20px; }
   .control-right .color-group {
     background-color: #777;
-    height: 30px; }
+    height: 24px;
+    margin-top: 10px;
+    margin-bottom: 10px; }
+
+.jx2d-transfrom-group {
+  margin-top: 7px; }
 
 /*# sourceMappingURL=jx2d.css.map */

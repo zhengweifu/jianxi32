@@ -6,119 +6,201 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>简衣制造</title>
     <link rel="stylesheet" href="__PUBLIC__/lib/css/bootstrap.min.css">
+    <!--<script src="__PUBLIC__/lib/css/jquery.nstSlider.min.css"></script>-->
+    <link rel="stylesheet" href="__PUBLIC__/lib/css/jx.css">
     <link rel="stylesheet" href="__PUBLIC__/lib/css/jx2d.css">
     <script src="__PUBLIC__/lib/js/sea-2.3.0.min.js"></script>
     <script src="__PUBLIC__/lib/js/jquery-2.0.0.min.js"></script>
     <script src="__PUBLIC__/lib/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/lib/js/jquery.nstSlider.min.js"></script>
+
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-7">
-            <div class="control-left">
-                <div class="viewport-group">
-                    <canvas class="viewport-2d"></canvas>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="project-template-group"></div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="project-template-group"></div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="project-template-group"></div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="project-template-group"></div>
-                    </div>
-                </div>
-                <div class="spot-place"></div>
+<div class="container-fiuld">
+    <div class="jx2d-container">
+        <div class="control-left">
+            <div class="viewport-group">
+                <canvas class="viewport-2d"></canvas>
             </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="project-template-group"></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="project-template-group"></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="project-template-group"></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="project-template-group"></div>
+                </div>
+            </div>
+            <div class="spot-place"></div>
         </div>
-        <div class="col-sm-5">
-            <div class="control-right">
-                <!--<h3>标题位置: XXXX</h3>-->
-                <!--<h5>￥59.9</h6>-->
-                <!-- <select style="width: 100%">
-                    <option value ="volvo">Volvo</option>
-                    <option value ="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                </select> -->
 
-                <!-- style select -->
-                <div class="dropdown">
-                    <button class="btn btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Dropup
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                    </ul>
+        <div class="control-right">
+            <h3>标题位置: XXXX</h3>
+            <h5>￥59.9</h5>
+            <!-- <select style="width: 100%">
+                <option value ="volvo">Volvo</option>
+                <option value ="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select> -->
+
+            <!-- style select -->
+            <div class="dropdown">
+                <button class="btn btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Dropup
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                </ul>
+            </div>
+
+            <!-- size panel -->
+            <div style="width: 30%; margin-top: 10px;">
+                <div class="input-group input-group-sm">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" class="form-control" placeholder="The is number" value="1" pattern="[0-9]">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
                 </div>
+            </div>
 
-                <!-- size panel -->
-                <div style="width: 30%;">
-                    <div class="input-group input-group-sm">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default">
-                                <span class="glyphicon glyphicon-minus"></span>
-                            </button>
-                        </span>
-                        <input type="text" class="form-control" placeholder="The is number" value="1" pattern="[0-9]">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
-                        </span>
-                    </div>
+            <!-- color panel -->
+            <div class="row jxrow-padding-2">
+                <div class="col-sm-2">
+                    <span style="line-height: 34px">颜色选择</span>
                 </div>
-
-                <!-- color panel -->
-                <div class="row">
-                    <div class="col-xs-3 col-sm-2">
-                        <div class="color-group"></div>
-                    </div>
-                    <div class="col-xs-3 col-sm-2">
-                        <div class="color-group"></div>
-                    </div>
-                    <div class="col-xs-3 col-sm-2">
-                        <div class="color-group"></div>
-                    </div>
-                    <div class="col-xs-3 col-sm-2">
-                        <div class="color-group"></div>
-                    </div>
-                    <div class="col-xs-3 col-sm-2">
-                        <div class="color-group"></div>
-                    </div>
-                    <div class="col-xs-3 col-sm-2">
-                        <div class="color-group"></div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="dropdown">
-                            <button class="btn btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Dropup
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                            </ul>
+                <div class="col-sm-10">
+                    <div class="row jxrow-padding-2">
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
+                        </div>
+                        <div class="col-xs-3 col-sm-1">
+                            <div class="color-group"></div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <button class="btn btn-default btn-block">text</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="dropdown">
+                        <button class="btn btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Dropup
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <button class="btn btn-default btn-block">text</button>
+                </div>
+            </div>
+
+            <div class="jx2d-properties-panel">
+                <!--position-->
+                <div class="row jxrow-padding-2">
+                    <div class="col-sm-2">
+                        <span>位置</span>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="row jxrow-padding-2">
+                            <div class="col-sm-6">
+                                <div class="jx2d-transfrom-group">
+                                    <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_x">
+                                        <div class="leftGrip"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="jx2d-transfrom-group">
+                                    <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_y">
+                                        <div class="leftGrip"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="jx2d-properties-panel"></div>
-                
+                <!--rotation-->
+                <div class="row jxrow-padding-2">
+                    <div class="col-sm-2">
+                        <span>旋转</span>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="jx2d-transfrom-group">
+                            <input type="text" class="jxnstInput">
+                            <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_y">
+                                <div class="leftGrip">
+                                    <span>vvv</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--scale-->
+                <div class="row jxrow-padding-2">
+                    <div class="col-sm-2">
+                        <span>缩放</span>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="jx2d-transfrom-group">
+                            <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_y">
+                                <div class="leftGrip"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -135,6 +217,15 @@
     $(window).on("resize", function() {
         jquery_viewport.css({height: jquery_viewport.css("width")});
         jquery_project_tmp.css({height: jquery_project_tmp.css("width")});
+    });
+
+    $('.jxnstSlider').nstSlider({
+        "left_grip_selector": ".leftGrip",
+        "value_changed_callback": function(cause, leftValue, rightValue) {
+            $(this).parent().find('.leftLabel').text(leftValue);
+            var type_name = $(this).attr("typename");
+            console.log(type_name);
+        }
     });
 })();
 </script>

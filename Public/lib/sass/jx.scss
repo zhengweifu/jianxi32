@@ -205,3 +205,76 @@ $selected-bg-color: #a0aec3;
 .jxnavbar-bottom-red {
   border-bottom: 2px $base_orange solid;
 }
+
+
+$jxnstSlider_size :8px;
+
+.jxnstSlider {
+  box-sizing: border-box;
+  width: 100%;
+  height: $jxnstSlider_size;
+  border: 1px solid $base-border-color;
+  border-radius: $jxnstSlider_size/2;
+  position: relative;
+  .leftGrip {
+    position: absolute;
+    width: $jxnstSlider_size * 2;
+    height: $jxnstSlider_size * 2;
+    background-color: $base_orange;
+    border-radius: $jxnstSlider_size;
+    margin-top: -$jxnstSlider_size * 3/4;
+
+    span {
+      position: absolute;
+      top: 10px;
+    }
+  }
+}
+
+.jxnstInput {
+  width: 40px;
+  height: $jxnstSlider_size * 3;
+}
+
+.jxrow-padding-0 {
+   @include jxRowPadding(0px);
+ }
+
+.jxrow-padding-1 {
+  @include jxRowPadding(1px);
+}
+
+.jxrow-padding-2 {
+  @include jxRowPadding(2px);
+}
+
+.jxrow-padding-3 {
+  @include jxRowPadding(3px);
+}
+
+.jxrow-padding-4 {
+  @include jxRowPadding(4px);
+}
+
+.jxrow-padding-5 {
+  @include jxRowPadding(5px);
+}
+
+.jxrow-padding-6 {
+  @include jxRowPadding(6px);
+}
+
+.jxrow-padding-7 {
+  @include jxRowPadding(7px);
+}
+.jxrow-padding-8 {
+  @include jxRowPadding(8px);
+}
+
+.jxrow-padding-9 {
+  @include jxRowPadding(9px);
+}
+
+.jxrow-padding-10 {
+  @include jxRowPadding(10px);
+}

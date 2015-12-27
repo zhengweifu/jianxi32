@@ -50,3 +50,12 @@ $base_blue: #178cd0;
     clear: both;
   }
 }
+
+@mixin jxRowPadding($size) {
+  margin-left: -$size;
+  margin-right: -$size;
+  [class*="col-"] {
+    padding-left: $size;
+    padding-right: $size;
+  }
+}
