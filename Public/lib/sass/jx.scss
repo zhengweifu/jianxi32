@@ -213,68 +213,63 @@ $jxnstSlider_size :8px;
   box-sizing: border-box;
   width: 100%;
   height: $jxnstSlider_size;
-  border: 1px solid $base-border-color;
+  //border: 1px solid $base-border-color;
+  background-color: darken($jxbtn-default-bg-color, 10%);
   border-radius: $jxnstSlider_size/2;
   position: relative;
+
+  :focus {
+    background-color: $base-border-color;
+  }
+
   .leftGrip {
     position: absolute;
     width: $jxnstSlider_size * 2;
     height: $jxnstSlider_size * 2;
     background-color: $base_orange;
     border-radius: $jxnstSlider_size;
-    margin-top: -$jxnstSlider_size * 3/4;
+    margin-top: -$jxnstSlider_size/2;
+  }
+}
 
-    span {
+.jxntSlider-group {
+  width: 100%;
+  height: 100%;
+  margin-left: -2px;
+  margin-right: -2px;
+  .jxnstInput-g, .jxnstSlider-g {
+    float: left !important;
+    height: $jxnstSlider_size * 3;
+    margin: 0;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .jxnstInput-g {
+    width: 25%;
+    input {
+      width: 100%;
+      height: 100%;
+      //border-radius: 4px;
+    }
+  }
+  
+  .jxnstSlider-g {
+    width: 70%;
+    position: relative;
+    .jxnstSlider {
       position: absolute;
-      top: 10px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
     }
   }
 }
 
-.jxnstInput {
-  width: 40px;
-  height: $jxnstSlider_size * 3;
-}
+$jxrow-padding-number : 20;
 
-.jxrow-padding-0 {
-   @include jxRowPadding(0px);
- }
-
-.jxrow-padding-1 {
-  @include jxRowPadding(1px);
-}
-
-.jxrow-padding-2 {
-  @include jxRowPadding(2px);
-}
-
-.jxrow-padding-3 {
-  @include jxRowPadding(3px);
-}
-
-.jxrow-padding-4 {
-  @include jxRowPadding(4px);
-}
-
-.jxrow-padding-5 {
-  @include jxRowPadding(5px);
-}
-
-.jxrow-padding-6 {
-  @include jxRowPadding(6px);
-}
-
-.jxrow-padding-7 {
-  @include jxRowPadding(7px);
-}
-.jxrow-padding-8 {
-  @include jxRowPadding(8px);
-}
-
-.jxrow-padding-9 {
-  @include jxRowPadding(9px);
-}
-
-.jxrow-padding-10 {
-  @include jxRowPadding(10px);
+@for $i from 0 to $jxrow-padding-number+1 {
+  .jxrow-padding-#{$i} {
+     @include jxRowPadding(#{$i}px);
+   }
 }

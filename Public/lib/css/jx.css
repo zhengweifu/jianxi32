@@ -227,27 +227,47 @@
   box-sizing: border-box;
   width: 100%;
   height: 8px;
-  border: 1px solid #828182;
+  background-color: #cacaca;
   border-radius: 4px;
   position: relative; }
+  .jxnstSlider :focus {
+    background-color: #828182; }
   .jxnstSlider .leftGrip {
     position: absolute;
     width: 16px;
     height: 16px;
     background-color: #ff8d5c;
     border-radius: 8px;
-    margin-top: -6px; }
-    .jxnstSlider .leftGrip span {
-      position: absolute;
-      top: 10px; }
+    margin-top: -4px; }
 
-.jxnstInput {
-  width: 40px;
-  height: 24px; }
+.jxntSlider-group {
+  width: 100%;
+  height: 100%;
+  margin-left: -2px;
+  margin-right: -2px; }
+  .jxntSlider-group .jxnstInput-g, .jxntSlider-group .jxnstSlider-g {
+    float: left !important;
+    height: 24px;
+    margin: 0;
+    padding-left: 2px;
+    padding-right: 2px; }
+  .jxntSlider-group .jxnstInput-g {
+    width: 25%; }
+    .jxntSlider-group .jxnstInput-g input {
+      width: 100%;
+      height: 100%; }
+  .jxntSlider-group .jxnstSlider-g {
+    width: 70%;
+    position: relative; }
+    .jxntSlider-group .jxnstSlider-g .jxnstSlider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto; }
 
 .jxrow-padding-0 {
-  margin-left: 0px;
-  margin-right: 0px; }
+  margin-left: -0px;
+  margin-right: -0px; }
   .jxrow-padding-0 [class*="col-"] {
     padding-left: 0px;
     padding-right: 0px; }
@@ -321,5 +341,75 @@
   .jxrow-padding-10 [class*="col-"] {
     padding-left: 10px;
     padding-right: 10px; }
+
+.jxrow-padding-11 {
+  margin-left: -11px;
+  margin-right: -11px; }
+  .jxrow-padding-11 [class*="col-"] {
+    padding-left: 11px;
+    padding-right: 11px; }
+
+.jxrow-padding-12 {
+  margin-left: -12px;
+  margin-right: -12px; }
+  .jxrow-padding-12 [class*="col-"] {
+    padding-left: 12px;
+    padding-right: 12px; }
+
+.jxrow-padding-13 {
+  margin-left: -13px;
+  margin-right: -13px; }
+  .jxrow-padding-13 [class*="col-"] {
+    padding-left: 13px;
+    padding-right: 13px; }
+
+.jxrow-padding-14 {
+  margin-left: -14px;
+  margin-right: -14px; }
+  .jxrow-padding-14 [class*="col-"] {
+    padding-left: 14px;
+    padding-right: 14px; }
+
+.jxrow-padding-15 {
+  margin-left: -15px;
+  margin-right: -15px; }
+  .jxrow-padding-15 [class*="col-"] {
+    padding-left: 15px;
+    padding-right: 15px; }
+
+.jxrow-padding-16 {
+  margin-left: -16px;
+  margin-right: -16px; }
+  .jxrow-padding-16 [class*="col-"] {
+    padding-left: 16px;
+    padding-right: 16px; }
+
+.jxrow-padding-17 {
+  margin-left: -17px;
+  margin-right: -17px; }
+  .jxrow-padding-17 [class*="col-"] {
+    padding-left: 17px;
+    padding-right: 17px; }
+
+.jxrow-padding-18 {
+  margin-left: -18px;
+  margin-right: -18px; }
+  .jxrow-padding-18 [class*="col-"] {
+    padding-left: 18px;
+    padding-right: 18px; }
+
+.jxrow-padding-19 {
+  margin-left: -19px;
+  margin-right: -19px; }
+  .jxrow-padding-19 [class*="col-"] {
+    padding-left: 19px;
+    padding-right: 19px; }
+
+.jxrow-padding-20 {
+  margin-left: -20px;
+  margin-right: -20px; }
+  .jxrow-padding-20 [class*="col-"] {
+    padding-left: 20px;
+    padding-right: 20px; }
 
 /*# sourceMappingURL=jx.css.map */
