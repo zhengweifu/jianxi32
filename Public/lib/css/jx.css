@@ -19,50 +19,6 @@
   outline: none;
   text-decoration: none; }
 
-.jxbtn-default {
-  border: 1px #e3e3e3 solid;
-  background-color: #e3e3e3;
-  color: #393f40; }
-  .jxbtn-default:hover {
-    text-decoration: none;
-    background-color: #cacaca;
-    color: #393f40; }
-  .jxbtn-default:focus {
-    text-decoration: none; }
-
-.jxbtn-info {
-  border: 1px #5bc0de solid;
-  background-color: #5bc0de;
-  color: #e6fbff; }
-  .jxbtn-info:hover {
-    text-decoration: none;
-    background-color: #31b0d5;
-    color: #e6fbff; }
-  .jxbtn-info:focus {
-    text-decoration: none; }
-
-.jxbtn-primary {
-  border: 1px #3f57e0 solid;
-  background-color: #3f57e0;
-  color: #e6fbff; }
-  .jxbtn-primary:hover {
-    text-decoration: none;
-    background-color: #213acb;
-    color: #e6fbff; }
-  .jxbtn-primary:focus {
-    text-decoration: none; }
-
-.jxbtn-success {
-  border: 1px #5cb85c solid;
-  background-color: #5cb85c;
-  color: #e6fbff; }
-  .jxbtn-success:hover {
-    text-decoration: none;
-    background-color: #449d44;
-    color: #e6fbff; }
-  .jxbtn-success:focus {
-    text-decoration: none; }
-
 .jxbtn-orange {
   border: 1px #ff8d5c solid;
   background-color: #ff8d5c;
@@ -96,133 +52,6 @@
   .jxbtn-blue:focus {
     text-decoration: none; }
 
-.number-sub {
-  border-top: 1px #828182 solid;
-  border-bottom: 1px #828182 solid;
-  border-left: 1px #828182 solid;
-  border-right: 0px #828182 solid;
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 0px;
-  -webkit-border-bottom-left-radius: 3px;
-  -webkit-border-bottom-right-radius: 0px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 0px;
-  -moz-border-radius-bottomleft: 3px;
-  -moz-border-radius-bottomright: 0px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 0px;
-  float: left;
-  height: 20px;
-  width: 15px;
-  line-height: 20px;
-  text-align: center;
-  vertical-align: middle; }
-  .number-sub:hover {
-    background-color: #0f0; }
-
-.jxnumber-add {
-  border-top: 1px #828182 solid;
-  border-bottom: 1px #828182 solid;
-  border-left: 0px #828182 solid;
-  border-right: 1px #828182 solid;
-  -webkit-border-top-left-radius: 0px;
-  -webkit-border-top-right-radius: 3px;
-  -webkit-border-bottom-left-radius: 0px;
-  -webkit-border-bottom-right-radius: 3px;
-  -moz-border-radius-topleft: 0px;
-  -moz-border-radius-topright: 3px;
-  -moz-border-radius-bottomleft: 0px;
-  -moz-border-radius-bottomright: 3px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 3px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 3px;
-  float: left;
-  height: 20px;
-  width: 15px;
-  line-height: 20px;
-  text-align: center;
-  vertical-align: middle; }
-  .jxnumber-add:hover {
-    background-color: #0f0; }
-
-.number-visible {
-  float: left;
-  border: 1px #828182 solid;
-  outline: none;
-  background-color: transparent;
-  height: 20px;
-  width: 30px;
-  text-align: center;
-  vertical-align: middle; }
-  .number-visible:hover {
-    background-color: #0f0; }
-
-.number-group {
-  display: inline-block; }
-
-.jxnav {
-  padding: 0;
-  margin: 0;
-  list-style: none; }
-  .jxnav:before, .jxnav:after {
-    content: " ";
-    display: table; }
-  .jxnav:after {
-    clear: both; }
-  .jxnav li {
-    position: relative;
-    display: block; }
-    .jxnav li a {
-      position: relative;
-      display: block;
-      text-decoration: none;
-      font-size: 16px;
-      color: #969696; }
-      .jxnav li a:focus {
-        color: #979797; }
-    .jxnav li .active {
-      color: #ff8d5c; }
-  .jxnav:after {
-    display: table;
-    content: ' '; }
-
-.jxnav-rows li {
-  float: left;
-  margin-right: 2px; }
-  .jxnav-rows li a {
-    padding: 10px 40px; }
-
-.jxnavbar {
-  position: relative;
-  width: 100%; }
-  .jxnavbar:before, .jxnavbar:after {
-    content: " ";
-    display: table; }
-  .jxnavbar:after {
-    clear: both; }
-  .jxnavbar .jxnav {
-    position: absolute;
-    right: 10%;
-    bottom: 10%; }
-  .jxnavbar img {
-    position: absolute;
-    left: 10%;
-    bottom: 25%; }
-
-.jxnavbar-default {
-  min-height: 84px;
-  background-color: rgba(230, 230, 230, 0.95); }
-
-.jxnavbar-fixed-top {
-  position: fixed;
-  z-index: 5; }
-
-.jxnavbar-bottom-red {
-  border-bottom: 2px #ff8d5c solid; }
-
 .jxnstSlider {
   box-sizing: border-box;
   width: 100%;
@@ -242,9 +71,11 @@
 
 .jxntSlider-group {
   width: 100%;
-  height: 100%;
+  height: 24px;
   margin-left: -2px;
-  margin-right: -2px; }
+  margin-right: -2px;
+  margin-top: 10px;
+  margin-bottom: 10px; }
   .jxntSlider-group .jxnstInput-g, .jxntSlider-group .jxnstSlider-g {
     float: left !important;
     height: 24px;
@@ -257,13 +88,19 @@
       width: 100%;
       height: 100%; }
   .jxntSlider-group .jxnstSlider-g {
-    width: 70%;
+    width: 75%;
     position: relative; }
     .jxntSlider-group .jxnstSlider-g .jxnstSlider {
       position: absolute;
       top: 0;
       bottom: 0;
       margin: auto; }
+
+.jxnstLabel {
+  line-height: 44px; }
+
+.jxnstLabel-2 {
+  line-height: 78px; }
 
 .jxrow-padding-0 {
   margin-left: -0px;

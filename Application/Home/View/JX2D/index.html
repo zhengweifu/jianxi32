@@ -147,23 +147,21 @@
                 <!--position-->
                 <div class="row jxrow-padding-2">
                     <div class="col-sm-2">
-                        <span>位置</span>
+                        <span class="jxnstLabel-2">位置</span>
                     </div>
                     <div class="col-sm-10">
-                        <div class="row jxrow-padding-2">
-                            <div class="col-sm-6">
-                                <div class="jx2d-transfrom-group">
-                                    <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_x">
-                                        <div class="leftGrip"></div>
-                                    </div>
-                                </div>
+                        <div class="jxntSlider-group">
+                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                            <div class="jxnstSlider-g">
+                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_x"><div class="leftGrip"></div></div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="jx2d-transfrom-group">
-                                    <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_y">
-                                        <div class="leftGrip"></div>
-                                    </div>
-                                </div>
+                        </div>
+
+
+                        <div class="jxntSlider-group">
+                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                            <div class="jxnstSlider-g">
+                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_x"><div class="leftGrip"></div></div>
                             </div>
                         </div>
                     </div>
@@ -172,15 +170,13 @@
                 <!--rotation-->
                 <div class="row jxrow-padding-2">
                     <div class="col-sm-2">
-                        <span>旋转</span>
+                        <span class="jxnstLabel">旋转</span>
                     </div>
                     <div class="col-sm-10">
-                        <div class="jx2d-transfrom-group">
-                            <input type="text" class="jxnstInput">
-                            <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_y">
-                                <div class="leftGrip">
-                                    <span>vvv</span>
-                                </div>
+                        <div class="jxntSlider-group">
+                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                            <div class="jxnstSlider-g">
+                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="rotation"><div class="leftGrip"></div></div>
                             </div>
                         </div>
                     </div>
@@ -189,12 +185,105 @@
                 <!--scale-->
                 <div class="row jxrow-padding-2">
                     <div class="col-sm-2">
-                        <span>缩放</span>
+                        <span class="jxnstLabel">缩放</span>
                     </div>
                     <div class="col-sm-10">
-                        <div class="jx2d-transfrom-group">
-                            <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_y">
-                                <div class="leftGrip"></div>
+                        <div class="jxntSlider-group">
+                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                            <div class="jxnstSlider-g">
+                                <div class="jxnstSlider" data-range_min="1" data-range_max="1000" data-cur_min="100" typename="scale"><div class="leftGrip"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--text content-->
+            <div class="jx2d-content-select">
+                <span>内容</span>
+                <input type="text" class="form-control" placeholder="Content">
+            </div>
+
+            <div class="jx2d-properties-text">
+                <!--font, color, strokeColor, shadowColor-->
+                <div class="row jxrow-padding-0">
+                    <div class="col-sm-3">
+                        <div class="jx2d-font-select">
+                            <span>字体</span>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Action</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="jx2d-color-select">
+                            <span>颜色</span>
+                            <icon></icon>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="jx2d-color-select">
+                            <span>描边</span>
+                            <icon></icon>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="jx2d-color-select">
+                            <span>阴影</span>
+                            <icon></icon>
+                        </div>
+                    </div>
+                </div>
+
+                <!--text size-->
+                <div class="row jxrow-padding-2">
+                    <div class="col-sm-2">
+                        <span class="jxnstLabel">大小</span>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="jxntSlider-group">
+                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                            <div class="jxnstSlider-g">
+                                <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_size"><div class="leftGrip"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--text space-->
+                <div class="row jxrow-padding-2">
+                    <div class="col-sm-2">
+                        <span class="jxnstLabel">间距</span>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="jxntSlider-group">
+                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                            <div class="jxnstSlider-g">
+                                <div class="jxnstSlider" data-range_min="0" data-range_max="1000" data-cur_min="300" typename="text_space"><div class="leftGrip"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--text arc-->
+                <div class="row jxrow-padding-2">
+                    <div class="col-sm-2">
+                        <span class="jxnstLabel">弧度</span>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="jxntSlider-group">
+                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                            <div class="jxnstSlider-g">
+                                <div class="jxnstSlider" data-range_min="-36000" data-range_max="36000" data-cur_min="0" typename="text_arc"><div class="leftGrip"></div></div>
                             </div>
                         </div>
                     </div>
@@ -222,10 +311,42 @@
     $('.jxnstSlider').nstSlider({
         "left_grip_selector": ".leftGrip",
         "value_changed_callback": function(cause, leftValue, rightValue) {
-            $(this).parent().find('.leftLabel').text(leftValue);
+//            $(this).parent().find('.leftLabel').text(leftValue);
+
+            var val_left = (parseFloat(leftValue) / 100).toFixed(2);
+            $(this).parent().parent().find(".jxnstInput-g").children().val(val_left);
             var type_name = $(this).attr("typename");
             console.log(type_name);
         }
+    });
+
+
+
+    $(".jxNumber").on("input", function() {
+
+        var val = $(this).val().replace(/[^0-9\.\-]/,'');
+
+        // remove - (ex before)
+        var _val = val.replace(/\-/g, '');
+        if(val[0] === "-") {
+            _val = "-" + _val;
+        }
+
+        // remove - (only one)
+        var _vals = [];
+        var isDot = false;
+        for(var i=0; i<_val.length; i++) {
+            if(_val[i] === ".") {
+                if(!isDot) {
+                    _vals.push(_val[i]);
+                    isDot = true;
+                }
+            } else {
+                _vals.push(_val[i]);
+            }
+        }
+
+        $(this).val(_vals.join(''));
     });
 })();
 </script>

@@ -1,3 +1,4 @@
+@import "jxvariables";
 @import "mixins/base";
 
 .jx2d-container {
@@ -39,7 +40,7 @@
 
 .control-right {
     width: 400px;
-    height: 600px;
+    //height: 600px;
     margin-left: 20px;
     // 
     .color-group {
@@ -53,4 +54,30 @@
 
 .jx2d-transfrom-group {
     margin-top: 7px;
+}
+
+.jx2d-content-select, .jx2d-font-select, .jx2d-color-select {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.jx2d-font-select {
+    >span {
+        display: block;
+    }
+}
+
+.jx2d-color-select {
+    >span {
+        text-align: center;
+        display: block;
+    }
+    >icon {
+        width: 34px;
+        height: 34px;
+        background-color: $jx-brand-orange;
+        border-radius: 5px;
+        display: block;
+        margin: auto;
+    }
 }

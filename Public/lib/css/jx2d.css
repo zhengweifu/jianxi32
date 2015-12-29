@@ -24,7 +24,6 @@
 
 .control-right {
   width: 400px;
-  height: 600px;
   margin-left: 20px; }
   .control-right .color-group {
     background-color: #777;
@@ -34,5 +33,23 @@
 
 .jx2d-transfrom-group {
   margin-top: 7px; }
+
+.jx2d-content-select, .jx2d-font-select, .jx2d-color-select {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.jx2d-font-select > span {
+  display: block; }
+
+.jx2d-color-select > span {
+  text-align: center;
+  display: block; }
+.jx2d-color-select > icon {
+  width: 34px;
+  height: 34px;
+  background-color: #ff8d5c;
+  border-radius: 5px;
+  display: block;
+  margin: auto; }
 
 /*# sourceMappingURL=jx2d.css.map */

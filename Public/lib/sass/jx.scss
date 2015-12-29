@@ -8,11 +8,10 @@ $jxbtn-color2: #e6fbff;
 $jxnumber-width: 30px;
 $jxnumber-height: 20px;
 $jxnumber-bg-color-hover: #0f0;
-$selected-bg-color: #a0aec3;
 
 //$jxnav-pills-border-radius
 
-
+@import "jxvariables";
 @import "mixins/base.scss";
 
 @mixin jxbtn-temp($bg-color, $color) {
@@ -57,165 +56,141 @@ $selected-bg-color: #a0aec3;
   //@include jxshadow(1px, 1px, 1px, 1px, rgba(0,0,0,0.2));
 }
 
-.jxbtn-default {
-  @include jxbtn-temp($jxbtn-default-bg-color, $jxbtn-color1);
-}
-
-.jxbtn-info {
-  @include jxbtn-temp($jxbtn-info-bg-color, $jxbtn-color2);
-}
-
-.jxbtn-primary {
-  @include jxbtn-temp($jxbtn-primary-bg-color, $jxbtn-color2);
-}
-
-.jxbtn-success {
-  @include jxbtn-temp($jxbtn-success-bg-color, $jxbtn-color2);
-}
-
 .jxbtn-orange {
-  @include jxbtn-temp($base_orange, $jxbtn-color2);
+  @include jxbtn-temp($jx-brand-orange, $jxbtn-color2);
 }
 
 .jxbtn-green {
-  @include jxbtn-temp($base_green, $jxbtn-color2);
+  @include jxbtn-temp($jx-brand-green, $jxbtn-color2);
 }
 
 .jxbtn-blue {
-  @include jxbtn-temp($base_blue, $jxbtn-color2);
+  @include jxbtn-temp($jx-brand-blue, $jxbtn-color2);
 }
 
-.number-sub {
-  @include jxborder-split(1px, $base-border-color, 1px, $base-border-color, 1px, $base-border-color, 0px, $base-border-color);
-  @include jxround-split(3px, 0px, 3px, 0px);
-  float: left;
-  height: $jxnumber-height;
-  width: $jxnumber-width/2;
-  line-height: $jxnumber-height;
-  text-align: center;
-  vertical-align: middle;
-  &:hover{
-    background-color: $jxnumber-bg-color-hover;
-  }
-}
+//.number-sub {
+//  @include jxborder-split(1px, $base-border-color, 1px, $base-border-color, 1px, $base-border-color, 0px, $base-border-color);
+//  @include jxround-split(3px, 0px, 3px, 0px);
+//  float: left;
+//  height: $jxnumber-height;
+//  width: $jxnumber-width/2;
+//  line-height: $jxnumber-height;
+//  text-align: center;
+//  vertical-align: middle;
+//  &:hover{
+//    background-color: $jxnumber-bg-color-hover;
+//  }
+//}
 
-.jxnumber-add {
-  @include jxborder-split(1px, $base-border-color, 1px, $base-border-color, 0px, $base-border-color, 1px, $base-border-color);
-  @include jxround-split(0px, 3px, 0px, 3px);
-  float: left;
-  height: $jxnumber-height;
-  width: $jxnumber-width/2;
-  line-height: $jxnumber-height;
-  text-align: center;
-  vertical-align: middle;
-  &:hover{
-    background-color: $jxnumber-bg-color-hover;
-  }
-}
+//.jxnumber-add {
+//  @include jxborder-split(1px, $base-border-color, 1px, $base-border-color, 0px, $base-border-color, 1px, $base-border-color);
+//  @include jxround-split(0px, 3px, 0px, 3px);
+//  float: left;
+//  height: $jxnumber-height;
+//  width: $jxnumber-width/2;
+//  line-height: $jxnumber-height;
+//  text-align: center;
+//  vertical-align: middle;
+//  &:hover{
+//    background-color: $jxnumber-bg-color-hover;
+//  }
+//}
 
-.number-visible {
-  float: left;
-  border: 1px $base-border-color solid;
-  outline: none;
-  background-color: transparent;
-  height: $jxnumber-height;
-  width: $jxnumber-width;
-  text-align: center;
-  vertical-align: middle;
-  &:hover{
-    background-color: $jxnumber-bg-color-hover;
-  }
-}
+//.number-visible {
+//  float: left;
+//  border: 1px $base-border-color solid;
+//  outline: none;
+//  background-color: transparent;
+//  height: $jxnumber-height;
+//  width: $jxnumber-width;
+//  text-align: center;
+//  vertical-align: middle;
+//  &:hover{
+//    background-color: $jxnumber-bg-color-hover;
+//  }
+//}
 
-.number-group {
-  display: inline-block;
-  //vertical-align: middle;
-}
-
-.jxnav {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  @include jxclearfix;
-  li {
-    position: relative;
-    display: block;
-
-    a {
-      position: relative;
-      display: block;
-      text-decoration: none;
-      font-size: 16px;
-      color: $base_font_gray;
-      &:focus {
-        color: lighten($base_font_gray, 0.2);
-      }
-    }
-    
-    .active {
-      color: $base_orange;
-    }
-  }
-
-  &:after {
-    display: table;
-    content: ' ';
-  }
-}
-
-.jxnav-rows {
-  li {
-    float : left;
-    margin-right: 2px;
-    a {
-      padding: 10px 40px;
-    }
-  }
-}
-
-
-.jxnavbar {
-  position: relative;
-  width: 100%;
-  @include jxclearfix;
-
-  .jxnav {
-    position: absolute;
-    right: 10%;
-    bottom: 10%;
-  }
-
-  img {
-    position: absolute;
-    left: 10%;
-    bottom: 25%;
-  }
-}
-
-.jxnavbar-default {
-  min-height: 84px;
-  background-color: rgba(230, 230, 230, 0.95);
-}
-
-.jxnavbar-fixed-top {
-  position: fixed;
-  z-index: 5;
-}
-
-.jxnavbar-bottom-red {
-  border-bottom: 2px $base_orange solid;
-}
-
-
-$jxnstSlider_size :8px;
+//.jxnav {
+//  padding: 0;
+//  margin: 0;
+//  list-style: none;
+//  @include jxclearfix;
+//  li {
+//    position: relative;
+//    display: block;
+//
+//    a {
+//      position: relative;
+//      display: block;
+//      text-decoration: none;
+//      font-size: 16px;
+//      color: $base_font_gray;
+//      &:focus {
+//        color: lighten($base_font_gray, 0.2);
+//      }
+//    }
+//
+//    .active {
+//      color: $jx-brand-orange;
+//    }
+//  }
+//
+//  &:after {
+//    display: table;
+//    content: ' ';
+//  }
+//}
+//
+//.jxnav-rows {
+//  li {
+//    float : left;
+//    margin-right: 2px;
+//    a {
+//      padding: 10px 40px;
+//    }
+//  }
+//}
+//
+//
+//.jxnavbar {
+//  position: relative;
+//  width: 100%;
+//  @include jxclearfix;
+//
+//  .jxnav {
+//    position: absolute;
+//    right: 10%;
+//    bottom: 10%;
+//  }
+//
+//  img {
+//    position: absolute;
+//    left: 10%;
+//    bottom: 25%;
+//  }
+//}
+//
+//.jxnavbar-default {
+//  min-height: 84px;
+//  background-color: rgba(230, 230, 230, 0.95);
+//}
+//
+//.jxnavbar-fixed-top {
+//  position: fixed;
+//  z-index: 5;
+//}
+//
+//.jxnavbar-bottom-red {
+//  border-bottom: 2px $jx-brand-orange solid;
+//}
 
 .jxnstSlider {
   box-sizing: border-box;
   width: 100%;
-  height: $jxnstSlider_size;
+  height: $jxnstslider-size-base;
   //border: 1px solid $base-border-color;
   background-color: darken($jxbtn-default-bg-color, 10%);
-  border-radius: $jxnstSlider_size/2;
+  border-radius: $jxnstslider-size-base/2;
   position: relative;
 
   :focus {
@@ -224,22 +199,24 @@ $jxnstSlider_size :8px;
 
   .leftGrip {
     position: absolute;
-    width: $jxnstSlider_size * 2;
-    height: $jxnstSlider_size * 2;
-    background-color: $base_orange;
-    border-radius: $jxnstSlider_size;
-    margin-top: -$jxnstSlider_size/2;
+    width: $jxnstslider-size-base * 2;
+    height: $jxnstslider-size-base * 2;
+    background-color: $jx-brand-orange;
+    border-radius: $jxnstslider-size-base;
+    margin-top: -$jxnstslider-size-base/2;
   }
 }
 
 .jxntSlider-group {
   width: 100%;
-  height: 100%;
+  height: $jxnstslider-size-base * 3;
   margin-left: -2px;
   margin-right: -2px;
+  margin-top: $jx-margin-x2;
+  margin-bottom: $jx-margin-x2;
   .jxnstInput-g, .jxnstSlider-g {
     float: left !important;
-    height: $jxnstSlider_size * 3;
+    height: $jxnstslider-size-base * 3;
     margin: 0;
     padding-left: 2px;
     padding-right: 2px;
@@ -250,12 +227,13 @@ $jxnstSlider_size :8px;
     input {
       width: 100%;
       height: 100%;
-      //border-radius: 4px;
+      //border: 1px solid $base-border-color;
+      //border-radius: 2px;
     }
   }
   
   .jxnstSlider-g {
-    width: 70%;
+    width: 75%;
     position: relative;
     .jxnstSlider {
       position: absolute;
@@ -266,7 +244,12 @@ $jxnstSlider_size :8px;
   }
 }
 
-$jxrow-padding-number : 20;
+.jxnstLabel {
+  line-height: $jxnstslider-size-base * 3 + $jx-margin-x2 * 2;
+}
+.jxnstLabel-2 {
+  line-height: $jxnstslider-size-base * 6 + $jx-margin-x2 * 3;
+}
 
 @for $i from 0 to $jxrow-padding-number+1 {
   .jxrow-padding-#{$i} {
