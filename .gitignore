@@ -3,3 +3,5 @@
 Runtime
 .sass-cache
 *.map
+node_modules
+Public/dist
