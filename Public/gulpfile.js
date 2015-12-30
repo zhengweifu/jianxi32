@@ -19,10 +19,11 @@ var imagemin = require('gulp-imagemin');
 gulp.task('styles-sass', function() {
 	gulp.src(["src/basic/sass/jx.scss", "src/basic/sass/jx2d.scss", "src/basic/sass/jxindex.scss"])
 	.pipe(sass())
-	//保存未压缩文件到我们指定的目录下面
-	.pipe(gulp.dest("dist/basic/css"))
 	//给文件添加.min后缀
 	.pipe(rename({suffix: '.min'}))
+	//保存未压缩文件到我们指定的目录下面
+	.pipe(gulp.dest("dist/basic/css"))
+
 	//压缩样式文件
 	.pipe(minifycss())
 	//输出压缩文件到指定目录
@@ -62,6 +63,11 @@ gulp.task('copys', function() {
 	.pipe(rename({ suffix: '' }))
 	.pipe(gulp.dest('dist/basic/fonts'))
 	.pipe(notify({message: 'Copys task complete'}));
+});
+
+// Default task
+gulp.task('default', function() {
+	gulp.start('styles-sass', 'styles-css', 'scripts', 'images', 'copys');
 });
 
 gulp.task('watch', function() {
