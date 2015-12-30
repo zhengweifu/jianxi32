@@ -1,0 +1,13 @@
+{
+  "name": "jxweb",
+  "version": "1.0.0",
+  "description": "This is for www.janexi.com website.",
+  "homepage": "http://www.janexi.com",
+  "author": {
+    "name": "zhengweifu",
+    "url": "www.janexi.com"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
+}
