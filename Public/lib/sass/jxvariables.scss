@@ -14,11 +14,30 @@ $jx-brand-blue: #178cd0 !default;
 // set bootstrap row padding (left and right) size
 $jxrow-padding-number: 20;
 
-$jx-margin-base: 5px;
-$jx-margin-x2: $jx-margin-base * 2;
+$jx-space-base: 5px;
+$jx-space-x2: $jx-space-base * 2;
+$jx-space-x3: $jx-space-base * 3;
+$jx-space-x4: $jx-space-base * 3;
 
 // jx slider size
-$jxnstslider-size-base: 8px;
+$jx-nstslider-size-base: 8px;
 
 
 $jx-active-bg-base: #a0aec3;
+
+// jx button paras
+$jx-btn-default-color:              #333 !default;
+$jx-btn-default-bg:                 #fff !default;
+$jx-btn-default-border:             #ccc !default;
+
+$jx-btn-orange-color:              #fff !default;
+$jx-btn-orange-bg:                 $jx-brand-orange !default;
+$jx-btn-orange-border:             $jx-brand-orange !default;
+
+$jx-btn-green-color:              #fff !default;
+$jx-btn-green-bg:                 $jx-brand-green !default;
+$jx-btn-green-border:             $jx-brand-green !default;
+
+$jx-btn-blue-color:              #fff !default;
+$jx-btn-blue-bg:                 $jx-brand-blue !default;
+$jx-btn-blue-border:             $jx-brand-blue !default;

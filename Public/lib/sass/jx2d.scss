@@ -25,13 +25,13 @@
 }
 
 .viewport-group {
-    margin-bottom: 20px; 
+    margin-bottom: $jx-space-x4; 
 }
 
 
 .spot-place {
     height: 50px;
-    margin-top: 20px; 
+    margin-top: $jx-space-x4; 
 }
 
 .project-template-group {
@@ -41,14 +41,14 @@
 .control-right {
     width: 400px;
     //height: 600px;
-    margin-left: 20px;
+    margin-left: $jx-space-x4;
     // 
     .color-group {
         //box-sizing: content-box;
         background-color: #777;
         height: 24px;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: $jx-space-x2;
+        margin-bottom: $jx-space-x2;
     }
 }
 
@@ -57,8 +57,8 @@
 }
 
 .jx2d-content-select, .jx2d-font-select, .jx2d-color-select {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: $jx-space-x2;
+    margin-bottom: $jx-space-x2;
 }
 
 .jx2d-font-select {

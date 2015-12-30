@@ -1,13 +1,13 @@
-$jxbtn-default-bg-color: #e3e3e3;
-$jxbtn-info-bg-color: #5bc0de;
-$jxbtn-primary-bg-color: #3f57e0;
-$jxbtn-success-bg-color: #5cb85c;
-$base-border-color: #828182;
-$jxbtn-color1: #393f40;
-$jxbtn-color2: #e6fbff;
-$jxnumber-width: 30px;
-$jxnumber-height: 20px;
-$jxnumber-bg-color-hover: #0f0;
+// $jxbtn-default-bg-color: #e3e3e3;
+// $jxbtn-info-bg-color: #5bc0de;
+// $jxbtn-primary-bg-color: #3f57e0;
+// $jxbtn-success-bg-color: #5cb85c;
+// $base-border-color: #828182;
+// $jxbtn-color1: #393f40;
+// $jxbtn-color2: #e6fbff;
+// $jxnumber-width: 30px;
+// $jxnumber-height: 20px;
+// $jxnumber-bg-color-hover: #0f0;
 
 //$jxnav-pills-border-radius
 
@@ -57,15 +57,15 @@ $jxnumber-bg-color-hover: #0f0;
 }
 
 .jxbtn-orange {
-  @include jxbtn-temp($jx-brand-orange, $jxbtn-color2);
+  @include jxbtn-temp($jx-btn-orange-bg, $jx-btn-orange-color);
 }
 
 .jxbtn-green {
-  @include jxbtn-temp($jx-brand-green, $jxbtn-color2);
+  @include jxbtn-temp($jx-btn-green-bg, $jx-btn-green-color);
 }
 
 .jxbtn-blue {
-  @include jxbtn-temp($jx-brand-blue, $jxbtn-color2);
+  @include jxbtn-temp($jx-btn-blue-bg, $jx-btn-blue-color);
 }
 
 //.number-sub {
@@ -187,36 +187,36 @@ $jxnumber-bg-color-hover: #0f0;
 .jxnstSlider {
   box-sizing: border-box;
   width: 100%;
-  height: $jxnstslider-size-base;
+  height: $jx-nstslider-size-base;
   //border: 1px solid $base-border-color;
-  background-color: darken($jxbtn-default-bg-color, 10%);
-  border-radius: $jxnstslider-size-base/2;
+  background-color: darken($jx-btn-default-bg, 10%);
+  border-radius: $jx-nstslider-size-base/2;
   position: relative;
 
   :focus {
-    background-color: $base-border-color;
+    background-color: $jx-gray-light;
   }
 
   .leftGrip {
     position: absolute;
-    width: $jxnstslider-size-base * 2;
-    height: $jxnstslider-size-base * 2;
+    width: $jx-nstslider-size-base * 2;
+    height: $jx-nstslider-size-base * 2;
     background-color: $jx-brand-orange;
-    border-radius: $jxnstslider-size-base;
-    margin-top: -$jxnstslider-size-base/2;
+    border-radius: $jx-nstslider-size-base;
+    margin-top: -$jx-nstslider-size-base/2;
   }
 }
 
 .jxntSlider-group {
   width: 100%;
-  height: $jxnstslider-size-base * 3;
+  height: $jx-nstslider-size-base * 3;
   margin-left: -2px;
   margin-right: -2px;
-  margin-top: $jx-margin-x2;
-  margin-bottom: $jx-margin-x2;
+  margin-top: $jx-space-x2;
+  margin-bottom: $jx-space-x2;
   .jxnstInput-g, .jxnstSlider-g {
     float: left !important;
-    height: $jxnstslider-size-base * 3;
+    height: $jx-nstslider-size-base * 3;
     margin: 0;
     padding-left: 2px;
     padding-right: 2px;
@@ -245,10 +245,10 @@ $jxnumber-bg-color-hover: #0f0;
 }
 
 .jxnstLabel {
-  line-height: $jxnstslider-size-base * 3 + $jx-margin-x2 * 2;
+  line-height: $jx-nstslider-size-base * 3 + $jx-space-x2 * 2;
 }
 .jxnstLabel-2 {
-  line-height: $jxnstslider-size-base * 6 + $jx-margin-x2 * 3;
+  line-height: $jx-nstslider-size-base * 6 + $jx-space-x2 * 3;
 }
 
 @for $i from 0 to $jxrow-padding-number+1 {

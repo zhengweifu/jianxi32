@@ -22,33 +22,33 @@
 .jxbtn-orange {
   border: 1px #ff8d5c solid;
   background-color: #ff8d5c;
-  color: #e6fbff; }
+  color: #fff; }
   .jxbtn-orange:hover {
     text-decoration: none;
     background-color: #ff6929;
-    color: #e6fbff; }
+    color: #fff; }
   .jxbtn-orange:focus {
     text-decoration: none; }
 
 .jxbtn-green {
   border: 1px #43b579 solid;
   background-color: #43b579;
-  color: #e6fbff; }
+  color: #fff; }
   .jxbtn-green:hover {
     text-decoration: none;
     background-color: #359060;
-    color: #e6fbff; }
+    color: #fff; }
   .jxbtn-green:focus {
     text-decoration: none; }
 
 .jxbtn-blue {
   border: 1px #178cd0 solid;
   background-color: #178cd0;
-  color: #e6fbff; }
+  color: #fff; }
   .jxbtn-blue:hover {
     text-decoration: none;
     background-color: #126da2;
-    color: #e6fbff; }
+    color: #fff; }
   .jxbtn-blue:focus {
     text-decoration: none; }
 
@@ -56,11 +56,11 @@
   box-sizing: border-box;
   width: 100%;
   height: 8px;
-  background-color: #cacaca;
+  background-color: #e6e6e6;
   border-radius: 4px;
   position: relative; }
   .jxnstSlider :focus {
-    background-color: #828182; }
+    background-color: #777777; }
   .jxnstSlider .leftGrip {
     position: absolute;
     width: 16px;
