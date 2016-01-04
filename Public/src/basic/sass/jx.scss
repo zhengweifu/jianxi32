@@ -253,6 +253,12 @@
 
 @for $i from 0 to $jxrow-padding-number+1 {
   .jxrow-padding-#{$i} {
-     @include jxRowPadding(#{$i}px);
-   }
+    margin-left: -#{$i}px;
+    margin-right: -#{$i}px;
+
+    [class*="col-"] {
+      padding-left: #{$i}px;
+      padding-right: #{$i}px;
+    }
+  }
 }

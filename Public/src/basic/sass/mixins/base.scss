@@ -46,12 +46,3 @@ $base_font_gray: #969696;
     clear: both;
   }
 }
-
-@mixin jxRowPadding($size) {
-  margin-left: -$size;
-  margin-right: -$size;
-  [class*="col-"] {
-    padding-left: $size;
-    padding-right: $size;
-  }
-}
