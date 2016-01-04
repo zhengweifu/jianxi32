@@ -18,21 +18,33 @@ var cache = require('gulp-cache');
 
 var imagemin = require('gulp-imagemin');
 
-gulp.task('styles-sass', function() {
-	gulp.src(["src/**/sass/*.scss", "!src/basic/sass/jxvariables.scss"])
+var buildSass = function(src, dist, message) {
+	gulp.src(src)
 	.pipe(plumber())
 	.pipe(sass())
 	//给文件添加.min后缀
 	.pipe(rename({suffix: '.min'}))
 	//保存未压缩文件到我们指定的目录下面
-	.pipe(gulp.dest("dist/"))
+	// .pipe(gulp.dest("dist/"))
 
 	//压缩样式文件
 	.pipe(minifycss())
 	//输出压缩文件到指定目录
-	.pipe(gulp.dest("dist/"))
+	.pipe(gulp.dest(dist))
 	//提醒任务完成
-	.pipe(notify({message: "Styles sass task complete"}));
+	.pipe(notify({message: message}));
+};
+
+gulp.task('styles-basic-sass', function() {
+	buildSass(["src/basic/sass/*.scss", "!src/basic/sass/jxvariables.scss"], "dist/basic/css", "Styles basic sass task complete")
+});
+
+gulp.task('styles-2d-sass', function() {
+	buildSass(["src/2d/sass/*.scss"], "dist/2d/css", "Styles 2d sass task complete");
+});
+
+gulp.task('styles-3d-sass', function() {
+	buildSass(["src/3d/sass/*.scss"], "dist/3d/css", "Styles 3d sass task complete");
 });
 
 gulp.task('styles-css', function() {
@@ -74,11 +86,11 @@ gulp.task('copys', function() {
 
 // Default task
 gulp.task('default', function() {
-	gulp.start('styles-sass', 'styles-css', 'scripts', 'images', 'copys');
+	gulp.start('styles-basic-sass', 'styles-2d-sass', 'styles-3d-sass', 'styles-css', 'scripts', 'images', 'copys');
 });
 
 gulp.task('watch', function() {
-	gulp.watch('src/**/sass/*.scss', ['styles-sass']);
+	gulp.watch('src/**/sass/*.scss', ['styles-basic-sass', 'styles-2d-sass', 'styles-3d-sass']);
 	gulp.watch('src/**/js/*.js', ['scripts']);
 	gulp.watch('src/**/css/*.css', ['styles-css']);
 	gulp.watch('src/**/imgs/*', ['images']);
