@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 
+var plumber = require('gulp-plumber');
+
 var sass = require('gulp-sass');
 
 var notify = require('gulp-notify');
@@ -17,23 +19,25 @@ var cache = require('gulp-cache');
 var imagemin = require('gulp-imagemin');
 
 gulp.task('styles-sass', function() {
-	gulp.src(["src/basic/sass/jx.scss", "src/basic/sass/jx2d.scss", "src/basic/sass/jxindex.scss"])
+	gulp.src(["src/**/sass/*.scss", "!src/basic/sass/jxvariables.scss"])
+	.pipe(plumber())
 	.pipe(sass())
 	//给文件添加.min后缀
 	.pipe(rename({suffix: '.min'}))
 	//保存未压缩文件到我们指定的目录下面
-	.pipe(gulp.dest("dist/basic/css"))
+	.pipe(gulp.dest("dist/"))
 
 	//压缩样式文件
 	.pipe(minifycss())
 	//输出压缩文件到指定目录
-	.pipe(gulp.dest("dist/basic/css"))
+	.pipe(gulp.dest("dist/"))
 	//提醒任务完成
 	.pipe(notify({message: "Styles sass task complete"}));
 });
 
 gulp.task('styles-css', function() {
 	gulp.src('src/**/css/*')
+	.pipe(plumber())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(minifycss())
 	.pipe(gulp.dest("dist/"))
@@ -41,6 +45,7 @@ gulp.task('styles-css', function() {
 
 gulp.task("scripts", function() {
 	gulp.src('src/**/js/*.js')
+	.pipe(plumber())
 	.pipe(jshint())
 	.pipe(jshint.reporter('default'))
 	.pipe(rename({ suffix: '.min' }))
@@ -52,6 +57,7 @@ gulp.task("scripts", function() {
 // Images
 gulp.task('images', function() {
 	gulp.src('src/**/imgs/*')
+	.pipe(plumber())
 	.pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
 	.pipe(gulp.dest('dist/'))
 	.pipe(notify({message: 'Images task complete'}));
@@ -60,6 +66,7 @@ gulp.task('images', function() {
 // Copys
 gulp.task('copys', function() {
 	gulp.src('src/**/fonts/*')
+	.pipe(plumber())
 	.pipe(rename({ suffix: '' }))
 	.pipe(gulp.dest('dist/'))
 	.pipe(notify({message: 'Copys task complete'}));
