@@ -12,7 +12,7 @@
 }
 
 .control-left, .control-right {
-    background-color: #eee;
+    // background-color: #eee;
     float: left;
 }
 
@@ -39,6 +39,7 @@
 }
 
 .control-right {
+    position: relative;
     width: 400px;
     //height: 600px;
     margin-left: $jx-space-x4;
@@ -64,6 +65,7 @@
 .jx2d-font-select {
     >span {
         display: block;
+        margin-bottom: $jx-space-base;
     }
 }
 
@@ -71,14 +73,98 @@
     >span {
         text-align: center;
         display: block;
+        margin-bottom: $jx-space-base;
     }
     >icon {
-        width: 34px;
-        height: 34px;
+        width: 30px;
+        height: 30px;
+        border: 1px solid $jx-panel-default-border;
         background-color: $jx-brand-orange;
         border-radius: 5px;
         display: block;
         margin: auto;
+    }
+}
+
+.jx2d-photo-text-group {
+    margin-bottom: $jx-space-x2;
+}
+
+$jx2d-color-box-width: 29px;
+$jx2d-color-box-space: 1px;
+$jx2d-color-box-border-r: 4px;
+$jx2d-color-box-border-dc: rgba(0, 0, 0, 0.3);
+$jx2d-color-box-border-ac: rgba(0, 255, 100, 0.7);
+.jx2d-color-group {
+    .jx2d-color-box {
+        @include jxround($jx2d-color-box-border-r);
+        border: 1px solid $jx2d-color-box-border-dc;
+        display: block;
+        width: $jx2d-color-box-width;
+        height: $jx2d-color-box-width;
+        padding: $jx2d-color-box-space;
+        margin-top: $jx-space-base;
+        margin-bottom: $jx-space-base;
+
+        span {
+            @include jxround($jx2d-color-box-border-r);
+            display: block;
+            width: $jx2d-color-box-width - $jx2d-color-box-space * 2 - 2px;
+            height: $jx2d-color-box-width - $jx2d-color-box-space * 2 - 2px;
+        }
+    }
+
+    .active {
+        text-decoration: none;
+        border: 1px solid $jx2d-color-box-border-ac;
+        
+        font-family: 'Glyphicons Halflings';
+        font-style: normal;
+        font-weight: 400;
+        font-size: $jx2d-color-box-width/2;
+        -webkit-font-smoothing: antialiased;
+        -moz-font-smoothing: grayscale;
+        
+        :before {
+            content: "\e013";
+            display: block;
+            width: $jx2d-color-box-width/2;
+            margin: auto;
+        }
+    }
+}
+
+.jx2d-properties-style-color, .jx2d-properties-text-color, .jx2d-properties-text-stroke, .jx2d-properties-text-shadow {
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    display: none;
+}
+
+.jx2d-properties-style-color {
+    &:before {
+        left: 298px;
+    }
+}
+
+.jx2d-properties-text-color {
+    margin-left: -$jx-space-base * 3;
+    &:before {
+        left: 142px;
+    }
+}
+
+.jx2d-properties-text-stroke {
+    margin-left: -$jx-space-base * 3;
+    &:before {
+        left: 234px;
+    }
+}
+
+.jx2d-properties-text-shadow {
+    margin-left: -$jx-space-base * 3;
+    &:before {
+        left: 326px;
     }
 }
 

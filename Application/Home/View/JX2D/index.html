@@ -67,257 +67,1216 @@
                 </ul>
             </div>
 
-            <!-- size panel -->
-            <div style="width: 30%; margin-top: 10px;">
-                <div class="input-group input-group-sm">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default">
-                            <span class="glyphicon glyphicon-minus"></span>
-                        </button>
-                    </span>
-                    <input type="text" class="form-control" placeholder="The is number" value="1" pattern="[0-9]">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </span>
-                </div>
-            </div>
-
-            <!-- color panel -->
-            <div class="row jxrow-padding-2">
-                <div class="col-sm-2">
-                    <span style="line-height: 34px">颜色选择</span>
-                </div>
-                <div class="col-sm-10">
-                    <div class="row jxrow-padding-2">
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                        <div class="col-xs-3 col-sm-1">
-                            <div class="color-group"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="dropdown">
-                        <button class="btn btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Dropup
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                        </ul>
+                    <!-- size panel -->
+                    <div class="jx2d-font-select">
+                        <span>数量</span>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default">
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                            </span>
+                            <input type="text" class="form-control" placeholder="The is number" value="1" pattern="[0-9]">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <button class="btn btn-default btn-block">text</button>
-                </div>
-            </div>
-
-            <div class="jx2d-properties-panel">
-                <!--position-->
-                <div class="row jxrow-padding-2">
-                    <div class="col-sm-2">
-                        <span class="jxnstLabel-2">位置</span>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="jxntSlider-group">
-                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
-                            <div class="jxnstSlider-g">
-                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_x"><div class="leftGrip"></div></div>
-                            </div>
-                        </div>
-
-
-                        <div class="jxntSlider-group">
-                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
-                            <div class="jxnstSlider-g">
-                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_x"><div class="leftGrip"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--rotation-->
-                <div class="row jxrow-padding-2">
-                    <div class="col-sm-2">
-                        <span class="jxnstLabel">旋转</span>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="jxntSlider-group">
-                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
-                            <div class="jxnstSlider-g">
-                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="rotation"><div class="leftGrip"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--scale-->
-                <div class="row jxrow-padding-2">
-                    <div class="col-sm-2">
-                        <span class="jxnstLabel">缩放</span>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="jxntSlider-group">
-                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
-                            <div class="jxnstSlider-g">
-                                <div class="jxnstSlider" data-range_min="1" data-range_max="1000" data-cur_min="100" typename="scale"><div class="leftGrip"></div></div>
-                            </div>
-                        </div>
+                    <!-- color panel -->
+                    <div class="jx2d-color-select">
+                        <span>颜色</span>
+                        <icon class="jx2d-cs-item" cid="jx2d-style-color-g"></icon>
                     </div>
                 </div>
             </div>
 
-            <!--text content-->
-            <div class="jx2d-content-select">
-                <span>内容</span>
-                <input type="text" class="form-control" placeholder="Content">
+            <!-- jx2d style color panel -->
+            <div class="jx2d-properties-style-color jx-panel jx-panel-tri">
+                <div class="jx-panel-title">
+                    <span class="label">颜色选择</span>
+                    <span class="close glyphicon glyphicon-remove-circle"></span>
+                </div>
+                <!-- jx2d color group -->
+                <div class="jx2d-color-group">
+                    <div class="row jxrow-padding-2">
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(0, 0, 0);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(116, 118, 120);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(165, 172, 175);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(255, 255, 255);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(102, 0, 24);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(145, 0, 0);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(213, 43, 30);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(218, 104, 87);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(255, 88, 0);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(255, 169, 82);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(234, 187, 0);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(240, 203, 112);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(255, 222, 0);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(255, 255, 204);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(183, 187, 113);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(30, 56, 38);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(106, 112, 41);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(0, 155, 58);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(200, 229, 154);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(201, 221, 3);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(0, 121, 108);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(0, 160, 151);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(0, 34, 68);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(0, 44, 119);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(0, 57, 166);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(83, 94, 148);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(0, 115, 207);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(0, 161, 222);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(152, 198, 234);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(205, 238, 231);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(82, 35, 152);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(173, 128, 208);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(174, 106, 127);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(210, 88, 99);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(215, 31, 133);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(234, 162, 195);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(242, 201, 217);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(76, 48, 25);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(130, 92, 38);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(204, 175, 118);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(217, 210, 194);"></span>
+                            </a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a href="#" class="jx2d-color-box">
+                                <span style="background-color: rgb(241, 196, 162);"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="jx2d-properties-text">
-                <!--font, color, strokeColor, shadowColor-->
-                <div class="row jxrow-padding-0">
-                    <div class="col-sm-3">
-                        <div class="jx2d-font-select">
-                            <span>字体</span>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Action</button>
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>
+            <div class="jx2d-photo-text-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dropdown">
+                            <button class="btn btn-default btn-block dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                创建图片
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="jx2d-color-select">
-                            <span>颜色</span>
-                            <icon></icon>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="jx2d-color-select">
-                            <span>描边</span>
-                            <icon></icon>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="jx2d-color-select">
-                            <span>阴影</span>
-                            <icon></icon>
-                        </div>
-                    </div>
-                </div>
-
-                <!--text size-->
-                <div class="row jxrow-padding-2">
-                    <div class="col-sm-2">
-                        <span class="jxnstLabel">大小</span>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="jxntSlider-group">
-                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
-                            <div class="jxnstSlider-g">
-                                <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_size"><div class="leftGrip"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--text space-->
-                <div class="row jxrow-padding-2">
-                    <div class="col-sm-2">
-                        <span class="jxnstLabel">间距</span>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="jxntSlider-group">
-                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
-                            <div class="jxnstSlider-g">
-                                <div class="jxnstSlider" data-range_min="0" data-range_max="1000" data-cur_min="300" typename="text_space"><div class="leftGrip"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--text arc-->
-                <div class="row jxrow-padding-2">
-                    <div class="col-sm-2">
-                        <span class="jxnstLabel">弧度</span>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="jxntSlider-group">
-                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
-                            <div class="jxnstSlider-g">
-                                <div class="jxnstSlider" data-range_min="-36000" data-range_max="36000" data-cur_min="0" typename="text_arc"><div class="leftGrip"></div></div>
-                            </div>
-                        </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-default btn-block">创建文字</button>
                     </div>
                 </div>
             </div>
+            <div class="panel-group" id="jx2d-properites-pg" role="tablist" aria-multiselectable="true">
+                <!-- jx2d panel common -->
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="jx2d-common-phear">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#jx2d-properites-pg" href="#jx2d-common-pbody" aria-expanded="true" aria-controls="jx2d-common-pbody">
+                                一般属性
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="jx2d-common-pbody" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="jx2d-common-phear">
+                        <div class="panel-body">
+                            <div class="jx2d-properties-panel">
+                                <!--position-->
+                                <div class="row jxrow-padding-2">
+                                    <div class="col-sm-2">
+                                        <span class="jxnstLabel-2">位置</span>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="jxntSlider-group">
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                                            <div class="jxnstSlider-g">
+                                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_x"><div class="leftGrip"></div></div>
+                                            </div>
+                                        </div>
 
-            <div class="jx2d-properties-photo">
-                <div class='row jxrow-padding-5'>
-                    <div class='col-sm-2'>
-                        <div class='jx2d-filter-group'></div>
+
+                                        <div class="jxntSlider-group">
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                                            <div class="jxnstSlider-g">
+                                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_x"><div class="leftGrip"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--rotation-->
+                                <div class="row jxrow-padding-2">
+                                    <div class="col-sm-2">
+                                        <span class="jxnstLabel">旋转</span>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="jxntSlider-group">
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                                            <div class="jxnstSlider-g">
+                                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="rotation"><div class="leftGrip"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--scale-->
+                                <div class="row jxrow-padding-2">
+                                    <div class="col-sm-2">
+                                        <span class="jxnstLabel">缩放</span>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="jxntSlider-group">
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                                            <div class="jxnstSlider-g">
+                                                <div class="jxnstSlider" data-range_min="1" data-range_max="1000" data-cur_min="100" typename="scale"><div class="leftGrip"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class='col-sm-2'>
-                        <div class='jx2d-filter-group'></div>
+                </div>
+                <!-- jx2d panel text -->
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="jx2d-text-phear">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#jx2d-properites-pg" href="#jx2d-text-pbody" aria-expanded="true" aria-controls="jx2d-text-pbody">
+                                文字属性
+                            </a>
+                        </h4>
                     </div>
-                    <div class='col-sm-2'>
-                        <div class='jx2d-filter-group'></div>
+                    <div id="jx2d-text-pbody" class="panel-collapse collapse" role="tabpanel" aria-labelledby="jx2d-text-phear">
+                        <div class="panel-body">
+                            <!--text content-->
+                            <div class="jx2d-content-select">
+                                <span>内容</span>
+                                <input type="text" class="form-control" placeholder="Content">
+                            </div>
+                            <div class="jx2d-properties-text">
+                                <!--font, color, strokeColor, shadowColor-->
+                                <div class="row jxrow-padding-0">
+                                    <div class="col-sm-3">
+                                        <div class="jx2d-font-select">
+                                            <span>字体</span>
+                                            <div class="btn-group btn-group-sm">
+                                                <button type="button" class="btn btn-default">Action</button>
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="caret"></span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li role="separator" class="divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="jx2d-color-select">
+                                            <span>颜色</span>
+                                            <icon class="jx2d-cs-item" cid="jx2d-text-color-g"></icon>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="jx2d-color-select">
+                                            <span>描边</span>
+                                            <icon class="jx2d-cs-item" cid="jx2d-text-stroke-g"></icon>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="jx2d-color-select">
+                                            <span>阴影</span>
+                                            <icon class="jx2d-cs-item" cid="jx2d-text-shadow-g"></icon>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- jx2d text color panel -->
+                                <div class="jx2d-properties-text-color jx-panel jx-panel-tri">
+                                    <div class="jx-panel-title">
+                                        <span class="label">文字颜色控制</span>
+                                        <span class="close glyphicon glyphicon-remove-circle"></span>
+                                    </div>
+                                    <!-- jx2d color group -->
+                                    <div class="jx2d-color-group">
+                                        <div class="row jxrow-padding-2">
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 0, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(116, 118, 120);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(165, 172, 175);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 255, 255);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(102, 0, 24);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(145, 0, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(213, 43, 30);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(218, 104, 87);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 88, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 169, 82);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(234, 187, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(240, 203, 112);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 222, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 255, 204);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(183, 187, 113);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(30, 56, 38);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(106, 112, 41);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 155, 58);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(200, 229, 154);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(201, 221, 3);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 121, 108);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 160, 151);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 34, 68);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 44, 119);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 57, 166);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(83, 94, 148);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 115, 207);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 161, 222);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(152, 198, 234);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(205, 238, 231);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(82, 35, 152);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(173, 128, 208);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(174, 106, 127);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(210, 88, 99);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(215, 31, 133);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(234, 162, 195);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(242, 201, 217);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(76, 48, 25);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(130, 92, 38);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(204, 175, 118);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(217, 210, 194);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(241, 196, 162);"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- jx2d text stroke panel -->
+                                <div class="jx2d-properties-text-stroke jx-panel jx-panel-tri">
+                                    <div class="jx-panel-title">
+                                        <span class="label">文字描边属性控制</span>
+                                        <span class="close glyphicon glyphicon-remove-circle"></span>
+                                    </div>
+                                    <!-- jx2d color group -->
+                                    <div class="jx2d-color-group">
+                                        <div class="row jxrow-padding-2">
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 0, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(116, 118, 120);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(165, 172, 175);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 255, 255);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(102, 0, 24);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(145, 0, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(213, 43, 30);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(218, 104, 87);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 88, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 169, 82);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(234, 187, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(240, 203, 112);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 222, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 255, 204);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(183, 187, 113);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(30, 56, 38);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(106, 112, 41);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 155, 58);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(200, 229, 154);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(201, 221, 3);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 121, 108);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 160, 151);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 34, 68);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 44, 119);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 57, 166);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(83, 94, 148);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 115, 207);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 161, 222);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(152, 198, 234);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(205, 238, 231);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(82, 35, 152);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(173, 128, 208);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(174, 106, 127);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(210, 88, 99);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(215, 31, 133);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(234, 162, 195);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(242, 201, 217);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(76, 48, 25);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(130, 92, 38);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(204, 175, 118);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(217, 210, 194);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(241, 196, 162);"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--text stroke size-->
+                                    <div class="row jxrow-padding-2">
+                                        <div class="col-sm-2">
+                                            <span class="jxnstLabel">大小</span>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <div class="jxntSlider-group">
+                                                <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                                                <div class="jxnstSlider-g">
+                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_stroke_size"><div class="leftGrip"></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- jx2d text shadow panel -->
+                                <div class="jx2d-properties-text-shadow jx-panel jx-panel-tri">
+                                    <div class="jx-panel-title">
+                                        <span class="label">文字阴影属性控制</span>
+                                        <span class="close glyphicon glyphicon-remove-circle"></span>
+                                    </div>
+                                    <!-- jx2d color group -->
+                                    <div class="jx2d-color-group">
+                                        <div class="row jxrow-padding-2">
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 0, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(116, 118, 120);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(165, 172, 175);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 255, 255);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(102, 0, 24);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(145, 0, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(213, 43, 30);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(218, 104, 87);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 88, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 169, 82);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(234, 187, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(240, 203, 112);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 222, 0);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(255, 255, 204);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(183, 187, 113);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(30, 56, 38);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(106, 112, 41);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 155, 58);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(200, 229, 154);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(201, 221, 3);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 121, 108);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 160, 151);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 34, 68);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 44, 119);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 57, 166);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(83, 94, 148);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 115, 207);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(0, 161, 222);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(152, 198, 234);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(205, 238, 231);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(82, 35, 152);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(173, 128, 208);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(174, 106, 127);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(210, 88, 99);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(215, 31, 133);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(234, 162, 195);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(242, 201, 217);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(76, 48, 25);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(130, 92, 38);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(204, 175, 118);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(217, 210, 194);"></span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: rgb(241, 196, 162);"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--text shaow distance-->
+                                    <div class="row jxrow-padding-2">
+                                        <div class="col-sm-2">
+                                            <span class="jxnstLabel">偏移</span>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <div class="jxntSlider-group">
+                                                <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                                                <div class="jxnstSlider-g">
+                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_shadow_distance"><div class="leftGrip"></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--text shaow angle-->
+                                    <div class="row jxrow-padding-2">
+                                        <div class="col-sm-2">
+                                            <span class="jxnstLabel">角度</span>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <div class="jxntSlider-group">
+                                                <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                                                <div class="jxnstSlider-g">
+                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_shadow_angle"><div class="leftGrip"></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--text size-->
+                                <div class="row jxrow-padding-2">
+                                    <div class="col-sm-2">
+                                        <span class="jxnstLabel">大小</span>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="jxntSlider-group">
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                                            <div class="jxnstSlider-g">
+                                                <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_size"><div class="leftGrip"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--text space-->
+                                <div class="row jxrow-padding-2">
+                                    <div class="col-sm-2">
+                                        <span class="jxnstLabel">间距</span>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="jxntSlider-group">
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                                            <div class="jxnstSlider-g">
+                                                <div class="jxnstSlider" data-range_min="0" data-range_max="1000" data-cur_min="300" typename="text_space"><div class="leftGrip"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--text arc-->
+                                <div class="row jxrow-padding-2">
+                                    <div class="col-sm-2">
+                                        <span class="jxnstLabel">弧度</span>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="jxntSlider-group">
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control" style="ime-mode:disabled"></div>
+                                            <div class="jxnstSlider-g">
+                                                <div class="jxnstSlider" data-range_min="-36000" data-range_max="36000" data-cur_min="0" typename="text_arc"><div class="leftGrip"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class='col-sm-2'>
-                        <div class='jx2d-filter-group'></div>
+                </div>
+                <!-- jx2d panel photo -->
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="jx2d-photo-phear">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#jx2d-properites-pg" href="#jx2d-photo-pbody" aria-expanded="true" aria-controls="jx2d-photo-pbody">
+                                图片属性
+                            </a>
+                        </h4>
                     </div>
-                    <div class='col-sm-2'>
-                        <div class='jx2d-filter-group'></div>
-                    </div>
-                    <div class='col-sm-2'>
-                        <div class='jx2d-filter-group'></div>
-                    </div>
-                    <div class='col-sm-2'>
-                        <div class='jx2d-filter-group'></div>
+                    <div id="jx2d-photo-pbody" class="panel-collapse collapse" role="tabpanel" aria-labelledby="jx2d-photo-phear">
+                        <div class="panel-body">
+                            <!-- jx2d propertier photo -->
+                            <div class="jx2d-properties-photo">
+                                <div class='row jxrow-padding-5'>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='jx2d-filter-group'></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -379,6 +1338,56 @@
         }
 
         $(this).val(_vals.join(''));
+    });
+
+    var current_color_item_jqe = null;
+    $(".jx2d-cs-item").each(function() {
+        $(this).on('click', function(event) {
+            event.stopPropagation();
+            var cid = $(this).attr("cid");
+            $(".jx2d-properties-style-color, .jx2d-properties-text-color, .jx2d-properties-text-stroke, .jx2d-properties-text-shadow").hide();
+            switch(cid) {
+                case "jx2d-style-color-g":
+                    $(".jx2d-properties-style-color").show();
+                    break;
+                case "jx2d-text-color-g":
+                    $(".jx2d-properties-text-color").show();
+                    break;
+                case "jx2d-text-stroke-g":
+                    $(".jx2d-properties-text-stroke").show();
+                    break;
+                case "jx2d-text-shadow-g":
+                    $(".jx2d-properties-text-shadow").show();
+                    break;
+            }
+
+            current_color_item_jqe = $(this);
+        });
+    });
+
+    // $("body").on("click", function() {
+    //     $(".jx-panel").hide();
+    // });
+
+    // select color box
+    var current_color_jquery_element = null;
+    $(".jx2d-color-box").each(function() {
+        $(this).on('click', function(event) {
+            event.stopPropagation();
+            if(current_color_jquery_element) {
+                current_color_jquery_element.removeClass('active');
+            }
+            $(this).addClass('active');
+            current_color_jquery_element = $(this);
+
+            if(current_color_item_jqe) {
+                current_color_item_jqe.css({backgroundColor: $(this).children("span").css("backgroundColor")});
+            }
+        });
+    });
+
+    $(".close").on("click", function() {
+        $(this).parent().parent().hide();
     });
 })();
 </script>

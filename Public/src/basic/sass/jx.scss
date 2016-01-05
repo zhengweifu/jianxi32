@@ -262,3 +262,38 @@
     }
   }
 }
+
+.jx-panel {
+  border: 1px solid $jx-panel-default-border;
+  background-color: $jx-panel-default-bg;
+  padding-left: $jx-space-base;
+  padding-right: $jx-space-base;
+  .jx-panel-title {
+    text-align: center;
+    padding: $jx-space-base 0;
+    .label {
+      font-size: 14px;
+      color: $jx-brand-orange;
+    }
+
+    .close {
+      font-size: 18px;
+      color: $jx-brand-orange;
+      opacity: 0.8;
+    }
+  }
+}
+
+.jx-panel-tri {
+  &:before {
+    position: absolute;
+    content: " ";
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid $jx-panel-default-border;
+    // left: 30px;
+    margin-top: -10px;
+  }
+}

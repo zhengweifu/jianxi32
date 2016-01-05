@@ -1,43 +1,47 @@
 // jx gray defined
-$jx-gray-base:              #000 !default;
-$jx-gray-darker:            lighten($jx-gray-base, 13.5%) !default; // #222
-$jx-gray-dark:              lighten($jx-gray-base, 20%) !default;   // #333
-$jx-gray:                   lighten($jx-gray-base, 33.5%) !default; // #555
-$jx-gray-light:             lighten($jx-gray-base, 46.7%) !default; // #777
-$jx-gray-lighter:           lighten($jx-gray-base, 93.5%) !default; // #eee
+$jx-gray-base:              		#000 !default;
+$jx-gray-darker:            		lighten($jx-gray-base, 13.5%) !default; // #222
+$jx-gray-dark:              		lighten($jx-gray-base, 20%) !default;   // #333
+$jx-gray:                   		lighten($jx-gray-base, 33.5%) !default; // #555
+$jx-gray-light:             		lighten($jx-gray-base, 46.7%) !default; // #777
+$jx-gray-lighter:           		lighten($jx-gray-base, 93.5%) !default; // #eee
 
 // jx brand preview
-$jx-brand-orange: #ff8d5c !default;
-$jx-brand-green: #43b579 !default;
-$jx-brand-blue: #178cd0 !default;
+$jx-brand-orange: 					#ff8d5c !default;
+$jx-brand-green: 					#43b579 !default;
+$jx-brand-blue: 					#178cd0 !default;
 
 // set bootstrap row padding (left and right) size
-$jxrow-padding-number: 20;
+$jxrow-padding-number: 				20;
 
-$jx-space-base: 5px;
-$jx-space-x2: $jx-space-base * 2;
-$jx-space-x3: $jx-space-base * 3;
-$jx-space-x4: $jx-space-base * 3;
+$jx-space-base: 					5px;
+$jx-space-x2: 						$jx-space-base * 2;
+$jx-space-x3: 						$jx-space-base * 3;
+$jx-space-x4: 						$jx-space-base * 3;
 
 // jx slider size
-$jx-nstslider-size-base: 8px;
+$jx-nstslider-size-base: 			8px;
 
 
-$jx-active-bg-base: #a0aec3;
+$jx-active-bg-base: 				#a0aec3;
 
 // jx button paras
 $jx-btn-default-color:              #333 !default;
 $jx-btn-default-bg:                 #fff !default;
 $jx-btn-default-border:             #ccc !default;
 
-$jx-btn-orange-color:              #fff !default;
-$jx-btn-orange-bg:                 $jx-brand-orange !default;
-$jx-btn-orange-border:             $jx-brand-orange !default;
+$jx-btn-orange-color:              	#fff !default;
+$jx-btn-orange-bg:                 	$jx-brand-orange !default;
+$jx-btn-orange-border:             	$jx-brand-orange !default;
 
-$jx-btn-green-color:              #fff !default;
-$jx-btn-green-bg:                 $jx-brand-green !default;
-$jx-btn-green-border:             $jx-brand-green !default;
+$jx-btn-green-color:              	#fff !default;
+$jx-btn-green-bg:                 	$jx-brand-green !default;
+$jx-btn-green-border:             	$jx-brand-green !default;
 
-$jx-btn-blue-color:              #fff !default;
-$jx-btn-blue-bg:                 $jx-brand-blue !default;
-$jx-btn-blue-border:             $jx-brand-blue !default;
+$jx-btn-blue-color:              	#fff !default;
+$jx-btn-blue-bg:                 	$jx-brand-blue !default;
+$jx-btn-blue-border:             	$jx-brand-blue !default;
+
+// jx panel paras
+$jx-panel-default-bg:				#fff !default;
+$jx-panel-default-border:			#ccc !default;
