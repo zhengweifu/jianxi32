@@ -73,10 +73,48 @@
                     <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="jx2d-product-modal-label">请选择产品</h4>
+                        <!-- <h4 class="modal-title" id="jx2d-product-modal-label">请选择产品</h4> -->
+                        <ul class="nav nav-pills">
+                            <li role="presentation" class="active"><a href="#">T恤</a></li>
+                            <li role="presentation"><a href="#">长衫</a></li>
+                            <li role="presentation"><a href="#">裤子</a></li>
+                        </ul>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <div class="jx2d-product-item-group">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="jx2d-product-item active">
+                                        <img class="jx2d-product-item-img" src="__JXRESOURCE__/2d/imgs/pictrues/t-shirt_1_wht.jpg" alt="">
+                                        <span class="jx2d-product-item-label">xxx</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="jx2d-product-item">
+                                        <img class="jx2d-product-item-img" src="__JXRESOURCE__/2d/imgs/pictrues/t-shirt_2_wht.jpg" alt="">
+                                        <span class="jx2d-product-item-label">xxx</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="jx2d-product-item">
+                                        <img class="jx2d-product-item-img" src="__JXRESOURCE__/2d/imgs/pictrues/t-shirt_1_wht.jpg" alt="">
+                                        <span class="jx2d-product-item-label">xxx</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="jx2d-product-item">
+                                        <img class="jx2d-product-item-img" src="__JXRESOURCE__/2d/imgs/pictrues/t-shirt_2_wht.jpg" alt="">
+                                        <span class="jx2d-product-item-label">xxx</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="jx2d-product-item">
+                                        <img class="jx2d-product-item-img" src="__JXRESOURCE__/2d/imgs/pictrues/t-shirt_1_wht.jpg" alt="">
+                                        <span class="jx2d-product-item-label">xxx</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -1409,7 +1447,7 @@
         });
     });
 
-    $(".close").on("click", function() {
+    $(".jx-panel .jx-panel-title .close").on("click", function() {
         $(this).parent().parent().hide();
     });
 })();

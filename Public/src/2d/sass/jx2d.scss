@@ -174,3 +174,26 @@ $jx2d-color-box-border-ac: rgba(0, 255, 100, 0.7);
     margin-top: $jx-space-base;
     margin-bottom: $jx-space-base;
 }
+
+.jx2d-product-item-group {
+    .active {
+        border: 1px solid $jx-brand-orange;
+    }
+
+    .jx2d-product-item {
+        margin-top: $jx-space-base;
+        margin-bottom: $jx-space-base;
+        text-align: center;
+        &:hover {
+            border: 1px solid $jx-panel-default-border;
+        }
+        .jx2d-product-item-img {
+            max-width: 100%;
+            // border-bottom: 1px solid $jx-panel-default-border;
+        } 
+
+        .jx2d-product-item-label {
+
+        }
+    }
+}

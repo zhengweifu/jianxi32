@@ -68,7 +68,7 @@ gulp.task("scripts", function() {
 
 // Images
 gulp.task('images', function() {
-	gulp.src('src/**/imgs/*')
+	gulp.src('src/**/imgs/**/*')
 	.pipe(plumber())
 	.pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
 	.pipe(gulp.dest('dist/'))
