@@ -21,7 +21,7 @@ define('APP_DEBUG',True);
 define('APP_PATH','./Application/');
 
 // 自定义
-define('WEB_ROOT_PATH', "/jianxi32");
+define('WEB_ROOT_PATH', './');
 
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';

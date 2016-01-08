@@ -5,3 +5,4 @@ Runtime
 *.map
 node_modules
 Public/dist
+*.log
