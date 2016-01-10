@@ -70,7 +70,7 @@ gulp.task("scripts", function() {
 gulp.task('images', function() {
 	gulp.src('src/**/imgs/**/*')
 	.pipe(plumber())
-	.pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+	//.pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
 	.pipe(gulp.dest('dist/'))
 	.pipe(notify({message: 'Images task complete'}));
 });

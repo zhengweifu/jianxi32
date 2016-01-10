@@ -4,7 +4,7 @@ return array(
 //	'URL_MODEL' => 2,
 
 	'TMPL_PARSE_STRING' => array(
-		'__JXRESOURCE__' => __ROOT__ . '/Public/dist',
+		'__STATIC__' => __ROOT__ . '/Public/static'
 	),
 
 	'DOT_MIN'   => '.min',
