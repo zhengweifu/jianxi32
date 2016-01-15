@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>简兮网络</title>
+    <link rel="stylesheet" href="__STATIC__/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__JXRESOURCE__/common/css/common.css">
+
+    <script src="__STATIC__/jquery-2.1.4.min.js"></script>
+    <script src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <include file="Public/header" />
+    <div class="container">
+        <div id="banner-table">
+            {$body_table}
+        </div>
+        <div id="banner-add">
+        <if condition="$show_banner_form eq 1">
+            <include file="Empty/banner_form" />
+        </if>
+        </div>
+    </div>
+    
+    <script>
+
+    $("#jx-upload-ok").on('click', function() {
+        $("#jx-upload-submit").click();
+    });
+
+    $("#jx-upload-element").on('change', function(event) {
+        // console.log(event.target.value);
+        $("#jx-upload-input").val(event.target.value);
+    });
+
+    $("#jx-upload-b").on('click', function() {
+        $("#jx-upload-element").click();
+    });
+
+    <if condition="$run_banner_from_script eq 1">
+        (function() {
+            var data = {$banner_form_data};
+            for(var each in data) {
+                if(each == 'id') {
+                    $('#banner-id').val(data[each]);
+                } else if(each == 'title') {
+                    $('#banner-title').val(data[each]);
+                } else if(each == 'kind') {
+                    $('#banner-kind').val(data[each]);
+                } else if(each == 'path') {
+                    $('#banner-path').val(data[each]);
+                } else if(each == 'status') {
+                    $('#banner-status').val(data[each]);
+                }
+            }
+        })();
+    </if>
+    </script>
+</body>
+</html>

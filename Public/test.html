@@ -4,76 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>简衣制造</title>
-    <link rel="stylesheet" href="dist/basic/css/bootstrap.min.css">
-    <!--<script src="dist/basic/css/jquery.nstSlider.min.css"></script>-->
-    <link rel="stylesheet" href="dist/basic/css/jx.min.css">
-    <link rel="stylesheet" href="dist/2d/css/jx2d.min.css">
-    <script src="dist/basic/js/sea-2.3.0.min.js"></script>
-    <script src="dist/basic/js/jquery-2.1.4.min.js"></script>
-    <script src="dist/basic/js/bootstrap.min.js"></script>
-    <script src="dist/basic/js/jquery.nstSlider.min.js"></script>
+    <title>test</title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/keyboard/css/keyboard.min.css">
+
+    <script src="static/sea-2.3.0.min.js"></script>
+    <script src="static/jquery-2.1.4.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/nstSlider/js/jquery.nstSlider.min.js"></script>
+    <script src="static/keyboard/js/jquery.keyboard.min.js"></script>
+    <script src="static/keyboard/js/jquery.keyboard.extension-all.min.js"></script>
 </head>
 <body>
-
-<button class="btn btn-default btn-block" type="button" data-toggle="modal" data-target="#jx2d-product-modal">选择产品</button> 
-
-<div id="jx2d-product-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="jx2d-product-modal-label">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <!-- <h4 class="modal-title" id="jx2d-product-modal-label">请选择产品</h4> -->
-            <ul class="nav nav-pills">
-                <li role="presentation" class="active"><a href="#">T恤</a></li>
-                <li role="presentation"><a href="#">长衫</a></li>
-                <li role="presentation"><a href="#">裤子</a></li>
-            </ul>
-        </div>
-        <div class="modal-body">
-            
-            <div class="jx2d-product-item-group">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="jx2d-product-item active">
-                            <img class="jx2d-product-item-img" src="dist/2d/imgs/pictrues/t-shirt_1_wht.jpg" alt="">
-                            <span class="jx2d-product-item-label">xxx</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="jx2d-product-item">
-                            <img class="jx2d-product-item-img" src="dist/2d/imgs/pictrues/t-shirt_2_wht.jpg" alt="">
-                            <span class="jx2d-product-item-label">xxx</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="jx2d-product-item">
-                            <img class="jx2d-product-item-img" src="dist/2d/imgs/pictrues/t-shirt_1_wht.jpg" alt="">
-                            <span class="jx2d-product-item-label">xxx</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="jx2d-product-item">
-                            <img class="jx2d-product-item-img" src="dist/2d/imgs/pictrues/t-shirt_2_wht.jpg" alt="">
-                            <span class="jx2d-product-item-label">xxx</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="jx2d-product-item">
-                            <img class="jx2d-product-item-img" src="dist/2d/imgs/pictrues/t-shirt_1_wht.jpg" alt="">
-                            <span class="jx2d-product-item-label">xxx</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-default">确定</button>
-        </div>
-        </div>
-    </div>
+<div id="wrap">
+    <input id="keyboard"  type="text" class="ui-keyboard-input ui-widget-content ui-corner-all" aria-haspopup="true" role="textbox">
 </div>
+
+<script>
+$(document).ready(function(){
+$('#keyboard').keyboard({
+    display: {
+        'bksp'   : '\u2190',
+        'enter'  : 'return',
+        'default': 'ABC',
+        'meta1'  : '.?123',
+        'meta2'  : '#+=',
+        'accept' : '\u21d3'
+    },
+    lockInput: false,
+    layout: 'custom',
+    customLayout: {
+        'default': [
+            'q w e r t y u i o p {bksp}',
+            'a s d f g h j k l {enter}',
+            '{s} z x c v b n m @ . {s}',
+            '{meta1} {space} _ - {accept}'
+        ],
+        'shift': [
+            'Q W E R T Y U I O P {bksp}',
+            'A S D F G H J K L {enter}',
+            '{s} Z X C V B N M @ . {s}',
+            '{meta1} {space} _ - {accept}'
+        ],
+        'meta1': [
+            '1 2 3 4 5 6 7 8 9 0 {bksp}',
+            '` | { } % ^ * / \' {enter}',
+            '{meta2} $ & ~ # = + . {meta2}',
+            '{default} {space} ! ? {accept}'
+        ],
+        'meta2': [
+            '[ ] { } \u2039 \u203a ^ * " , {bksp}',
+            '\\ | / &lt; &gt; $ \u00a3 \u00a5 \u2022 {enter}',
+            '{meta1} \u20ac & ~ # = + . {meta1}',
+            '{default} {space} ! ? {accept}'
+        ]
+    },
+    usePreview: false,
+    acceptValid: true,
+    validate: function (kb, val) {
+        return val.length > 3;
+    },
+    css: {
+        // add dark themed class to keyboard popup
+        // to use bright svg padlock icon
+        popup : 'ui-keyboard-dark-theme'
+    }
+})
+.addCaret();
+// .addTyping({
+//     showTyping: true,
+//     delay: 250
+// })
+// .addExtender({
+//     layout: 'numpad',
+//     showing: false,
+//     reposition: true
+// });
+});
+</script>
 
 </body>
 </html>

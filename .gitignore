@@ -1,4 +1,5 @@
 .DS_Store
+uploads
 .idea
 Runtime
 .sass-cache

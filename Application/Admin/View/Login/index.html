@@ -7,19 +7,33 @@
     <title>简兮网络后台登入</title>
     <link rel="stylesheet" href="__STATIC__/bootstrap/css/bootstrap.min.css">
 
-    <script src="__STATIC__/js/jquery-2.1.4.min.js"></script>
+    <script src="__STATIC__/jquery-2.1.4.min.js"></script>
     <script src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
-
+    <style>
+        .jx-margin-t-15 {
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 <div class="container" style="margin-top:100px">
-    <form action="{:U('index.php/Admin/Login/login')}" method="post" class="well" style="width:220px;margin:0px auto;">
-        <h3>系统登录</h3>
-        <dv>
-            <input type="text" name="username" class="form-control" placeholder="Username">
-            <input type="password" name="password" class="form-control" placeholder="Password">
-            <button type="submit" class="btn btn-default btn-block">登入</button>
-        </dv>
+    <form action="{:U('Admin/Login/login')}" method="post" class="well" style="width:500px;margin:0px auto;">
+        <h4>欢迎来到简兮后台系统</h4>
+        <div class='container-fuild'>
+            <div class="input-group jx-margin-t-15">
+                <span class="input-group-addon" id="basic-addon1">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                </span>
+                <input type="text" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group jx-margin-t-15">
+                <span class="input-group-addon" id="basic-addon2">
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                </span>
+                <input type="password" name="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2">
+            </div>
+            <button type="submit" class="btn btn-default btn-block jx-margin-t-15">登入</button>
+        </div>
     </form>
 </div>
 
