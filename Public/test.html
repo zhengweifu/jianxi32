@@ -6,81 +6,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>test</title>
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/keyboard/css/keyboard.min.css">
+    <link rel="stylesheet" href="static/swiper-3.2.7/css/swiper.min.css">
 
-    <script src="static/sea-2.3.0.min.js"></script>
     <script src="static/jquery-2.1.4.min.js"></script>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/nstSlider/js/jquery.nstSlider.min.js"></script>
-    <script src="static/keyboard/js/jquery.keyboard.min.js"></script>
-    <script src="static/keyboard/js/jquery.keyboard.extension-all.min.js"></script>
+
+    <script src="static/swiper-3.2.7/js/swiper.jquery.min.js"></script>
+
+    <style>
+        .swiper-container {
+            width: 600px;
+
+        }
+
+        .swiper-container-1 {
+            height: 300px;
+        }
+
+        .swiper-container-2, .swiper-container-3 {
+            height: 255px;
+        }
+
+        .swiper-pagination-1 .swiper-pagination-bullet {
+            width: 33.333%;
+            height: 45px;
+            border-radius: 0;
+            margin: 0 !important;
+            line-height: 45px;
+        }
+
+        .swiper-container-horizontal>.swiper-pagination {
+            bottom: 0;
+        }
+    </style>
 </head>
 <body>
-<div id="wrap">
-    <input id="keyboard"  type="text" class="ui-keyboard-input ui-widget-content ui-corner-all" aria-haspopup="true" role="textbox">
-</div>
+<div class="swiper-container swiper-container-1">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="swiper-container swiper-container-2">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="background-color: #ff49dd">aa</div>
+                    <div class="swiper-slide" style="background-color: #d5ff10">bb</div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination swiper-pagination-2">
 
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="swiper-container swiper-container-3">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="background-color: #5362ff">aa!!</div>
+                    <div class="swiper-slide" style="background-color: #ffa293">bb!!</div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination swiper-pagination-3">
+
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide"style="background-color: #93ff7c">Slide 3</div>
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination swiper-pagination-1"></div>
+
+    <!-- 如果需要导航按钮 -->
+    <!--<div class="swiper-button-prev"></div>-->
+    <!--<div class="swiper-button-next"></div>-->
+
+</div>
 <script>
-$(document).ready(function(){
-$('#keyboard').keyboard({
-    display: {
-        'bksp'   : '\u2190',
-        'enter'  : 'return',
-        'default': 'ABC',
-        'meta1'  : '.?123',
-        'meta2'  : '#+=',
-        'accept' : '\u21d3'
-    },
-    lockInput: false,
-    layout: 'custom',
-    customLayout: {
-        'default': [
-            'q w e r t y u i o p {bksp}',
-            'a s d f g h j k l {enter}',
-            '{s} z x c v b n m @ . {s}',
-            '{meta1} {space} _ - {accept}'
-        ],
-        'shift': [
-            'Q W E R T Y U I O P {bksp}',
-            'A S D F G H J K L {enter}',
-            '{s} Z X C V B N M @ . {s}',
-            '{meta1} {space} _ - {accept}'
-        ],
-        'meta1': [
-            '1 2 3 4 5 6 7 8 9 0 {bksp}',
-            '` | { } % ^ * / \' {enter}',
-            '{meta2} $ & ~ # = + . {meta2}',
-            '{default} {space} ! ? {accept}'
-        ],
-        'meta2': [
-            '[ ] { } \u2039 \u203a ^ * " , {bksp}',
-            '\\ | / &lt; &gt; $ \u00a3 \u00a5 \u2022 {enter}',
-            '{meta1} \u20ac & ~ # = + . {meta1}',
-            '{default} {space} ! ? {accept}'
-        ]
-    },
-    usePreview: false,
-    acceptValid: true,
-    validate: function (kb, val) {
-        return val.length > 3;
-    },
-    css: {
-        // add dark themed class to keyboard popup
-        // to use bright svg padlock icon
-        popup : 'ui-keyboard-dark-theme'
-    }
-})
-.addCaret();
-// .addTyping({
-//     showTyping: true,
-//     delay: 250
-// })
-// .addExtender({
-//     layout: 'numpad',
-//     showing: false,
-//     reposition: true
-// });
-});
+        var mySwiper2 = new Swiper ('.swiper-container-2', {
+    //        direction: 'vertical',
+            loop: false,
+            pagination: '.swiper-pagination-2',
+            paginationClickable: true
+        });
+        var mySwiper3 = new Swiper ('.swiper-container-3', {
+            //        direction: 'vertical',
+            loop: false,
+            pagination: '.swiper-pagination-3',
+            paginationClickable: true
+        });
+    var mySwiper1 = new Swiper ('.swiper-container-1', {
+//        direction: 'vertical',
+        loop: false,
+        pagination: '.swiper-pagination-1',
+        paginationClickable: true,
+        paginationBulletRender: function (index, className) {
+            var name;
+            switch (index) {
+                case 0:
+                    name = '罗马文字';
+                    break;
+                case 1:
+                    name = '节日元素';
+                    break;
+                case 2:
+                    name = '生日元素';
+                    break;
+            }
+
+            return '<span class="' + className + '">' + name + '</span>';
+        }
+    });
+
+
+
 </script>
 
 </body>
