@@ -7,9 +7,12 @@
     <title>简兮网络</title>
     <link rel="stylesheet" href="__STATIC__/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="__JXRESOURCE__/common/css/common.css">
+    <link rel="stylesheet" href="__STATIC__/kindeditor-4.1.10/themes/default/default.css">
 
     <script src="__STATIC__/jquery-2.1.4.min.js"></script>
     <script src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__STATIC__/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="__STATIC__/kindeditor-4.1.10/lang/zh_CN.js"></script>
 </head>
 <body>
     <include file="Public/header" />
@@ -27,7 +30,10 @@
     <script>
 
     $("#jx-upload-ok").on('click', function() {
-        $("#jx-upload-submit").click();
+        // $("#jx-upload-submit").click();
+        $.post('{:U("Admin/Empty/uploadBanner")}', {}, function(json) {
+            console.log(json);
+        });
     });
 
     $("#jx-upload-element").on('change', function(event) {

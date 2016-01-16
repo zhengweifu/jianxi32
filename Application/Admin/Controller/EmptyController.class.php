@@ -135,7 +135,7 @@ class EmptyController extends PublicController {
     }
 
     public function uploadBanner() {
-
+        var_dump("expression");
         $upload = new \Think\Upload();// 实例化上传类
         $upload->maxSize   =     3145728 ;// 设置附件上传大小
         $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
@@ -144,10 +144,20 @@ class EmptyController extends PublicController {
 
         $info = $upload->upload();
 
+
         if(!$info) {// 上传错误提示错误信息
             $this->error($upload->getError());
         } else{// 上传成功
+            // var_dump($info);
+            $url = __ROOT__ . '/Public/uploads/' . $info['photo']['savepath'] . $info['photo']['savename'];
             $this->success('上传成功！');
+
+            // $this->assign("photourl", $url);
+            // 
+            $resule = array(
+                'url' => $url
+            );
+            $this->ajaxReturn($resule);
         }
     }
 }
