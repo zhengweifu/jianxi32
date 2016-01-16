@@ -42,14 +42,23 @@
     <div id="jx-home-label">
         <div class="carousel slide" id="myCarousel">
             <!-- 轮播（Carousel）指标 -->
-            <ol class="carousel-indicators">
+            <!-- <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol> -->
+            <ol class="carousel-indicators">
+            <foreach name="jx_banners" item="jx_banner" key="k">
+                <if condition="$k eq 0">
+                    <li data-target="#myCarousel" data-slide-to="$k" class="active"></li>
+                <else />
+                    <li data-target="#myCarousel" data-slide-to="$k"></li>
+                </if>
+            </foreach>
             </ol>
             <!-- 轮播（Carousel）项目 -->
             <div class="carousel-inner">
-                <div class="item active">
+                <!--<div class="item active">
                     <img src="__JXRESOURCE__/basic/imgs/banner01.jpg" alt="First slide">
                     <div class="carousel-caption jxbanner-introdution-group">
                         <p class="jxbanner-introdution-title size-30px">简兮DIY</p>
@@ -89,7 +98,18 @@
                             <span class="glyphicon glyphicon-menu-right"></span>
                         </a>
                     </div>
+                </div> -->
+            <foreach name="jx_banners" item="jx_banner" key="k">
+
+            <if condition="$k eq 0">
+                <div class="item active">
+            <else />
+                <div class="item">
+            </if>
+                    <img src="{$jx_banner.url}" alt="">
                 </div>
+            </foreach>
+
             </div>
 
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">

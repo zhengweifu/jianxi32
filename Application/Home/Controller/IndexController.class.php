@@ -3,7 +3,25 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
     public function index(){
-//       $this->success("添加成功", U('Home/Index/test'));
+		$m = M('banner');
+		$banners = $m->where("kind=1")->select();
+		// var_dump($banners); 
+
+		$outBannerData = array();
+
+		if($banners) {
+			foreach ($banners as $key => $value) {
+				if($value['status']) {
+					array_push($outBannerData, array(
+						'url' => $value['path'],
+						'link' => $value['link']
+					));
+				} 
+			}
+		}
+
+		$this->assign('jx_banners', $outBannerData);
+
         $this->display();
     }
 

@@ -6,6 +6,14 @@
         <input type="text" name="bannerTitle" id="banner-title" class="form-control" placeholder="Title">
     </div>
     <div class="form-group">
+        <label for="banner-sort">排序</label>
+        <input type="text" name="bannerSort" id="banner-sort" class="form-control" placeholder="Sort">
+    </div>
+    <div class="form-group">
+        <label for="banner-link">链接地址</label>
+        <input type="text" name="bannerLink" id="banner-link" class="form-control" placeholder="Link Url">
+    </div>
+    <div class="form-group">
         <label for="banner-kind">类型</label>
         <select class="form-control" id="banner-kind" name="bannerKind" aria-describedby="sizing-kind">
             <option value="1">首页Banner</option>
@@ -16,7 +24,6 @@
         <div class="input-group" id="sizing-photo">
             <input type="text" name="bannerPath" id="banner-path" class="form-control" placeholder="URL" aria-describedby="sizing-photo" value="{$photourl}">
             <span class="input-group-btn">
-                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#select-modal" data-whatever="@mdo">选择</button> -->
                 <button type="button" class="btn btn-primary" id="jx-select-pic-b">选择</button>
                 <script>
                     KindEditor.ready(function(K) {
@@ -49,37 +56,3 @@
 
     <button type="submit" class="btn btn-primary">提交</button>
 </form>
-
-<div class="modal fade in" id="select-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">选择图片</h4>
-            </div>
-            <div class="modal-body">
-                <form action='{:U("Admin/Empty/uploadBanner")}' enctype="multipart/form-data" method="post" >
-                    <input type="file" name="photo" id="jx-upload-element" style="display: none"/>
-                    <div class="form-group">
-                        <label for="exampleInputFile">本地文件</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id='jx-upload-input'>
-                            <span class="input-group-btn">
-                                <button type="button" id="jx-upload-b" class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-folder-open"></span>
-                                    浏览...
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-
-                    <input type="submit" id="jx-upload-submit" value="提交" style="display: none">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="jx-upload-ok">确定</button>
-            </div>
-        </div>
-    </div>
-</div>

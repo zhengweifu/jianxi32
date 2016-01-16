@@ -92,7 +92,9 @@ class EmptyController extends PublicController {
             'title' => I('bannerTitle'),
             'kind' => I('bannerKind'),
             'path' => I('bannerPath'),
-            'status' => intval(I('bannerStatus'))
+            'status' => intval(I('bannerStatus')),
+            'sid' => intval(I('bannerSort')),
+            'link' => I('bannerLink')
         );
 
         $m = M("banner");
@@ -135,7 +137,7 @@ class EmptyController extends PublicController {
     }
 
     public function uploadBanner() {
-        var_dump("expression");
+
         $upload = new \Think\Upload();// 实例化上传类
         $upload->maxSize   =     3145728 ;// 设置附件上传大小
         $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
