@@ -94,7 +94,10 @@ class EmptyController extends PublicController {
             'path' => I('bannerPath'),
             'status' => intval(I('bannerStatus')),
             'sid' => intval(I('bannerSort')),
-            'link' => I('bannerLink')
+            'link' => I('bannerLink'),
+            'labelheader' => I('bannerLabelHeader'),
+            'labelbody' => I('bannerLabelContent'),
+            'buttonclassname' => I('bannerButtonClassName')
         );
 
         $m = M("banner");

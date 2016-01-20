@@ -12,7 +12,7 @@ use Common\Controller\CommonController;
 class LoginController extends CommonController {
     public function index() {
         $this->display();
-    }
+    }   
 
     public function  login() {
         if(!IS_POST) halt('页面不存在!');

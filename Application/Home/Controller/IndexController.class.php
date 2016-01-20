@@ -14,7 +14,10 @@ class IndexController extends Controller {
 				if($value['status']) {
 					array_push($outBannerData, array(
 						'url' => $value['path'],
-						'link' => $value['link']
+						'link' => $value['link'],
+						'labelheader' => $value['labelheader'],
+						'labelcontent' => $value['labelbody'],
+						'buttonclassname' => $value['buttonclassname']
 					));
 				} 
 			}
