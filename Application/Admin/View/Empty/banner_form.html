@@ -1,28 +1,18 @@
-
 <form action="{$b_post_url}" method="post">
-    <input type="hidden" name="bannerId" id="banner-id">
+    <input type="hidden" name="id" value='<?php echo $banner_data["id"];?>'>
+<foreach name="key_data_banner" item="item">
     <div class="form-group">
-        <label for="banner-title">标题</label>
-        <input type="text" name="bannerTitle" id="banner-title" class="form-control" placeholder="Title">
-    </div>
-    <div class="form-group">
-        <label for="banner-sort">排序</label>
-        <input type="text" name="bannerSort" id="banner-sort" class="form-control" placeholder="Sort">
-    </div>
-    <div class="form-group">
-        <label for="banner-link">链接地址</label>
-        <input type="text" name="bannerLink" id="banner-link" class="form-control" placeholder="Link Url">
-    </div>
-    <div class="form-group">
-        <label for="banner-kind">类型</label>
-        <select class="form-control" id="banner-kind" name="bannerKind" aria-describedby="sizing-kind">
-            <option value="1">首页Banner</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="sizing-photo">图片</label>
+        <label>{$item.title}</label>
+    <if condition="$item.type eq 0">
+        <input type="text" name="{$item.name}" value='<?php echo $banner_data[$item["name"]];?>' class="form-control" placeholder="{$item.tip}">
+    </if>
+    <if condition="$item.type eq 1">
+        <textarea name="{$item.name}" class="form-control" placeholder="{$item.tip}"><?php echo $banner_data[$item["name"]];?></textarea>
+    </if>
+
+    <if condition="$item.type eq 2">
         <div class="input-group" id="sizing-photo">
-            <input type="text" name="bannerPath" id="banner-path" class="form-control" placeholder="URL" aria-describedby="sizing-photo" value="{$photourl}">
+            <input type="text" name="{$item.name}" value='<?php echo $banner_data[$item["name"]];?>' id="jx-upload-{$item.name}" class="form-control" placeholder="{$item.tip}" aria-describedby="sizing-photo" value="{$photourl}">
             <span class="input-group-btn">
                 <button type="button" class="btn btn-primary" id="jx-select-pic-b">选择</button>
                 <script>
@@ -31,9 +21,9 @@
                         K('#jx-select-pic-b').click(function() {
                             editor.loadPlugin('image', function() {
                                 editor.plugin.imageDialog({
-                                    imageUrl : K('#banner-path').val(),
+                                    imageUrl : K('#jx-upload-{$item.name}').val(),
                                     clickFn : function(url, title, width, height, border, align) {
-                                        K('#banner-path').val(url);
+                                        K('#jx-upload-{$item.name}').val(url);
                                         editor.hideDialog();
                                     }
                                 });
@@ -43,31 +33,21 @@
                 </script>
             </span>
         </div>
-    </div>
-    <input type="file" id="banner-upload" style="display: none;">
-
-    <div class="form-group">
-        <label for="banner-label-header">标签标题</label>
-        <input type="text" name="bannerLabelHeader" id="banner-label-header" class="form-control" placeholder="Label Header">
-    </div>
-
-    <div class="form-group">
-        <label for="banner-label-content">标签内容</label>
-        <input type="text" name="bannerLabelContent" id="banner-label-content" class="form-control" placeholder="Label Content">
-    </div>
-
-    <div class="form-group">
-        <label for="banner-button-classname">按钮样式</label>
-        <input type="text" name="bannerButtonClassName" id="banner-button-classname" class="form-control" placeholder="Button Class Name">
-    </div>
-
-    <div class="form-group">
-        <label for="banner-status">状态</label>
-        <select class="form-control" name="bannerStatus" id="banner-status" aria-describedby="sizing-status">
-            <option value="1">显示</option>
-            <option value="0">隐藏</option>
+    </if>
+    <if condition="$item.type eq 3">
+        <select name="{$item.name}" class="form-control">
+        <foreach name='item["values"]' item="val" key="key">
+            <if condition='$banner_data[$item["name"]] eq $key'>
+                <option value="{$key}" selected>{$val}</option>
+            <else />
+                <option value="{$key}">{$val}</option>
+            </if>
+        </foreach>
         </select>
+    </if>
+
     </div>
 
+</foreach>
     <button type="submit" class="btn btn-primary">提交</button>
 </form>

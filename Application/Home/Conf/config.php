@@ -5,4 +5,6 @@ return array(
         '__JXRESOURCE__' => __ROOT__ . '/Public/' . MODULE_NAME . '/dist',
         '__STATIC__' => __ROOT__ . '/Public/static'
     ),
+
+
 );

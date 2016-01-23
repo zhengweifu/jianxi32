@@ -29,51 +29,21 @@
     
     <script>
 
-    $("#jx-upload-ok").on('click', function() {
-        // $("#jx-upload-submit").click();
-        $.post('{:U("Admin/Empty/uploadBanner")}', {}, function(json) {
-            console.log(json);
-        });
-    });
-
-    $("#jx-upload-element").on('change', function(event) {
-        // console.log(event.target.value);
-        $("#jx-upload-input").val(event.target.value);
-    });
-
-    $("#jx-upload-b").on('click', function() {
-        $("#jx-upload-element").click();
-    });
-
-    <if condition="$run_banner_from_script eq 1">
-        (function() {
-            var data = {$banner_form_data};
-            for(var each in data) {
-                if(each == 'id') {
-                    $('#banner-id').val(data[each]);
-                } else if(each == 'title') {
-                    $('#banner-title').val(data[each]);
-                } else if(each == 'kind') {
-                    $('#banner-kind').val(data[each]);
-                } else if(each == 'path') {
-                    $('#banner-path').val(data[each]);
-                } else if(each == 'status') {
-                    $('#banner-status').val(data[each]);
-                } else if(each == 'sid') {
-                    $('#banner-sort').val(data[each]);
-                } else if(each == 'link') {
-                    $('#banner-link').val(data[each]);
-                } else if(each == 'labelheader') {
-                    $('#banner-label-header').val(data[each]);
-                } else if(each == 'labelbody') {
-                    $('#banner-label-content').val(data[each]);
-                } else if(each == 'buttonclassname') {
-                    $('#banner-button-classname').val(data[each]);
-                }
-
-            }
-        })();
-    </if>
+//    $("#jx-upload-ok").on('click', function() {
+//        // $("#jx-upload-submit").click();
+//        $.post('{:U("Admin/Empty/uploadBanner")}', {}, function(json) {
+//            console.log(json);
+//        });
+//    });
+//
+//    $("#jx-upload-element").on('change', function(event) {
+//        // console.log(event.target.value);
+//        $("#jx-upload-input").val(event.target.value);
+//    });
+//
+//    $("#jx-upload-b").on('click', function() {
+//        $("#jx-upload-element").click();
+//    });
     </script>
 </body>
 </html>

@@ -5,15 +5,22 @@ namespace Admin\Controller;
 class EmptyController extends PublicController {
     public function banner() {
         $bid = I("id");
+        $m_key = M('keymanager');
         if($bid != "") {
             $m = M('banner');
             $banner = $m->where("id=" . $bid)->find();
             if($banner) {
-                $this->assign('run_banner_from_script', 1);
+//                $this->assign('run_banner_from_script', 1);
                 $this->assign('show_banner_form', 1);
-                // var_dump(json_encode($banner));
+
+                $key_data_banner = $m_key->where(array('table_name' => 'banner'))->select();
+                $this->keyDataArray2New($key_data_banner);
+                $this->assign('key_data_banner', $key_data_banner);
+
+//                 var_dump(json_encode($key_data_banner));
                 // exit;
-                $this->assign('banner_form_data', json_encode($banner));
+//                $this->assign('banner_form_data', json_encode($banner));
+                $this->assign('banner_data', $banner);
                 $this->assign('b_post_url', U(MODULE_NAME . '/Empty/addUpdateBanner'));
             } else {
                 $this->error("不能修改Banner!");
@@ -22,6 +29,11 @@ class EmptyController extends PublicController {
             $add = I("add");
             if($add != "") {
                 $this->assign('show_banner_form', 1);
+
+                $key_data_banner = $m_key->where(array('table_name' => 'banner'))->select();
+                $this->keyDataArray2New($key_data_banner);
+                $this->assign('key_data_banner', $key_data_banner);
+
                 $this->assign('b_post_url', U(MODULE_NAME . '/Empty/addUpdateBanner'));
             } else {
                 $this->assign("body_table", $this->getTable());
@@ -44,33 +56,44 @@ class EmptyController extends PublicController {
         $m = M("banner");
         $fields = $m->getDbFields();
 
-        $bodyTable .= '<thead><tr>';
+        $m_key = M("keymanager");
 
-        foreach ($fields as $value) {
-            $bodyTable .= '<th>' . $value . '</th>';
+        $key_data_banner = $m_key->where(array('table_name' => 'banner'))->select();
+        $this->keyDataArray2New($key_data_banner);
+
+//        var_dump($key_data_banner);
+
+        $name2Title = array();
+        foreach($key_data_banner as $value) {
+            $name2Title[$value['name']] = $value;
         }
 
-        $bodyTable .= '<th>option</th></thead></tr>';
+        $bodyTable .= '<thead><tr>';
+
+        foreach ($fields as $key => $value) {
+            if($key == 0) {
+                $bodyTable .= '<th>#</th>';
+            } else {
+                $bodyTable .= '<th>' . $name2Title[$value]['title'] . '</th>';
+            }
+        }
+
+        $bodyTable .= '<th>操作</th></thead></tr>';
 
         $bodyTable .= '<tbody>';
 
         $bannerDatas = $m->select();
         // var_dump($bannerDatas);
         // 
-        foreach ($bannerDatas as $eachBannerData) {
+        foreach ($bannerDatas as $so => $eachBannerData) {
             $bodyTable .= '<tr>';
             foreach ($eachBannerData as $key => $value) {
-                if($key == 'kind') {
-                    if($value == 1) {
-                        $value = '首页Banner';
-                    }
-                } else if($key == 'status') {
-                    if($value == 1) {
-                        $value = '显示';
-                    } else {
-                        $value = '隐藏';
-                    }
-                } else if($key == 'path') {
+//                var_dump($name2Title[$key]['type']);
+                if($name2Title[$key]['type'] == '3') { // SELECT
+                    $value = $name2Title[$key]['values'][$value];
+                }
+
+                if($key == 'path') {
                     $value = '<img src="' . $value . '" alt="" style="box-sizing: border-box; max-height: 20px;">';
                 }
                 $bodyTable .= '<td>' . $value . '</td>';
@@ -86,19 +109,32 @@ class EmptyController extends PublicController {
         return $bodyTable;
     }
 
+    private function keyDataArray2New(&$key_data_arr) {
+        foreach($key_data_arr as &$item) {
+//            var_dump($item);
+            if($item["type"] == "3") {
+                $item["values"] = json_decode($item["values"]);
+            }
+        }
+    }
+
     public function addUpdateBanner() {
-        $bannerId = I('bannerId');
-        $bannerData = array(
-            'title' => I('bannerTitle'),
-            'kind' => I('bannerKind'),
-            'path' => I('bannerPath'),
-            'status' => intval(I('bannerStatus')),
-            'sid' => intval(I('bannerSort')),
-            'link' => I('bannerLink'),
-            'labelheader' => I('bannerLabelHeader'),
-            'labelbody' => I('bannerLabelContent'),
-            'buttonclassname' => I('bannerButtonClassName')
-        );
+        $bannerId = I('id');
+//        var_dump($_POST);
+//        exit;
+//        $bannerData = array(
+//            'title' => I('bannerTitle'),
+//            'kind' => I('bannerKind'),
+//            'path' => I('bannerPath'),
+//            'status' => intval(I('bannerStatus')),
+//            'sid' => intval(I('bannerSort')),
+//            'link' => I('bannerLink'),
+//            'labelheader' => I('bannerLabelHeader'),
+//            'labelbody' => I('bannerLabelContent'),
+//            'buttonclassname' => I('bannerButtonClassName')
+//        );
+
+        $bannerData = $_POST;
 
         $m = M("banner");
 
@@ -164,5 +200,9 @@ class EmptyController extends PublicController {
             );
             $this->ajaxReturn($resule);
         }
+    }
+
+    public function keyManager() {
+        $this->display('keymanager');
     }
 }

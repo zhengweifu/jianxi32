@@ -4,12 +4,12 @@ use Think\Controller;
 class IndexController extends Controller {
     public function index(){
 		$m = M('banner');
-		$banners = $m->where("kind=1")->select();
-		// var_dump($banners); 
+		$banners = $m->where("kind=0")->select();
 
 		$outBannerData = array();
 
 		if($banners) {
+			multiArraySort($banners, "sid", SORT_ASC);
 			foreach ($banners as $key => $value) {
 				if($value['status']) {
 					array_push($outBannerData, array(

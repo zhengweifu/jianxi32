@@ -5,15 +5,13 @@ return array(
 
 	// 'URL_HTML_SUFFIX'=>'',
 
-	'TMPL_PARSE_STRING' => array(
-		'__STATIC__' => __ROOT__ . '/Public/static'
-	),
-
 	'URL_HTML_SUFFIX' => '',
 
 	'DOT_MIN'   => '.min',
 
 	'SHOW_PAGE_TRACE'=>true,
+
+	//'TMPL_ENGINE_TYPE'=>'Smarty', // 使用smarty模板
 
 	//数据库配置信息
 	'DB_TYPE'   => 'mysql', // 数据库类型
