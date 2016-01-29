@@ -3,68 +3,67 @@
 namespace Admin\Controller;
 
 class EmptyController extends PublicController {
-    public function banner() {
+
+    public function index() {
         $bid = I("id");
+        $tid = I('tid');
         $m_key = M('keymanager');
+
+        $current_table_name = C('JX_TABLE_NAME')[$tid];
+
         if($bid != "") {
-            $m = M('banner');
-            $banner = $m->where("id=" . $bid)->find();
-            if($banner) {
-//                $this->assign('run_banner_from_script', 1);
-                $this->assign('show_banner_form', 1);
+            $m = M($current_table_name);
+            $_data = $m->where("id=" . $bid)->find();
+            if($_data) {
 
-                $key_data_banner = $m_key->where(array('table_name' => 'banner'))->select();
-                $this->keyDataArray2New($key_data_banner);
-                $this->assign('key_data_banner', $key_data_banner);
+                $this->assign('show_form', 1);
 
-//                 var_dump(json_encode($key_data_banner));
-                // exit;
-//                $this->assign('banner_form_data', json_encode($banner));
-                $this->assign('banner_data', $banner);
-                $this->assign('b_post_url', U(MODULE_NAME . '/Empty/addUpdateBanner'));
+                $key_data_current = $m_key->where(array('table_name' => $current_table_name))->select();
+                $this->keyDataArray2New($key_data_current);
+                $this->assign('key_data_current', $key_data_current);
+
+                $this->assign('data', $_data);
+                $this->assign('b_post_url', U(MODULE_NAME . '/Empty/addUpdate/tid/' . $tid . "/id/" . $bid));
             } else {
-                $this->error("不能修改Banner!");
+                $this->error("不能修改" . $current_table_name . "!");
             }
         } else {
             $add = I("add");
             if($add != "") {
-                $this->assign('show_banner_form', 1);
+                $this->assign('show_form', 1);
 
-                $key_data_banner = $m_key->where(array('table_name' => 'banner'))->select();
-                $this->keyDataArray2New($key_data_banner);
-                $this->assign('key_data_banner', $key_data_banner);
+                $key_data_current = $m_key->where(array('table_name' => $current_table_name))->select();
+                $this->keyDataArray2New($key_data_current);
+                $this->assign('key_data_current', $key_data_current);
 
-                $this->assign('b_post_url', U(MODULE_NAME . '/Empty/addUpdateBanner'));
+                $this->assign('b_post_url', U(MODULE_NAME . '/Empty/addUpdate/tid/' . $tid));
             } else {
-                $this->assign("body_table", $this->getTable());
+                $this->assign("body_table", $this->getTable($tid));
             }
         }
 
         $this->display();
     }
 
-    Public function bannerChange() {
+    private function getTable($table_id) {
+        $current_table_name = C('JX_TABLE_NAME')[$table_id];
 
-    }
-
-    private function getTable() {
         $bodyTable = '<table class="table"><caption>';
 
-        $bodyTable .= '<a href="'. U(MODULE_NAME . "/Empty/banner/add/1") .'" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>添加</a>';
+        $bodyTable .= '<a href="'. U(MODULE_NAME . "/Empty/index/tid/" . $table_id . "/add/1") .'" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>添加</a>';
         $bodyTable .= '</caption>';
 
-        $m = M("banner");
+        $m = M($current_table_name);
         $fields = $m->getDbFields();
 
         $m_key = M("keymanager");
 
-        $key_data_banner = $m_key->where(array('table_name' => 'banner'))->select();
-        $this->keyDataArray2New($key_data_banner);
+        $key_data_current = $m_key->where(array('table_name' => $current_table_name))->select();
+        $this->keyDataArray2New($key_data_current);
 
-//        var_dump($key_data_banner);
 
         $name2Title = array();
-        foreach($key_data_banner as $value) {
+        foreach($key_data_current as $value) {
             $name2Title[$value['name']] = $value;
         }
 
@@ -82,24 +81,29 @@ class EmptyController extends PublicController {
 
         $bodyTable .= '<tbody>';
 
-        $bannerDatas = $m->select();
-        // var_dump($bannerDatas);
-        // 
-        foreach ($bannerDatas as $so => $eachBannerData) {
-            $bodyTable .= '<tr>';
-            foreach ($eachBannerData as $key => $value) {
-//                var_dump($name2Title[$key]['type']);
-                if($name2Title[$key]['type'] == '3') { // SELECT
-                    $value = $name2Title[$key]['values'][$value];
-                }
+        $_Datas = $m->select();
 
-                if($key == 'path') {
-                    $value = '<img src="' . $value . '" alt="" style="box-sizing: border-box; max-height: 20px;">';
+        // print_r($_Datas);
+        // exit;
+        foreach ($_Datas as $so => $eachData) {
+            $bodyTable .= '<tr>';
+            // echo $fields[$so];
+            foreach ($eachData as $key => $value) {
+
+                if($key != "table_name") {
+
+                    if($name2Title[$key]['type'] == '3') { // SELECT
+                        $value = $name2Title[$key]['values'][$value];
+                    }
+                    
+                    if($key == 'path') {
+                        $value = '<img src="' . $value . '" alt="" style="box-sizing: border-box; max-height: 20px;">';
+                    }
                 }
                 $bodyTable .= '<td>' . $value . '</td>';
             }
-            $bodyTable .= '<td><a href="' . U(MODULE_NAME . '/Empty/banner/id/' . $eachBannerData['id'])
-                        . '"><span class="glyphicon glyphicon-pencil">&nbsp</span></a><a href="' . U(MODULE_NAME . '/Empty/deleteBanner/id/' . $eachBannerData['id'])
+            $bodyTable .= '<td><a href="' . U(MODULE_NAME . '/Empty/index/tid/' . $table_id . '/id/' . $eachData['id'])
+                        . '"><span class="glyphicon glyphicon-pencil">&nbsp</span></a><a href="' . U(MODULE_NAME . '/Empty/delete/tid/' . $table_id . '/id/' . $eachData['id'])
                         .'"><span class="glyphicon glyphicon-trash"></span></a></td>';
             $bodyTable .= '</tr>';
         }
@@ -118,91 +122,48 @@ class EmptyController extends PublicController {
         }
     }
 
-    public function addUpdateBanner() {
-        $bannerId = I('id');
-//        var_dump($_POST);
-//        exit;
-//        $bannerData = array(
-//            'title' => I('bannerTitle'),
-//            'kind' => I('bannerKind'),
-//            'path' => I('bannerPath'),
-//            'status' => intval(I('bannerStatus')),
-//            'sid' => intval(I('bannerSort')),
-//            'link' => I('bannerLink'),
-//            'labelheader' => I('bannerLabelHeader'),
-//            'labelbody' => I('bannerLabelContent'),
-//            'buttonclassname' => I('bannerButtonClassName')
-//        );
+    public function addUpdate() {
+        $table_id = $_GET['tid'];
+        $bid = $_GET['id'];
 
-        $bannerData = $_POST;
+        $current_table_name = C('JX_TABLE_NAME')[$table_id];
 
-        $m = M("banner");
+        $postData = $_POST;
+        
+        $m = M($current_table_name);
 
-        if($bannerId != '') {
+        if($bid != '') {
 
-            $m->where(array('id' => $bannerId))->data($bannerData)->save();
+            $m->where(array('id' => $bid))->data($postData)->save();
 
         } else {
 
-            $banner = $m->where(array('title' => $bannerData['title']))->find();
+            $_data = $m->where(array('title' => $postData['title']))->find();
 
-            if(!$banner) {
-                $m->add($bannerData);
+            if(!$_data) {
+                $m->add($postData);
             } else {
-                $this->error('Banner: <' . $bannerData['title'] . '> 已经存在.');
+                $this->error($current_table_name . ': <' . $postData['title'] . '> 已经存在.');
             }
         }
 
-        $this->redirect(MODULE_NAME . "/Empty/banner");
+        $this->redirect(MODULE_NAME . "/Empty/index/tid/" . $table_id);
     }
 
-    public  function deleteBanner() {
-        $m = M("banner");
-        $bannerId = I("id");
+    public  function delete() {
+        $table_id = I('tid');
+        $current_table_name = C('JX_TABLE_NAME')[$table_id];
+        $m = M($current_table_name);
+        $bId = I("id");
         
-        $banner = $m->where(array('id=' . $bannerId))->find();
+        $_data = $m->where(array('id=' . $bId))->find();
 
-        if($banner) {
-            $m->where(array('id=' . $bannerId))->delete();
+        if($_data) {
+            $m->where(array('id=' . $bId))->delete();
         } else {
-            $this->error("没有发现 id ＝ " . $bannerId . "的banner");
+            $this->error("没有发现 id ＝ " . $bId . "的" . $current_table_name);
         }
 
-        $this->redirect(MODULE_NAME . '/Empty/banner');
-    }
-
-    public function updateBanner() {
-
-    }
-
-    public function uploadBanner() {
-
-        $upload = new \Think\Upload();// 实例化上传类
-        $upload->maxSize   =     3145728 ;// 设置附件上传大小
-        $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        $upload->rootPath  =     './Public/uploads/'; // 设置附件上传根目录
-        $upload->savePath  =     'banners/'; // 设置附件上传（子）目录 
-
-        $info = $upload->upload();
-
-
-        if(!$info) {// 上传错误提示错误信息
-            $this->error($upload->getError());
-        } else{// 上传成功
-            // var_dump($info);
-            $url = __ROOT__ . '/Public/uploads/' . $info['photo']['savepath'] . $info['photo']['savename'];
-            $this->success('上传成功！');
-
-            // $this->assign("photourl", $url);
-            // 
-            $resule = array(
-                'url' => $url
-            );
-            $this->ajaxReturn($resule);
-        }
-    }
-
-    public function keyManager() {
-        $this->display('keymanager');
+        $this->redirect(MODULE_NAME . "/Empty/index/tid/" . $table_id);
     }
 }

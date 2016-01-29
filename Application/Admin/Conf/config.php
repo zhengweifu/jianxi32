@@ -5,4 +5,8 @@ return array(
         '__JXRESOURCE__' => __ROOT__ . '/Public/' . MODULE_NAME,
         '__STATIC__' => __ROOT__ . '/Public/static'
     ),
+
+    JX_TABLE_NAME => array (
+        'keymanager', 'banner', 'product'
+	)
 );

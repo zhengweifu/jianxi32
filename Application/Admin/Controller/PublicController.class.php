@@ -22,8 +22,8 @@ class PublicController extends CommonController {
 		$menu .= '<li class="dropdown">';
         $menu .= '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">全局 <span class="caret"></span></a>';
         $menu .= '<ul class="dropdown-menu">';
-        $menu .= '<li><a href="' . U(MODULE_NAME . "/Empty/banner") . '">Banner 图片</a></li>';
-		$menu .= '<li><a href="' . U(MODULE_NAME . "/Empty/keyManager") . '">字段管理</a></li>';
+        $menu .= '<li><a href="' . U(MODULE_NAME . "/Empty/index/tid/1") . '">Banner 图片</a></li>';
+		$menu .= '<li><a href="' . U(MODULE_NAME . "/Empty/index/tid/0") . '">字段管理</a></li>';
         $menu .= '</ul></li>';
 
 		$menu .= '<li><a href="#">用户管理</a></li>';
