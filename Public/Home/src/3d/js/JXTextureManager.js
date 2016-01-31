@@ -67,7 +67,7 @@ define(function (require) {
                 } else {
                     var src_cube = new Array();
                     for (var j = 0; j < json.url.length; j++) {
-                        src_cube.push(JX.getAbsPath(JX.PROJECTPATH, json.url[j]))
+                        src_cube.push(JX.getAbsPath(JX.PROJECTPATH, json.url[j]));
                     }
                     texture = THREE.ImageUtils.loadTextureCube(src_cube);
                 }

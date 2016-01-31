@@ -25,6 +25,14 @@ class IndexController extends Controller {
 
 		$this->assign('jx_banners', $outBannerData);
 
+		$products = M('product')->where("status=1")->select();
+
+		if($products) {
+			multiArraySort($products, "sid", SORT_ASC);
+		}
+
+		$this->assign('jx_products', $products);
+
         $this->display();
     }
 

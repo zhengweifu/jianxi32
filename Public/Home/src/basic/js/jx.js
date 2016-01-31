@@ -78,13 +78,13 @@
      * @param color
      */
     jxjs.RGB2Hex = function(style) {
-        var r, g, b;
+        var r, g, b, color;
 
         // rgb(255,0,0)
 
         if ( /^rgb\((\d+), ?(\d+), ?(\d+)\)$/i.test( style ) ) {
 
-            var color = /^rgb\((\d+), ?(\d+), ?(\d+)\)$/i.exec( style );
+            color = /^rgb\((\d+), ?(\d+), ?(\d+)\)$/i.exec( style );
 
             r = Math.min( 255, parseInt( color[ 1 ], 10 ) ) / 255;
             g = Math.min( 255, parseInt( color[ 2 ], 10 ) ) / 255;
@@ -96,7 +96,7 @@
 
         else if ( /^rgb\((\d+)\%, ?(\d+)\%, ?(\d+)\%\)$/i.test( style ) ) {
 
-            var color = /^rgb\((\d+)\%, ?(\d+)\%, ?(\d+)\%\)$/i.exec( style );
+            color = /^rgb\((\d+)\%, ?(\d+)\%, ?(\d+)\%\)$/i.exec( style );
 
             r = Math.min( 100, parseInt( color[ 1 ], 10 ) ) / 100;
             g = Math.min( 100, parseInt( color[ 2 ], 10 ) ) / 100;

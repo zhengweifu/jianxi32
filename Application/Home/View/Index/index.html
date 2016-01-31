@@ -102,45 +102,60 @@
     <div class="container" id="jx-product-label">
 
         <div class="row show-grid">
+            <foreach name="jx_products" item="jx_product" key="k">
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="jxproduct-group">
-                    <img src="__JXRESOURCE__/basic/imgs/product01.jpg" alt="">
+                    <img src="{$jx_product.path}" alt="">
                     <div>
-                        <p class="size-30px">简衣定制</p>
-                        <p class="size-16px">在这里,个性化服饰变得无比丰富、简单、 乐趣无穷。</p>
-                        <a href="{U('Home/JX2D/index')}" class="jxbtn jxbtn-orange" role="button">
+                        <p class="size-30px">{$jx_product.labelheader}</p>
+                        <p class="size-16px">{$jx_product.labelbody}</p>
+                        <a href="{$jx_product.link}" class="{$jx_product.buttonclassname}" role="button">
                             马上体验
                             <span class="glyphicon glyphicon-menu-right"></span>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="jxproduct-group">
-                    <img src="__JXRESOURCE__/basic/imgs/product02.jpg" alt="">
-                    <div>
-                        <p class="size-30px">简陶定制</p>
-                        <p class="size-16px">杯具定制可一点儿也不悲剧哦，生活中的 小物件也可以如此多姿多彩。</p>
-                        <a href="{U('Home/JX2D/index')}" class="jxbtn jxbtn-green">
-                            马上体验
-                            <span class="glyphicon glyphicon-menu-right"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="jxproduct-group">
-                    <img src="__JXRESOURCE__/basic/imgs/product03.jpg" alt="">
-                    <div>
-                        <p class="size-30px">3D.AR</p>
-                        <p class="size-16px">这里是汽车AR的简要介绍，要体现出满满的 科技感。</p>
-                        <a href="{U('Home/JX2D/index')}" class="jxbtn jxbtn-blue">
-                            马上体验
-                            <span class="glyphicon glyphicon-menu-right"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            </foreach>
+            <!--<div class="col-xs-12 col-sm-6 col-md-4">-->
+                <!--<div class="jxproduct-group">-->
+                    <!--<img src="__JXRESOURCE__/basic/imgs/product01.jpg" alt="">-->
+                    <!--<div>-->
+                        <!--<p class="size-30px">简衣定制</p>-->
+                        <!--<p class="size-16px">在这里,个性化服饰变得无比丰富、简单、 乐趣无穷。</p>-->
+                        <!--<a href="{U('Home/JX2D/index')}" class="jxbtn jxbtn-orange" role="button">-->
+                            <!--马上体验-->
+                            <!--<span class="glyphicon glyphicon-menu-right"></span>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 col-sm-6 col-md-4">-->
+                <!--<div class="jxproduct-group">-->
+                    <!--<img src="__JXRESOURCE__/basic/imgs/product02.jpg" alt="">-->
+                    <!--<div>-->
+                        <!--<p class="size-30px">简陶定制</p>-->
+                        <!--<p class="size-16px">杯具定制可一点儿也不悲剧哦，生活中的 小物件也可以如此多姿多彩。</p>-->
+                        <!--<a href="{U('Home/JX2D/index')}" class="jxbtn jxbtn-green">-->
+                            <!--马上体验-->
+                            <!--<span class="glyphicon glyphicon-menu-right"></span>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 col-sm-6 col-md-4">-->
+                <!--<div class="jxproduct-group">-->
+                    <!--<img src="__JXRESOURCE__/basic/imgs/product03.jpg" alt="">-->
+                    <!--<div>-->
+                        <!--<p class="size-30px">3D.AR</p>-->
+                        <!--<p class="size-16px">这里是汽车AR的简要介绍，要体现出满满的 科技感。</p>-->
+                        <!--<a href="{U('Home/JX2D/index')}" class="jxbtn jxbtn-blue">-->
+                            <!--马上体验-->
+                            <!--<span class="glyphicon glyphicon-menu-right"></span>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
     <div class="jx-split"></div>

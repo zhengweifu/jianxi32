@@ -129,7 +129,8 @@ body {
 .jxproduct-group {
   //display: inline-block;
   //overflow: hidden;
-  margin: auto;
+  margin-top: $jx-space-base;
+  margin-bottom: $jx-space-base;
   //border: 2px $bg_gray solid;
   width: 100%;
 
