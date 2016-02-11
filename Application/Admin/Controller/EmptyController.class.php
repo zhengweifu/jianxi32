@@ -100,7 +100,12 @@ class EmptyController extends PublicController {
                         $value = '<img src="' . $value . '" alt="" style="box-sizing: border-box; max-height: 20px;">';
                     }
                 }
-                $bodyTable .= '<td>' . $value . '</td>';
+
+                if($name2Title[$key]['type'] == '4') {// COLOR
+                    $bodyTable .= '<td style="background-color: #'.$value.'">' . $value . '</td>';
+                } else {
+                    $bodyTable .= '<td>' . $value . '</td>';
+                }
             }
             $bodyTable .= '<td><a href="' . U(MODULE_NAME . '/Empty/index/tid/' . $table_id . '/id/' . $eachData['id'])
                         . '"><span class="glyphicon glyphicon-pencil">&nbsp</span></a><a href="' . U(MODULE_NAME . '/Empty/delete/tid/' . $table_id . '/id/' . $eachData['id'])

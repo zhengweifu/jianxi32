@@ -7,6 +7,6 @@ return array(
     ),
 
     JX_TABLE_NAME => array (
-        'keymanager', 'banner', 'product'
+        'keymanager', 'banner', 'product', 'color'
 	)
 );

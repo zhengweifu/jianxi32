@@ -45,7 +45,22 @@
         </foreach>
         </select>
     </if>
-
+    <if condition="$item.type eq 4">
+    <input type="text" name="{$item.name}" value='<?php echo $data[$item["name"]];?>' class="form-control" id="jx-color" placeholder="{$item.tip}" style='<?php echo "background-color: #" . $data[$item["name"]];?>'>
+    <div id="jx-colorpicker"></div>
+    <script>
+        (function() {
+            var eq = $("#jx-color");
+            var jx_colorpicker = $.farbtastic('#jx-colorpicker');
+            jx_colorpicker.linkTo(function(color) {
+                eq.css({backgroundColor: color});
+                eq.val(color.substring(1, color.length));
+//                console.log(color);
+            });
+            jx_colorpicker.setColor('<?php echo "#" . $data[$item["name"]];?>');
+        })();
+    </script>
+    </if>
     </div>
 
 </foreach>

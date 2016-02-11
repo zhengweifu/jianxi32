@@ -25,6 +25,7 @@ class PublicController extends CommonController {
         $menu .= '<li><a href="' . U(MODULE_NAME . "/Empty/index/tid/1") . '">Banner 图片</a></li>';
 		$menu .= '<li><a href="' . U(MODULE_NAME . "/Empty/index/tid/0") . '">字段管理</a></li>';
 		$menu .= '<li><a href="' . U(MODULE_NAME . "/Empty/index/tid/2") . '">产品列表</a></li>';
+		$menu .= '<li><a href="' . U(MODULE_NAME . "/Empty/index/tid/3") . '">颜色列表</a></li>';
         $menu .= '</ul></li>';
 
 		$menu .= '<li><a href="#">用户管理</a></li>';
