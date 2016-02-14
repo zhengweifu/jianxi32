@@ -6,3 +6,31 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+.jx-pagination {
+	float: right;
+}
+
+.jx-pagination .num,
+.jx-pagination .current,
+.jx-pagination .prev,
+.jx-pagination .next {
+	float: left;
+	border: 1px solid #4e7698;
+	padding: 3px 10px;
+	margin: 0 2px;
+}
+
+.jx-pagination a {
+	text-decoration: none;
+}
+
+.jx-pagination .current {
+	color: #ffa952;
+}
+
+.jx-pagination .rows {
+	float: left;
+	list-style-type: none;
+	padding: 3px 10px;
+}

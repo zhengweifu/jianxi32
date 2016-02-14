@@ -38,14 +38,16 @@ class EmptyController extends PublicController {
 
                 $this->assign('b_post_url', U(MODULE_NAME . '/Empty/addUpdate/tid/' . $tid));
             } else {
-                $this->assign("body_table", $this->getTable($tid));
+                $p = getPage(M($current_table_name), '', 15);
+                $this->assign("page", $p->show());
+                $this->assign("body_table", $this->getTable($tid, $p));
             }
         }
 
         $this->display();
     }
 
-    private function getTable($table_id) {
+    private function getTable($table_id, $tpp=null) {
         $current_table_name = C('JX_TABLE_NAME')[$table_id];
 
         $bodyTable = '<table class="table"><caption>';
@@ -58,7 +60,11 @@ class EmptyController extends PublicController {
 
         $m_key = M("keymanager");
 
+
         $key_data_current = $m_key->where(array('table_name' => $current_table_name))->select();
+
+
+
         $this->keyDataArray2New($key_data_current);
 
 
@@ -73,7 +79,8 @@ class EmptyController extends PublicController {
             if($key == 0) {
                 $bodyTable .= '<th>#</th>';
             } else {
-                $bodyTable .= '<th>' . $name2Title[$value]['title'] . '</th>';
+                if ($name2Title[$value]['table_show'] == "1")
+                    $bodyTable .= '<th>' . $name2Title[$value]['title'] . '</th>';
             }
         }
 
@@ -81,14 +88,18 @@ class EmptyController extends PublicController {
 
         $bodyTable .= '<tbody>';
 
-        $_Datas = $m->select();
-
+        if(is_null($tpp))
+            $_Datas = $m->select();
+        else
+            $_Datas = $m->order('id')->page($_GET['p'].','.$tpp->listRows)->select();
         // print_r($_Datas);
         // exit;
         foreach ($_Datas as $so => $eachData) {
             $bodyTable .= '<tr>';
             // echo $fields[$so];
             foreach ($eachData as $key => $value) {
+
+                if($name2Title[$key]["table_show"] == "0") continue; // 在列表中不显示
 
                 if($key != "table_name") {
 
@@ -143,13 +154,13 @@ class EmptyController extends PublicController {
 
         } else {
 
-            $_data = $m->where(array('title' => $postData['title']))->find();
-
-            if(!$_data) {
-                $m->add($postData);
-            } else {
-                $this->error($current_table_name . ': <' . $postData['title'] . '> 已经存在.');
-            }
+//            $_data = $m->where(array('title' => $postData['title']))->find();
+//
+//            if(!$_data) {
+            $m->add($postData);
+//            } else {
+//                $this->error($current_table_name . ': <' . $postData['title'] . '> 已经存在.');
+//            }
         }
 
         $this->redirect(MODULE_NAME . "/Empty/index/tid/" . $table_id);
