@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>简衣制造</title>
     <link rel="stylesheet" href="__STATIC__/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="__JXRESOURCE__/basic/css/jx{$Think.config.DOT_MIN}.css">
+    <link rel="stylesheet" href="c/basic/css/jx{$Think.config.DOT_MIN}.css">
     <link rel="stylesheet" href="__JXRESOURCE__/2d/css/jx2d{$Think.config.DOT_MIN}.css">
     <script src="__STATIC__/sea-2.3.0.min.js"></script>
     <script src="__STATIC__/jquery-2.1.4.min.js"></script>
     <script src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
     <script src="__STATIC__/nstSlider/js/jquery.nstSlider.min.js"></script>
-
+    <script src="__STATIC__/three.js"></script>
+    <script src="__STATIC__/three.jx.js"></script>
 </head>
 <body>
 <div class="container-fiuld">
     <div class="jx2d-container">
         <div class="control-left">
             <div class="viewport-group">
-                <canvas class="viewport-2d"></canvas>
+                <canvas class="viewport-2d" id="viewport-2d" width="500" height="500" style="width: 500px; height: 500px; background: url(__JXRESOURCE__/2d/imgs/pictrues/t-shirt_2_wht.jpg);background-position:center;background-size: contain"></canvas>
             </div>
             <div class="row jxrow-padding-5">
                 <div class="col-sm-2">
@@ -161,13 +162,13 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">上传</a></li>
+                                <li><a href="#">剪贴画</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <button class="btn btn-default btn-block">创建文字</button>
+                        <button class="btn btn-default btn-block" id="jx2d-create-text">创建文字</button>
                     </div>
                 </div>
             </div>
@@ -516,16 +517,16 @@
     });
 
     // set canvas height
-    var jquery_viewport = $(".viewport-2d");
-    jquery_viewport.css({height: jquery_viewport.css("width")});
+    // var jquery_viewport = $(".viewport-2d");
+    // jquery_viewport.css({height: jquery_viewport.css("width")});
 
     var jquery_project_tmp = $(".project-template-group");
     jquery_project_tmp.css({height: jquery_project_tmp.css("width")});
 
-    $(window).on("resize", function() {
-        jquery_viewport.css({height: jquery_viewport.css("width")});
-        jquery_project_tmp.css({height: jquery_project_tmp.css("width")});
-    });
+    // $(window).on("resize", function() {
+    //     jquery_viewport.css({height: jquery_viewport.css("width")});
+    //     jquery_project_tmp.css({height: jquery_project_tmp.css("width")});
+    // });
 
     $('.jxnstSlider').nstSlider({
         "left_grip_selector": ".leftGrip",
@@ -644,6 +645,40 @@
         });
         i++;
     });
+
+
+    // code
+
+    var canvas = document.getElementById("viewport-2d");
+    var width = canvas.clientWidth, height = canvas.clientHeight, halfWidth = width/2, halfHeight = height/2;
+
+    var maskHalfWith = 120, maskHalfHeight = 150;
+    var mask = new THREE.JX.JXPolygonMask([
+        new THREE.Vector2(-maskHalfWith, maskHalfHeight), 
+        new THREE.Vector2(maskHalfWith, maskHalfHeight), 
+        new THREE.Vector2(maskHalfWith, -maskHalfHeight), 
+        new THREE.Vector2(-maskHalfWith, -maskHalfHeight)
+    ]);
+
+    mask.strokeColor.setRGB(0.2, 0.3, 0.9);
+
+    var shapeGroup = new THREE.Group();
+
+    var viewport2d = new Viewport2D(canvas, shapeGroup, mask);
+
+    $("#jx2d-create-text").on('click', function() {
+        var text = new THREE.JX.JXText();
+        text.content = "www.janexi.com";
+        text.color.setRGB(0.5, 0, 0.5);
+        text.size = 10;
+        shapeGroup.add(text);
+        viewport2d.update();
+    });
+
+    var updateTransformPanel = function(object) {
+
+    };
+
 })();
 </script>
 </body>
