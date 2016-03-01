@@ -731,7 +731,7 @@ THREE.JX.JXTransformControls.prototype.constructor = THREE.JX.JXTransformControl
 
 THREE.JX.JXTransformControls.prototype.spaceSize = 5;
 
-THREE.JX.JXTransformControls.prototype.gizmoSize = 14;
+THREE.JX.JXTransformControls.prototype.gizmoSize = 10;
 
 THREE.JX.JXTransformControls.prototype.defaultColor = [0.2, 0.8, 0.3];
 THREE.JX.JXTransformControls.prototype.activeColor = [1.0, 0.734, 0.0];
@@ -785,6 +785,10 @@ var Viewport2D = function(inCanvas, shapeGroup, mask) {
 
 	// var shapeGroup = new THREE.Group();
 
+
+	this.onIntersect = undefined;
+	this.onNotIntersect = undefined;
+
 	this.current_object = undefined;
 
 	var i, scope = this;
@@ -809,11 +813,21 @@ var Viewport2D = function(inCanvas, shapeGroup, mask) {
 
 		if(this.current_object) {
 			if(!gizmo.gizmo.visible) gizmo.gizmo.visible = true;
+
+			if(scope.onIntersect) scope.onIntersect(scope.current_object);
+
 		} else {
 			if(gizmo.gizmo.visible) gizmo.gizmo.visible = false;
+
+			if(scope.onNotIntersect) scope.onNotIntersect();
+
 		}
 
 		this.update();
+	};
+
+	this.getGizmo = function() {
+		return gizmo;
 	};
 
 	this.update = function() {

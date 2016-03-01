@@ -560,21 +560,33 @@
         }
     });
 
+    // set slider element value
+    var setSliderValue = function(jqe, value) {
+        var _mmin = jqe.nstSlider('get_range_min');
+        var _mmax = jqe.nstSlider('get_range_max');
+        if(value < _mmin) value = _mmin;
+        else if(value > _mmax) value = _mmax;
+
+        jqe.nstSlider('set_position', value);
+    };
+
     $('.jx2d-input').on('change', function() {
         var _value = $(this).val();
         var type_name = $(this).attr("typename");
-        console.log(type_name);
 
-        var _min = $('.jxnstSlider[typename=' + type_name + ']').nstSlider("get_range_min");
 
-        var _max = $('.jxnstSlider[typename=' + type_name + ']').nstSlider("get_range_max");
+//        var _min = $('.jxnstSlider[typename=' + type_name + ']').nstSlider("get_range_min");
+//
+//        var _max = $('.jxnstSlider[typename=' + type_name + ']').nstSlider("get_range_max");
+//
+//        var value_ = _value * slider_ms;
+//
+//        if(value_ < _min) value_ = _min;
+//        else if(value_ > _max) value_ = _max;
+//
+//        $('.jxnstSlider[typename=' + type_name + ']').nstSlider("set_position", value_);
 
-        var value_ = _value * slider_ms;
-
-        if(value_ < _min) value_ = _min;
-        else if(value_ > _max) value_ = _max;
-
-        $('.jxnstSlider[typename=' + type_name + ']').nstSlider("set_position", value_);
+        setSliderValue($('.jxnstSlider[typename=' + type_name + ']'), _value * slider_ms);
 
         switch(type_name) {
             case "pos_x":
@@ -719,8 +731,6 @@
     });
 
 
-    // code
-
 
 
     $("#jx2d-create-text").on('click', function() {
@@ -732,25 +742,26 @@
         viewport2d.update();
     });
 
+    var setInputValue = function (jqe, value) {
+        jqe.val(value);
+        jqe.change();
+    };
+
     var updateTransformPanel = function(object) {
-        $('.jxnstSlider[typename=pos_x]').nstSlider('set_position', object.position.x * slider_ms);
-        $('.jxnstSlider[typename=pos_y]').nstSlider('set_position', object.position.y * slider_ms);
-
-        $('.jxnstSlider[typename=rotation]').nstSlider('set_position', object.rotation.z * slider_ms);
-
-        $('.jxnstSlider[typename=scale]').nstSlider('set_position', object.scale.x * slider_ms);
+        setInputValue($('.jx2d-input[typename=pos_x]'), object.position.x);
+        setInputValue($('.jx2d-input[typename=pos_y]'), object.position.y);
+        setInputValue($('.jx2d-input[typename=rotation]'), object.rotation.z);
+        setInputValue($('.jx2d-input[typename=scale]'), object.scale.x);
     };
 
     var updateTextPanel = function(object) {
         $("#jx2d-text-content").val(object.content);
-        $('.jxnstSlider[typename=text_size]').nstSlider('set_position', object.size * slider_ms);
-        console.log(object.space);
-        $('.jxnstSlider[typename=text_space]').nstSlider('set_position', object.space * slider_ms);
-        $('.jxnstSlider[typename=text_arc]').nstSlider('set_position', object.arc * 180 / Math.PI * slider_ms);
+        setInputValue($('.jx2d-input[typename=text_size]'), object.size);
+        setInputValue($('.jx2d-input[typename=text_space]'), object.space);
+        setInputValue($('.jx2d-input[typename=text_arc]'), object.arc);
     };
 
     viewport2d.onIntersect = function(object) {
-        console.log(object.position);
         updateTransformPanel(object);
         if(object.type == "JXText") {
             updateTextPanel(object);
