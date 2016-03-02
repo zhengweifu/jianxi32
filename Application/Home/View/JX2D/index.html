@@ -20,7 +20,7 @@
     <div class="jx2d-container">
         <div class="control-left">
             <div class="viewport-group">
-                <canvas class="viewport-2d" id="viewport-2d" width="500" height="500" style="width: 500px; height: 500px; background: url(__JXRESOURCE__/2d/imgs/pictrues/t-shirt_2_wht.jpg);background-position:center;background-size: contain"></canvas>
+                <canvas class="viewport-2d" id="viewport-2d" width="500" height="500" style="width: 500px; height: 500px; background: url(__JXRESOURCE__/2d/imgs/pictrues/t-shirt_2d_wht.jpg);background-position:center;background-size: contain"></canvas>
             </div>
             <div class="row jxrow-padding-5">
                 <div class="col-sm-2">
@@ -172,7 +172,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-group" id="jx2d-properites-pg" role="tablist" aria-multiselectable="true">
+            <div class="panel-group" id="jx2d-properites-pg" role="tablist" aria-multiselectable="true" style="display: none;">
                 <!-- jx2d panel common -->
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="jx2d-common-phear">
@@ -182,7 +182,7 @@
                             </a>
                         </h4>
                     </div>
-                    <div id="jx2d-common-pbody" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="jx2d-common-phear">
+                    <div id="jx2d-common-pbody" class="panel-collapse collapse" role="tabpanel" aria-labelledby="jx2d-common-phear">
                         <div class="panel-body">
                             <div class="jx2d-properties-panel">
                                 <!--position-->
@@ -192,17 +192,23 @@
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="jxntSlider-group">
-                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="pos_x" style="ime-mode:disabled"></div>
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="pos_x"></div>
                                             <div class="jxnstSlider-g">
-                                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_x"><div class="leftGrip"></div></div>
+                                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_x">
+                                                    <div class="bar"></div>
+                                                    <div class="leftGrip"></div>
+                                                </div>
                                             </div>
                                         </div>
 
 
                                         <div class="jxntSlider-group">
-                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="pos_y" style="ime-mode:disabled"></div>
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="pos_y"></div>
                                             <div class="jxnstSlider-g">
-                                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_y"><div class="leftGrip"></div></div>
+                                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="pos_y">
+                                                    <div class="bar"></div>
+                                                    <div class="leftGrip"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -215,9 +221,12 @@
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="jxntSlider-group">
-                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="rotation" style="ime-mode:disabled"></div>
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="rotation"></div>
                                             <div class="jxnstSlider-g">
-                                                <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="80" typename="rotation"><div class="leftGrip"></div></div>
+                                                <div class="jxnstSlider" data-range_min="-36000" data-range_max="36000" data-cur_min="0" typename="rotation">
+                                                    <div class="bar"></div>
+                                                    <div class="leftGrip"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -230,9 +239,12 @@
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="jxntSlider-group">
-                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="scale" style="ime-mode:disabled"></div>
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="scale"></div>
                                             <div class="jxnstSlider-g">
-                                                <div class="jxnstSlider" data-range_min="1" data-range_max="1000" data-cur_min="100" typename="scale"><div class="leftGrip"></div></div>
+                                                <div class="jxnstSlider" data-range_min="1" data-range_max="1000" data-cur_min="100" typename="scale">
+                                                    <div class="bar"></div>
+                                                    <div class="leftGrip"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -250,7 +262,7 @@
                             </a>
                         </h4>
                     </div>
-                    <div id="jx2d-text-pbody" class="panel-collapse collapse" role="tabpanel" aria-labelledby="jx2d-text-phear">
+                    <div id="jx2d-text-pbody" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="jx2d-text-phear">
                         <div class="panel-body">
                             <!--text content-->
                             <div class="jx2d-content-select">
@@ -263,20 +275,23 @@
                                     <div class="col-sm-3">
                                         <div class="jx2d-font-select">
                                             <span>字体</span>
-                                            <div class="btn-group btn-group-sm">
-                                                <button type="button" class="btn btn-default">Action</button>
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="caret"></span>
-                                                    <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="#">Action</a></li>
-                                                    <li><a href="#">Another action</a></li>
-                                                    <li><a href="#">Something else here</a></li>
-                                                    <li role="separator" class="divider"></li>
-                                                    <li><a href="#">Separated link</a></li>
-                                                </ul>
-                                            </div>
+                                            <select class="form-control">
+                                                <option value="Arial">Arial</option>
+                                            </select>
+                                            <!--<div class="btn-group btn-group-sm">-->
+                                                <!--<button type="button" class="btn btn-default">Action</button>-->
+                                                <!--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                                                    <!--<span class="caret"></span>-->
+                                                    <!--<span class="sr-only">Toggle Dropdown</span>-->
+                                                <!--</button>-->
+                                                <!--<ul class="dropdown-menu">-->
+                                                    <!--<li><a href="#">Action</a></li>-->
+                                                    <!--<li><a href="#">Another action</a></li>-->
+                                                    <!--<li><a href="#">Something else here</a></li>-->
+                                                    <!--<li role="separator" class="divider"></li>-->
+                                                    <!--<li><a href="#">Separated link</a></li>-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -344,9 +359,12 @@
                                         </div>
                                         <div class="col-sm-10">
                                             <div class="jxntSlider-group">
-                                                <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_stroke_size" style="ime-mode:disabled"></div>
+                                                <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_stroke_size"></div>
                                                 <div class="jxnstSlider-g">
-                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_stroke_size"><div class="leftGrip"></div></div>
+                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_stroke_size">
+                                                        <div class="bar"></div>
+                                                        <div class="leftGrip"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -379,9 +397,12 @@
                                         </div>
                                         <div class="col-sm-10">
                                             <div class="jxntSlider-group">
-                                                <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_shadow_distance" style="ime-mode:disabled"></div>
+                                                <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_shadow_distance"></div>
                                                 <div class="jxnstSlider-g">
-                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_shadow_distance"><div class="leftGrip"></div></div>
+                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_shadow_distance">
+                                                        <div class="bar"></div>
+                                                        <div class="leftGrip"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -394,9 +415,12 @@
                                         </div>
                                         <div class="col-sm-10">
                                             <div class="jxntSlider-group">
-                                                <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_shadow_angle" style="ime-mode:disabled"></div>
+                                                <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_shadow_angle"></div>
                                                 <div class="jxnstSlider-g">
-                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_shadow_angle"><div class="leftGrip"></div></div>
+                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_shadow_angle">
+                                                        <div class="bar"></div>
+                                                        <div class="leftGrip"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -410,9 +434,12 @@
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="jxntSlider-group">
-                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_size" style="ime-mode:disabled"></div>
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_size"></div>
                                             <div class="jxnstSlider-g">
-                                                <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_size"><div class="leftGrip"></div></div>
+                                                <div class="jxnstSlider" data-range_min="0" data-range_max="3600" data-cur_min="80" typename="text_size">
+                                                    <div class="bar"></div>
+                                                    <div class="leftGrip"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -424,9 +451,12 @@
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="jxntSlider-group">
-                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_space" style="ime-mode:disabled"></div>
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_space"></div>
                                             <div class="jxnstSlider-g">
-                                                <div class="jxnstSlider" data-range_min="0" data-range_max="1000" data-cur_min="300" typename="text_space"><div class="leftGrip"></div></div>
+                                                <div class="jxnstSlider" data-range_min="0" data-range_max="1000" data-cur_min="0" typename="text_space">
+                                                    <div class="bar"></div>
+                                                    <div class="leftGrip"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -438,9 +468,12 @@
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="jxntSlider-group">
-                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_arc" style="ime-mode:disabled"></div>
+                                            <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_arc"></div>
                                             <div class="jxnstSlider-g">
-                                                <div class="jxnstSlider" data-range_min="-36000" data-range_max="36000" data-cur_min="1" typename="text_arc"><div class="leftGrip"></div></div>
+                                                <div class="jxnstSlider" data-range_min="-36000" data-range_max="36000" data-cur_min="0" typename="text_arc">
+                                                    <div class="bar"></div>
+                                                    <div class="leftGrip"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -547,47 +580,9 @@
     //     jquery_project_tmp.css({height: jquery_project_tmp.css("width")});
     // });
 
-    $('.jxnstSlider').nstSlider({
-        "left_grip_selector": ".leftGrip",
-        "value_changed_callback": function(cause, leftValue, rightValue) {
-//            $(this).parent().find('.leftLabel').text(leftValue);
-
-            var val_left = (parseFloat(leftValue) / slider_ms).toFixed(2);
-            $(this).parent().parent().find(".jxnstInput-g").children().val(val_left);
-            var type_name = $(this).attr("typename");
-
-            $('.jx2d-input[typename=' + type_name + ']').change();
-        }
-    });
-
-    // set slider element value
-    var setSliderValue = function(jqe, value) {
-        var _mmin = jqe.nstSlider('get_range_min');
-        var _mmax = jqe.nstSlider('get_range_max');
-        if(value < _mmin) value = _mmin;
-        else if(value > _mmax) value = _mmax;
-
-        jqe.nstSlider('set_position', value);
-    };
-
-    $('.jx2d-input').on('change', function() {
-        var _value = $(this).val();
-        var type_name = $(this).attr("typename");
-
-
-//        var _min = $('.jxnstSlider[typename=' + type_name + ']').nstSlider("get_range_min");
-//
-//        var _max = $('.jxnstSlider[typename=' + type_name + ']').nstSlider("get_range_max");
-//
-//        var value_ = _value * slider_ms;
-//
-//        if(value_ < _min) value_ = _min;
-//        else if(value_ > _max) value_ = _max;
-//
-//        $('.jxnstSlider[typename=' + type_name + ']').nstSlider("set_position", value_);
-
-        setSliderValue($('.jxnstSlider[typename=' + type_name + ']'), _value * slider_ms);
-
+    var setJXObjectParas = function(type_name, _value) {
+//        var _value = jqe.val();
+//        var type_name = jqe.attr("typename");
         switch(type_name) {
             case "pos_x":
                 if(viewport2d.current_object) viewport2d.current_object.position.x = parseFloat(_value);
@@ -596,7 +591,7 @@
                 if(viewport2d.current_object) viewport2d.current_object.position.y = parseFloat(_value);
                 break;
             case "rotation":
-                if(viewport2d.current_object) viewport2d.current_object.rotation.z = parseInt(_value)/Math.PI;
+                if(viewport2d.current_object) viewport2d.current_object.rotation.z = parseInt(_value) * Math.PI / 180;
                 break;
             case "scale":
                 if(viewport2d.current_object) {
@@ -622,9 +617,42 @@
         }
 
         viewport2d.update();
+    };
+
+    $('.jx2d-input').on('change', function() {
+        var _value = $(this).val();
+//        alert(_value);
+        var type_name = $(this).attr("typename");
+
+        setSliderValue($('.jxnstSlider[typename=' + type_name + ']'), parseInt(parseFloat(_value) * slider_ms));
+
+        setJXObjectParas(type_name, _value)
     });
 
+    $('.jxnstSlider').nstSlider({
+        "left_grip_selector": ".leftGrip",
+        "user_mouseup_callback": function(leftValue) {
+//            $(this).parent().find('.leftLabel').text(leftValue);
 
+            var val_left = (parseFloat(leftValue) / slider_ms).toFixed(2);
+            $(this).parent().parent().find(".jxnstInput-g").children().val(val_left);
+            var type_name = $(this).attr("typename");
+
+            setJXObjectParas(type_name, val_left);
+        }
+    });
+
+    // set slider element value
+    var setSliderValue = function(jqe, value) {
+        var _mmin = jqe.nstSlider('get_range_min');
+        var _mmax = jqe.nstSlider('get_range_max');
+        if(value < _mmin) value = _mmin;
+        else if(value > _mmax) value = _mmax;
+
+        jqe.nstSlider('set_position', value);
+
+        jqe.nstSlider('refresh');
+    };
 
     $(".jxNumber").on("input", function() {
 
@@ -749,8 +777,9 @@
 
     var updateTransformPanel = function(object) {
         setInputValue($('.jx2d-input[typename=pos_x]'), object.position.x);
+
         setInputValue($('.jx2d-input[typename=pos_y]'), object.position.y);
-        setInputValue($('.jx2d-input[typename=rotation]'), object.rotation.z);
+        setInputValue($('.jx2d-input[typename=rotation]'), object.rotation.z * 180 / Math.PI);
         setInputValue($('.jx2d-input[typename=scale]'), object.scale.x);
     };
 
@@ -758,15 +787,36 @@
         $("#jx2d-text-content").val(object.content);
         setInputValue($('.jx2d-input[typename=text_size]'), object.size);
         setInputValue($('.jx2d-input[typename=text_space]'), object.space);
-        setInputValue($('.jx2d-input[typename=text_arc]'), object.arc);
+        setInputValue($('.jx2d-input[typename=text_arc]'), object.arc * 180 / Math.PI);
+        $('.jx2d-cs-item[cid=jx2d-text-color-g]').css("background-color", '#' + object.color.getHexString());
+        $('.jx2d-cs-item[cid=jx2d-text-stroke-g]').css("background-color", '#' + object.strokeColor.getHexString());
+        $('.jx2d-cs-item[cid=jx2d-text-shadow-g]').css("background-color", '#' + object.shadowColor.getHexString());
+        setInputValue($('.jx2d-input[typename=text_stroke_size]'), object.strokeSize);
+        setInputValue($('.jx2d-input[typename=text_shadow_distance]'), object.shadowDistance);
+        setInputValue($('.jx2d-input[typename=text_shadow_angle]'), object.shadowAngle);
+        setInputValue($('.jx2d-input[typename=text_shadow_blur]'), object.shadowBlur);
     };
 
     viewport2d.onIntersect = function(object) {
+        $("#jx2d-properites-pg").show();
         updateTransformPanel(object);
         if(object.type == "JXText") {
             updateTextPanel(object);
         }
     };
+
+    viewport2d.onNotIntersect = function() {
+        $("#jx2d-properites-pg").hide();
+    };
+
+
+    $("#jx2d-common-pbody").on("shown.bs.collapse", function () {
+        updateTransformPanel(viewport2d.current_object);
+    });
+
+    $("#jx2d-text-pbody").on("shown.bs.collapse", function () {
+        updateTextPanel(viewport2d.current_object);
+    });
 
 })();
 </script>

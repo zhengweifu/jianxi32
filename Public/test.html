@@ -1,142 +1,63 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-    <!--<meta charset="UTF-8">-->
-    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-    <!--<title>test</title>-->
-    <!--<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">-->
-    <!--<link rel="stylesheet" href="static/swiper-3.2.7/css/swiper.min.css">-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>test</title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="static/nstSlider/css/jquery.nstSlider.min.css">-->
+    <link rel="stylesheet" href="Home/dist/basic/css/jx.min.css">
+    <script src="static/jquery-2.1.4.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
 
-    <!--<script src="static/jquery-2.1.4.min.js"></script>-->
-    <!--<script src="static/bootstrap/js/bootstrap.min.js"></script>-->
+    <script src="static/nstSlider/js/jquery.nstSlider.js"></script>
+</head>
+<body>
+<input type="text" id="changeabc">
+<div class="panel-group" id="jx2d-properites-pg" role="tablist" aria-multiselectable="true">
+    <!-- jx2d panel common -->
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="jx2d-common-phear">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#jx2d-properites-pg" href="#jx2d-common-pbody" aria-expanded="true" aria-controls="jx2d-common-pbody">
+                    一般属性
+                </a>
+            </h4>
+        </div>
+        <div id="jx2d-common-pbody" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="jx2d-common-phear">
+            <div class="panel-body">
+                <div class="jxnstSlider" data-range_min="0" data-range_max="100" data-cur_min="10" data-cur_max="0" typename="test01">
+                <div class="bar"></div>
+                <div class="leftGrip"></div>
+            </div>
 
-    <!--<script src="static/swiper-3.2.7/js/swiper.jquery.min.js"></script>-->
+            <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="0" data-cur_max="0" typename="test02">
+                <div class="bar"></div>
+                <div class="leftGrip"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!--<style>-->
-        <!--.swiper-container {-->
-            <!--width: 600px;-->
+    <button id="_refresh">refresh</button>
 
-        <!--}-->
+<script>
+(function() {
+    $('.jxnstSlider').nstSlider({
+        "left_grip_selector": ".leftGrip"
+    });
 
-        <!--.swiper-container-1 {-->
-            <!--height: 300px;-->
-        <!--}-->
+    $("#changeabc").on('change', function() {
+        $(".jxnstSlider[typename=test02]").nstSlider('set_position', parseInt($(this).val()));
+//        $(".nstSlider[typename=test01]").nstSlider('refresh');
+        console.log($(".jxnstSlider[typename=test02]").css("width"));
+    });
 
-        <!--.swiper-container-2, .swiper-container-3 {-->
-            <!--height: 255px;-->
-        <!--}-->
-
-        <!--.swiper-pagination-1 .swiper-pagination-bullet {-->
-            <!--width: 33.333%;-->
-            <!--height: 45px;-->
-            <!--border-radius: 0;-->
-            <!--margin: 0 !important;-->
-            <!--line-height: 45px;-->
-        <!--}-->
-
-        <!--.swiper-container-horizontal>.swiper-pagination {-->
-            <!--bottom: 0;-->
-        <!--}-->
-    <!--</style>-->
-<!--</head>-->
-<!--<body>-->
-    <!--<form>-->
-  <!--<div class="form-group">-->
-    <!--<label for="exampleInputEmail1">Email address</label>-->
-    <!--<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">-->
-  <!--</div>-->
-  <!--<div class="form-group">-->
-    <!--<label for="exampleInputPassword1">Password</label>-->
-    <!--<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
-  <!--</div>-->
-  <!--<div class="form-group">-->
-    <!--<label for="exampleInputFile">File input</label>-->
-    <!--<input type="file" id="exampleInputFile">-->
-    <!--<p class="help-block">Example block-level help text here.</p>-->
-  <!--</div>-->
-  <!--<div class="checkbox">-->
-    <!--<label>-->
-      <!--<input type="checkbox"> Check me out-->
-    <!--</label>-->
-  <!--</div>-->
-  <!--<button type="submit" class="btn btn-default">Submit</button>-->
-<!--</form>-->
-<!--<div class="swiper-container swiper-container-1">-->
-    <!--<div class="swiper-wrapper">-->
-        <!--<div class="swiper-slide">-->
-            <!--<div class="swiper-container swiper-container-2">-->
-                <!--<div class="swiper-wrapper">-->
-                    <!--<div class="swiper-slide" style="background-color: #ff49dd">aa</div>-->
-                    <!--<div class="swiper-slide" style="background-color: #d5ff10">bb</div>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; 如果需要分页器 &ndash;&gt;-->
-                <!--<div class="swiper-pagination swiper-pagination-2">-->
-
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="swiper-slide">-->
-            <!--<div class="swiper-container swiper-container-3">-->
-                <!--<div class="swiper-wrapper">-->
-                    <!--<div class="swiper-slide" style="background-color: #5362ff">aa!!</div>-->
-                    <!--<div class="swiper-slide" style="background-color: #ffa293">bb!!</div>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; 如果需要分页器 &ndash;&gt;-->
-                <!--<div class="swiper-pagination swiper-pagination-3">-->
-
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="swiper-slide"style="background-color: #93ff7c">Slide 3</div>-->
-    <!--</div>-->
-    <!--&lt;!&ndash; 如果需要分页器 &ndash;&gt;-->
-    <!--<div class="swiper-pagination swiper-pagination-1"></div>-->
-
-    <!--&lt;!&ndash; 如果需要导航按钮 &ndash;&gt;-->
-    <!--&lt;!&ndash;<div class="swiper-button-prev"></div>&ndash;&gt;-->
-    <!--&lt;!&ndash;<div class="swiper-button-next"></div>&ndash;&gt;-->
-
-<!--</div>-->
-<!--<script>-->
-        <!--var mySwiper2 = new Swiper ('.swiper-container-2', {-->
-    <!--//        direction: 'vertical',-->
-            <!--loop: false,-->
-            <!--pagination: '.swiper-pagination-2',-->
-            <!--paginationClickable: true-->
-        <!--});-->
-        <!--var mySwiper3 = new Swiper ('.swiper-container-3', {-->
-            <!--//        direction: 'vertical',-->
-            <!--loop: false,-->
-            <!--pagination: '.swiper-pagination-3',-->
-            <!--paginationClickable: true-->
-        <!--});-->
-    <!--var mySwiper1 = new Swiper ('.swiper-container-1', {-->
-<!--//        direction: 'vertical',-->
-        <!--loop: false,-->
-        <!--pagination: '.swiper-pagination-1',-->
-        <!--paginationClickable: true,-->
-        <!--paginationBulletRender: function (index, className) {-->
-            <!--var name;-->
-            <!--switch (index) {-->
-                <!--case 0:-->
-                    <!--name = '罗马文字';-->
-                    <!--break;-->
-                <!--case 1:-->
-                    <!--name = '节日元素';-->
-                    <!--break;-->
-                <!--case 2:-->
-                    <!--name = '生日元素';-->
-                    <!--break;-->
-            <!--}-->
-
-            <!--return '<span class="' + className + '">' + name + '</span>';-->
-        <!--}-->
-    <!--});-->
-
-
-
-<!--</script>-->
-
-<!--</body>-->
-<!--</html>-->
+    $("#_refresh").on('clich', function () {
+        $(".jxnstSlider").nstSlider("refresh");
+    });
+})();
+</script>
+</body>
+</html>
