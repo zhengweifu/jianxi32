@@ -187,14 +187,21 @@
 .jxnstSlider {
   box-sizing: border-box;
   width: 100%;
-  height: $jx-nstslider-size-base;
-  //border: 1px solid $base-border-color;
-  background-color: darken($jx-btn-default-bg, 10%);
-  border-radius: $jx-nstslider-size-base/2;
+  height: $jx-nstslider-size-base * 2;
   position: relative;
 
   :focus {
     background-color: $jx-gray-light;
+  }
+
+  .bar {
+    position: absolute;
+    left: 0;
+    top: $jx-nstslider-size-base / 2;
+    width: 100%;
+    height: $jx-nstslider-size-base;
+    background-color: darken($jx-btn-default-bg, 10%);
+    border-radius: $jx-nstslider-size-base/2;
   }
 
   .leftGrip {
@@ -203,7 +210,7 @@
     height: $jx-nstslider-size-base * 2;
     background-color: $jx-brand-orange;
     border-radius: $jx-nstslider-size-base;
-    margin-top: -$jx-nstslider-size-base/2;
+    //margin-top: -$jx-nstslider-size-base/2;
   }
 }
 
