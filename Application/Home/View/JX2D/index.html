@@ -387,6 +387,11 @@
                                                     </a>
                                                 </div>
                                             </foreach>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box">
+                                                    <span style="background-color: transparent;"></span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -807,6 +812,10 @@
 
     viewport2d.onNotIntersect = function() {
         $("#jx2d-properites-pg").hide();
+    };
+
+    viewport2d.getGizmo().onTransfrom = function(object) {
+        updateTransformPanel(object);
     };
 
 

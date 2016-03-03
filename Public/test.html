@@ -11,51 +11,21 @@
     <script src="static/jquery-2.1.4.min.js"></script>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
 
-    <script src="static/nstSlider/js/jquery.nstSlider.js"></script>
+    <script src="static/nstSlider/js/jquery.nstSlider.min.js"></script>
 </head>
 <body>
-<input type="text" id="changeabc">
-<div class="panel-group" id="jx2d-properites-pg" role="tablist" aria-multiselectable="true">
-    <!-- jx2d panel common -->
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="jx2d-common-phear">
-            <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#jx2d-properites-pg" href="#jx2d-common-pbody" aria-expanded="true" aria-controls="jx2d-common-pbody">
-                    一般属性
-                </a>
-            </h4>
-        </div>
-        <div id="jx2d-common-pbody" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="jx2d-common-phear">
-            <div class="panel-body">
-                <div class="jxnstSlider" data-range_min="0" data-range_max="100" data-cur_min="10" data-cur_max="0" typename="test01">
-                <div class="bar"></div>
-                <div class="leftGrip"></div>
-            </div>
+<iframe src="http://www.3dcity.com/index/diy-jewelryeditall-cid-17.html" id="3dcity_diy_editor" frameborder="0" width="500" height="500"></iframe>
 
-            <div class="jxnstSlider" data-range_min="-360" data-range_max="360" data-cur_min="0" data-cur_max="0" typename="test02">
-                <div class="bar"></div>
-                <div class="leftGrip"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-    <button id="_refresh">refresh</button>
+<button id="_refresh">refresh</button>
 
 <script>
 (function() {
-    $('.jxnstSlider').nstSlider({
-        "left_grip_selector": ".leftGrip"
-    });
-
-    $("#changeabc").on('change', function() {
-        $(".jxnstSlider[typename=test02]").nstSlider('set_position', parseInt($(this).val()));
-//        $(".nstSlider[typename=test01]").nstSlider('refresh');
-        console.log($(".jxnstSlider[typename=test02]").css("width"));
-    });
-
-    $("#_refresh").on('clich', function () {
-        $(".jxnstSlider").nstSlider("refresh");
+    var iframe = document.getElementById('3dcity_diy_editor');
+    var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
+    console.log(innerDoc);
+    $("#_refresh").on('click', function () {
+        var ulObj = innerDoc.getElementById("web3dRing03Textvalue");
+        console.log(ulObj);
     });
 })();
 </script>
