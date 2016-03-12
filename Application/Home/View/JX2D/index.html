@@ -20,7 +20,7 @@
     <div class="jx2d-container">
         <div class="control-left">
             <div class="viewport-group">
-                <canvas class="viewport-2d" id="viewport-2d" width="500" height="500" style="width: 500px; height: 500px; background: url(__JXRESOURCE__/2d/imgs/pictrues/t-shirt_2d_wht.jpg);background-position:center;background-size: contain"></canvas>
+                <canvas class="viewport-2d" id="viewport-2d" width="500" height="600" style="width: 500px; height: 600px; background: url(__JXRESOURCE__/2d/imgs/pictrues/t-shirt_2_wht.jpg);background-position:center;background-size: contain; background-repeat: no-repeat;"></canvas>
             </div>
             <div class="row jxrow-padding-5">
                 <div class="col-sm-2">
@@ -144,7 +144,7 @@
                     <div class="row jxrow-padding-2">
                         <foreach name="jx_2d_out.text_colors" item="jx_color" key="k">
                             <div class="col-sm-1">
-                                <a href="#" class="jx2d-color-box">
+                                <a href="#" class="jx2d-color-box" mlabel="3" mnotlink="0">
                                     <span style="background-color: #{$jx_color.color};"></span>
                                 </a>
                             </div>
@@ -249,6 +249,22 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!--other-->
+                                <div class="row jxrow-padding-2">
+                                    <div class="col-sm-3">
+                                        <botton class="btn btn-default btn-block" id="jx2d-render-order-back">上一层</botton>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <botton class="btn btn-default btn-block" id="jx2d-render-order-next">下一层</botton>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <botton class="btn btn-default btn-block" id="jx2d-row-center">水平居中</botton>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <botton class="btn btn-default btn-block" id="jx2d-col-center">垂直居中</botton>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -275,8 +291,13 @@
                                     <div class="col-sm-3">
                                         <div class="jx2d-font-select">
                                             <span>字体</span>
-                                            <select class="form-control">
+                                            <select class="form-control" id="jx2d-text-font">
+                                                <option value="黑体">黑体</option>
+                                                <option value="宋体">宋体</option>
+                                                <option value="Times NEW Roman">Times NEW Roman</option>
                                                 <option value="Arial">Arial</option>
+                                                <option value="Tahoma">Tahoma</option>
+                                                宋体
                                             </select>
                                             <!--<div class="btn-group btn-group-sm">-->
                                                 <!--<button type="button" class="btn btn-default">Action</button>-->
@@ -325,7 +346,7 @@
                                         <div class="row jxrow-padding-2">
                                             <foreach name="jx_2d_out.text_colors" item="jx_color" key="k">
                                                 <div class="col-sm-1">
-                                                    <a href="#" class="jx2d-color-box">
+                                                    <a href="#" class="jx2d-color-box" mlabel="0" mnotlink="0">
                                                         <span style="background-color: #{$jx_color.color};"></span>
                                                     </a>
                                                 </div>
@@ -345,11 +366,16 @@
                                         <div class="row jxrow-padding-2">
                                             <foreach name="jx_2d_out.text_colors" item="jx_color" key="k">
                                                 <div class="col-sm-1">
-                                                    <a href="#" class="jx2d-color-box">
+                                                    <a href="#" class="jx2d-color-box" mlabel="1" mnotlink="0">
                                                         <span style="background-color: #{$jx_color.color};"></span>
                                                     </a>
                                                 </div>
                                             </foreach>
+                                            <div class="col-sm-1">
+                                                <a href="#" class="jx2d-color-box jx2d-color-not-link"  mlabel="1" mnotlink="1">
+                                                    <span style="background-color: transparent;"></span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                     <!--text stroke size-->
@@ -382,13 +408,13 @@
                                         <div class="row jxrow-padding-2">
                                             <foreach name="jx_2d_out.text_colors" item="jx_color" key="k">
                                                 <div class="col-sm-1">
-                                                    <a href="#" class="jx2d-color-box">
+                                                    <a href="#" class="jx2d-color-box" mlabel="2" mnotlink="0">
                                                         <span style="background-color: #{$jx_color.color};"></span>
                                                     </a>
                                                 </div>
                                             </foreach>
                                             <div class="col-sm-1">
-                                                <a href="#" class="jx2d-color-box">
+                                                <a href="#" class="jx2d-color-box jx2d-color-not-link" mlabel="2" mnotlink="1">
                                                     <span style="background-color: transparent;"></span>
                                                 </a>
                                             </div>
@@ -404,7 +430,7 @@
                                             <div class="jxntSlider-group">
                                                 <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_shadow_distance"></div>
                                                 <div class="jxnstSlider-g">
-                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_shadow_distance">
+                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="2000" data-cur_min="80" typename="text_shadow_distance">
                                                         <div class="bar"></div>
                                                         <div class="leftGrip"></div>
                                                     </div>
@@ -422,7 +448,25 @@
                                             <div class="jxntSlider-group">
                                                 <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_shadow_angle"></div>
                                                 <div class="jxnstSlider-g">
-                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="360" data-cur_min="80" typename="text_shadow_angle">
+                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="36000" data-cur_min="80" typename="text_shadow_angle">
+                                                        <div class="bar"></div>
+                                                        <div class="leftGrip"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--text shaow blur-->
+                                    <div class="row jxrow-padding-2">
+                                        <div class="col-sm-2">
+                                            <span class="jxnstLabel">模糊</span>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <div class="jxntSlider-group">
+                                                <div class="jxnstInput-g"><input type="text" class="jxNumber form-control jx2d-input" typename="text_shadow_blur"></div>
+                                                <div class="jxnstSlider-g">
+                                                    <div class="jxnstSlider" data-range_min="0" data-range_max="1000" data-cur_min="80" typename="text_shadow_blur">
                                                         <div class="bar"></div>
                                                         <div class="leftGrip"></div>
                                                     </div>
@@ -548,286 +592,7 @@
     </div>
 </div>
 <script>
-(function() {
-    var slider_ms = 100;
-
-    var canvas = document.getElementById("viewport-2d");
-    var width = canvas.clientWidth, height = canvas.clientHeight, halfWidth = width/2, halfHeight = height/2;
-
-    var maskHalfWith = 120, maskHalfHeight = 150;
-    var mask = new THREE.JX.JXPolygonMask([
-        new THREE.Vector2(-maskHalfWith, maskHalfHeight),
-        new THREE.Vector2(maskHalfWith, maskHalfHeight),
-        new THREE.Vector2(maskHalfWith, -maskHalfHeight),
-        new THREE.Vector2(-maskHalfWith, -maskHalfHeight)
-    ]);
-
-    mask.strokeColor.setRGB(0.2, 0.3, 0.9);
-
-    var shapeGroup = new THREE.Group();
-
-    var viewport2d = new Viewport2D(canvas, shapeGroup, mask);
-
-    // init modal
-    $("jx2d-product-modal").modal({
-
-    });
-
-    // set canvas height
-    // var jquery_viewport = $(".viewport-2d");
-    // jquery_viewport.css({height: jquery_viewport.css("width")});
-
-    var jquery_project_tmp = $(".project-template-group");
-    jquery_project_tmp.css({height: jquery_project_tmp.css("width")});
-
-    // $(window).on("resize", function() {
-    //     jquery_viewport.css({height: jquery_viewport.css("width")});
-    //     jquery_project_tmp.css({height: jquery_project_tmp.css("width")});
-    // });
-
-    var setJXObjectParas = function(type_name, _value) {
-//        var _value = jqe.val();
-//        var type_name = jqe.attr("typename");
-        switch(type_name) {
-            case "pos_x":
-                if(viewport2d.current_object) viewport2d.current_object.position.x = parseFloat(_value);
-                break;
-            case "pos_y":
-                if(viewport2d.current_object) viewport2d.current_object.position.y = parseFloat(_value);
-                break;
-            case "rotation":
-                if(viewport2d.current_object) viewport2d.current_object.rotation.z = parseInt(_value) * Math.PI / 180;
-                break;
-            case "scale":
-                if(viewport2d.current_object) {
-                    viewport2d.current_object.scale.x = parseFloat(_value);
-                    viewport2d.current_object.scale.y = parseFloat(_value);
-                }
-                break;
-            case "text_size":
-                if(viewport2d.current_object && viewport2d.current_object.type == "JXText") {
-                    viewport2d.current_object.size = parseFloat(_value);
-                }
-                break;
-            case "text_space":
-                if(viewport2d.current_object && viewport2d.current_object.type == "JXText") {
-                    viewport2d.current_object.space = parseFloat(_value);
-                }
-                break;
-            case "text_arc":
-                if(viewport2d.current_object && viewport2d.current_object.type == "JXText") {
-                    viewport2d.current_object.arc = parseInt(_value) / 180 * Math.PI;
-                }
-                break;
-        }
-
-        viewport2d.update();
-    };
-
-    $('.jx2d-input').on('change', function() {
-        var _value = $(this).val();
-//        alert(_value);
-        var type_name = $(this).attr("typename");
-
-        setSliderValue($('.jxnstSlider[typename=' + type_name + ']'), parseInt(parseFloat(_value) * slider_ms));
-
-        setJXObjectParas(type_name, _value)
-    });
-
-    $('.jxnstSlider').nstSlider({
-        "left_grip_selector": ".leftGrip",
-        "user_mouseup_callback": function(leftValue) {
-//            $(this).parent().find('.leftLabel').text(leftValue);
-
-            var val_left = (parseFloat(leftValue) / slider_ms).toFixed(2);
-            $(this).parent().parent().find(".jxnstInput-g").children().val(val_left);
-            var type_name = $(this).attr("typename");
-
-            setJXObjectParas(type_name, val_left);
-        }
-    });
-
-    // set slider element value
-    var setSliderValue = function(jqe, value) {
-        var _mmin = jqe.nstSlider('get_range_min');
-        var _mmax = jqe.nstSlider('get_range_max');
-        if(value < _mmin) value = _mmin;
-        else if(value > _mmax) value = _mmax;
-
-        jqe.nstSlider('set_position', value);
-
-        jqe.nstSlider('refresh');
-    };
-
-    $(".jxNumber").on("input", function() {
-
-        var val = $(this).val().replace(/[^0-9\.\-]/,'');
-
-        // remove - (ex before)
-        var _val = val.replace(/\-/g, '');
-        if(val[0] === "-") {
-            _val = "-" + _val;
-        }
-
-        // remove - (only one)
-        var _vals = [];
-        var isDot = false;
-        for(var i=0; i<_val.length; i++) {
-            if(_val[i] === ".") {
-                if(!isDot) {
-                    _vals.push(_val[i]);
-                    isDot = true;
-                }
-            } else {
-                _vals.push(_val[i]);
-            }
-        }
-
-        $(this).val(_vals.join(''));
-    });
-
-    var current_color_item_jqe = null;
-    $(".jx2d-cs-item").each(function() {
-        $(this).on('click', function(event) {
-            event.stopPropagation();
-            var cid = $(this).attr("cid");
-            $(".jx2d-properties-style-color, .jx2d-properties-text-color, .jx2d-properties-text-stroke, .jx2d-properties-text-shadow").hide();
-            switch(cid) {
-                case "jx2d-style-color-g":
-                    $(".jx2d-properties-style-color").show();
-                    break;
-                case "jx2d-text-color-g":
-                    $(".jx2d-properties-text-color").show();
-                    break;
-                case "jx2d-text-stroke-g":
-                    $(".jx2d-properties-text-stroke").show();
-                    break;
-                case "jx2d-text-shadow-g":
-                    $(".jx2d-properties-text-shadow").show();
-                    break;
-            }
-
-            current_color_item_jqe = $(this);
-        });
-    });
-
-    // $("body").on("click", function() {
-    //     $(".jx-panel").hide();
-    // });
-
-    // select color box
-    var current_color_jquery_element = null;
-    $(".jx2d-color-box").each(function() {
-        $(this).on('click', function(event) {
-            event.stopPropagation();
-            if(current_color_jquery_element) {
-                current_color_jquery_element.removeClass('active');
-            }
-            $(this).addClass('active');
-            current_color_jquery_element = $(this);
-
-            if(current_color_item_jqe) {
-                current_color_item_jqe.css({backgroundColor: $(this).children("span").css("backgroundColor")});
-            }
-        });
-    });
-
-    $(".jx-panel .jx-panel-title .close").on("click", function() {
-        $(this).parent().parent().hide();
-    });
-
-    var current_product_label, i=0;
-    $(".jx2d-product-label").each(function() {
-        if(i == 0) {
-            current_product_label = $(this);
-            if(!current_product_label.hasClass("active")) {
-                current_product_label.addClass("active");
-            }
-            $("#" + current_product_label.attr("pid")).show();
-        }
-        $(this).on("click", function() {
-            if(current_product_label && current_product_label.hasClass("active")) {
-                current_product_label.removeClass("active");
-            }
-
-            if(current_product_label) $("#" + current_product_label.attr("pid")).hide();
-
-            current_product_label = $(this);
-
-            $("#" + current_product_label.attr("pid")).show();
-
-            if(!current_product_label.hasClass("active")) {
-                current_product_label.addClass("active");
-            }
-        });
-        i++;
-    });
-
-
-
-
-    $("#jx2d-create-text").on('click', function() {
-        var text = new THREE.JX.JXText();
-        text.content = "www.janexi.com";
-        text.color.setRGB(0.5, 0, 0.5);
-        text.size = 10;
-        shapeGroup.add(text);
-        viewport2d.update();
-    });
-
-    var setInputValue = function (jqe, value) {
-        jqe.val(value);
-        jqe.change();
-    };
-
-    var updateTransformPanel = function(object) {
-        setInputValue($('.jx2d-input[typename=pos_x]'), object.position.x);
-
-        setInputValue($('.jx2d-input[typename=pos_y]'), object.position.y);
-        setInputValue($('.jx2d-input[typename=rotation]'), object.rotation.z * 180 / Math.PI);
-        setInputValue($('.jx2d-input[typename=scale]'), object.scale.x);
-    };
-
-    var updateTextPanel = function(object) {
-        $("#jx2d-text-content").val(object.content);
-        setInputValue($('.jx2d-input[typename=text_size]'), object.size);
-        setInputValue($('.jx2d-input[typename=text_space]'), object.space);
-        setInputValue($('.jx2d-input[typename=text_arc]'), object.arc * 180 / Math.PI);
-        $('.jx2d-cs-item[cid=jx2d-text-color-g]').css("background-color", '#' + object.color.getHexString());
-        $('.jx2d-cs-item[cid=jx2d-text-stroke-g]').css("background-color", '#' + object.strokeColor.getHexString());
-        $('.jx2d-cs-item[cid=jx2d-text-shadow-g]').css("background-color", '#' + object.shadowColor.getHexString());
-        setInputValue($('.jx2d-input[typename=text_stroke_size]'), object.strokeSize);
-        setInputValue($('.jx2d-input[typename=text_shadow_distance]'), object.shadowDistance);
-        setInputValue($('.jx2d-input[typename=text_shadow_angle]'), object.shadowAngle);
-        setInputValue($('.jx2d-input[typename=text_shadow_blur]'), object.shadowBlur);
-    };
-
-    viewport2d.onIntersect = function(object) {
-        $("#jx2d-properites-pg").show();
-        updateTransformPanel(object);
-        if(object.type == "JXText") {
-            updateTextPanel(object);
-        }
-    };
-
-    viewport2d.onNotIntersect = function() {
-        $("#jx2d-properites-pg").hide();
-    };
-
-    viewport2d.getGizmo().onTransfrom = function(object) {
-        updateTransformPanel(object);
-    };
-
-
-    $("#jx2d-common-pbody").on("shown.bs.collapse", function () {
-        updateTransformPanel(viewport2d.current_object);
-    });
-
-    $("#jx2d-text-pbody").on("shown.bs.collapse", function () {
-        updateTextPanel(viewport2d.current_object);
-    });
-
-})();
+    $.getScript( "__JXRESOURCE__/2d/js/jx2d{$Think.config.DOT_MIN}.js");
 </script>
 </body>
 

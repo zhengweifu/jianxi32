@@ -122,23 +122,23 @@ THREE.JX.elementIndexOfArray = function(arr, element) {
 	}
 
 	return -1;
-}
+};
 
 // element move up
 THREE.JX.moveUpArrayElement = function(arr, element) {
-	var index = THREE.JX.elementIndexOfArray(arr, element)
+	var index = THREE.JX.elementIndexOfArray(arr, element);
 	if(index > 0) {
 		THREE.JX.swapArrayElements(arr, index-1, index);
 	}
-}
+};
 
 // element move down
 THREE.JX.moveDownArrayElement = function(arr, element) {
-	var index = THREE.JX.elementIndexOfArray(arr, element)
-	if(index > -1 && index < arr.length) {
+	var index = THREE.JX.elementIndexOfArray(arr, element);
+	if(index > -1 && index < arr.length - 1) {
 		THREE.JX.swapArrayElements(arr, index, index+1);
 	}
-}
+};
 // File:src/JXNode.js
 
 THREE.JX.JXNode = function() {
@@ -559,8 +559,6 @@ THREE.JX.JXTransformControls = function(dom, renderer, mask) {
 
 	this.mask = mask;
 
-	this.onTransfrom = undefined;
-
 	var STATE = { NONE: - 1, ROTATE: 0, ZOOMLT: 1, ZOOMRT: 2, ZOOMLB: 3, ZOOMRB: 4, PAN: 5, DELETE: 6 };
 	var state = STATE.NONE;
 
@@ -703,9 +701,7 @@ THREE.JX.JXTransformControls = function(dom, renderer, mask) {
 
 			if(scope.object.scale.x <= _min_scale) scope.object.scale.x = _min_scale;
 			if(scope.object.scale.y <= _min_scale) scope.object.scale.y = _min_scale;
-		}
-
-		if(scope.onTransfrom) scope.onTransfrom(scope.object);
+		} 
 
 		scope.update(scope.object);
 		renderer.needUpdate = true;
