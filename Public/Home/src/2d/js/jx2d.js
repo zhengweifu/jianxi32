@@ -1,9 +1,10 @@
 /**
  * Created by zhengweifu on 16/3/12.
  */
-(function() {
+define(function(require) {
+var entry = function(parameter) { 
     var slider_ms = 100;
-
+ 
     var canvas = document.getElementById("viewport-2d");
     var width = canvas.clientWidth, height = canvas.clientHeight, halfWidth = width/2, halfHeight = height/2;
 
@@ -427,4 +428,16 @@
             viewport2d.update();
         }
     });
-})();
+
+    $('#jx2d-upload-image-button').on('click', function() {
+        $('#jx2d-upload-image').click();
+    });
+
+    $('#jx2d-upload-image').on('change', function() {
+       console.log(this.files[0]); 
+    });
+};
+
+return entry;
+
+});

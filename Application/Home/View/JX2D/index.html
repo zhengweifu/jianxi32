@@ -12,6 +12,7 @@
     <script src="__STATIC__/jquery-2.1.4.min.js"></script>
     <script src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
     <script src="__STATIC__/nstSlider/js/jquery.nstSlider.min.js"></script>
+    <script src="__STATIC__/sea-3.0.0.min.js"></script>
     <script src="__STATIC__/three.js"></script>
     <script src="__STATIC__/three.jx.js"></script>
 </head>
@@ -162,7 +163,8 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <li><a href="#">上传</a></li>
+                                <input type='file' id='jx2d-upload-image'>    
+                                <li><a href="#" id='jx2d-upload-image-button'>上传</a></li>
                                 <li><a href="#">剪贴画</a></li>
                             </ul>
                         </div>
@@ -592,7 +594,11 @@
     </div>
 </div>
 <script>
-    $.getScript( "__JXRESOURCE__/2d/js/jx2d{$Think.config.DOT_MIN}.js");
+    seajs.use( "__JXRESOURCE__/2d/js/jx2d{$Think.config.DOT_MIN}.js", function(entry) {        
+        var paras = {};
+
+        entry(paras);
+    });
 </script>
 </body>
 
