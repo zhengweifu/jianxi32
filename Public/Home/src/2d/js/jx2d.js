@@ -1,7 +1,9 @@
 /**
  * Created by zhengweifu on 16/3/12.
  */
+
 define(function(require) {
+var JXUtil = require('../../basic/js/JXUtil{DOT_MIN}.js');
 var entry = function(parameter) { 
     var slider_ms = 100;
  
@@ -434,7 +436,23 @@ var entry = function(parameter) {
     });
 
     $('#jx2d-upload-image').on('change', function() {
-       console.log(this.files[0]); 
+        JXUtil.openFile(this.files[0], function(url) {
+            var sprite_loader = new THREE.JX.JXSpriteLoader();
+            var sprite = sprite_loader.load(url, function(_sprite) {
+                viewport2d.update();
+                console.log(_sprite);
+            });
+            shapeGroup.add(sprite);
+        }); 
+    });
+
+    $(".jx2d-filter-group").on('click', function() {
+    
+        if(viewport2d.current_object && viewport2d.current_object.type == "JXSprite") {
+            var _filter = $(this).attr('filtername');
+            viewport2d.current_object.image.src =  AlloyImage(viewport2d.current_object.image).ps(_filter).save(0, 1);
+            viewport2d.update();
+        }
     });
 };
 

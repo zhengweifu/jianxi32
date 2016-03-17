@@ -18,6 +18,27 @@ var cache = require('gulp-cache');
 
 var imagemin = require('gulp-imagemin');
 
+// sass files to css
+var sass2css = function(_sass, _css, message) {
+    gulp.src(_sass)
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(gulp.dest(_css))
+    .pipe(notify({message: message}));
+};
+
+gulp.task('basic-sass-css', function() {
+    sass2css(["src/basic/sass/*.scss", "!src/basic/sass/jxvariables.scss"], 'src/basic/css', 'Convert basic sass to css task complete');
+});
+
+gulp.task('2d-sass-css', function() {    
+    sass2css(["src/2d/sass/*.scss"], 'src/2d/css', 'Convert 2d sass to css task complete');
+});
+
+gulp.task('3d-sass-css', function() {
+    sass2css(["src/3d/sass/*.scss"], 'src/3d/css', 'Convert 3d sass to css task complete');
+});
+
 var buildSass = function(src, dist, message) {
 	gulp.src(src)
 	.pipe(plumber())
@@ -90,9 +111,10 @@ gulp.task('default', function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch('src/**/sass/*.scss', ['styles-basic-sass', 'styles-2d-sass', 'styles-3d-sass']);
-	gulp.watch('src/**/js/*.js', ['scripts']);
-	gulp.watch('src/**/css/*.css', ['styles-css']);
-	gulp.watch('src/**/imgs/*', ['images']);
-	gulp.watch('src/**/fonts/*', ['copys']);
+	gulp.watch('src/**/sass/*.scss', ['basic-sass-css', '2d-sass-css', '3d-sass-css']);
+	//gulp.watch('src/**/sass/*.scss', ['styles-basic-sass', 'styles-2d-sass', 'styles-3d-sass']);
+	//gulp.watch('src/**/js/*.js', ['scripts']);
+	//gulp.watch('src/**/css/*.css', ['styles-css']);
+	//gulp.watch('src/**/imgs/*', ['images']);
+	//gulp.watch('src/**/fonts/*', ['copys']);
 });

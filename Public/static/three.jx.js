@@ -523,6 +523,8 @@ THREE.JX.JXSpriteLoader.prototype = {
 		var loader = new THREE.ImageLoader( this.manager );
 		loader.setCrossOrigin( this.crossOrigin );
 		loader.load( url, function ( image ) {
+            
+            sprite.height = sprite.width;
 
 			sprite.height *= (image.height / image.width);
 
@@ -1085,7 +1087,7 @@ THREE.JX.JXCanvasRenderer = function(parameters) {
 
                 _context.drawImage(oc, 0, 0, d_w, d_h, 0, 0, sprite.width, sprite.height);
             } else {
-                _context.drawImage(oc, 0, 0, sprite.width, sprite.height);
+                _context.drawImage(sprite.image, 0, 0, sprite.width, sprite.height);
             }
 
             disableShadow();

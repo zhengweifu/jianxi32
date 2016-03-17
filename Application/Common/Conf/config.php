@@ -7,7 +7,7 @@ return array(
 
 	'URL_HTML_SUFFIX' => '',
 
-	'DOT_MIN'   => '.min',
+	'DOT_MIN'   => '',
 
 	'SHOW_PAGE_TRACE'=>true,
 

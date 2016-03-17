@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: Microsoft YaHei,Georgia,Serif;
+  font-weight: normal; }
+
+@media (min-width: 768px) {
+  .jx-logo {
+    margin-left: 100px; } }
+
+@media (max-width: 767px) {
+  .jx-logo {
+    margin-left: 15px; } }
+
+.jxbanner {
+  position: relative;
+  overflow: auto; }
+  .jxbanner > ul > li {
+    position: relative;
+    list-style: none;
+    float: left;
+    width: 100%; }
+    .jxbanner > ul > li > img {
+      max-width: 100%; }
+    .jxbanner > ul > li .jxbanner-introdution-group {
+      position: absolute;
+      top: 30%;
+      left: 30%; }
+      .jxbanner > ul > li .jxbanner-introdution-group .jxbanner-introdution-title,
+      .jxbanner > ul > li .jxbanner-introdution-group .jxbanner-introdution-content {
+        margin-bottom: 10px;
+        padding: 5px 10px; }
+      .jxbanner > ul > li .jxbanner-introdution-group .jxbanner-introdution-title {
+        display: block; }
+      .jxbanner > ul > li .jxbanner-introdution-group .jxbanner-introdution-content {
+        background-color: rgba(255, 255, 255, 0.3); }
+        .jxbanner > ul > li .jxbanner-introdution-group .jxbanner-introdution-content span {
+          font-size: 18px; }
+  .jxbanner .dots {
+    position: absolute;
+    left: 45%;
+    right: 0;
+    bottom: 20px; }
+    .jxbanner .dots .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 4px;
+      text-indent: -999em;
+      border: 2px solid #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      opacity: .4;
+      -webkit-transition: background .5s, opacity .5s;
+      -moz-transition: background .5s, opacity .5s;
+      transition: background .5s, opacity .5s; }
+    .jxbanner .dots .active {
+      background: #ff8d5c;
+      opacity: 1; }
+  .jxbanner .arrows {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: #fff;
+    display: inline;
+    padding-left: 10px;
+    cursor: pointer; }
+
+#jx-product-label,
+#jx-introdution-label,
+#jx-about-label {
+  padding: 100px 0; }
+
+.jx-label-bg-gray {
+  background-color: #f4f4f4; }
+
+.jx-split {
+  border-bottom: 2px #ff8d5c solid; }
+
+.jxproduct-group {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%; }
+  .jxproduct-group img {
+    width: inherit; }
+  .jxproduct-group div p, .jxproduct-group div button {
+    margin: 10px 15px; }
+
+.jx-intr-g {
+  height: 300px; }
+  .jx-intr-g img {
+    margin: auto;
+    vertical-align: middle; }
+
+.size-30px {
+  font-size: 30px; }
+
+.size-24px {
+  font-size: 24px;
+  color: #ff8d5c; }
+
+.size-18px {
+  font-size: 18px; }
+
+.size-16px {
+  font-size: 16px; }
+
+.size-14px {
+  font-size: 14px; }
+
+.navbar-nav > li > a {
+  padding-top: 44.8px;
+  padding-bottom: 19.2px;
+  padding-left: 35px;
+  padding-right: 35px; }
+
+.navbar-nav > .active > a {
+  background-color: #ff8d5c !important;
+  color: #fff !important; }
+
+.navbar-default {
+  background-color: rgba(230, 230, 230, 0.95);
+  border-bottom: 2px solid #ff8d5c; }
+
+.navbar-logo {
+  line-height: 84px; }
+
+.navbar-toggle {
+  margin-top: 25px;
+  margin-bottom: 25px; }
+
+.navbar-nav {
+  float: right; }
+
+.carousel-indicators .active {
+  background-color: #ff8d5c; }
+
+.carousel-control.left,
+.carousel-control.right {
+  background-image: none; }
+
+@media (min-width: 1024px) {
+  .navbar-nav {
+    margin-right: 10%; } }
+
+.navbar {
+  border-radius: 0;
+  margin-bottom: 0; }
+
+.carousel-caption {
+  padding-bottom: 60px; }
+  .carousel-caption .jxbtn {
+    text-shadow: none; }
+
+.jxbtn .glyphicon {
+  top: 4px; }
