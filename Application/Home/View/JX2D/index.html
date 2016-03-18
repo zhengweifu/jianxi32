@@ -23,7 +23,7 @@
     <div class="jx2d-container">
         <div class="control-left">
             <div class="viewport-group">
-                <canvas class="viewport-2d" id="viewport-2d" width="500" height="600" style="width: 500px; height: 600px; background: url(__JXRESOURCE__/2d/imgs/pictrues/t-shirt_222_wht.jpg);background-position:center;background-size: contain; background-repeat: no-repeat;"></canvas>
+                <canvas class="viewport-2d" id="viewport-2d" width="500" height="600" style="width: 500px; height: 600px; background: url(__JXRESOURCE__/2d/imgs/pictrues/t-shirt_2_wht.jpg);background-position:center;background-size: contain; background-repeat: no-repeat;"></canvas>
             </div>
             <div class="row jxrow-padding-5">
                 <div class="col-sm-2">
@@ -176,9 +176,9 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-group" id="jx2d-properites-pg" role="tablist" aria-multiselectable="true" style="display: none;">
+            <div class="panel-group" id="jx2d-properites-pg" role="tablist" aria-multiselectable="true">
                 <!-- jx2d panel common -->
-                <div class="panel panel-default">
+                <div class="panel panel-default" id="jx2d-attr-panel-common" style="display: none;">
                     <div class="panel-heading" role="tab" id="jx2d-common-phear">
                         <h4 class="panel-title">
                             <a role="button" data-toggle="collapse" data-parent="#jx2d-properites-pg" href="#jx2d-common-pbody" aria-expanded="true" aria-controls="jx2d-common-pbody">
@@ -274,7 +274,7 @@
                     </div>
                 </div>
                 <!-- jx2d panel text -->
-                <div class="panel panel-default">
+                <div class="panel panel-default" id="jx2d-attr-panel-text" style="display: none;">
                     <div class="panel-heading" role="tab" id="jx2d-text-phear">
                         <h4 class="panel-title">
                             <a role="button" data-toggle="collapse" data-parent="#jx2d-properites-pg" href="#jx2d-text-pbody" aria-expanded="true" aria-controls="jx2d-text-pbody">
@@ -536,7 +536,7 @@
                     </div>
                 </div>
                 <!-- jx2d panel photo -->
-                <div class="panel panel-default">
+                <div class="panel panel-default" id="jx2d-attr-panel-img" style="display: none;">
                     <div class="panel-heading" role="tab" id="jx2d-photo-phear">
                         <h4 class="panel-title">
                             <a role="button" data-toggle="collapse" data-parent="#jx2d-properites-pg" href="#jx2d-photo-pbody" aria-expanded="true" aria-controls="jx2d-photo-pbody">
@@ -549,47 +549,95 @@
                             <!-- jx2d propertier photo -->
                             <div class="jx2d-properties-photo">
                                 <div class='row jxrow-padding-5'>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="softenFace">美肤</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="normal">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/normal.jpg" alt="正常" class="jx2d-ps-img">
+                                            正常
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="sketch">素描</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="softenFace">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/softenFace.png" alt="美肤" class="jx2d-ps-img">
+                                            美肤
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="softEnhancement">自然增强</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="sketch">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/sketch.png" alt="素描" class="jx2d-ps-img">
+                                            素描
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="purpleStyle">紫调</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="softEnhancement">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/softEnhancement.png" alt="自然增强" class="jx2d-ps-img">
+                                            自然增强
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="soften">柔焦</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="purpleStyle">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/purpleStyle.png" alt="紫调" class="jx2d-ps-img">
+                                            紫调
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="vintage">复古</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="soften">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/soften.png" alt="柔焦" class="jx2d-ps-img">
+                                            柔焦
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="gray">黑白</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="vintage">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/vintage.png" alt="复古" class="jx2d-ps-img">
+                                            复古
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="lomo">仿lomo</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="gray">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/gray.png" alt="黑白" class="jx2d-ps-img">
+                                            黑白
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="strongEnhancement">亮白增强</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="lomo">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/lomo.png" alt="仿lomo" class="jx2d-ps-img">
+                                            仿lomo
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="strongGray">灰白</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="strongEnhancement">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/strongEnhancement.png" alt="亮白增强" class="jx2d-ps-img">
+                                            亮白增强
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="lightGray">灰色</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="strongGray">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/strongGray.png" alt="灰白" class="jx2d-ps-img">
+                                            灰白
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="warmAutumn">暖秋</div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="lightGray">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/lightGray.png" alt="灰色" class="jx2d-ps-img">
+                                            灰色
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="carveStyle">木雕</div>      
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="warmAutumn">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/warmAutumn.png" alt="暖秋" class="jx2d-ps-img">
+                                            暖秋
+                                        </div>
                                     </div>
-                                    <div class='col-sm-2'>
-                                        <div class='jx2d-filter-group' filtername="rough">粗糙</div>      
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="carveStyle">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/carveStyle.png" alt="木雕" class="jx2d-ps-img">
+                                            木雕
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-3'>
+                                        <div class='jx2d-filter-group' filtername="rough">
+                                            <img src="__JXRESOURCE__/2d/imgs/ps/rough.png" alt="粗糙" class="jx2d-ps-img">
+                                            粗糙
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -598,6 +646,7 @@
                 </div>
             </div>
 
+            <button class="btn btn-default btn-block" id="jx2d-save-project">保存工程</button>
         </div>
     </div>
 </div>

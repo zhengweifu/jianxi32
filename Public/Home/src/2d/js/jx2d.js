@@ -362,16 +362,39 @@ var entry = function(parameter) {
 
     };
 
+    var updateImagePanel = function(object) {
+        $(".jx2d-filter-group").each(function () {
+
+            if(object.ps) {
+                if($(this).attr("filtername") === object.ps) {
+                    setCurrentFilter($(this));
+                    return;
+                }
+            } else {
+                if($(this).attr("filtername") === "normal") {
+                    setCurrentFilter($(this));
+                    return;
+                }
+            }
+        });
+
+    };
+
     viewport2d.onIntersect = function(object) {
-        $("#jx2d-properites-pg").show();
+        $("#jx2d-attr-panel-common, #jx2d-attr-panel-text, #jx2d-attr-panel-img").hide();
+        $("#jx2d-attr-panel-common").show();
         updateTransformPanel(object);
         if(object.type == "JXText") {
+            $("#jx2d-attr-panel-text").show();
             updateTextPanel(object);
+        } else if(object.type == "JXSprite") {
+            updateImagePanel(object);
+            $("#jx2d-attr-panel-img").show();
         }
     };
 
     viewport2d.onNotIntersect = function() {
-        $("#jx2d-properites-pg").hide();
+        $("#jx2d-attr-panel-common, #jx2d-attr-panel-text, #jx2d-attr-panel-img").hide();
     };
 
     viewport2d.getGizmo().onTransfrom = function(object) {
@@ -446,14 +469,51 @@ var entry = function(parameter) {
         }); 
     });
 
-    $(".jx2d-filter-group").on('click', function() {
-    
-        if(viewport2d.current_object && viewport2d.current_object.type == "JXSprite") {
-            var _filter = $(this).attr('filtername');
-            viewport2d.current_object.image.src =  AlloyImage(viewport2d.current_object.image).ps(_filter).save(0, 1);
-            viewport2d.update();
+    var current_filter = undefined, current_i = 0;
+    var setCurrentFilter = function (jqe) {
+        if(current_filter && current_filter.hasClass("active")) {
+            current_filter.removeClass("active");
         }
+
+        current_filter = jqe;
+
+        if(!current_filter.hasClass("active")) current_filter.addClass("active");
+    };
+
+    $(".jx2d-filter-group").each(function() {
+        if(current_i === 0) {
+            setCurrentFilter($(this));
+        }
+
+        current_i ++;
+
+        $(this).on('click', function() {
+
+            setCurrentFilter($(this));
+
+            if(viewport2d.current_object && viewport2d.current_object.type == "JXSprite") {
+                var _filter = $(this).attr('filtername');
+                if(_filter === "normal") {
+                    _filter = undefined;
+                    viewport2d.current_object.imageData = undefined;
+                }
+
+                viewport2d.current_object.ps = _filter;
+                viewport2d.current_object.needUpdateFilter = true;
+                viewport2d.update();
+            }
+        });
     });
+
+    $("#jx2d-save-project").on('click', function() {
+        var _obj, _result = {front: [], back: []};
+        for(var i=0; i<shapeGroup.children.length; i++) {
+            _obj = shapeGroup.children[i];
+            console.log(_obj);
+            _result.front.push(_obj.toJson());
+        }
+        alert(JSON.stringify(_result));
+    })
 };
 
 return entry;

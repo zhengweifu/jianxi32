@@ -173,11 +173,24 @@ $jx2d-color-box-border-ac: rgba(0, 255, 100, 0.7);
     }
 }
 
+.jx2d-properties-photo {
+    .active {
+        border-color: $jx2d-color-box-border-ac;
+    }
+}
+
 .jx2d-filter-group {
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    height: 58px;
+    border: 1px solid transparent;
+    height: 85px;
     margin-top: $jx-space-base;
     margin-bottom: $jx-space-base;
+    text-align: center;
+    &:hover {
+        border-color: rgba(0, 0, 0, 0.3);
+    }
+    .jx2d-ps-img {
+        max-width: 100%;
+    }
 }
 
 .jx2d-product-item-group {

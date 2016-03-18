@@ -121,11 +121,19 @@
   .jx2d-properties-text-shadow:before {
     left: 326px; }
 
+.jx2d-properties-photo .active {
+  border-color: rgba(0, 255, 100, 0.7); }
+
 .jx2d-filter-group {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  height: 58px;
+  border: 1px solid transparent;
+  height: 85px;
   margin-top: 5px;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  text-align: center; }
+  .jx2d-filter-group:hover {
+    border-color: rgba(0, 0, 0, 0.3); }
+  .jx2d-filter-group .jx2d-ps-img {
+    max-width: 100%; }
 
 .jx2d-product-item-group .active {
   border: 1px solid #ff8d5c; }
