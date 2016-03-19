@@ -29,21 +29,27 @@
                 <div class="col-sm-2">
                     <div class="project-template-group"></div>
                 </div>
-                <div class="col-sm-2">
-                    <div class="project-template-group"></div>
+                <!--<div class="col-sm-2">-->
+                    <!--<div class="project-template-group"></div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-2">-->
+                    <!--<div class="project-template-group"></div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-2">-->
+                    <!--<div class="project-template-group"></div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-2">-->
+                    <!--<div class="project-template-group"></div>-->
+                <!--</div>-->
+                <foreach name="jx_2d_out.templates" item="jx_template">
+
+                <div class=" col-sm-2">
+                    <div class="project-template-group" mdata='{$jx_template.content}'>
+                        <img src="{$jx_template.path}" alt="">
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    <div class="project-template-group"></div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="project-template-group"></div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="project-template-group"></div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="project-template-group"></div>
-                </div>
+                </foreach>
+
             </div>
             <div class="spot-place"></div>
         </div>

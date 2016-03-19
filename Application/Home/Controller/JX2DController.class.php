@@ -16,6 +16,10 @@ class JX2DController extends Controller {
 
         $jx_2d_other_array = json_decode($jx_2d_other, true);
 
+        $m_template = M('2d_template');
+        $jx_2d_template_data = $m_template->where('status=1')->select();
+//        print_r($jx_2d_template_data);
+
         $jx_2d_out = array(
             'text_colors' => array(),
             'product_colors' => array(),
@@ -23,7 +27,8 @@ class JX2DController extends Controller {
                 'tshirts' => array(),
                 'longsleeve' => array(),
                 'tanktops' => array()
-            )
+            ),
+            'templates' => $jx_2d_template_data
         );
 
         foreach ($color_datas as $c_data) {

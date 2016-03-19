@@ -506,14 +506,109 @@ var entry = function(parameter) {
     });
 
     $("#jx2d-save-project").on('click', function() {
-        var _obj, _result = {front: [], back: []};
+        var _obj, _src, _result = {background: "", data: [], mask: [mask.position.x, mask.position.y, maskHalfWith, maskHalfHeight]};
+
+        var backgroun_image = canvas.style.backgroundImage;
+        _result.background = backgroun_image.substring(5, backgroun_image.length - 2);
+
         for(var i=0; i<shapeGroup.children.length; i++) {
             _obj = shapeGroup.children[i];
-            console.log(_obj);
-            _result.front.push(_obj.toJson());
+            _result.data.push(_obj.toJson());
+            if(_obj.type = "JXSprite" && _obj.image) {
+                _src = _obj.image.src;
+                //if(_src.substr(0, 11) === "data:image/") {
+                //
+                //} else {
+                //    _result.data[i]["url"] = _src;
+                //}
+                _result.data[i]["url"] = _src;
+            }
+
+            _result.data[i]["position"] = [_obj.position.x, _obj.position.y];
+            _result.data[i]["rotation"] = _obj.rotation.z;
+            _result.data[i]["scale"] = [_obj.scale.x, _obj.scale.y];
         }
+
         alert(JSON.stringify(_result));
-    })
+    });
+
+    var clearCanvas = function() {
+        while(true) {
+            if(shapeGroup.children.length>0) {
+                shapeGroup.remove(shapeGroup.children[0])
+            } else {
+                break;
+            }
+        }
+
+        viewport2d.update();
+    };
+
+    var createFormTemplate = function(json) {
+        canvas.style.backgroundImage = 'url("' + json.background + '")';
+        var _obj, _edata, e, c,
+            paras_common = [
+                "content",
+                "useColor",
+                "size",
+                "space",
+                "font",
+                "useStroke",
+                "strokeCap",
+                "strokeJoin",
+                "strokeSize",
+                "useShadow",
+                "shadowDistance",
+                "shadowAngle",
+                "shadowBlur",
+                "arc",
+                "filters",
+                "ps",
+                "width",
+                "height"
+            ],
+            paras_color = [
+                "color",
+                "strokeColor",
+                "shadowColor"
+            ];
+        for(e=0; e<json.data.length; e++) {
+            _edata = json.data[e];
+            if(_edata.type === "JXText") {
+                _obj = new THREE.JX.JXText();
+            } else if(_edata.type === "JXSprite" && _edata.url !== undefined) {
+                var sprite_loader = new THREE.JX.JXSpriteLoader();
+                _obj = sprite_loader.load(_edata.url, function(_sprite) {
+                    viewport2d.update();
+                });
+            }
+            console.log(_obj);
+            for(c=0; c<paras_common.length; c++) {
+                if(_edata[paras_common[c]] !== undefined) _obj[paras_common[c]] = _edata[paras_common[c]];
+            }
+
+            for(c=0; c<paras_color.length; c++) {
+                if(_edata[paras_color[c]] !== undefined) _obj[paras_color[c]].setHex(_edata[paras_color[c]]);
+            }
+
+            if(_edata.position !== undefined) _obj.position.set(_edata.position[0], _edata.position[1], 0);
+            if(_edata.rotation !== undefined) _obj.rotation.z = _edata.rotation;
+            if(_edata.scale !== undefined) _obj.scale.set(_edata.scale[0], _edata.scale[1]);
+
+            shapeGroup.add(_obj);
+        }
+
+        viewport2d.update();
+
+    };
+
+    jquery_project_tmp.on('click', function() {
+        clearCanvas();
+        var mdata = $(this).attr("mdata");
+        if(mdata) {
+            createFormTemplate(JSON.parse(mdata));
+        }
+    });
 };
 
 return entry;
