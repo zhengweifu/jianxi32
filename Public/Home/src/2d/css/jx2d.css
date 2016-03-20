@@ -12,7 +12,7 @@
 .viewport-2d {
   width: 100%; }
 
-.viewport-2d, .project-template-group, .spot-place {
+.viewport-2d, .jx2d-template-item, .spot-place {
   border: 1px solid #666; }
 
 .viewport-group {
@@ -22,8 +22,14 @@
   height: 50px;
   margin-top: 15px; }
 
-.project-template-group img {
+.jx2d-template-group .jx2d-template-item img {
   max-width: 100%; }
+
+.jx2d-template-group:hover {
+  border-color: #ff9075; }
+
+.jx2d-template-group .active {
+  border-color: rgba(0, 255, 100, 0.7); }
 
 .control-right {
   position: relative;

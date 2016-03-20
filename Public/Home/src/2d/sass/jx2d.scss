@@ -1,6 +1,12 @@
 @import "../../basic/sass/jxvariables";
 @import "../../basic/sass/mixins/base";
 
+$jx2d-color-box-width: 29px;
+$jx2d-color-box-space: 1px;
+$jx2d-color-box-border-r: 4px;
+$jx2d-color-box-border-dc: rgba(0, 0, 0, 0.3);
+$jx2d-color-box-border-ac: rgba(0, 255, 100, 0.7);
+
 .jx2d-container {
     width: 920px;
 
@@ -21,7 +27,7 @@
     width: 100%;
 }
 
-.viewport-2d, .project-template-group, .spot-place {
+.viewport-2d, .jx2d-template-item, .spot-place {
     border: 1px solid #666;
 }
 
@@ -35,10 +41,19 @@
     margin-top: $jx-space-x4; 
 }
 
-.project-template-group {
-    //height: 100px;
-    img {
-        max-width: 100%;
+.jx2d-template-group {
+    .jx2d-template-item {
+        img {
+            max-width: 100%;
+        }
+    }
+
+    &:hover {
+        border-color: #ff9075;
+    }
+
+    .active {
+        border-color: $jx2d-color-box-border-ac;
     }
 }
 
@@ -94,11 +109,7 @@
     margin-bottom: $jx-space-x2;
 }
 
-$jx2d-color-box-width: 29px;
-$jx2d-color-box-space: 1px;
-$jx2d-color-box-border-r: 4px;
-$jx2d-color-box-border-dc: rgba(0, 0, 0, 0.3);
-$jx2d-color-box-border-ac: rgba(0, 255, 100, 0.7);
+
 .jx2d-color-group {
     .jx2d-color-box {
         @include jxround($jx2d-color-box-border-r);

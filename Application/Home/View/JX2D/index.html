@@ -12,7 +12,7 @@
     <script src="__STATIC__/jquery-2.1.4.min.js"></script>
     <script src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
     <script src="__STATIC__/nstSlider/js/jquery.nstSlider.min.js"></script>
-    <script src="__STATIC__/sea-3.0.0.min.js"></script>
+    <!--<script src="__STATIC__/sea-3.0.0.min.js"></script>-->
     <script src="__JXRESOURCE__/basic/js/jxSeaConfig{$Think.config.DOT_MIN}.js"></script>
     <script src="__STATIC__/alloyimage.min.js"></script>
     <script src="__STATIC__/three.js"></script>
@@ -25,26 +25,14 @@
             <div class="viewport-group">
                 <canvas class="viewport-2d" id="viewport-2d" width="500" height="600" style="width: 500px; height: 600px; background: url(__JXRESOURCE__/2d/imgs/pictrues/t-shirt_2_wht.jpg);background-position:center;background-size: contain; background-repeat: no-repeat;"></canvas>
             </div>
-            <div class="row jxrow-padding-5">
+            <div class="row jxrow-padding-5 jx2d-template-group">
                 <div class="col-sm-2">
-                    <div class="project-template-group"></div>
+                    <div class="jx2d-template-item"></div>
                 </div>
-                <!--<div class="col-sm-2">-->
-                    <!--<div class="project-template-group"></div>-->
-                <!--</div>-->
-                <!--<div class="col-sm-2">-->
-                    <!--<div class="project-template-group"></div>-->
-                <!--</div>-->
-                <!--<div class="col-sm-2">-->
-                    <!--<div class="project-template-group"></div>-->
-                <!--</div>-->
-                <!--<div class="col-sm-2">-->
-                    <!--<div class="project-template-group"></div>-->
-                <!--</div>-->
                 <foreach name="jx_2d_out.templates" item="jx_template">
 
                 <div class=" col-sm-2">
-                    <div class="project-template-group" mdata='{$jx_template.content}'>
+                    <div class="jx2d-template-item" mdata='{$jx_template.content}'>
                         <img src="{$jx_template.path}" alt="">
                     </div>
                 </div>

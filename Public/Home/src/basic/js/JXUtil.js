@@ -10,7 +10,7 @@ define(function(require) {
             if(onLoad) {
                 onLoad(this.result);
             }
-        }
+        };
     };
 
     return JXUtil;

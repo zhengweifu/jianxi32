@@ -33,7 +33,7 @@ var entry = function(parameter) {
     // var jquery_viewport = $(".viewport-2d");
     // jquery_viewport.css({height: jquery_viewport.css("width")});
 
-    var jquery_project_tmp = $(".project-template-group");
+    var jquery_project_tmp = $(".jx2d-template-item");
     jquery_project_tmp.css({height: jquery_project_tmp.css("width")});
 
     // $(window).on("resize", function() {
@@ -506,7 +506,7 @@ var entry = function(parameter) {
     });
 
     $("#jx2d-save-project").on('click', function() {
-        var _obj, _src, _result = {background: "", data: [], mask: [mask.position.x, mask.position.y, maskHalfWith, maskHalfHeight]};
+        var _obj, _src, _result = {background: "", data: [], mask: mask.toJson()};
 
         var backgroun_image = canvas.style.backgroundImage;
         _result.background = backgroun_image.substring(5, backgroun_image.length - 2);
@@ -540,6 +540,8 @@ var entry = function(parameter) {
                 break;
             }
         }
+
+        viewport2d.setCurrent(undefined);
 
         viewport2d.update();
     };
@@ -582,7 +584,6 @@ var entry = function(parameter) {
                     viewport2d.update();
                 });
             }
-            console.log(_obj);
             for(c=0; c<paras_common.length; c++) {
                 if(_edata[paras_common[c]] !== undefined) _obj[paras_common[c]] = _edata[paras_common[c]];
             }
@@ -598,16 +599,36 @@ var entry = function(parameter) {
             shapeGroup.add(_obj);
         }
 
+        mask.fromJson(json.mask);
+
         viewport2d.update();
 
     };
 
-    jquery_project_tmp.on('click', function() {
-        clearCanvas();
-        var mdata = $(this).attr("mdata");
-        if(mdata) {
-            createFormTemplate(JSON.parse(mdata));
+    var current_template = undefined;
+    var setCurrentTemplate = function(jqe) {
+        if(current_template && current_template.hasClass("active")) {
+            current_template.removeClass("active");
         }
+
+        current_template = jqe;
+
+        if(!current_template.hasClass("active")) current_template.addClass("active");
+    };
+    current_i = 0;
+    jquery_project_tmp.each(function() {
+        if(current_i === 0) {
+            setCurrentTemplate($(this));
+        }
+        current_i++;
+        $(this).on('click', function() {
+            setCurrentTemplate($(this));
+            clearCanvas();
+            var mdata = $(this).attr("mdata");
+            if(mdata) {
+                createFormTemplate(JSON.parse(mdata));
+            }
+        });
     });
 };
 
