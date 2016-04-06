@@ -3,7 +3,7 @@
   padding: 0; }
 
 body {
-  font-family: Microsoft YaHei,Georgia,Serif;
+  font-family: "Microsoft Yahei", arial, "Hiragino Sans GB", sans-serif;
   font-weight: normal; }
 
 @media (min-width: 768px) {
@@ -156,3 +156,6 @@ body {
 
 .jxbtn .glyphicon {
   top: 4px; }
+
+.swiper-pagination-bullet-active {
+  background: #ff8d5c; }

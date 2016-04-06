@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: Microsoft YaHei,Georgia,Serif;
+  font-family: "Microsoft Yahei", arial, "Hiragino Sans GB", sans-serif;
   font-weight:normal;
 }
 
@@ -252,5 +252,9 @@ $jxindex_navbar_padding_lr : 35px;
 
 .jxbtn .glyphicon {
   top:  4px;
+}
+
+.swiper-pagination-bullet-active {
+  background: $jx-brand-orange;
 }
 
