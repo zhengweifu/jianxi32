@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { TextField } from 'material-ui';
+
 export default class InputNumber extends React.Component {
   constructor(props) {
     super(props);
@@ -10,28 +12,65 @@ export default class InputNumber extends React.Component {
   }
 
   onHandleChange(event) {
-    let val = event.target.value;
-    val = val.replace(/[^0-9\.\-]/,'');
+    let val = event.target.value, _vals = [];
 
-    // remove - (ex before)
-    let _val = val.replace(/\-/g, '');
-    if(val[0] === '-') {
-        _val = '-' + _val;
-    }
+    if(this.props.type === 'INT') {
 
-    // remove - (only one)
-    let _vals = [];
-    let isDot = false;
-    for(var i = 0; i < _val.length; i++) {
-        if(_val[i] === '.') {
-            if(!isDot) {
-                _vals.push(_val[i]);
-                isDot = true;
-            }
-        } else {
-            _vals.push(_val[i]);
+      val = val.replace(/[^0-9\-]/g,'');
+      let isNegative = false;
+      // remove - (ex before)
+      let _val = val.replace(/\-/g, '');
+      if(val[0] === '-') {
+        isNegative = true;
+      }
+
+      let isAdd = false;
+      let isZero = true;
+      for(let i = 0; i < _val.length; i ++) {
+        if(!isAdd && _val[i] != 0) {
+          isAdd = true;
+          isZero = false;
         }
+
+        if(isAdd) {
+          _vals.push(_val[i]);
+        }
+      }
+      // console.log()
+      if(isZero && _val.length > 0) {
+        _vals.push(0);
+      } else {
+        if(isNegative) { // 插入负号
+          _vals.splice(0, 0, '-');
+        }
+      }
+
+    } else if(this.props.type === 'NUMBER') {
+
+      val = val.replace(/[^0-9\.\-]/g,'');
+
+      // remove - (ex before)
+      let _val = val.replace(/\-/g, '');
+      if(val[0] === '-') {
+        _val = '-' + _val;
+      }
+
+      // remove . (only one)
+      let isDot = false;
+      for(let i = 0; i < _val.length; i++) {
+        if(_val[i] === '.') {
+          if(!isDot) {
+            _vals.push(_val[i]);
+            isDot = true;
+          }
+        } else {
+          _vals.push(_val[i]);
+        }
+      }
+    } else {
+      // todo
     }
+
 
     this.setState({value: _vals.join('')});
 
@@ -40,22 +79,26 @@ export default class InputNumber extends React.Component {
 
   render() {
     return (
-      <input
-        type='text'
-        className='form-control'
+      <TextField
+        id='InputNumber'
+        floatingLabelText={this.props.floatingLabelText}
+        fullWidth={true}
         value={this.state.value}
         onChange={this.onHandleChange.bind(this)}
-        style={this.props.style}
-        />
+      />
     );
   }
 }
 
 InputNumber.defaultProps = {
-    value: 0
+    value: 0,
+    type: 'NUMBER',
+    floatingLabelText: ''
 };
 
 InputNumber.propTypes = {
+  type: React.PropTypes.oneOf(['INT', 'NUMBER']),
+  floatingLabelText: React.PropTypes.string,
   value: React.PropTypes.number,
   onChange: React.PropTypes.func,
   style: React.PropTypes.object

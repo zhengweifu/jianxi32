@@ -43,7 +43,7 @@ export default class InputNumberSliderGroup extends React.Component {
             value={this.state.value}
             onChange={this.onInputHandleChange.bind(this)}
             ref='inputNumber'
-            style={{marginTop: 16}}
+            type={this.props.type}
           />
         </div>
         <div className='col-xs-10' style={{paddingLeft: 5, padingRight: 15}}>
@@ -52,6 +52,7 @@ export default class InputNumberSliderGroup extends React.Component {
             onChange={this.onSliderHandleChange.bind(this)}
             max={this.props.max}
             min={this.props.min}
+            step={this.props.type === 'INT' ? 1 : 0.1}
             style={{marginBottom: 24}}
             />
         </div>
@@ -63,6 +64,7 @@ export default class InputNumberSliderGroup extends React.Component {
 InputNumberSliderGroup.propTypes = {
   onChange: React.PropTypes.func,
   defaultValue: React.PropTypes.number,
+  type: React.PropTypes.oneOf(['INT', 'NUMBER']),
   max: React.PropTypes.number,
   min: React.PropTypes.number
 };
