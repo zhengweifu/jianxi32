@@ -1,13 +1,15 @@
 import React from 'react';
 import { Dialog, RaisedButton, List, ListItem, AppBar, GridList, GridTile } from 'material-ui';
 
-import ProductItem from '../components/ProductItem';
+import PatternLibrariesGroup from '../components/PatternLibrariesGroup';
 
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 
 import setPatternItemData from '../actions/setPatternItemData';
+
+import setPatternTitleIndex from '../actions/setPatternTitleIndex';
 
 class PatternLibrariesPanel extends React.Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class PatternLibrariesPanel extends React.Component {
       open: true,
       currentActiveTitleIndex: props.activeTitleIndex,
       currentActiveItemIndex: props.activeItemIndex,
+      currentShowTitleIndex: props.showTitleIndex
     };
   }
 
@@ -38,35 +41,16 @@ class PatternLibrariesPanel extends React.Component {
     // console.log(src, title, other);
   }
 
-  renderItems(items, titleIndex) {
-    return items.map((item, index) => {
-      let mactive = (titleIndex == this.state.currentActiveTitleIndex && index == this.state.currentActiveItemIndex) ? true : false;
-      return (
-        <div key={index} className='col-sm-2' style={{margin: '5px 0'}}>
-          <ProductItem
-            img={item.img}
-            title={item.describtion}
-            onClick={this.onHandleItemClick.bind(this)}
-            other={[titleIndex, index]}
-            active={mactive}/>
-        </div>
-      );
-    });
-  }
-
   renderList() {
     return this.props.tilesData.map((data, index) => {
       return (
-        <div key={index}>
-          <div style={{
-            padding: '6px 10px',
-            fontSize: 14,
-            borderRadius: 2,
-          }}>{data.title}</div>
-          <div className='row'>
-            {this.renderItems(data.items, index)}
-          </div>
-        </div>
+        <ListItem
+          key={index}
+          primaryText={data.title}
+          onTouchTap={e => {
+            console.log(this.state.showTitleIndex);
+            this.props.setPatternTitleIndex(0);
+          }}/>
       );
     });
   }
@@ -76,6 +60,7 @@ class PatternLibrariesPanel extends React.Component {
       this.setState({
         currentActiveTitleIndex: newProps.activeTitleIndex,
         currentActiveItemIndex: newProps.activeItemIndex,
+        currentShowTitleIndex: newProps.showTitleIndex
       });
     }
   }
@@ -95,6 +80,11 @@ class PatternLibrariesPanel extends React.Component {
         onTouchTap={this.onHandleClose.bind(this)}
       />,
     ];
+
+    let mindex = this.state.currentShowTitleIndex;
+
+    let patternItems = (mindex != -1) ? this.props.tilesData[mindex].items : [];
+
     return (
       <Dialog
         actions={actions}
@@ -103,19 +93,15 @@ class PatternLibrariesPanel extends React.Component {
         bodyStyle={{maxHeight: 500, padding: 0, paddingTop: 0}}
         onRequestClose={this.onHandleClose.bind(this)}>
         <div className='row' style={{marginRight: 0, marginLeft: 0, borderBottom: '1px solid #ccc'}}>
-          <div className='col-sm-2' style={{paddingLeft: 0}}>
+          <div className='col-sm-2' style={{paddingLeft: 0, paddingRight: 0}}>
             <List style={{borderRight: '1px solid #ccc'}}>
-              <ListItem primaryText="动物" />
-              <ListItem primaryText="植物" />
-              <ListItem primaryText="名画" />
-              <ListItem primaryText="建筑" />
-              <ListItem primaryText="体育" />
-              <ListItem primaryText="动漫" />
-              <ListItem primaryText="明星" />
-              <ListItem primaryText="书法" />
+              {this.renderList()}
             </List>
           </div>
           <div className='col-sm-10'>
+            <PatternLibrariesGroup
+              activeIndex={this.state.currentActiveItemIndex}
+              items={patternItems}/>
           </div>
         </div>
       </Dialog>
@@ -126,12 +112,14 @@ class PatternLibrariesPanel extends React.Component {
 PatternLibrariesPanel.defaultProps = {
   activeTitleIndex: -1,
   activeItemIndex: -1,
+  showTitleIndex: -1,
   tilesData: []
 };
 
 PatternLibrariesPanel.propTypes = {
   activeTitleIndex: React.PropTypes.number,
   activeItemIndex: React.PropTypes.number,
+  showTitleIndex: React.PropTypes.number,
   tilesData: React.PropTypes.array
 };
 
@@ -140,13 +128,15 @@ function mapStateToProps(state) {
   return {
     activeTitleIndex: state.patternData.activeTitleIndex,
     activeItemIndex: state.patternData.activeItemIndex,
+    showTitleIndex: state.patternData.showTitleIndex,
     tilesData: state.patternData.tilesData
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    setPatternItemData
+    setPatternItemData,
+    setPatternTitleIndex
   }, dispatch);
 }
 

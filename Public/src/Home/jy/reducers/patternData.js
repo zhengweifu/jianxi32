@@ -1,4 +1,4 @@
-import { SET_PATTERN_ITEM_DATA, ADD_PATTERN_ITEM_DATA } from '../actions/actionTypes';
+import { SET_PATTERN_ITEM_DATA, ADD_PATTERN_ITEM_DATA, SET_PATTERN_TITLE_INDEX } from '../actions/actionTypes';
 
 /**
 state => {
@@ -18,6 +18,7 @@ state => {
 const initState = {
   activeTitleIndex: -1,
   activeItemIndex: -1,
+  showTitleIndex: -1,
   tilesData: []
 };
 
@@ -26,6 +27,10 @@ export function patternData(state = initState, action) {
     case ADD_PATTERN_ITEM_DATA:
     case SET_PATTERN_ITEM_DATA:
       return getNewState(state, action.title, action.index, action.data);
+    case SET_PATTERN_TITLE_INDEX:
+      return Object.assign(JSON.parse(JSON.stringify(state)), {
+        showTitleIndex: action.index
+      });
     default:
       return state;
   }

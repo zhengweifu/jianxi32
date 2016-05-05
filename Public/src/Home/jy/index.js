@@ -54,6 +54,11 @@ store.dispatch(addPatternItemData('动物', {
   describtion: '小狗'
 }));
 
+store.dispatch(addPatternItemData('植物', {
+  img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
+  describtion: '小树'
+}));
+
 
 ReactDOM.render(
   <Provider store={store}>
