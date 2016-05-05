@@ -9,8 +9,6 @@ import { bindActionCreators } from 'redux';
 
 import setPatternItemData from '../actions/setPatternItemData';
 
-import setPatternTitleIndex from '../actions/setPatternTitleIndex';
-
 class PatternLibrariesPanel extends React.Component {
   constructor(props) {
     super(props);
@@ -31,25 +29,25 @@ class PatternLibrariesPanel extends React.Component {
     this.setState({open: false});
   }
 
-  onHandleItemClick(event, src, title, other) {
-    if(other !== null) {
-      this.setState({
-        currentActiveTitleIndex: other[0],
-        currentActiveItemIndex: other[1]
-      });
-    }
+  onHandleItemClick(event, src, title, itemIndex) {
+    this.setState({
+      currentActiveTitleIndex: this.state.currentShowTitleIndex,
+      currentActiveItemIndex: itemIndex
+    });
+
     // console.log(src, title, other);
   }
 
   renderList() {
     return this.props.tilesData.map((data, index) => {
+      let mstyle = (this.state.currentActiveTitleIndex == index) ? {backgroundColor: 'rgb(0, 188, 212)'} : {};
       return (
         <ListItem
           key={index}
           primaryText={data.title}
+          style={mstyle}
           onTouchTap={e => {
-            console.log(this.state.showTitleIndex);
-            this.props.setPatternTitleIndex(0);
+            this.setState({currentShowTitleIndex : index});
           }}/>
       );
     });
@@ -85,6 +83,7 @@ class PatternLibrariesPanel extends React.Component {
 
     let patternItems = (mindex != -1) ? this.props.tilesData[mindex].items : [];
 
+    let mactiveIndex = (this.state.currentActiveTitleIndex == mindex) ? this.state.currentActiveItemIndex : -1;
     return (
       <Dialog
         actions={actions}
@@ -100,7 +99,8 @@ class PatternLibrariesPanel extends React.Component {
           </div>
           <div className='col-sm-10'>
             <PatternLibrariesGroup
-              activeIndex={this.state.currentActiveItemIndex}
+              activeIndex={mactiveIndex}
+              onItemClick={this.onHandleItemClick.bind(this)}
               items={patternItems}/>
           </div>
         </div>
@@ -135,8 +135,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    setPatternItemData,
-    setPatternTitleIndex
+    setPatternItemData
   }, dispatch);
 }
 

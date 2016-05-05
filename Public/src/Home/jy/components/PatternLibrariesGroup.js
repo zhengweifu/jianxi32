@@ -10,15 +10,6 @@ export default class PatternLibrariesGroup extends React.Component {
     };
   }
 
-  onHandleItemClick(event, src, title, other) {
-    if(other !== null) {
-      this.setState({
-        activeIndex: other,
-      });
-    }
-    // console.log(src, title, other);
-  }
-
   renderItems() {
     return this.props.items.map((item, index) => {
       let mactive = (this.state.activeIndex == index) ? true : false;
@@ -27,8 +18,12 @@ export default class PatternLibrariesGroup extends React.Component {
           <ProductItem
             img={item.img}
             title={item.describtion}
-            onClick={this.onHandleItemClick.bind(this)}
-            other={index}
+            onClick={e => {
+              this.setState({activeIndex: index});
+              if(this.props.onItemClick) {
+                this.props.onItemClick(e, item.img, item.describtion, index);
+              }
+            }}
             active={mactive}/>
         </div>
       );
@@ -59,5 +54,6 @@ PatternLibrariesGroup.defaultProps = {
 
 PatternLibrariesGroup.propTypes = {
   activeIndex: React.PropTypes.number,
-  items: React.PropTypes.array
+  items: React.PropTypes.array,
+  onItemClick: React.PropTypes.func
 };
