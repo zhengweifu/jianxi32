@@ -24,6 +24,12 @@ export default class ColorGroup extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    if(newProps.activeIndex !== undefined) {
+      this.state.currentActiveIndex = newProps.activeIndex;
+    }
+  }
+
   renderList() {
     return this.props.items.map((item, index) => {
       let paddingLeft = 0, paddingRight = 2;

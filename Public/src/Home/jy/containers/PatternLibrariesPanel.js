@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, RaisedButton, AppBar, GridList, GridTile } from 'material-ui';
+import { Dialog, RaisedButton, List, ListItem, AppBar, GridList, GridTile } from 'material-ui';
 
 import ProductItem from '../components/ProductItem';
 
@@ -7,14 +7,14 @@ import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 
-import setProductItemData from '../actions/setProductItemData';
+import setPatternItemData from '../actions/setPatternItemData';
 
-class ProductPanel extends React.Component {
+class PatternLibrariesPanel extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      open: false,
+      open: true,
       currentActiveTitleIndex: props.activeTitleIndex,
       currentActiveItemIndex: props.activeItemIndex,
     };
@@ -62,8 +62,6 @@ class ProductPanel extends React.Component {
             padding: '6px 10px',
             fontSize: 14,
             borderRadius: 2,
-            backgroundColor: this.props.bgColor,
-            color: this.props.color
           }}>{data.title}</div>
           <div className='row'>
             {this.renderItems(data.items, index)}
@@ -102,41 +100,54 @@ class ProductPanel extends React.Component {
         actions={actions}
         modal={false}
         open={this.state.open}
-        bodyStyle={{overflow: 'auto', maxHeight: 500}}
+        bodyStyle={{maxHeight: 500, padding: 0, paddingTop: 0}}
         onRequestClose={this.onHandleClose.bind(this)}>
-        {this.renderList()}
+        <div className='row' style={{marginRight: 0, marginLeft: 0, borderBottom: '1px solid #ccc'}}>
+          <div className='col-sm-2' style={{paddingLeft: 0}}>
+            <List style={{borderRight: '1px solid #ccc'}}>
+              <ListItem primaryText="动物" />
+              <ListItem primaryText="植物" />
+              <ListItem primaryText="名画" />
+              <ListItem primaryText="建筑" />
+              <ListItem primaryText="体育" />
+              <ListItem primaryText="动漫" />
+              <ListItem primaryText="明星" />
+              <ListItem primaryText="书法" />
+            </List>
+          </div>
+          <div className='col-sm-10'>
+          </div>
+        </div>
       </Dialog>
     );
   }
 }
 
-ProductPanel.defaultProps = {
+PatternLibrariesPanel.defaultProps = {
   activeTitleIndex: -1,
   activeItemIndex: -1,
   tilesData: []
 };
 
-ProductPanel.propTypes = {
+PatternLibrariesPanel.propTypes = {
   activeTitleIndex: React.PropTypes.number,
   activeItemIndex: React.PropTypes.number,
-  bgColor: React.PropTypes.string.isRequired,
-  color: React.PropTypes.string.isRequired,
   tilesData: React.PropTypes.array
 };
 
 
 function mapStateToProps(state) {
   return {
-    activeTitleIndex: state.productData.activeTitleIndex,
-    activeItemIndex: state.productData.activeItemIndex,
-    tilesData: state.productData.tilesData
+    activeTitleIndex: state.patternData.activeTitleIndex,
+    activeItemIndex: state.patternData.activeItemIndex,
+    tilesData: state.patternData.tilesData
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    setProductItemData
+    setPatternItemData
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {withRef: true})(ProductPanel);
+export default connect(mapStateToProps, mapDispatchToProps, null, {withRef: true})(PatternLibrariesPanel);

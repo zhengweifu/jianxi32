@@ -20,7 +20,7 @@ export default class ColorItem extends React.Component {
   }
 
   renderActive() {
-    if(this.props.active) {
+    if(this.state.active) {
       return (
         <a style={{
           textDecoration: 'none',
@@ -37,6 +37,12 @@ export default class ColorItem extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    if(newProps.active !== undefined) {
+      this.state.active = newProps.active;
+    }
+  }
+
   render() {
     return (
       <div
@@ -46,7 +52,7 @@ export default class ColorItem extends React.Component {
           borderRadius: 5,
           border: '1px solid',
           margin: `${this.props.width / 4}px auto`,
-          borderColor: this.props.active ? this.props.activeColor : this.props.defaultColor,
+          borderColor: this.state.active ? this.props.activeColor : this.props.defaultColor,
           backgroundColor: this.props.defaultBgColor
         }}
         onClick={this.onHandleClick.bind(this)}

@@ -7,11 +7,15 @@ import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
 
 import ButtonMenu from '../components/ButtonMenu';
 
-import { Popover, RaisedButton, Menu, MenuItem } from 'material-ui';
+import { Popover, RaisedButton, Menu, MenuItem, SvgIcon } from 'material-ui';
 
 import ColorGroup from '../components/ColorGroup';
 
 import ProductPanel from './ProductPanel';
+
+import PatternLibrariesPanel from './PatternLibrariesPanel';
+
+// console.log(PatternLibrariesPanel.getWrappedInstance());
 
 export default class App extends React.Component {
   onHandleItemClick(event, index) {
@@ -21,6 +25,7 @@ export default class App extends React.Component {
         break;
       case 1:
         console.log('This is 1.');
+        this.refs.patternLibrariesPanel.getWrappedInstance().setState({open: true});
         break;
       default:
         console.log('No index.');
@@ -92,50 +97,43 @@ export default class App extends React.Component {
           this.refs.scolorgroup.setState({currentActiveIndex: 8});
         }}/>
 
-        <ProductPanel bgColor='#ff8d5c' color='#eee' tilesData={[
-          {
-            title: 'ATR1000系列短袖',
-            items: [{
-              img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
-              title: 'AIR1000男款'
-            }, {
-              img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
-              title: 'AIR1000女款'
-            }, {
-              img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
-              title: 'AIR1000女款'
-            }, {
-              img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
-              title: 'AIR1000女款'
-            }, {
-              img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
-              title: 'AIR1000女款'
-            }, {
-              img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
-              title: 'AIR1000女款'
-            }, {
-              img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
-              title: 'AIR1000女款'
-            }, {
-              img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
-              title: 'AIR1000女款'
-            }, {
-              img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
-              title: 'AIR1000女款'
-            }]
-          }, {
-            title: 'FLY996系列长袖',
-            items: [{
-              img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
-              title: 'FLY996男款'
-            }, {
-              img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
-              title: 'FLY996女款'
-            }]
+        <RaisedButton
+          label='选择产品'
+          onTouchTap={e => {
+            this.refs.productPanel.getWrappedInstance().setState({open: true});
+          }}
+          icon={
+            <SvgIcon>
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" data-reactid=".0.0.0.0.1:2:$/=10.0"></path>
+            </SvgIcon>
           }
-        ]}/>
+          backgroundColor='#ff8d5c'
+          labelColor='#eee'/>
+
+        <ProductPanel bgColor='#ff8d5c' color='#eee' ref='productPanel' />
+
+        <PatternLibrariesPanel bgColor='#ff8d5c' color='#eee' ref='patternLibrariesPanel' />
+
       </div>
       </MuiThemeProvider>
     );
   }
 }
+
+App.defaultProps = {
+};
+
+App.propTypes = {
+};
+
+// function mapStateToProps(state) {
+//   return {
+//     patternOpen: state.patternData.open
+//   };
+// }
+//
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({
+//     setPatternOpen
+//   }, dispatch);
+// }

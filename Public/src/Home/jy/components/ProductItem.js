@@ -12,7 +12,14 @@ export default class ProductItem extends React.Component {
   onHandleClick(event) {
     this.setState({active: true});
     if(this.props.onClick) {
-      this.props.onClick(event, this.props.img, this.props.title);
+      let other = this.props.other ? this.props.other : null;
+      this.props.onClick(event, this.props.img, this.props.title, other);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if(newProps.active !== undefined) {
+      this.state.active = newProps.active;
     }
   }
 
@@ -21,7 +28,7 @@ export default class ProductItem extends React.Component {
       <div
         onClick={this.onHandleClick.bind(this)}
         style={{
-          padding: 10,
+          padding: this.state.active ? 4 : 5,
           textAlign: 'center',
           border: this.state.active ? `1px solid ${this.props.activeColor}` : 'none'
         }}>
