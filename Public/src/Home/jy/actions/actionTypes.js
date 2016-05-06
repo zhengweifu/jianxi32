@@ -6,3 +6,11 @@ export const ADD_PRODUCT_ITEM_DATA = 'ADD_PRODUCT_ITEM_DATA';
 export const ADD_PATTERN_ITEM_DATA = 'ADD_PATTERN_ITEM_DATA';
 
 export const SET_PATTERN_ITEM_DATA = 'SET_PATTERN_ITEM_DATA';
+
+export const ADD_NODE = 'ADD_NODE';
+
+export const REMOVE_NODE = 'REMOVE_NODE';
+
+export const SET_NODE = 'SET_NODE';
+
+export const SET_NODE_ACTIVE_INDEX = 'SET_NODE_ACTIVE_INDEX';

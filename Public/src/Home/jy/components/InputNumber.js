@@ -71,10 +71,21 @@ export default class InputNumber extends React.Component {
       // todo
     }
 
+    let ovalue = _vals.join('');
 
-    this.setState({value: _vals.join('')});
+    this.setState({value: ovalue});
 
-    this.props.onChange(event, this.state.value);
+    if(this.props.onChange) {
+      this.props.onChange(event, ovalue);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if(newProps.value !== undefined) {
+      this.setState({
+        value: newProps.value
+      });
+    }
   }
 
   render() {

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 
-import setProductItemData from '../actions/setProductItemData';
+import { setProductItemData } from '../actions';
 
 class ProductPanel extends React.Component {
   constructor(props) {

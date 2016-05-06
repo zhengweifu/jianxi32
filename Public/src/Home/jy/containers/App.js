@@ -7,6 +7,10 @@ import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
 
 import ButtonMenu from '../components/ButtonMenu';
 
+import NodePanel from './NodePanel';
+
+import ProductNumber from './ProductNumber';
+
 import { Popover, RaisedButton, Menu, MenuItem, SvgIcon } from 'material-ui';
 
 import ColorGroup from '../components/ColorGroup';
@@ -114,6 +118,8 @@ export default class App extends React.Component {
 
         <PatternLibrariesPanel bgColor='#ff8d5c' color='#eee' ref='patternLibrariesPanel' />
 
+        <NodePanel />
+        <ProductNumber />
       </div>
       </MuiThemeProvider>
     );

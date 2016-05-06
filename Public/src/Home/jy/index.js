@@ -12,9 +12,7 @@ import {Provider} from 'react-redux';
 
 import reducer from './reducers/index';
 
-import addProductItemData from './actions/addProductItemData';
-
-import addPatternItemData from './actions/addPatternItemData';
+import { addNode, addProductItemData, addPatternItemData } from './actions/index';
 
 let store = createStore(reducer);
 
@@ -79,6 +77,23 @@ store.dispatch(addPatternItemData('建筑', {
   describtion: '小树'
 }));
 
+// nodeData test data
+store.dispatch(addNode({
+  kind: '图片',
+  describtion: '/jianxi32/Public/src/Home/jy/images/tx01.jpg'
+}));
+
+store.dispatch(addNode({
+  kind: '文字',
+  describtion: '我的名字叫大王'
+}));
+
+store.dispatch(addNode({
+  kind: '图片',
+  describtion: '/jianxi32/Public/src/Home/jy/images/tx01.jpg'
+}));
+
+// console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>

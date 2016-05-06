@@ -7,14 +7,14 @@ import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 
-import setPatternItemData from '../actions/setPatternItemData';
+import { setPatternItemData }from '../actions';
 
 class PatternLibrariesPanel extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      open: true,
+      open: false,
       currentActiveTitleIndex: props.activeTitleIndex,
       currentActiveItemIndex: props.activeItemIndex,
       currentShowTitleIndex: props.showTitleIndex
