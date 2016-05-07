@@ -51,7 +51,7 @@ export default class ColorItem extends React.Component {
           height: this.props.height,
           borderRadius: 5,
           border: '1px solid',
-          margin: `${this.props.width / 4}px auto`,
+          margin: 'auto',
           borderColor: this.state.active ? this.props.activeColor : this.props.defaultColor,
           backgroundColor: this.props.defaultBgColor
         }}

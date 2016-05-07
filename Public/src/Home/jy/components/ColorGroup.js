@@ -2,6 +2,8 @@ import React from 'react';
 
 import ColorItem from './ColorItem';
 
+import { GridList } from 'material-ui';
+
 export default class ColorGroup extends React.Component {
   constructor(props) {
     super(props);
@@ -32,36 +34,26 @@ export default class ColorGroup extends React.Component {
 
   renderList() {
     return this.props.items.map((item, index) => {
-      let paddingLeft = 0, paddingRight = 2;
-      if(index == 0 || ((index + 1) % 13 == 0)) {
-        paddingLeft = 15;
-      } else if((index + 1) % 12 == 0) {
-        paddingRight = 15;
-      }
-
       return (
-        <div key={index} className='col-xs-1' style={{
-            textAlign: 'center',
-            paddingLeft: paddingLeft,
-            paddingRight: paddingRight
-          }}>
-          <ColorItem
-            defaultBgColor={item}
-            onClick={this.onHandleClick.bind(this)}
-            active={this.state.currentActiveIndex === index ? true : false}
-            width={28}
-            height={28}
-            />
-        </div>
+        <ColorItem
+          key={index}
+          defaultBgColor={item}
+          onClick={this.onHandleClick.bind(this)}
+          active={this.state.currentActiveIndex === index ? true : false}
+          width={28}
+          height={28}
+          />
       );
     });
   }
 
   render() {
     return (
-      <div className='row'>
+      <GridList
+        cols={12}
+        cellHeight={28}>
         {this.renderList()}
-      </div>
+      </GridList>
     );
   }
 }
