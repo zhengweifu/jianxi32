@@ -48,7 +48,7 @@ export default class InputNumberSliderGroup extends React.Component {
         }}>{this.props.label}</div>
         <div style={{
           position: 'absolute',
-          left: this.props.inputWidth + 5,
+          left: this.props.labelWidth + 5,
           top: 0,
           width: this.props.inputWidth
           }}>
@@ -70,7 +70,8 @@ export default class InputNumberSliderGroup extends React.Component {
             top: 0,
             left: this.props.labelWidth + this.props.inputWidth + 10,
             right: 5,
-            marginBottom: 24
+            marginTop: 0,
+            marginBottom: 0
           }}
           />
       </div>
@@ -82,7 +83,7 @@ export default class InputNumberSliderGroup extends React.Component {
 InputNumberSliderGroup.defaultProps = {
   label: 'position',
   labelWidth: 65,
-  inputWidth: 65,
+  inputWidth: 55,
 };
 
 InputNumberSliderGroup.propTypes = {

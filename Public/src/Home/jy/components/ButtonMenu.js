@@ -2,6 +2,8 @@ import React from 'react';
 import { RaisedButton, Popover, Menu, MenuItem } from 'material-ui';
 import PopoverAnimationVertical from 'material-ui/Popover/PopoverAnimationVertical';
 
+import { ImageImage } from 'material-ui/svg-icons';
+
 export default class ButtonMenu extends React.Component {
   constructor(props) {
     super(props);
@@ -47,7 +49,9 @@ export default class ButtonMenu extends React.Component {
           <RaisedButton style={{width: this.props.width}}
             onTouchTap={this.onHandleTouchTap.bind(this)}
             label={this.props.name}
-            primary={true}
+            backgroundColor={this.props.bgColor}
+            labelColor={this.props.fbColor}
+            icon={<ImageImage/>}
           />
           <Popover
             open={this.state.open}
@@ -74,5 +78,7 @@ ButtonMenu.propTypes = {
   width: React.PropTypes.number,
   items: React.PropTypes.array.isRequired,
   name: React.PropTypes.string.isRequired,
+  bgColor: React.PropTypes.string.isRequired,
+  fbColor: React.PropTypes.string.isRequired,
   onItemClick: React.PropTypes.func
 };

@@ -5,84 +5,60 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
 
-import ButtonMenu from '../components/ButtonMenu';
-
 import NodePanel from './NodePanel';
 
 import ProductNumber from './ProductNumber';
 
 import { Popover, RaisedButton, Menu, MenuItem, SvgIcon } from 'material-ui';
 
-import { ImageDehaze } from 'material-ui/svg-icons/index';
-
 import ColorGroup from '../components/ColorGroup';
 
-import ProductPanel from './ProductPanel';
+import ProductHeaderPanel from './ProductHeaderPanel';
 
-import PatternLibrariesPanel from './PatternLibrariesPanel';
+import CreateNodePanel  from './CreateNodePanel';
 
 import BuyerShowPanel from './BuyerShowPanel';
+
+import GeneralPropertiesPanel from './GeneralPropertiesPanel';
+
+import TextPropertiesPanel from './TextPropertiesPanel';
+
+import ColorSchemesPanel from './ColorSchemesPanel';
 
 // console.log(PatternLibrariesPanel.getWrappedInstance());
 
 export default class App extends React.Component {
-  onHandleItemClick(event, index) {
-    switch (index) {
-      case 0:
-        console.log('This is 0.');
-        break;
-      case 1:
-        console.log('This is 1.');
-        this.refs.patternLibrariesPanel.getWrappedInstance().setState({open: true});
-        break;
-      default:
-        console.log('No index.');
-    }
-  }
+
 
   render() {
+
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
       <div>
         <div style={{
           float: 'left',
-          width: 600,
-          height: 600}}>
-          <canvas width={600} height={600} style={{border: '1px solid #ccc'}}></canvas>
+          width: this.props.canvasWidth,
+          height: this.props.canvasHeight}}>
+          <canvas width={this.props.canvasWidth} height={this.props.canvasHeight} style={{border: '1px solid #ccc'}}></canvas>
           <BuyerShowPanel items={[1, 2, 3, 4, 5, 6]}/>
         </div>
         <div style={{
           float: 'left',
-          marginLeft: 10,
-          width: 400}}>
-          <div style={{position: 'relative'}}>
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: 0
-            }}>
-              <RaisedButton
-              label='选择产品'
-              onTouchTap={e => {
-                this.refs.productPanel.getWrappedInstance().setState({open: true});
-              }}
-              icon={<ImageDehaze />}
-              backgroundColor={this.props.tangerine}
-              labelColor='#eee'/>
-              <ProductPanel bgColor='#ff8d5c' color='#eee' ref='productPanel' />
-            </div>
-            <div style={{
-              paddingLeft: 130,
-              height: 36,
-              borderBottom: `2px solid ${this.props.tangerine}`}}>
-              <div style={{
-                paddingTop: 10,
-                fontSize: 18
-              }}>AIR100000000圆领 女款</div>
-            </div>
-          </div>
+          marginLeft: 15,
+          width: this.props.controllerWidth}}>
+          <ProductHeaderPanel bgColor={this.props.tangerine} productDescribtion='AIR100000000圆领 女款'/>
 
           <ProductNumber />
+
+          <CreateNodePanel bgColor={this.props.tangerine} fbColor={this.props.grayeee}/>
+
+          <GeneralPropertiesPanel />
+
+          <TextPropertiesPanel />
+
+          <ColorSchemesPanel />
+
+          <NodePanel />
         </div>
       </div>
       </MuiThemeProvider>
@@ -91,16 +67,6 @@ export default class App extends React.Component {
 }
 
 // <div>
-//   <InputNumberSliderGroup defaultValue={0} max={360} min={-360} type='INT' label='位置'/>
-//   <InputNumberSliderGroup defaultValue={0.5} max={10} min={0} type='NUMBER' label='旋转'/>
-//   <ButtonMenu
-//     name='选择图片'
-//     width={200}
-//     onItemClick={this.onHandleItemClick.bind(this)}
-//     items={[
-//       '本地上传',
-//       '剪切画'
-//     ]}/>
 //   <ColorGroup
 //     activeIndex={1}
 //     ref='colorgroup'
@@ -147,38 +113,26 @@ export default class App extends React.Component {
 //     }}
 //     />
 //
-//   <RaisedButton label='change color' onTouchTap={(event) => {
-//     this.refs.colorgroup.setState({currentActiveIndex: 3});
-//     this.refs.scolorgroup.setState({currentActiveIndex: 8});
-//   }}/>
-//
-//   <RaisedButton
-//     label='选择产品'
-//     onTouchTap={e => {
-//       this.refs.productPanel.getWrappedInstance().setState({open: true});
-//     }}
-//     icon={
-//       <SvgIcon>
-//         <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" data-reactid=".0.0.0.0.1:2:$/=10.0"></path>
-//       </SvgIcon>
-//     }
-//     backgroundColor='#ff8d5c'
-//     labelColor='#eee'/>
-//
-//   <ProductPanel bgColor='#ff8d5c' color='#eee' ref='productPanel' />
-//
-//   <PatternLibrariesPanel bgColor='#ff8d5c' color='#eee' ref='patternLibrariesPanel' />
-//
-//   <NodePanel />
-//   <ProductNumber />
+
+
 // </div>
 
 App.defaultProps = {
-  tangerine: '#ff8d5c'
+  tangerine: '#ff8d5c',
+  grayeee: '#eee',
+  canvasWidth: 600,
+  canvasHeight: 600,
+  controllerWidth: 400,
+  controllerHeight: 800
 };
 
 App.propTypes = {
-  tangerine: React.PropTypes.string
+  tangerine: React.PropTypes.string,
+  grayeee: React.PropTypes.string,
+  canvasWidth: React.PropTypes.number,
+  canvasHeight: React.PropTypes.number,
+  controllerWidth:React.PropTypes.number,
+  controllerHeight: React.PropTypes.number
 };
 
 // function mapStateToProps(state) {
