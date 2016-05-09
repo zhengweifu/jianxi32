@@ -1,3 +1,7 @@
+/**
+ * 剪切画数据控制
+ */
+
 import { SET_PATTERN_ITEM_DATA, ADD_PATTERN_ITEM_DATA } from '../actions/actionTypes';
 
 /**

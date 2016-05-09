@@ -1,3 +1,7 @@
+/**
+ * 节点面板数据控制
+ */
+
 import { ADD_NODE, REMOVE_NODE, SET_NODE, SET_NODE_ACTIVE_INDEX } from '../actions/actionTypes';
 
 const initState = {

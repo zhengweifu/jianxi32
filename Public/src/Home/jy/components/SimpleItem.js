@@ -13,7 +13,7 @@ export default class SimpleItem extends Component {
     this.setState({active: true});
     if(this.props.onClick) {
       let other = this.props.other ? this.props.other : null;
-      this.props.onClick(event, this.props.title, other);
+      this.props.onClick(event, this.props.title);
     }
   }
 

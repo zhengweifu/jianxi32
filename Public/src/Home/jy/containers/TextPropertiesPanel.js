@@ -4,13 +4,21 @@ import PopupPanel from '../components/PopupPanel';
 
 import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
 
+import TextColorPanel from './TextColorPanel';
+
 import ColorItem from '../components/ColorItem';
 
 import { GridList, RaisedButton, TextField, SelectField, MenuItem } from 'material-ui';
 
 import ReactGridLayout from 'react-grid-layout';
 
-export default class TextPropertiesPanel extends Component {
+import { bindActionCreators } from 'redux';
+
+import { connect } from 'react-redux';
+
+import { setTextColorActiveIndex } from '../actions';
+
+class TextPropertiesPanel extends Component {
   render() {
     let buttonStyle = {
       width: '100%',
@@ -24,7 +32,10 @@ export default class TextPropertiesPanel extends Component {
       {i: '2', x: 3, y: 0, w: 1, h: 1, static: true},
       {i: '3', x: 4, y: 0, w: 1, h: 1, static: true},
     ];
+    console.log(this.props.activeColorIndex);
 
+    let currentTextColorString = this.props.activeColorIndex >= 0 ? this.props.colorItems[this.props.activeColorIndex] : '#fff';
+    // console.log('cc: ', currentTextColorString);
     return (
       <PopupPanel label='文字属性' bodyHeight={280} overflow='hidden' open={true}>
         <TextField
@@ -51,11 +62,18 @@ export default class TextPropertiesPanel extends Component {
           </div>
           <div key='1' style={{textAlign: 'center'}}>
             <div style={{marginBottom: 10}}>颜色</div>
-            <ColorItem />
+            <ColorItem defaultBgColor={currentTextColorString}/>
+            <TextColorPanel
+              onClick={(e, color, index) => {
+                this.props.setTextColorActiveIndex(index);
+              }}
+
+              activeIndex={this.props.activeColorIndex}
+              items={this.props.colorItems}/>
           </div>
           <div key='2' style={{textAlign: 'center'}}>
             <div style={{marginBottom: 10}}>描边</div>
-            <ColorItem />
+            <ColorItem defaultBgColor='null'/>
           </div>
           <div key='3' style={{textAlign: 'center'}}>
             <div style={{marginBottom: 10}}>阴影</div>
@@ -73,3 +91,18 @@ export default class TextPropertiesPanel extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    activeColorIndex: state.textColorPanelData.currentColorIndex,
+    colorItems: state.textColorPanelData.colors
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    setTextColorActiveIndex
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, null, {withRef: true})(TextPropertiesPanel);

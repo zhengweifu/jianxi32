@@ -1,13 +1,15 @@
 import React from 'react';
 import { List, ListItem, IconButton } from 'material-ui';
 
-import { ImageImage, EditorTitle, EditorInsertEmoticon, NavigationCancel } from 'material-ui/svg-icons';
+import { ImageImage, EditorTitle, EditorInsertEmoticon, ActionHighlightOff } from 'material-ui/svg-icons';
 
 import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
 
 import { setNode, addNode, removeNode, setNodeActiveIndex } from '../actions/index';
+
+import PopupPanel from '../components/PopupPanel';
 
 class NodePanel extends React.Component {
   renderItems() {
@@ -56,7 +58,7 @@ class NodePanel extends React.Component {
                 }
               }}
               >
-              <NavigationCancel color='#7c2905'/>
+              <ActionHighlightOff color='#7c2905'/>
             </IconButton>}>
         </ListItem>
       );
@@ -65,9 +67,11 @@ class NodePanel extends React.Component {
 
   render() {
     return (
+      <PopupPanel label='节点面板' bodyHeight={180} overflow='auto' open={false}>
       <List>
         {this.renderItems()}
       </List>
+      </PopupPanel>
     );
   }
 }

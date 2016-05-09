@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dialog, RaisedButton, AppBar, GridList, GridTile } from 'material-ui';
 
-import ProductItem from '../components/ProductItem';
+import ImageItem from '../components/ImageItem';
 
 import { connect } from 'react-redux';
 
@@ -28,26 +28,22 @@ class ProductPanel extends React.Component {
     this.setState({open: false});
   }
 
-  onHandleItemClick(event, src, title, other) {
-    if(other !== null) {
-      this.setState({
-        currentActiveTitleIndex: other[0],
-        currentActiveItemIndex: other[1]
-      });
-    }
-    // console.log(src, title, other);
-  }
-
   renderItems(items, titleIndex) {
     return items.map((item, index) => {
       let mactive = (titleIndex == this.state.currentActiveTitleIndex && index == this.state.currentActiveItemIndex) ? true : false;
       return (
         <div key={index} className='col-sm-2' style={{margin: '5px 0'}}>
-          <ProductItem
+          <ImageItem
             img={item.img}
             title={item.describtion}
-            onClick={this.onHandleItemClick.bind(this)}
-            other={[titleIndex, index]}
+            onClick={(e, src, title) => {
+              this.setState({
+                currentActiveTitleIndex: titleIndex,
+                currentActiveItemIndex: index
+              });
+
+              console.log(src, title);
+            }}
             active={mactive}/>
         </div>
       );

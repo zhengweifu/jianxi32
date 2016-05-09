@@ -1,3 +1,7 @@
+/**
+ * 产品面板数据控制
+ */
+
 import { SET_PRODUCT_ITEM_DATA, ADD_PRODUCT_ITEM_DATA } from '../actions/actionTypes';
 
 /**

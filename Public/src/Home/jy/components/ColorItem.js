@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { SvgIcon } from 'material-ui';
+
+import { NavigationCheck } from 'material-ui/svg-icons';
+
 export default class ColorItem extends React.Component {
   constructor(props) {
     super(props);
@@ -9,30 +13,20 @@ export default class ColorItem extends React.Component {
     };
   }
 
-  onHandleClick(event) {
-    if(!this.state.active) {
-      this.setState({active: true});
-    }
-
-    if(this.props.onClick) {
-      this.props.onClick(event, this.props.defaultBgColor);
+  renderDisable() {
+    if(this.props.defaultBgColor === 'null') {
+      return (
+        <SvgIcon color='#f00' style={{margin: this.props.width / 2 - 13}}>
+          <path d="M24,1.4L1.4,24L0,22.6L22.6,0L24,1.4z" />
+        </SvgIcon>
+      );
     }
   }
 
   renderActive() {
     if(this.state.active) {
       return (
-        <a style={{
-          textDecoration: 'none',
-          fontFamily: 'Glyphicons Halflings',
-          fontStyle: 'normal',
-          fontWeight: 400,
-          fontSize: this.props.width / 2,
-          width: this.props.width / 2,
-          color: this.props.activeColor,
-          display: 'block',
-          margin: 'auto'
-        }}>&#xe013;</a>
+        <NavigationCheck color={this.props.activeColor}/>
       );
     }
   }
@@ -53,10 +47,20 @@ export default class ColorItem extends React.Component {
           border: '1px solid',
           margin: 'auto',
           borderColor: this.state.active ? this.props.activeColor : this.props.defaultColor,
-          backgroundColor: this.props.defaultBgColor
+          backgroundColor: this.props.defaultBgColor !== 'null' ? this.props.defaultBgColor : '#fff'
         }}
-        onClick={this.onHandleClick.bind(this)}
+        onClick={e => {
+          if(!this.state.active) {
+            this.setState({active: true});
+          }
+
+          if(this.props.onClick) {
+            this.props.onClick(e, this.props.defaultBgColor);
+          }
+
+        }}
       >
+        {this.renderDisable()}
         {this.renderActive()}
       </div>
     );

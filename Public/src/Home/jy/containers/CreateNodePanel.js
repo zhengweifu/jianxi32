@@ -48,7 +48,6 @@ export default class CreateNodePanel extends Component {
           console.log('添加文字');
         }}
         icon={<EditorTitle/>}
-        fullWidth={true}
         style={{width: 182, marginLeft: 15}}
         backgroundColor={this.props.bgColor}
         labelColor={this.props.fbColor}/>

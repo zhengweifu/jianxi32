@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductItem from '../components/ProductItem';
+import ImageItem from '../components/ImageItem';
 
 export default class PatternLibrariesGroup extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class PatternLibrariesGroup extends React.Component {
       let mactive = (this.state.activeIndex == index) ? true : false;
       return (
         <div key={index} className='col-sm-2' style={{margin: '5px 0'}}>
-          <ProductItem
+          <ImageItem
             img={item.img}
             title={item.describtion}
             onClick={e => {

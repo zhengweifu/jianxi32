@@ -66,57 +66,6 @@ export default class App extends React.Component {
   }
 }
 
-// <div>
-//   <ColorGroup
-//     activeIndex={1}
-//     ref='colorgroup'
-//     items={[
-//       '#ff0',
-//       '#f00',
-//       '#f0f',
-//       '#fe0',
-//       '#f10',
-//       '#f4f',
-//       '#f60',
-//       '#830',
-//       '#f8f',
-//       '#f80',
-//       '#f04',
-//       '#f02',
-//       '#3f0',
-//       '#500',
-//       '#70f'
-//     ]}/>
-//
-//   <ColorGroup
-//     activeIndex={3}
-//     ref='scolorgroup'
-//     items={[
-//       '#ff0',
-//       '#f00',
-//       '#f0f',
-//       '#fe0',
-//       '#f10',
-//       '#f4f',
-//       '#f60',
-//       '#830',
-//       '#f8f',
-//       '#f80',
-//       '#f04',
-//       '#f02',
-//       '#3f0',
-//       '#500',
-//       '#70f'
-//     ]}
-//     onClick={(event, color) => {
-//       console.log(color);
-//     }}
-//     />
-//
-
-
-// </div>
-
 App.defaultProps = {
   tangerine: '#ff8d5c',
   grayeee: '#eee',

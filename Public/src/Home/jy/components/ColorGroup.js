@@ -13,19 +13,6 @@ export default class ColorGroup extends React.Component {
     };
   }
 
-  onHandleClick(event, color) {
-
-    let index = this.props.items.findIndex((c) => {
-      return c === color;
-    });
-
-    this.setState({currentActiveIndex: index});
-
-    if(this.props.onClick) {
-      this.props.onClick(event, color);
-    }
-  }
-
   componentWillReceiveProps(newProps) {
     if(newProps.activeIndex !== undefined) {
       this.state.currentActiveIndex = newProps.activeIndex;
@@ -38,7 +25,17 @@ export default class ColorGroup extends React.Component {
         <ColorItem
           key={index}
           defaultBgColor={item}
-          onClick={this.onHandleClick.bind(this)}
+          onClick={(e, color) => {
+            let index = this.props.items.findIndex((c) => {
+              return c === color;
+            });
+
+            this.setState({currentActiveIndex: index});
+
+            if(this.props.onClick) {
+              this.props.onClick(e, color, index);
+            }
+          }}
           active={this.state.currentActiveIndex === index ? true : false}
           width={28}
           height={28}

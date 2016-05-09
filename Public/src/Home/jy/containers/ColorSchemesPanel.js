@@ -2,38 +2,73 @@ import React, { Component, PropTypes } from 'react';
 
 import PopupPanel from '../components/PopupPanel';
 
-import SimpleItem from '../components/SimpleItem';
+import ImageItem from '../components/ImageItem';
 
-import ReactGridLayout from 'react-grid-layout';
+import { GridList } from 'material-ui';
 
-export default class ColorSchemesPanel extends Component {
+import { bindActionCreators } from 'redux';
+
+import { connect } from 'react-redux';
+
+import { setColorSchemeActiveIndex } from '../actions';
+
+class ColorSchemesPanel extends Component {
   renderItems() {
-    
+    return this.props.items.map((item, index) => {
+      return (
+        <ImageItem
+          key={index}
+          title={item.describtion}
+          img={item.img}
+          active={this.props.activeIndex == index ? true : false}
+          onClick={(e, describtion, img) => {
+            this.props.setColorSchemeActiveIndex(index);
+            if(this.props.onItemClick) {
+              this.props.onItemClick(e, describtion, img);
+            };
+          }}/>
+      );
+    });
   }
 
   render() {
-    let layout = [
-      {i: '0', x: 0, y: 0, w: 1, h: 1, static: true},
-      {i: '1', x: 1, y: 0, w: 1, h: 1, static: true},
-      {i: '2', x: 2, y: 0, w: 1, h: 1, static: true},
-      {i: '3', x: 3, y: 0, w: 1, h: 1, static: true}
-    ];
     return (
       <PopupPanel label='色彩风格' bodyHeight={200} overflow='hidden' open={true}>
-      <ReactGridLayout
-        width={400}
-        rowHeight={100}
-        layout={layout}
+      <GridList
+        cellHeight={100}
         cols={4}>
-        <div key='0'><SimpleItem title='素描'>
-          <img src="ddfwfw.jpg" />
-        </SimpleItem></div>
-        <div key='1'><SimpleItem title='素描'>
-          <img src="ddfwfw.jpg" />
-        </SimpleItem></div>
-      </ReactGridLayout>
+        {this.renderItems()}
+      </GridList>
       </PopupPanel>
 
     );
   }
 }
+
+ColorSchemesPanel.defaultProps = {
+  activeIndex: -1,
+  items: []
+};
+
+ColorSchemesPanel.propTypes = {
+  activeIndex: PropTypes.number,
+  items: PropTypes.arrayOf(PropTypes.shape({
+    img: PropTypes.string,
+    describtion: PropTypes.string
+  }))
+};
+
+function mapStateToProps(state) {
+  return {
+    activeIndex: state.colorSchemeData.activeIndex,
+    items: state.colorSchemeData.items
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    setColorSchemeActiveIndex
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ColorSchemesPanel);
