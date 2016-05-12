@@ -5,6 +5,21 @@ import ColorGroup from '../components/ColorGroup';
 import { Popover } from 'material-ui';
 
 export default class TextColorPanel extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: props.open,
+      anchorEl: props.anchorEl
+    };
+  }
+
+  componentWillReceiveProps(newProps) {
+    if(newProps.open !== undefined) {
+      this.setState({open: newProps.open});
+    }
+  }
+
   handleRequestClose = () => {
     this.setState({
       open: false,
@@ -14,11 +29,20 @@ export default class TextColorPanel extends Component {
   render() {
     return (
       <Popover
-        open={this.props.open}
-        anchorEl={this.props.anchorEl}
-        anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-        targetOrigin={{horizontal: 'left', vertical: 'top'}}
-        onRequestClose={this.handleRequestClose}
+        open={this.state.open}
+        anchorEl={this.state.anchorEl}
+        anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
+        targetOrigin={{horizontal: 'middle', vertical: 'top'}}
+        onRequestClose={e => {
+          this.setState({
+            open: false,
+          });
+
+          if(this.props.onRequestClose) {
+            this.props.onRequestClose(e);
+          }
+        }}
+        style={{paddingTop: 10, paddingBottom: 10, marginTop: 5}}
         >
       <ColorGroup
         activeIndex={this.props.activeIndex}
@@ -34,7 +58,7 @@ export default class TextColorPanel extends Component {
 }
 
 TextColorPanel.defaultProps = {
-  open: true,
+  open: false,
   anchorEl: null
 };
 
@@ -43,5 +67,6 @@ TextColorPanel.propTypes = {
   anchorEl: PropTypes.object,
   activeIndex: PropTypes.number.isRequired,
   items: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  onRequestClose: PropTypes.func.isRequired
 };

@@ -1,20 +1,13 @@
-export setTextColorActiveIndex from './setTextColorActiveIndex';
-export addTextColor from './addTextColor';
+export { setTextColorActiveIndex, addTextColor, setTextColorPanelVisible } from './textColorPanelActions';
 
 
-export addNode from './addNode';
-export removeNode from './removeNode';
-export setNode from './setNode';
-export setNodeActiveIndex from './setNodeActiveIndex';
+export { addNode, removeNode, setNode, setNodeActiveIndex } from './nodePanelActions';
 
 
-export addPatternItemData from './addPatternItemData';
-export setPatternItemData from './setPatternItemData';
+export { addPatternItemData, setPatternItemData } from './patternPanelActions';
 
 
-export addProductItemData from './addProductItemData';
-export setProductItemData from './setProductItemData';
+export { addProductItemData, setProductItemData } from './productPanelActions';
 
 
-export addColorScheme from './addColorScheme';
-export setColorSchemeActiveIndex from './setColorSchemeActiveIndex';
+export { addColorScheme, setColorSchemeActiveIndex } from './colorSchemePanelActions';

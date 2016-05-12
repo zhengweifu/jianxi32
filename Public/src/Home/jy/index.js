@@ -12,7 +12,7 @@ import {Provider} from 'react-redux';
 
 import reducer from './reducers/index';
 
-import { addNode, addProductItemData, addPatternItemData, addColorScheme, addTextColor } from './actions/index';
+import { addNode, addProductItemData, addPatternItemData, addColorScheme, addTextColor } from './actions';
 
 let store = createStore(reducer);
 

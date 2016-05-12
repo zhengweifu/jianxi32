@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import ReactDOM from 'react-dom';
+
 import PopupPanel from '../components/PopupPanel';
 
 import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
@@ -16,7 +18,7 @@ import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
 
-import { setTextColorActiveIndex } from '../actions';
+import { setTextColorActiveIndex, addTextColor, setTextColorPanelVisible } from '../actions';
 
 class TextPropertiesPanel extends Component {
   render() {
@@ -32,7 +34,7 @@ class TextPropertiesPanel extends Component {
       {i: '2', x: 3, y: 0, w: 1, h: 1, static: true},
       {i: '3', x: 4, y: 0, w: 1, h: 1, static: true},
     ];
-    console.log(this.props.activeColorIndex);
+    // console.log(this.textColorPanel);
 
     let currentTextColorString = this.props.activeColorIndex >= 0 ? this.props.colorItems[this.props.activeColorIndex] : '#fff';
     // console.log('cc: ', currentTextColorString);
@@ -62,13 +64,44 @@ class TextPropertiesPanel extends Component {
           </div>
           <div key='1' style={{textAlign: 'center'}}>
             <div style={{marginBottom: 10}}>颜色</div>
-            <ColorItem defaultBgColor={currentTextColorString}/>
+            <ColorItem defaultBgColor={currentTextColorString}
+              ref={ref => {
+                this.textColorItem = ref;
+                this.colorPanelAnchorEl = ReactDOM.findDOMNode(ref);
+              }}
+              active={this.props.colorPanelVisible}
+              onClick={(e, color) => {
+                let index;
+                if(color !== 'null') {
+                  index = this.props.colorItems.findIndex(item => item === color);
+                  if(index === -1) {
+                    this.props.addTextColor(color);
+                    index = this.props.colorItems.length - 1;
+                  }
+                } else {
+                  index = this.props.colorItems.length;
+                }
+
+                this.props.setTextColorActiveIndex(index);
+                console.log('ddd: ', this.props.colorPanelVisible);
+                this.props.setTextColorPanelVisible(!this.props.colorPanelVisible);
+              
+
+                if(this.colorPanelAnchorEl) {
+                  this.textColorPanel.setState({anchorEl: this.colorPanelAnchorEl});
+                }
+              }}/>
             <TextColorPanel
               onClick={(e, color, index) => {
                 this.props.setTextColorActiveIndex(index);
               }}
-
+              ref={ref => this.textColorPanel = ref}
+              anchorEl = {this.colorPanelAnchorEl}
+              open={this.props.colorPanelVisible}
               activeIndex={this.props.activeColorIndex}
+              onRequestClose={e => {
+                this.props.setTextColorPanelVisible(false);
+              }}
               items={this.props.colorItems}/>
           </div>
           <div key='2' style={{textAlign: 'center'}}>
@@ -95,13 +128,16 @@ class TextPropertiesPanel extends Component {
 function mapStateToProps(state) {
   return {
     activeColorIndex: state.textColorPanelData.currentColorIndex,
-    colorItems: state.textColorPanelData.colors
+    colorItems: state.textColorPanelData.colors,
+    colorPanelVisible: state.textColorPanelData.visible
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    setTextColorActiveIndex
+    setTextColorActiveIndex,
+    addTextColor,
+    setTextColorPanelVisible
   }, dispatch);
 }
 
