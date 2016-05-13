@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import ColorGroup from '../components/ColorGroup';
 
-import { Popover } from 'material-ui';
+import { Popover, PopoverAnimationVertical } from 'material-ui';
 
 export default class TextColorPanel extends Component {
   constructor(props) {
@@ -43,6 +43,7 @@ export default class TextColorPanel extends Component {
           }
         }}
         style={{padding: '10px 5px', marginTop: 5, width: 400}}
+        animation={PopoverAnimationVertical}
         >
       <ColorGroup
         activeIndex={this.props.activeIndex}

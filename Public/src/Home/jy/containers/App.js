@@ -25,6 +25,9 @@ import TextPropertiesPanel from './TextPropertiesPanel';
 
 import ColorSchemesPanel from './ColorSchemesPanel';
 
+import ImageItem from '../components/ImageItem';
+
+import { GridList } from 'material-ui';
 // console.log(PatternLibrariesPanel.getWrappedInstance());
 
 export default class App extends React.Component {
@@ -34,12 +37,20 @@ export default class App extends React.Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-      <div>
+      <div className='container'>
         <div style={{
-          float: 'left',
-          width: this.props.canvasWidth,
-          height: this.props.canvasHeight}}>
+          float: 'left'}}>
           <canvas width={this.props.canvasWidth} height={this.props.canvasHeight} style={{border: '1px solid #ccc'}}></canvas>
+
+          <div style={{width: '50%', margin: 'auto'}}>
+            <GridList
+              cellHeight={100}
+              cols={3}>
+              <ImageItem img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
+              <ImageItem img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
+              <ImageItem img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
+            </GridList>
+          </div>
           <BuyerShowPanel items={[1, 2, 3, 4, 5, 6]}/>
         </div>
         <div style={{
@@ -48,16 +59,17 @@ export default class App extends React.Component {
           width: this.props.controllerWidth}}>
           <ProductHeaderPanel bgColor={this.props.tangerine} productDescribtion='AIR100000000圆领 女款'/>
 
+          <div style={{marginTop: 10}}></div>
           <ProductNumber />
-
+          <div style={{marginTop: 10}}></div>
           <CreateNodePanel bgColor={this.props.tangerine} fbColor={this.props.grayeee}/>
-
+          <div style={{marginTop: 10}}></div>
           <GeneralPropertiesPanel />
-
+          <div style={{marginTop: 10}}></div>
           <TextPropertiesPanel />
-
+          <div style={{marginTop: 10}}></div>
           <ColorSchemesPanel />
-
+          <div style={{marginTop: 10}}></div>
           <NodePanel />
         </div>
       </div>

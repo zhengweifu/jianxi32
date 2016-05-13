@@ -33,7 +33,7 @@ export default class SimpleItem extends Component {
           border: this.state.active ? `1px solid ${this.props.activeColor}` : 'none'
         }}>
         {this.props.children}
-        <div style={{fontSize: 12}}>{this.props.title}</div>
+        {this.props.title ? <div style={{fontSize: 12}}>{this.props.title}</div> : ''}
       </div>
     );
   }
@@ -47,6 +47,6 @@ SimpleItem.defaultProps = {
 SimpleItem.propTypes = {
   active: PropTypes.bool,
   activeColor: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   onClick: PropTypes.func
 };

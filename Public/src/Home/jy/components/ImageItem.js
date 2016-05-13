@@ -50,6 +50,6 @@ ImageItem.propTypes = {
   active: PropTypes.bool,
   activeColor: PropTypes.string,
   img: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   onClick: PropTypes.func
 };

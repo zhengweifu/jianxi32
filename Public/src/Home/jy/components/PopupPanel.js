@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import { HardwareKeyboardArrowDown, HardwareKeyboardArrowRight} from 'material-ui/svg-icons';
+
 export default class PopupPanel extends Component {
   constructor(props) {
     super(props);
@@ -72,7 +74,9 @@ export default class PopupPanel extends Component {
               }
             }
           }, 20);
-        }}>{this.props.label}</div>
+        }}>{this.props.label}
+          {this.state.open ? <HardwareKeyboardArrowDown style={{float: 'right'}}/> : <HardwareKeyboardArrowRight style={{float: 'right'}}/>}
+        </div>
         <div style={bodyStyle}>
           {this.props.children}
         </div>
