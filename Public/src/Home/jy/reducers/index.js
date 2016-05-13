@@ -8,6 +8,8 @@ import { colorSchemeData } from './colorSchemeData';
 
 import { textColorPanelData } from './textColorPanelData';
 
+import { textStrokePanelData } from './textStrokePanelData';
+
 import { combineReducers } from 'redux';
 
 export default combineReducers({
@@ -15,5 +17,6 @@ export default combineReducers({
   patternData,
   nodeData,
   colorSchemeData,
-  textColorPanelData
+  textColorPanelData,
+  textStrokePanelData
 });

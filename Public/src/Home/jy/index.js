@@ -12,7 +12,7 @@ import {Provider} from 'react-redux';
 
 import reducer from './reducers/index';
 
-import { addNode, addProductItemData, addPatternItemData, addColorScheme, addTextColor } from './actions';
+import { addNode, addProductItemData, addPatternItemData, addColorScheme, addTextColor, addTextStroke } from './actions';
 
 let store = createStore(reducer);
 
@@ -118,6 +118,23 @@ store.dispatch(addTextColor('#f02'));
 store.dispatch(addTextColor('#3f0'));
 store.dispatch(addTextColor('#500'));
 store.dispatch(addTextColor('#70f'));
+
+// textStrokePanelData
+store.dispatch(addTextStroke('#ff0'));
+store.dispatch(addTextStroke('#f00'));
+store.dispatch(addTextStroke('#f0f'));
+store.dispatch(addTextStroke('#fe0'));
+store.dispatch(addTextStroke('#f10'));
+store.dispatch(addTextStroke('#f4f'));
+store.dispatch(addTextStroke('#f60'));
+store.dispatch(addTextStroke('#830'));
+store.dispatch(addTextStroke('#f8f'));
+store.dispatch(addTextStroke('#f80'));
+store.dispatch(addTextStroke('#f04'));
+store.dispatch(addTextStroke('#f02'));
+store.dispatch(addTextStroke('#3f0'));
+store.dispatch(addTextStroke('#500'));
+store.dispatch(addTextStroke('#70f'));
 
 // console.log(store.getState());
 
