@@ -2,7 +2,7 @@
  * 文字描边面板数据控制
  */
 
-import { ADD_TEXT_STROKE, SET_TEXT_STROKE_ACTIVE_INDEX, SET_TEXT_STROKE_PANEL_VISIBLE, SET_TEXT_STROKE_SIZE } from '../actions/actionTypes';
+import { ADD_TEXT_SHADOW, SET_TEXT_SHADOW_ACTIVE_INDEX, SET_TEXT_SHADOW_PANEL_VISIBLE, SET_TEXT_SHADOW_SIZE } from '../actions/actionTypes';
 
 const initState = {
   visible: false,
@@ -11,9 +11,9 @@ const initState = {
   colors: ['null']
 };
 
-export function textStrokePanelData(state = initState, action) {
+export function textShadowPanelData(state = initState, action) {
   switch (action.type) {
-    case ADD_TEXT_STROKE:
+    case ADD_TEXT_SHADOW:
       return (() => {
         let newState = {
           visible: state.visible,
@@ -24,21 +24,21 @@ export function textStrokePanelData(state = initState, action) {
         newState.colors.splice(newState.colors.length - 1, 0, action.color);
         return newState;
       })();
-    case SET_TEXT_STROKE_ACTIVE_INDEX:
+    case SET_TEXT_SHADOW_ACTIVE_INDEX:
       return {
         visible: state.visible,
         size: state.size,
         currentColorIndex: action.index,
         colors: state.colors.slice(0)
       };
-    case SET_TEXT_STROKE_PANEL_VISIBLE:
+    case SET_TEXT_SHADOW_PANEL_VISIBLE:
       return {
         visible: action.visible,
         size: state.size,
         currentColorIndex: state.currentColorIndex,
         colors: state.colors.slice(0)
       };
-    case SET_TEXT_STROKE_SIZE:
+    case SET_TEXT_SHADOW_SIZE:
       return {
         visible: state.visible,
         size: action.size,

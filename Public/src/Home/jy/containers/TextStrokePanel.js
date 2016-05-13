@@ -4,6 +4,8 @@ import ColorGroup from '../components/ColorGroup';
 
 import { Popover } from 'material-ui';
 
+import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
+
 export default class TextStrokePanel extends Component {
   constructor(props) {
     super(props);
@@ -42,16 +44,19 @@ export default class TextStrokePanel extends Component {
             this.props.onRequestClose(e);
           }
         }}
-        style={{paddingTop: 10, paddingBottom: 10, marginTop: 5}}
+        style={{padding: '10px 5px', marginTop: 5, width: 400}}
         >
-      <ColorGroup
-        activeIndex={this.props.activeIndex}
-        onClick={(e, item, index) => {
-          if(this.props.onClick) {
-            this.props.onClick(e, item, index);
-          }
-        }}
-        items={this.props.items}/>
+        <ColorGroup
+          activeIndex={this.props.activeIndex}
+          onClick={(e, item, index) => {
+            if(this.props.onClick) {
+              this.props.onClick(e, item, index);
+            }
+          }}
+          items={this.props.items}/>
+        <div style={{paddingLeft: 5, paddingRight: 3}}>
+          <InputNumberSliderGroup defaultValue={this.props.size} max={10} min={0} type='INT' label='描边大小'/>
+        </div>
       </Popover>
     );
   }
@@ -59,7 +64,8 @@ export default class TextStrokePanel extends Component {
 
 TextStrokePanel.defaultProps = {
   open: false,
-  anchorEl: null
+  anchorEl: null,
+  size: 1
 };
 
 TextStrokePanel.propTypes = {
@@ -68,5 +74,6 @@ TextStrokePanel.propTypes = {
   activeIndex: PropTypes.number.isRequired,
   items: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   onClick: PropTypes.func.isRequired,
-  onRequestClose: PropTypes.func.isRequired
+  onRequestClose: PropTypes.func.isRequired,
+  size: PropTypes.number
 };

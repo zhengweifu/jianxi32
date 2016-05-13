@@ -45,7 +45,7 @@ export default class ColorItem extends React.Component {
   render() {
     return (
       <div
-        style={{
+        style={Object.assign({
           position: 'relative',
           width: this.props.width,
           height: this.props.height,
@@ -54,7 +54,7 @@ export default class ColorItem extends React.Component {
           margin: 'auto',
           borderColor: this.state.active ? this.props.activeColor : this.props.defaultColor,
           backgroundColor: this.props.defaultBgColor !== 'null' ? this.props.defaultBgColor : 'transparent'
-        }}
+        }, this.props.style)}
         onClick={e => {
           if(!this.state.active) {
             this.setState({active: true});
@@ -79,7 +79,8 @@ ColorItem.defaultProps = {
   defaultBgColor: '#fff',
   defaultColor: '#ccc',
   activeColor: '#5d9be7',
-  active: false
+  active: false,
+  style: {}
 };
 
 ColorItem.propTypes = {
@@ -89,5 +90,6 @@ ColorItem.propTypes = {
   defaultColor: React.PropTypes.string,
   activeColor: React.PropTypes.string,
   active: React.PropTypes.bool,
-  onClick: React.PropTypes.func
+  onClick: React.PropTypes.func,
+  style: React.PropTypes.object
 };

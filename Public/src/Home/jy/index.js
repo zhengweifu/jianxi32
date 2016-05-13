@@ -12,7 +12,9 @@ import {Provider} from 'react-redux';
 
 import reducer from './reducers/index';
 
-import { addNode, addProductItemData, addPatternItemData, addColorScheme, addTextColor, addTextStroke } from './actions';
+import axios from 'axios';
+
+import { addNode, addProductItemData, addPatternItemData, addColorScheme, addTextColor, addTextStroke, addTextShadow  } from './actions';
 
 let store = createStore(reducer);
 
@@ -102,41 +104,19 @@ store.dispatch(addColorScheme({describtion: '素描', img: '/jianxi32/Public/src
 store.dispatch(addColorScheme({describtion: '美肤', img: '/jianxi32/Public/src/Home/jy/images/ps/softEnhancement.png'}));
 store.dispatch(addColorScheme({describtion: '素描', img: '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'}));
 
-// textColorPanelData
-store.dispatch(addTextColor('#ff0'));
-store.dispatch(addTextColor('#f00'));
-store.dispatch(addTextColor('#f0f'));
-store.dispatch(addTextColor('#fe0'));
-store.dispatch(addTextColor('#f10'));
-store.dispatch(addTextColor('#f4f'));
-store.dispatch(addTextColor('#f60'));
-store.dispatch(addTextColor('#830'));
-store.dispatch(addTextColor('#f8f'));
-store.dispatch(addTextColor('#f80'));
-store.dispatch(addTextColor('#f04'));
-store.dispatch(addTextColor('#f02'));
-store.dispatch(addTextColor('#3f0'));
-store.dispatch(addTextColor('#500'));
-store.dispatch(addTextColor('#70f'));
+axios.get('/jianxi32/index.php/Home/JY/getInitData')
+  .then(response => {
+    let mcolors = response.data.text_colors;
 
-// textStrokePanelData
-store.dispatch(addTextStroke('#ff0'));
-store.dispatch(addTextStroke('#f00'));
-store.dispatch(addTextStroke('#f0f'));
-store.dispatch(addTextStroke('#fe0'));
-store.dispatch(addTextStroke('#f10'));
-store.dispatch(addTextStroke('#f4f'));
-store.dispatch(addTextStroke('#f60'));
-store.dispatch(addTextStroke('#830'));
-store.dispatch(addTextStroke('#f8f'));
-store.dispatch(addTextStroke('#f80'));
-store.dispatch(addTextStroke('#f04'));
-store.dispatch(addTextStroke('#f02'));
-store.dispatch(addTextStroke('#3f0'));
-store.dispatch(addTextStroke('#500'));
-store.dispatch(addTextStroke('#70f'));
-
-// console.log(store.getState());
+    for(let mcolor of mcolors) {
+      // textColorPanelData
+      store.dispatch(addTextColor('#' + mcolor.color));
+      // textStrokePanelData
+      store.dispatch(addTextStroke('#' + mcolor.color));
+      // textShadowPanelData
+      store.dispatch(addTextShadow('#' + mcolor.color));
+    }
+  });
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,6 +1,8 @@
 export { setTextColorActiveIndex, addTextColor, setTextColorPanelVisible } from './textColorPanelActions';
 
-export { setTextStrokeActiveIndex, addTextStroke, setTextStrokePanelVisible } from './textStrokePanelActions';
+export { setTextStrokeActiveIndex, addTextStroke, setTextStrokePanelVisible, setTextStrokeSize } from './textStrokePanelActions';
+
+export { setTextShadowActiveIndex, addTextShadow, setTextShadowPanelVisible, setTextShadowSize } from './textShadowPanelActions';
 
 export { addNode, removeNode, setNode, setNodeActiveIndex } from './nodePanelActions';
 

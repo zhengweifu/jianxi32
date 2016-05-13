@@ -9,7 +9,7 @@ return array(
 
 	'DOT_MIN'   => '',
 
-	'SHOW_PAGE_TRACE'=>true,
+	// 'SHOW_PAGE_TRACE'=>true,
 
 	//'TMPL_ENGINE_TYPE'=>'Smarty', // 使用smarty模板
 

@@ -39,6 +39,8 @@ export default class ColorGroup extends React.Component {
           active={this.state.currentActiveIndex === index ? true : false}
           width={28}
           height={28}
+
+          style={{marginTop: 5}}
           />
       );
     });
@@ -47,8 +49,9 @@ export default class ColorGroup extends React.Component {
   render() {
     return (
       <GridList
-        cols={12}
-        cellHeight={28}>
+        cols={10}
+        padding={0}
+        cellHeight={38}>
         {this.renderList()}
       </GridList>
     );
