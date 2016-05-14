@@ -11,3 +11,9 @@ export { addPatternItemData, setPatternItemData } from './patternPanelActions';
 export { addProductItemData, setProductItemData } from './productPanelActions';
 
 export { addColorScheme, setColorSchemeActiveIndex } from './colorSchemePanelActions';
+
+export { setTextPanelProps, setTextPanelVisible } from './textPanelActions';
+
+export { setImgPanelProps, setImgPanelVisible } from './imgPanelActions';
+
+export { setGeneralPanelProps, setGeneralPanelVisible } from './generalPanelActions';

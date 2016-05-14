@@ -8,6 +8,10 @@ import ButtonMenu from '../components/ButtonMenu';
 
 import PatternLibrariesPanel from './PatternLibrariesPanel';
 
+import CreateTextInitPanel from './CreateTextInitPanel';
+
+import { addText } from '../core';
+
 export default class CreateNodePanel extends Component {
   onHandleItemClick(event, index) {
     switch (index) {
@@ -42,15 +46,24 @@ export default class CreateNodePanel extends Component {
             ]}/>
           <PatternLibrariesPanel bgColor={this.props.bgColor} color={this.props.fbColor} ref='patternLibrariesPanel' />
         </div>
-        <RaisedButton
-        label='添加文字'
-        onTouchTap={e => {
-          console.log('添加文字');
-        }}
-        icon={<EditorTitle/>}
-        style={{width: 182, marginLeft: 15}}
-        backgroundColor={this.props.bgColor}
-        labelColor={this.props.fbColor}/>
+        <div>
+          <RaisedButton
+          label='添加文字'
+          onTouchTap={e => {
+            console.log('添加文字');
+            // addText('abc');
+            //
+            let wrappedInstance = this.refs.createTextInitPanel.getWrappedInstance();
+            console.log(wrappedInstance);
+            wrappedInstance.setState({open: true});
+          }}
+          icon={<EditorTitle/>}
+          style={{width: 182, marginLeft: 15}}
+          backgroundColor={this.props.bgColor}
+          labelColor={this.props.fbColor}/>
+          <CreateTextInitPanel ref='createTextInitPanel'/>
+        </div>
+
       </GridList>
     );
   }

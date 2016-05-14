@@ -6,6 +6,8 @@ import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
 
 import { GridList, RaisedButton } from 'material-ui';
 
+import { toCenterV, toCenterH } from '../core';
+
 export default class GeneralPropertiesPanel extends Component {
   render() {
     let buttonStyle = {
@@ -14,7 +16,7 @@ export default class GeneralPropertiesPanel extends Component {
 
     let buttonBgColor = '#eee';
     return (
-      <PopupPanel label='一般属性' bodyHeight={310} overflow='hidden' open={false}>
+      <div>
         <div style={{paddingLeft: 5, paddingRight: 5, marginBottom: 20}}>
           <InputNumberSliderGroup defaultValue={0} max={360} min={-360} type='INT' label='位置 (x)'/>
           <InputNumberSliderGroup defaultValue={0} max={360} min={-360} type='INT' label='位置 (y)'/>
@@ -42,15 +44,20 @@ export default class GeneralPropertiesPanel extends Component {
             label='水平居中'
             backgroundColor={buttonBgColor}
             style={buttonStyle}
+            onTouchTap={e => {
+              toCenterH();
+            }}
           />
           <RaisedButton
             label='垂直居中'
             backgroundColor={buttonBgColor}
             style={buttonStyle}
+            onTouchTap={e => {
+              toCenterV();
+            }}
           />
         </GridList>
-      </PopupPanel>
-
+      </div>
     );
   }
 }

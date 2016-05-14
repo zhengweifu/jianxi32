@@ -67,16 +67,15 @@ class NodePanel extends React.Component {
 
   render() {
     return (
-      <PopupPanel label='节点面板' bodyHeight={180} overflow='auto' open={false}>
       <List>
         {this.renderItems()}
       </List>
-      </PopupPanel>
     );
   }
 }
 
 NodePanel.defaultProps = {
+  open: false,
   activeIndex: -1,
   defaultColor: '#e7d3ca',
   activeColor: '#ff8d5c',
@@ -85,10 +84,12 @@ NodePanel.defaultProps = {
 
 
 NodePanel.propTypes = {
+  open: React.PropTypes.bool,
   activeIndex: React.PropTypes.number,
   items: React.PropTypes.arrayOf(React.PropTypes.shape({
     kind: React.PropTypes.oneOf(['图片', '文字']),
-    describtion: React.PropTypes.string
+    describtion: React.PropTypes.string,
+    id: React.PropTypes.number
   })),
   defaultColor: React.PropTypes.string,
   activeColor: React.PropTypes.string,

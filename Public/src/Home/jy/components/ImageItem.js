@@ -29,6 +29,8 @@ export default class ImageItem extends Component {
       <SimpleItem
         title={this.props.title}
         active={this.state.active}
+        activeColor={this.props.activeColor}
+        defaultBorderColor={this.props.defaultBorderColor}
         onClick={(e, title) => {
           this.setState({active: true});
           if(this.props.onClick) {
@@ -43,11 +45,12 @@ export default class ImageItem extends Component {
 
 ImageItem.defaultProps = {
   active: false,
-  activeColor: '#ccc'
+  activeColor: '#0f0'
 };
 
 ImageItem.propTypes = {
   active: PropTypes.bool,
+  defaultBorderColor: PropTypes.string,
   activeColor: PropTypes.string,
   img: PropTypes.string.isRequired,
   title: PropTypes.string,

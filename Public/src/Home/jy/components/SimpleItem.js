@@ -24,13 +24,20 @@ export default class SimpleItem extends Component {
   }
 
   render() {
+    let border = 'none';
+    if(this.state.active && this.props.activeColor) {
+      border = `1px solid ${this.props.activeColor}`;
+    } else if(this.props.defaultBorderColor) {
+      border = `1px solid ${this.props.defaultBorderColor}`;
+    }
+
     return (
       <div
         onClick={this.onHandleClick.bind(this)}
         style={{
-          padding: this.state.active ? 4 : 5,
+          padding: this.state.active || this.props.defaultBorderColor ? 4 : 5,
           textAlign: 'center',
-          border: this.state.active ? `1px solid ${this.props.activeColor}` : 'none'
+          border: border
         }}>
         {this.props.children}
         {this.props.title ? <div style={{fontSize: 12}}>{this.props.title}</div> : ''}
@@ -41,11 +48,12 @@ export default class SimpleItem extends Component {
 
 SimpleItem.defaultProps = {
   active: false,
-  activeColor: '#ccc'
+  activeColor: '#0f0'
 };
 
 SimpleItem.propTypes = {
   active: PropTypes.bool,
+  defaultBorderColor: PropTypes.string,
   activeColor: PropTypes.string,
   title: PropTypes.string,
   onClick: PropTypes.func

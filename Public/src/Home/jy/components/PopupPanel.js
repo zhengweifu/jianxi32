@@ -11,6 +11,12 @@ export default class PopupPanel extends Component {
     };
   }
 
+  componentWillReceiveProps(newProps) {
+    if(newProps.open !== undefined) {
+      this.setState({open: newProps.open});
+    }
+  }
+
   render() {
     let style = {
       boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.05)'
@@ -42,8 +48,8 @@ export default class PopupPanel extends Component {
       display: this.state.open ? 'block' : 'none'
     };
     return (
-      <div style={style}>
-        <div style={headerStyle} onTouchTap={e => {
+      <div style={Object.assign(style, this.props.style)}>
+        <div style={Object.assign(headerStyle, this.props.headerStyle)} onTouchTap={e => {
           // this.setState({open: !this.state.open});
           let open = this.state.open;
           let step = Math.floor(this.props.bodyHeight / 10);
@@ -74,10 +80,14 @@ export default class PopupPanel extends Component {
               }
             }
           }, 20);
+
+          if(this.props.onTouchTap) {
+            this.props.onTouchTap(e);
+          }
         }}>{this.props.label}
           {this.state.open ? <HardwareKeyboardArrowDown style={{float: 'right'}}/> : <HardwareKeyboardArrowRight style={{float: 'right'}}/>}
         </div>
-        <div style={bodyStyle}>
+        <div style={Object.assign(bodyStyle, this.props.bodyStyle)}>
           {this.props.children}
         </div>
       </div>
@@ -86,7 +96,7 @@ export default class PopupPanel extends Component {
 }
 
 PopupPanel.defaultProps = {
-  open: true,
+  open: false,
   overflow: 'auto',
   borderColor: '#ccc',
   headerHeight: 26,
@@ -94,7 +104,10 @@ PopupPanel.defaultProps = {
   bodyHeight: 100,
   bodyBgColor: '#fff',
   radius: 2,
-  padding: 5
+  padding: 5,
+  style: {},
+  headerStyle: {},
+  bodyStyle: {}
 };
 
 PopupPanel.propTypes = {
@@ -107,5 +120,8 @@ PopupPanel.propTypes = {
   bodyHeight: PropTypes.number,
   bodyBgColor: PropTypes.string,
   radius: PropTypes.number,
-  padding: PropTypes.number
+  padding: PropTypes.number,
+  style: PropTypes.object,
+  headerStyle: PropTypes.object,
+  bodyStyle: PropTypes.object,
 };

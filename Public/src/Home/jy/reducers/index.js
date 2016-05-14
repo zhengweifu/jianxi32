@@ -12,6 +12,12 @@ import { textStrokePanelData } from './textStrokePanelData';
 
 import { textShadowPanelData } from './textShadowPanelData';
 
+import { textPanelData } from './textPanelData';
+
+import { imgPanelData } from './imgPanelData';
+
+import { generalPanelData } from './generalPanelData';
+
 import { combineReducers } from 'redux';
 
 export default combineReducers({
@@ -21,5 +27,8 @@ export default combineReducers({
   colorSchemeData,
   textColorPanelData,
   textStrokePanelData,
-  textShadowPanelData
+  textShadowPanelData,
+  textPanelData,
+  imgPanelData,
+  generalPanelData
 });

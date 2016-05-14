@@ -33,14 +33,11 @@ class ColorSchemesPanel extends Component {
 
   render() {
     return (
-      <PopupPanel label='色彩风格' bodyHeight={200} overflow='hidden' open={true}>
       <GridList
         cellHeight={100}
         cols={4}>
         {this.renderItems()}
       </GridList>
-      </PopupPanel>
-
     );
   }
 }

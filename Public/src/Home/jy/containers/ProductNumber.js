@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import InputNumber from '../components/InputNumber';
 
 import { IconButton, GridList, GridTile } from 'material-ui';
 
 import { ContentAddCircle, ContentRemoveCircle} from 'material-ui/svg-icons/index';
 
-export default class ProductNumber extends React.Component {
+export default class ProductNumber extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,9 +15,9 @@ export default class ProductNumber extends React.Component {
   render() {
     return (
       <GridList
-        cols={3}
-        style={{width: 150}}
+        cols={4}
         cellHeight={48}>
+        <div style={{padding: '15px 0px 0px 3px', color: '#aaa'}}>{this.props.name}</div>
         <IconButton onTouchTap={e => {
           if(this.state.value > 1) {
             let newValue = this.state.value - 1;
@@ -27,11 +27,16 @@ export default class ProductNumber extends React.Component {
           <ContentRemoveCircle color='#12aabc'/>
         </IconButton>
 
-        <InputNumber type='INT' value={this.state.value} onChange={(e, v) => {
-          if(parseInt(v) < 1) {
-            this.setState({value: 1});
-          };
-        }}/>
+        <InputNumber type='INT'
+          style={{
+            marginTop: 10
+          }}
+          value={this.state.value}
+          onChange={(e, v) => {
+            if(parseInt(v) < 1) {
+              this.setState({value: 1});
+            };
+          }}/>
 
         <IconButton onTouchTap={e => {
           let newValue = this.state.value + 1;
@@ -45,5 +50,11 @@ export default class ProductNumber extends React.Component {
 }
 
 ProductNumber.defaultProps = {
-  value: 1
+  value: 1,
+  name: '数量'
+};
+
+ProductNumber.propTypes = {
+  value: PropTypes.number,
+  name: PropTypes.string
 };

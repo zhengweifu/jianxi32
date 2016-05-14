@@ -29,7 +29,7 @@ import { setTextColorActiveIndex, addTextColor, setTextColorPanelVisible,
 class TextPropertiesPanel extends Component {
 
   renderColorPanel() {
-    let currentTextColorString = this.props.activeColorIndex >= 0 ? this.props.colorItems[this.props.activeColorIndex] : '#FFFFFF';
+    let currentTextColorString = this.props.activeColorIndex >= 0 ? this.props.colorItems[this.props.activeColorIndex] : this.props.textProps.fill;
     return <div key='1' style={{textAlign: 'center'}}>
       <div style={{marginBottom: 10}}>颜色</div>
       <ColorItem defaultBgColor={currentTextColorString}
@@ -167,6 +167,58 @@ class TextPropertiesPanel extends Component {
     </div>;
   }
 
+  renderFontFamilies() {
+    let fontFamilies = [
+      'Arial',
+      'Helvetica',
+      'Geneva',
+      'Verdana',
+      'Monaco',
+      'Myriad Pro',
+      'Lucida Grande',
+      'Ubuntu',
+      'Delicious 500',
+      'CA BND Web Bold 700',
+      'Impact',
+      'Times New Roman',
+      'DejaVu Serif 400',
+      'Georgia',
+      'Hoefler Text',
+      'Cochin',
+      'Tallys 400',
+      'Courier New',
+      'Andale Mono',
+      'OdessaScript 500',
+      'Gothic',
+      'Encient German Gothic 400',
+      'Marker Felt',
+      'Vampire95',
+      'Globus 500',
+      'CrashCTT 400',
+      'Comic Sans MS',
+      'Modernist One 400',
+      'Capitalist',
+      'Lest',
+      'Quake Cyr',
+      'Terminator Cyr',
+      'Sherwood'
+    ];
+
+    let fonts = fontFamilies.map((item, index) => {
+      return <MenuItem key={'fontFamily_' + index} value={item} primaryText={item} />;
+    });
+
+    return (
+      <SelectField
+        value={this.props.textProps.fontFamily ? this.props.textProps.fontFamily : fontFamilies[0]}
+        fullWidth={true}
+        onChange={e => {}}>
+        {fonts}
+      </SelectField>
+    );
+
+  }
+
   render() {
     let buttonStyle = {
       width: '100%',
@@ -182,11 +234,12 @@ class TextPropertiesPanel extends Component {
     ];
     // console.log(this.textColorPanel);
 
-    // console.log('cc: ', currentTextColorString);
+    // console.log('cc: ', this.props.textProps.fontSize);
     return (
-      <PopupPanel label='文字属性' bodyHeight={280} overflow='hidden' open={true}>
+      <div>
         <TextField
           hintText='www.janexi.com'
+          value={this.props.textProps.text ? this.props.textProps.text : ''}
           fullWidth={true}
         />
         <ReactGridLayout
@@ -196,28 +249,20 @@ class TextPropertiesPanel extends Component {
           cols={5}>
           <div key='0'>
             <div>字体</div>
-            <SelectField
-              value={1}
-              fullWidth={true}
-              onChange={e => {}}>
-              <MenuItem value={1} primaryText="Never" />
-              <MenuItem value={2} primaryText="Every Night" />
-              <MenuItem value={3} primaryText="Weeknights" />
-              <MenuItem value={4} primaryText="Weekends" />
-              <MenuItem value={5} primaryText="Weekly" />
-            </SelectField>
+            {this.renderFontFamilies()}
           </div>
           {this.renderColorPanel()}
           {this.renderStrokePanel()}
           {this.renderShadowPanel()}
         </ReactGridLayout>
         <div style={{paddingLeft: 5, paddingRight: 5, marginBottom: 20}}>
-          <InputNumberSliderGroup defaultValue={12} max={20} min={5} type='INT' label='字号'/>
+          <InputNumberSliderGroup defaultValue={this.props.textProps.fontSize ? this.props.textProps.fontSize : 10}
+            max={50} min={5} type='INT' label='字号'/>
           <InputNumberSliderGroup defaultValue={1} max={10} min={0} type='INT' label='间距'/>
           <InputNumberSliderGroup defaultValue={0} max={360} min={-360} type='INT' label='弧度'/>
         </div>
 
-      </PopupPanel>
+      </div>
     );
   }
 }
@@ -234,7 +279,8 @@ function mapStateToProps(state) {
     activeShadowColorIndex: state.textShadowPanelData.currentColorIndex,
     shadowColorItems: state.textShadowPanelData.colors,
     shadowPanelVisible: state.textShadowPanelData.visible,
-    shadowSize: state.textShadowPanelData.size
+    shadowSize: state.textShadowPanelData.size,
+    textProps: state.textPanelData.props,
   };
 }
 

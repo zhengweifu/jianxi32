@@ -16,12 +16,16 @@ export default class BuyerShowPanel extends React.Component {
 
   render() {
     return (
+      <div style={{textAlign: 'center'}}>
+      <span>人气买家秀</span>
+      <span />
       <GridList
         cols={6}
         colHeight={100}
         >
         {this.renderItems()}
       </GridList>
+      </div>
     );
   }
 }

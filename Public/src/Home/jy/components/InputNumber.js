@@ -7,7 +7,8 @@ export default class InputNumber extends React.Component {
     super(props);
 
     this.state = {
-      value : props.value
+      value : props.value,
+      active: false
     };
   }
 
@@ -89,22 +90,42 @@ export default class InputNumber extends React.Component {
   }
 
   render() {
+    let defaultBorderColor = '#eee', activeBorderColor = 'rgb(0, 188, 212)';
+
+    let style = {
+      border: 'none',
+      borderBottom: 'solid',
+      borderWidth: this.state.active ? 2 : 1,
+      borderColor: this.state.active ? activeBorderColor : defaultBorderColor,
+      width: '100%',
+      outline: 'none'
+    };
+
     return (
-      <TextField
-        id='InputNumber'
-        floatingLabelText={this.props.floatingLabelText}
-        fullWidth={true}
+      <input
+        style={Object.assign(style, this.props.style)}
         value={this.state.value}
+        onFocus={e => this.setState({active: true})}
+        onBlur={e => this.setState({active: false})}
         onChange={this.onHandleChange.bind(this)}
       />
     );
   }
 }
 
+// <TextField
+//   id='InputNumber'
+//   floatingLabelText={this.props.floatingLabelText}
+//   fullWidth={true}
+//   value={this.state.value}
+//   onChange={this.onHandleChange.bind(this)}
+// />
+
 InputNumber.defaultProps = {
     value: 0,
     type: 'NUMBER',
-    floatingLabelText: ''
+    floatingLabelText: '',
+    style: {}
 };
 
 InputNumber.propTypes = {
@@ -112,5 +133,5 @@ InputNumber.propTypes = {
   floatingLabelText: React.PropTypes.string,
   value: React.PropTypes.number,
   onChange: React.PropTypes.func,
-  style: React.PropTypes.object
+  style: React.PropTypes.object,
 };

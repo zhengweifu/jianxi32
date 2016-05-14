@@ -9,6 +9,15 @@ export default class InputNumberSliderGroup extends React.Component {
       value: props.defaultValue
     };
   }
+
+  componentWillReceiveProps(newProps) {
+    if(newProps.defaultValue !== undefined) {
+      this.setState({
+        value: newProps.defaultValue
+      });
+    }
+  }
+
   onSliderHandleChange(event, value) {
     this.setState({value: value});
 
@@ -49,7 +58,7 @@ export default class InputNumberSliderGroup extends React.Component {
         <div style={{
           position: 'absolute',
           left: this.props.labelWidth + 5,
-          top: 0,
+          top: 20,
           width: this.props.inputWidth
           }}>
           <InputNumber
