@@ -37,49 +37,56 @@ export default class PopupPanel extends Component {
     };
     let bodyStyle = {
       boxSizing: 'border-box',
-      border: `1px solid ${this.props.borderColor}`,
-      borderTop: 'none',
-      height: this.state.bodyHeight + 2 * this.props.padding,
+      borderLeft: `1px solid ${this.props.borderColor}`,
+      borderRight: `1px solid ${this.props.borderColor}`,
+      borderBottom: this.state.open ? `1px solid ${this.props.borderColor}` : 'none',
+      broderTop: 'none',
+      height: this.state.open ? this.state.bodyHeight + 2 * this.props.padding : 0,
       backgroundColor: this.props.bodyBgColor,
       borderBottomLeftRadius: this.props.radius,
       borderBottomRightRadius: this.props.radius,
-      padding: this.props.padding,
+      padding: this.state.open ? this.props.padding : 0,
       overflow: this.props.overflow,
-      display: this.state.open ? 'block' : 'none'
+      opacity: this.state.open ? 1 : 0,
+      // display: this.state.open ? 'block' : 'none',
+      transform: this.state.open ? 'scaley(1)' : 'scaley(0)',
+      transformOrigin: '0 0',
+      transition: 'all 0.3s ease-in-out'
     };
     return (
       <div style={Object.assign(style, this.props.style)}>
         <div style={Object.assign(headerStyle, this.props.headerStyle)} onTouchTap={e => {
           // this.setState({open: !this.state.open});
           let open = this.state.open;
-          let step = Math.floor(this.props.bodyHeight / 10);
+          this.setState({open: !open});
+          // let step = Math.floor(this.props.bodyHeight / 10);
 
-          let timer = setInterval(() => {
-            if(open) {
-              if(this.state.bodyHeight < step) {
-                step = this.state.bodyHeight;
-              }
-              if (this.state.bodyHeight > 0) {
-                this.setState({bodyHeight: this.state.bodyHeight - step});
-              } else {
-                this.setState({open: !this.state.open});
-                clearInterval(timer);
-              }
-            } else {
-              if(!this.state.open) {
-                this.setState({open: !this.state.open});
-              }
-
-              if(this.props.bodyHeight - this.state.bodyHeight < step) {
-                step = this.props.bodyHeight - this.state.bodyHeight;
-              }
-              if (this.state.bodyHeight < this.props.bodyHeight) {
-                this.setState({bodyHeight: this.state.bodyHeight + step});
-              } else {
-                clearInterval(timer);
-              }
-            }
-          }, 20);
+          // let timer = setInterval(() => {
+          //   if(open) {
+          //     if(this.state.bodyHeight < step) {
+          //       step = this.state.bodyHeight;
+          //     }
+          //     if (this.state.bodyHeight > 0) {
+          //       this.setState({bodyHeight: this.state.bodyHeight - step});
+          //     } else {
+          //       this.setState({open: !this.state.open});
+          //       clearInterval(timer);
+          //     }
+          //   } else {
+          //     if(!this.state.open) {
+          //       this.setState({open: !this.state.open});
+          //     }
+          //
+          //     if(this.props.bodyHeight - this.state.bodyHeight < step) {
+          //       step = this.props.bodyHeight - this.state.bodyHeight;
+          //     }
+          //     if (this.state.bodyHeight < this.props.bodyHeight) {
+          //       this.setState({bodyHeight: this.state.bodyHeight + step});
+          //     } else {
+          //       clearInterval(timer);
+          //     }
+          //   }
+          // }, 20);
 
           if(this.props.onTouchTap) {
             this.props.onTouchTap(e);

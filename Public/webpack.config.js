@@ -20,6 +20,7 @@ module.exports = {
 
     externals: {
         'three': 'THREE',
+        'fabric': 'fabric'
     },
 
     module: {

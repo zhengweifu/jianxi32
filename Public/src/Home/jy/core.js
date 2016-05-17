@@ -1,4 +1,4 @@
-import { fabric } from 'fabric';
+import fabric from 'fabric';
 
 function getCanvas() {
   if(window.JYCANVAS.mid === undefined) {
@@ -34,7 +34,8 @@ export function addText(content) {
     fill: '#ccc',
     stroke: '#999',
     // shadow: '#666 5px 5px 5px',
-    strokeWidth: 1
+    strokeWidth: 1,
+    padding: 2
   });
 
   canvas.centerObject(text);

@@ -38,7 +38,7 @@ import { connect } from 'react-redux';
 import { setGeneralPanelVisible, setTextPanelVisible, setImgPanelVisible, setNodeActiveIndex,
          setGeneralPanelProps, setTextPanelProps, setImgPanelProps} from '../actions';
 
-import { fabric } from 'fabric';
+import fabric from 'fabric';
 
 import { getActiveObjectProps } from '../core';
 

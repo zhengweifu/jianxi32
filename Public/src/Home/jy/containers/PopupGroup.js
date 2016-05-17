@@ -29,7 +29,7 @@ export default class PopupGroup extends Component {
           }}
           onTouchTap={e => {
             let newOpens = this.state.opens.map(() => false);
-            newOpens[index] = true;
+            newOpens[index] = !this.state.opens[index];
             this.setState({opens: newOpens});
           }}
           open={this.state.opens[index]}
