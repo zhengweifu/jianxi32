@@ -14,6 +14,10 @@ import reducer from './reducers/index';
 
 import axios from 'axios';
 
+import co from 'co';
+
+require('babel-polyfill');
+
 import { addNode, addProductItemData, addPatternItemData, addColorScheme, addTextColor, addTextStroke, addTextShadow  } from './actions';
 
 let store = createStore(reducer);
@@ -96,27 +100,50 @@ store.dispatch(addPatternItemData('建筑', {
 // }));
 
 
-// colorScheneData
-store.dispatch(addColorScheme({describtion: '正常', img: '/jianxi32/Public/src/Home/jy/images/ps/normal.jpg'}));
-store.dispatch(addColorScheme({describtion: '素描', img: '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'}));
-store.dispatch(addColorScheme({describtion: '美肤', img: '/jianxi32/Public/src/Home/jy/images/ps/softEnhancement.png'}));
-store.dispatch(addColorScheme({describtion: '素描', img: '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'}));
-store.dispatch(addColorScheme({describtion: '美肤', img: '/jianxi32/Public/src/Home/jy/images/ps/softEnhancement.png'}));
-store.dispatch(addColorScheme({describtion: '素描', img: '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'}));
+// colorSchemeData
+// store.dispatch(addColorScheme({describtion: '正常', img: '/jianxi32/Public/src/Home/jy/images/ps/normal.jpg'}));
+// store.dispatch(addColorScheme({describtion: '素描', img: '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'}));
+// store.dispatch(addColorScheme({describtion: '美肤', img: '/jianxi32/Public/src/Home/jy/images/ps/softEnhancement.png'}));
+// store.dispatch(addColorScheme({describtion: '素描', img: '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'}));
+// store.dispatch(addColorScheme({describtion: '美肤', img: '/jianxi32/Public/src/Home/jy/images/ps/softEnhancement.png'}));
+// store.dispatch(addColorScheme({describtion: '素描', img: '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'}));
 
-axios.get('/jianxi32/index.php/Home/JY/getInitData')
-  .then(response => {
-    let mcolors = response.data.text_colors;
+// axios.get('/jianxi32/index.php/Home/JY/getInitData')
+//   .then(response => {
+//     let mcolors = response.data.text_colors;
+//     for(let mcolor of mcolors) {
+//       // textColorPanelData
+//       store.dispatch(addTextColor('#' + mcolor.color));
+//       // textStrokePanelData
+//       store.dispatch(addTextStroke('#' + mcolor.color));
+//       // textShadowPanelData
+//       store.dispatch(addTextShadow('#' + mcolor.color));
+//     }
+//   });
+//   
 
-    for(let mcolor of mcolors) {
-      // textColorPanelData
-      store.dispatch(addTextColor('#' + mcolor.color));
-      // textStrokePanelData
-      store.dispatch(addTextStroke('#' + mcolor.color));
-      // textShadowPanelData
-      store.dispatch(addTextShadow('#' + mcolor.color));
-    }
-  });
+
+co(function *() {
+  let response = yield axios.get('/jianxi32/index.php/Home/JY/getInitData');
+  let mColors = response.data.text_colors;
+
+  for(let mColor of mColors) {
+    // textColorPanelData
+    store.dispatch(addTextColor('#' + mColor.color));
+    // textStrokePanelData
+    store.dispatch(addTextStroke('#' + mColor.color));
+    // textShadowPanelData
+    store.dispatch(addTextShadow('#' + mColor.color));
+  }
+
+  let mColorSchemeDatas = response.data.color_scheme_datas;
+  for(let mColorSchemeData of mColorSchemeDatas) {
+    console.log(mColorSchemeData);
+    store.dispatch(addColorScheme(mColorSchemeData));
+  }
+
+});
+  
 
 ReactDOM.render(
   <Provider store={store}>
