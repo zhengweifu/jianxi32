@@ -6,7 +6,7 @@ import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
 
 import { GridList, RaisedButton } from 'material-ui';
 
-import { toCenterV, toCenterH } from '../core';
+import { ToCenterV, ToCenterH } from '../core';
 
 export default class GeneralPropertiesPanel extends Component {
   render() {
@@ -45,7 +45,7 @@ export default class GeneralPropertiesPanel extends Component {
             backgroundColor={buttonBgColor}
             style={buttonStyle}
             onTouchTap={e => {
-              toCenterH();
+              ToCenterH();
             }}
           />
           <RaisedButton
@@ -53,7 +53,7 @@ export default class GeneralPropertiesPanel extends Component {
             backgroundColor={buttonBgColor}
             style={buttonStyle}
             onTouchTap={e => {
-              toCenterV();
+              ToCenterV();
             }}
           />
         </GridList>

@@ -55,7 +55,11 @@ export default class TextStrokePanel extends Component {
           }}
           items={this.props.items}/>
         <div style={{paddingLeft: 5, paddingRight: 3}}>
-          <InputNumberSliderGroup defaultValue={this.props.size} max={10} min={0} type='INT' label='描边大小'/>
+          <InputNumberSliderGroup defaultValue={this.props.size} max={10} min={0} type='INT' label='描边大小' onChange={(e, v) => {
+            if(this.props.onChangeSize) {
+              this.props.onChangeSize(e, v);
+            }
+          }}/>
         </div>
       </Popover>
     );

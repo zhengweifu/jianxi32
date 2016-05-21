@@ -10,7 +10,7 @@ import PatternLibrariesPanel from './PatternLibrariesPanel';
 
 import CreateTextInitPanel from './CreateTextInitPanel';
 
-import { addText } from '../core';
+import { AddText } from '../core';
 
 export default class CreateNodePanel extends Component {
   onHandleItemClick(event, index) {
@@ -51,7 +51,7 @@ export default class CreateNodePanel extends Component {
           label='添加文字'
           onTouchTap={e => {
             console.log('添加文字');
-            // addText('abc');
+            // AddText('abc');
             //
             let wrappedInstance = this.refs.createTextInitPanel.getWrappedInstance();
             console.log(wrappedInstance);

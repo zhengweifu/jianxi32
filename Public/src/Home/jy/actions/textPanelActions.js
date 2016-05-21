@@ -1,4 +1,7 @@
-import { SET_TEXT_PANEL_PROPS, SET_TEXT_PANEL_VISIBLE } from './actionTypes';
+import { 
+  SET_TEXT_PANEL_PROPS,  
+  SET_TEXT_PANEL_VISIBLE 
+} from './actionTypes';
 
 export function setTextPanelProps(props) {
   return {

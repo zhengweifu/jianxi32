@@ -40,7 +40,7 @@ import { setGeneralPanelVisible, setTextPanelVisible, setImgPanelVisible, setNod
 
 import fabric from 'fabric';
 
-import { getActiveObjectProps } from '../core';
+import { GetActiveObjectProps } from '../core';
 
 // console.log(PatternLibrariesPanel.getWrappedInstance());
 
@@ -56,16 +56,16 @@ class App extends React.Component {
     window.JYCANVAS.on({
       'object:selected': options => {
         // console.log('selected: ', options);
-        // console.log(getActiveObjectProps());
+        // console.log(GetActiveObjectProps());
 
         let currentObject = options.target;
 
         let nodeId  = currentObject.mid;
         let aId = this.props.nodeData.items.findIndex(item => item.id === nodeId);
         this.props.setNodeActiveIndex(aId);
-        let props = getActiveObjectProps();
+        let props = GetActiveObjectProps();
         switch (currentObject.type) {
-          case 'text':
+          case 'curvedText':
             this.props.setImgPanelVisible(false);
             this.props.setGeneralPanelVisible(true);
             this.props.setTextPanelVisible(true);

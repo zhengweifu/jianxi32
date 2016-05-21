@@ -14,7 +14,7 @@ export default class ColorItem extends React.Component {
   }
 
   renderDisable() {
-    if(this.props.defaultBgColor === 'null') {
+    if(this.props.defaultBgColor === 'transparent') {
       return (
         <SvgIcon color='#f00' style={{
           position: 'absolute',
@@ -53,7 +53,7 @@ export default class ColorItem extends React.Component {
           border: '1px solid',
           margin: 'auto',
           borderColor: this.state.active ? this.props.activeColor : this.props.defaultColor,
-          backgroundColor: this.props.defaultBgColor !== 'null' ? this.props.defaultBgColor : 'transparent'
+          backgroundColor: this.props.defaultBgColor
         }, this.props.style)}
         onClick={e => {
           if(!this.state.active) {

@@ -8,7 +8,7 @@ const initState = {
   visible: false,
   size: 0,
   currentColorIndex: -1,
-  colors: ['null']
+  colors: ['transparent']
 };
 
 export function textShadowPanelData(state = initState, action) {

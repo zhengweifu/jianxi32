@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "browser-sync start --proxy \"localhost/jianxi32/index.php/Home/JY\" --files \"./dist/**/*.*\"",
+    "build": "set NODE_ENV=production && webpack -p --progress --profile --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

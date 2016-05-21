@@ -55,8 +55,21 @@ export default class TextShadowPanel extends Component {
           }}
           items={this.props.items}/>
         <div style={{paddingLeft: 5, paddingRight: 3}}>
-          <InputNumberSliderGroup defaultValue={this.props.size} max={360} min={0} type='INT' label='角度'/>
-          <InputNumberSliderGroup defaultValue={this.props.size} max={10} min={0} type='INT' label='模糊'/>
+          <InputNumberSliderGroup defaultValue={this.props.hShadow} max={20} min={-20} type='INT' label='水平阴影' onChange={(e, v) => {
+            if(this.props.onChangeHShadow) {
+              this.props.onChangeHShadow(e, v);
+            }
+          }}/>
+          <InputNumberSliderGroup defaultValue={this.props.vShadow} max={20} min={-20} type='INT' label='垂直阴影' onChange={(e, v) => {
+            if(this.props.onChangeHShadow) {
+              this.props.onChangeVShadow(e, v);
+            }
+          }}/>
+          <InputNumberSliderGroup defaultValue={this.props.blur} max={10} min={0} type='INT' label='模糊' onChange={(e, v) => {
+            if(this.props.onChangeHShadow) {
+              this.props.onChangeBlur(e, v);
+            }
+          }}/>
         </div>
       </Popover>
     );
@@ -66,7 +79,9 @@ export default class TextShadowPanel extends Component {
 TextShadowPanel.defaultProps = {
   open: false,
   anchorEl: null,
-  size: 1
+  hShadow: 0,
+  vShadow: 0,
+  blur: 0
 };
 
 TextShadowPanel.propTypes = {
@@ -76,5 +91,7 @@ TextShadowPanel.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   onClick: PropTypes.func.isRequired,
   onRequestClose: PropTypes.func.isRequired,
-  size: PropTypes.number
+  hShadow: PropTypes.number,
+  vShadow: PropTypes.number,
+  blur: PropTypes.number
 };

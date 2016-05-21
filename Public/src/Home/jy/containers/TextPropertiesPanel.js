@@ -24,13 +24,88 @@ import { connect } from 'react-redux';
 
 import { setTextColorActiveIndex, addTextColor, setTextColorPanelVisible,
          setTextStrokeActiveIndex, addTextStroke, setTextStrokePanelVisible, setTextStrokeSize,
-         setTextShadowActiveIndex, addTextShadow, setTextShadowPanelVisible, setTextShadowSize} from '../actions';
+         setTextShadowActiveIndex, addTextShadow, setTextShadowPanelVisible, setTextShadowSize,
+         setTextPanelProps } from '../actions';
+
+import { SetTextProps, GetTextWidth } from '../core';
+
+import IS from '../../../Common/utils/IS';
 
 class TextPropertiesPanel extends Component {
 
+  setTextProp(key, value) {
+    let newTextProps = JSON.parse(JSON.stringify(this.props.textProps));
+    newTextProps[key] = value;
+
+    switch(key) {
+      case 'radius':
+        newTextProps[key] = Math.abs(value);
+        if(value < 0) {
+          newTextProps['reverse'] = true;
+        } else {
+          newTextProps['reverse'] = false;
+        }
+        break;
+      case 'text':
+      case 'fontFamily':
+      case 'fontSize':
+      case 'strokeWidth':
+      case 'spacing':
+        newTextProps[key] = value;
+        break;
+      default:
+        newTextProps[key] = value;
+    }
+
+    this.props.setTextPanelProps(newTextProps);
+
+    SetTextProps(newTextProps);
+  }
+
+  separationShadow(shadow) {
+    let result = {
+      hShadow: 0,
+      vShadow: 0,
+      blur: 0,
+      color: 'transparent'
+    };
+
+    if(shadow) {
+      if(IS(shadow, 'String')) {
+        let split = shadow.split(/px /g);
+        if(split.length > 0) {
+          result.hShadow = parseInt(split[0]);
+        }
+
+        if(split.length > 1) {
+          result.vShadow = parseInt(split[1]);
+        }
+
+        if(split.length > 2) {
+          result.blur = parseInt(split[2]);
+        }
+
+        if(split.length > 3) {
+          result.color = split[3];
+        }
+      } else if(IS(shadow, 'Object')) {
+        result.hShadow = shadow.offsetX;
+        result.vShadow = shadow.offsetY;
+        result.blur = shadow.blur;
+        result.color = shadow.color;
+      }
+    }
+
+    return result;
+  }
+
+  mergeShadow(hShadow, vShadow, blur, color) {
+    return `${hShadow}px ${vShadow}px ${blur}px ${color}`;
+  }
+
   renderColorPanel() {
     let currentTextColorString = this.props.activeColorIndex >= 0 ? this.props.colorItems[this.props.activeColorIndex] : this.props.textProps.fill;
-    return <div key='1' style={{textAlign: 'center'}}>
+    return <div key='2' style={{textAlign: 'center'}}>
       <div style={{marginBottom: 10}}>颜色</div>
       <ColorItem defaultBgColor={currentTextColorString}
         ref={ref => {
@@ -40,16 +115,15 @@ class TextPropertiesPanel extends Component {
         active={this.props.colorPanelVisible}
         onClick={(e, color) => {
           let index;
-          if(color !== 'null') {
+          if(color !== 'transparent') {
             index = this.props.colorItems.findIndex(item => item === color);
             if(index === -1) {
               this.props.addTextColor(color);
               index = this.props.colorItems.length - 1;
             }
           } else {
-            index = this.props.colorItems.length;
+            index = this.props.colorItems.length - 1;
           }
-
           this.props.setTextColorActiveIndex(index);
 
           this.props.setTextColorPanelVisible(!this.props.colorPanelVisible);
@@ -62,6 +136,8 @@ class TextPropertiesPanel extends Component {
       <TextColorPanel
         onClick={(e, color, index) => {
           this.props.setTextColorActiveIndex(index);
+
+          this.setTextProp('fill', color);
         }}
         ref={ref => this.textColorPanel = ref}
         anchorEl = {this.colorPanelAnchorEl}
@@ -75,8 +151,8 @@ class TextPropertiesPanel extends Component {
   }
 
   renderStrokePanel() {
-    let currentTextStrokeColorString = this.props.activeStrokeColorIndex >= 0 ? this.props.strokeColorItems[this.props.activeStrokeColorIndex] : '#FFFFFF';
-    return <div key='2' style={{textAlign: 'center'}}>
+    let currentTextStrokeColorString = this.props.activeStrokeColorIndex >= 0 ? this.props.strokeColorItems[this.props.activeStrokeColorIndex] : this.props.textProps.stroke;
+    return <div key='3' style={{textAlign: 'center'}}>
       <div style={{marginBottom: 10}}>描边</div>
       <ColorItem defaultBgColor={currentTextStrokeColorString}
       ref={ref => {
@@ -86,14 +162,14 @@ class TextPropertiesPanel extends Component {
       active={this.props.strokePanelVisible}
       onClick={(e, color) => {
         let index;
-        if(color !== 'null') {
+        if(color !== 'transparent') {
           index = this.props.strokeColorItems.findIndex(item => item === color);
           if(index === -1) {
             this.props.addTextStroke(color);
             index = this.props.strokeColorItems.length - 1;
           }
         } else {
-          index = this.props.strokeColorItems.length;
+          index = this.props.strokeColorItems.length - 1;
         }
 
         this.props.setTextStrokeActiveIndex(index);
@@ -107,6 +183,7 @@ class TextPropertiesPanel extends Component {
       <TextStrokePanel
         onClick={(e, color, index) => {
           this.props.setTextStrokeActiveIndex(index);
+          this.setTextProp('stroke', color);
         }}
         ref={ref => this.textStrokePanel = ref}
         anchorEl = {this.strokePanelAnchorEl}
@@ -115,14 +192,18 @@ class TextPropertiesPanel extends Component {
         onRequestClose={e => {
           this.props.setTextStrokePanelVisible(false);
         }}
-        size={this.props.strokeSize}
+        size={this.props.textProps.strokeWidth}
+        onChangeSize={(e, v) => {
+          this.setTextProp('strokeWidth', v);
+        }}
         items={this.props.strokeColorItems}/>
     </div>;
   }
 
   renderShadowPanel() {
-    let currentTextShadowColorString = this.props.activeShadowColorIndex >= 0 ? this.props.shadowColorItems[this.props.activeShadowColorIndex] : '#000';
-    return <div key='3' style={{textAlign: 'center'}}>
+    let shadowProps = this.separationShadow(this.props.textProps.shadow);
+    let currentTextShadowColorString = this.props.activeShadowColorIndex >= 0 ? this.props.shadowColorItems[this.props.activeShadowColorIndex] : shadowProps.color;
+    return <div key='4' style={{textAlign: 'center'}}>
       <div style={{marginBottom: 10}}>阴影</div>
       <ColorItem defaultBgColor={currentTextShadowColorString}
       ref={ref => {
@@ -132,7 +213,7 @@ class TextPropertiesPanel extends Component {
       active={this.props.shadowPanelVisible}
       onClick={(e, color) => {
         let index;
-        if(color !== 'null') {
+        if(color !== 'transparent') {
           index = this.props.shadowColorItems.findIndex(item => item === color);
           console.log(index);
           if(index === -1) {
@@ -140,7 +221,7 @@ class TextPropertiesPanel extends Component {
             index = this.props.shadowColorItems.length - 1;
           }
         } else {
-          index = this.props.shadowColorItems.length;
+          index = this.props.shadowColorItems.length - 1;
         }
 
         this.props.setTextShadowActiveIndex(index);
@@ -154,6 +235,13 @@ class TextPropertiesPanel extends Component {
       <TextShadowPanel
         onClick={(e, color, index) => {
           this.props.setTextShadowActiveIndex(index);
+
+          this.setTextProp('shadow', this.mergeShadow(
+            shadowProps.hShadow,
+            shadowProps.vShadow,
+            shadowProps.blur,
+            color
+          ));
         }}
         ref={ref => this.textShadowPanel = ref}
         anchorEl = {this.shadowPanelAnchorEl}
@@ -162,7 +250,34 @@ class TextPropertiesPanel extends Component {
         onRequestClose={e => {
           this.props.setTextShadowPanelVisible(false);
         }}
-        size={this.props.shadowSize}
+        hShadow={shadowProps.hShadow}
+        vShadow={shadowProps.vShadow}
+        blur={shadowProps.blur}
+        onChangeHShadow={(e, v) => {
+
+          this.setTextProp('shadow', this.mergeShadow(
+            v,
+            shadowProps.vShadow,
+            shadowProps.blur,
+            shadowProps.color
+          ));
+        }}
+        onChangeVShadow={(e, v) => {
+          this.setTextProp('shadow', this.mergeShadow(
+            shadowProps.hShadow,
+            v,
+            shadowProps.blur,
+            shadowProps.color
+          ));
+        }}
+        onChangeBlur={(e, v) => {
+          this.setTextProp('shadow', this.mergeShadow(
+            shadowProps.hShadow,
+            shadowProps.vShadow,
+            v,
+            shadowProps.color
+          ));
+        }}
         items={this.props.shadowColorItems}/>
     </div>;
   }
@@ -212,11 +327,37 @@ class TextPropertiesPanel extends Component {
       <SelectField
         value={this.props.textProps.fontFamily ? this.props.textProps.fontFamily : fontFamilies[0]}
         fullWidth={true}
-        onChange={e => {}}>
+        onChange={(e, valueIndex) => {
+          this.setTextProp('fontFamily', fontFamilies[valueIndex]);
+        }}>
         {fonts}
       </SelectField>
     );
 
+  }
+
+  getTextAngle() {
+    let textWidth = GetTextWidth(this.props.textProps.text, this.props.textProps.fontSize, this.props.textProps.fontFamily, this.props.textProps.strokeWidth, this.props.textProps.spacing);
+
+    let textAngle = 0;
+
+    if(textWidth > 0) {
+      textAngle = Math.floor(textWidth / this.props.textProps.radius  * 180 / Math.PI);
+    }
+
+    if(this.props.textProps.reverse) {
+      textAngle *= -1;
+    }
+
+
+    return textAngle;
+  }
+
+  setTextRadius(v) {
+    v = v !== 0 ? v : 0.01;
+    let textWidth = GetTextWidth(this.props.textProps.text, this.props.textProps.fontSize, this.props.textProps.fontFamily, this.props.textProps.strokeWidth, this.props.textProps.spacing);
+    let r = textWidth * 180 / (Math.PI * v);
+    this.setTextProp('radius', r);
   }
 
   render() {
@@ -227,27 +368,31 @@ class TextPropertiesPanel extends Component {
     let buttonBgColor = '#eee';
 
     let layout1 = [
-      {i: '0', x: 0, y: 0, w: 2, h: 1, static: true},
-      {i: '1', x: 2, y: 0, w: 1, h: 1, static: true},
-      {i: '2', x: 3, y: 0, w: 1, h: 1, static: true},
-      {i: '3', x: 4, y: 0, w: 1, h: 1, static: true},
+      {i: '0', x: 0, y: 0, w: 8, h: 1, static: true},
+      {i: '1', x: 0, y: 1, w: 5, h: 1, static: true},
+      {i: '2', x: 5, y: 1, w: 1, h: 1, static: true},
+      {i: '3', x: 6, y: 1, w: 1, h: 1, static: true},
+      {i: '4', x: 7, y: 1, w: 1, h: 1, static: true},
     ];
     // console.log(this.textColorPanel);
 
-    // console.log('cc: ', this.props.textProps.fontSize);
     return (
       <div>
-        <TextField
-          hintText='www.janexi.com'
-          value={this.props.textProps.text ? this.props.textProps.text : ''}
-          fullWidth={true}
-        />
         <ReactGridLayout
           layout={layout1}
           width={400}
           rowHeight={50}
-          cols={5}>
+          cols={8}>
           <div key='0'>
+            <TextField
+              hintText='www.janexi.com'
+              value={this.props.textProps.text ? this.props.textProps.text : ''}
+              fullWidth={true}
+              onChange={(e, v) => {
+                this.setTextProp('text', v);
+              }}/>
+          </div>
+          <div key='1'>
             <div>字体</div>
             {this.renderFontFamilies()}
           </div>
@@ -257,9 +402,16 @@ class TextPropertiesPanel extends Component {
         </ReactGridLayout>
         <div style={{paddingLeft: 5, paddingRight: 5, marginBottom: 20}}>
           <InputNumberSliderGroup defaultValue={this.props.textProps.fontSize ? this.props.textProps.fontSize : 10}
-            max={50} min={5} type='INT' label='字号'/>
-          <InputNumberSliderGroup defaultValue={1} max={10} min={0} type='INT' label='间距'/>
-          <InputNumberSliderGroup defaultValue={0} max={360} min={-360} type='INT' label='弧度'/>
+            max={50} min={5} type='INT' label='字号' onChange={ (e, v) => {
+              this.setTextProp('fontSize', v);
+            }}/>
+          <InputNumberSliderGroup defaultValue={this.props.textProps.spacing ? this.props.textProps.spacing : 1} 
+            max={20} min={0} type='INT' label='间距' onChange={ (e, v) => {
+              this.setTextProp('spacing', v);
+            }}/>
+          <InputNumberSliderGroup defaultValue={this.getTextAngle()} max={360} min={-360} type='INT' label='弧度' onChange={ (e, v) => {
+              this.setTextRadius(v);
+            }}/>
         </div>
 
       </div>
@@ -296,7 +448,8 @@ function mapDispatchToProps(dispatch) {
     setTextShadowActiveIndex,
     addTextShadow,
     setTextShadowPanelVisible,
-    setTextShadowSize
+    setTextShadowSize,
+    setTextPanelProps
   }, dispatch);
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -6,17 +6,17 @@ injectTapEventPlugin();
 
 import App from './containers/App.js';
 
-import {createStore} from 'redux';
+import { createStore } from 'redux';
 
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 
 import reducer from './reducers/index';
 
 import axios from 'axios';
 
-import co from 'co';
+// import co from 'co';
 
-require('babel-polyfill');
+// require('babel-polyfill');
 
 import { addNode, addProductItemData, addPatternItemData, addColorScheme, addTextColor, addTextStroke, addTextShadow  } from './actions';
 
@@ -83,70 +83,57 @@ store.dispatch(addPatternItemData('建筑', {
   describtion: '小树'
 }));
 
-// // nodeData test data
-// store.dispatch(addNode({
-//   kind: '图片',
-//   describtion: '/jianxi32/Public/src/Home/jy/images/tx01.jpg'
-// }));
-//
-// store.dispatch(addNode({
-//   kind: '文字',
-//   describtion: '我的名字叫大王'
-// }));
-//
-// store.dispatch(addNode({
-//   kind: '图片',
-//   describtion: '/jianxi32/Public/src/Home/jy/images/tx01.jpg'
-// }));
+axios.get('/jianxi32/index.php/Home/JY/getInitData')
+  .then(response => {
+    let mcolors = response.data.text_colors;
+    for(let mcolor of mcolors) {
+      // textColorPanelData
+      store.dispatch(addTextColor('#' + mcolor.color));
+      // textStrokePanelData
+      store.dispatch(addTextStroke('#' + mcolor.color));
+      // textShadowPanelData
+      store.dispatch(addTextShadow('#' + mcolor.color));
+    }
+
+    let mColorSchemeDatas = response.data.color_scheme_datas;
+    for(let mColorSchemeData of mColorSchemeDatas) {
+      console.log(mColorSchemeData);
+      store.dispatch(addColorScheme(mColorSchemeData));
+    }
+  });
+  
 
 
-// colorSchemeData
-// store.dispatch(addColorScheme({describtion: '正常', img: '/jianxi32/Public/src/Home/jy/images/ps/normal.jpg'}));
-// store.dispatch(addColorScheme({describtion: '素描', img: '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'}));
-// store.dispatch(addColorScheme({describtion: '美肤', img: '/jianxi32/Public/src/Home/jy/images/ps/softEnhancement.png'}));
-// store.dispatch(addColorScheme({describtion: '素描', img: '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'}));
-// store.dispatch(addColorScheme({describtion: '美肤', img: '/jianxi32/Public/src/Home/jy/images/ps/softEnhancement.png'}));
-// store.dispatch(addColorScheme({describtion: '素描', img: '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'}));
+// co(function *() {
+//   let response = yield axios.get('/jianxi32/index.php/Home/JY/getInitData');
+//   let mColors = response.data.text_colors;
 
-// axios.get('/jianxi32/index.php/Home/JY/getInitData')
-//   .then(response => {
-//     let mcolors = response.data.text_colors;
-//     for(let mcolor of mcolors) {
-//       // textColorPanelData
-//       store.dispatch(addTextColor('#' + mcolor.color));
-//       // textStrokePanelData
-//       store.dispatch(addTextStroke('#' + mcolor.color));
-//       // textShadowPanelData
-//       store.dispatch(addTextShadow('#' + mcolor.color));
-//     }
-//   });
-//   
+//   for(let mColor of mColors) {
+//     // textColorPanelData
+//     store.dispatch(addTextColor('#' + mColor.color));
+//     // textStrokePanelData
+//     store.dispatch(addTextStroke('#' + mColor.color));
+//     // textShadowPanelData
+//     store.dispatch(addTextShadow('#' + mColor.color));
+//   }
 
+//   let mColorSchemeDatas = response.data.color_scheme_datas;
+//   for(let mColorSchemeData of mColorSchemeDatas) {
+//     console.log(mColorSchemeData);
+//     store.dispatch(addColorScheme(mColorSchemeData));
+//   }
 
-co(function *() {
-  let response = yield axios.get('/jianxi32/index.php/Home/JY/getInitData');
-  let mColors = response.data.text_colors;
+// });
 
-  for(let mColor of mColors) {
-    // textColorPanelData
-    store.dispatch(addTextColor('#' + mColor.color));
-    // textStrokePanelData
-    store.dispatch(addTextStroke('#' + mColor.color));
-    // textShadowPanelData
-    store.dispatch(addTextShadow('#' + mColor.color));
-  }
-
-  let mColorSchemeDatas = response.data.color_scheme_datas;
-  for(let mColorSchemeData of mColorSchemeDatas) {
-    console.log(mColorSchemeData);
-    store.dispatch(addColorScheme(mColorSchemeData));
-  }
-
-});
+// class App extends Component {
+//   render() {
+//     return <h1>saaffwfw</h1>;
+//   }
+// }
   
 
 ReactDOM.render(
   <Provider store={store}>
-		<App />
-	</Provider>,
+    <App />
+  </Provider>,
   document.getElementById('jy-app'));

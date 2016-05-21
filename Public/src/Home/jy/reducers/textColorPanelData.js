@@ -7,7 +7,7 @@ import { ADD_TEXT_COLOR, SET_TEXT_COLOR_ACTIVE_INDEX, SET_TEXT_COLOR_PANEL_VISIB
 const initState = {
   visible: false,
   currentColorIndex: -1,
-  colors: ['null']
+  colors: ['transparent']
 };
 
 export function textColorPanelData(state = initState, action) {
