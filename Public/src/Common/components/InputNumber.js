@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import Input from '.Input';
+import Input from './Input';
 
 export default class InputNumber extends Component {
     constructor(props) {
@@ -27,6 +27,10 @@ export default class InputNumber extends Component {
 
     onHandleChange(event) {
         let val = event.target.value, _vals = [];
+
+        if(val == '') {
+            val = '0';
+        }
 
         if(this.props.type === 'INT') {
 
@@ -85,9 +89,13 @@ export default class InputNumber extends Component {
             // todo
         }
 
-        let ovalue = _vals.join('');
+        let ovalue = parseFloat(_vals.join(''));
 
         this.setState({value: ovalue});
+
+        if(ovalue == this.state.value) {
+            return;
+        }
 
         if(this.props.onChange) {
             this.props.onChange(event, ovalue);

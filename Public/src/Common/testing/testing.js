@@ -11,10 +11,20 @@ import SvgIcon from '../components/SvgIcon';
 
 import Slider from '../components/Slider';
 
+import Input from '../components/Input';
+
+import InputNumber from '../components/InputNumber'; 
+
+import InputNumberSlider from '../components/InputNumberSlider'; 
+
+import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
+
+
+
 let App = (props) => {
 	return (
 		<div>
-			<GridList cols={5}>
+			<GridList cols={3}>
 				<RaisedButton bgColor='#f67' labelColor='#eee' fullWidth={true}/>
 				<RaisedButton bgColor='#34f' labelColor='#eee' fullWidth={true}/>
 				<RaisedButton bgColor='#678' fullWidth={true}
@@ -30,8 +40,30 @@ let App = (props) => {
 
 			<GridList cols={3}>
 				<Slider max={100} min={-100} defaultValue={10} step={1} onChange={(e, v) => console.log(v)}/>
-				<Slider onDragEnd={(e, v) => console.log('value: ', v)}/>
-				<Slider/>
+			</GridList>
+			<Input />
+			<InputNumber />
+
+			<InputNumberSlider label='位置' labelWidth={40} labelColor='#aaa' labelFontSize={13}/>
+			<InputNumberSlider label='旋转' labelWidth={40} labelColor='#aaa' labelFontSize={13}/>
+			<InputNumberSlider label='缩放' labelWidth={40} labelColor='#aaa' labelFontSize={13}/>
+			<GridList cols={2}>
+				<InputNumberSliderGroup
+					lock={true}
+					max={10}
+					min={0}
+					labels={['x', 'y', 'z']}
+					labelWidth={10}
+					defaults={[0, 5, 2]}
+				/>
+				<InputNumberSliderGroup
+					max={100}
+					min={0}
+					type='INT'
+					labels={['x', 'y', 'z']}
+					labelWidth={10}
+					defaults={[0, 5, 20]}
+				/>
 			</GridList>
 		</div>
 	);

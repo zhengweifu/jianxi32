@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import SetToRange from '../utils/SetToRange';
+
 function getStyles(props) {
 	return {
 		root: {
@@ -55,6 +57,18 @@ export default class Slider extends Component {
 			isMoved: false,
 		};
 	}
+
+	componentWillReceiveProps(newProps) {
+        if(newProps.value !== undefined) {
+        	let value = SetToRange(newProps.value, this.props.min, this.props.max);
+        	const percent = this.valueToPercent(value);
+
+            this.setState({
+                value: value,
+                percent: percent
+            });
+        }
+    }
 
 	componentWillMount() {
 		let value = this.props.value;
@@ -148,12 +162,7 @@ export default class Slider extends Component {
 		const changePercent = changeLeftPercent - this.state.percent;
 		const count = parseInt(changePercent / this.stepPercent);
 
-		let value = this.state.value + count * this.props.step;
-		if(value > this.props.max) {
-			value = this.props.max;
-		} else if(value < this.props.min) {
-			value = this.props.min;
-		}
+		let value = SetToRange(this.state.value + count * this.props.step, this.props.min, this.props.max);
 
 		changeLeftPercent = this.valueToPercent(value);
 
@@ -190,7 +199,7 @@ export default class Slider extends Component {
 
 		let trackBarStyle = styles.trackBar;
 		trackBarStyle.width = stringPercent;
- 		// console.log(dotStyle);
+
 		return (
 			<div style={Object.assign({}, styles.root, this.props.style)}
 				onMouseDown={this.handleMouseDown.bind(this)}>

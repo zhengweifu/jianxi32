@@ -11,16 +11,13 @@ export default class Input extends Component {
     }
 
     static propTypes = {
-        type: PropTypes.oneOf(['INT', 'NUMBER']),
         floatingLabelText: PropTypes.string,
-        value: PropTypes.number,
+        value: PropTypes.any,
         onChange: PropTypes.func,
         style: PropTypes.object,
     };
 
     static defaultProps = {
-        value: 0,
-        type: 'NUMBER',
         floatingLabelText: '',
         style: {}
     };
@@ -51,6 +48,7 @@ export default class Input extends Component {
             borderBottom: 'solid',
             borderWidth: this.state.active ? 2 : 1,
             borderColor: this.state.active ? activeBorderColor : defaultBorderColor,
+            minHeight: 20,
             width: '100%',
             outline: 'none'
         };

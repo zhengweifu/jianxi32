@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+
+import Is from '../utils/Is';
+
 require('../sasses/clearfix.scss');
 
 function getStyles(props) {
@@ -27,16 +30,22 @@ export default class GridList extends Component {
 
 	static defaultProps = {
 		cols: 2,
-		gutterWidth: 5,
+		gutterWidth: 5
 	};
 
 	render() {
 
 		const styles = getStyles(this.props);
 
-		const wrappedChildren = this.props.children.map((child, index) => {
+		let { children, cols } = this.props;
+
+		if(!Is(children, 'Array')) {
+			children = [children];
+		}
+
+		const wrappedChildren = children.map((child, index) => {
 			const itemStyle = Object.assign({}, styles.item, {
-				width: `${(100 / this.props.cols)}%`
+				width: `${(100 / cols)}%`
 			});
 			return (
 				<div key={'grid_' + index} style={Object.assign({}, itemStyle)}>{child}</div>
