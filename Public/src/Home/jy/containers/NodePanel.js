@@ -9,8 +9,6 @@ import { connect } from 'react-redux';
 
 import { setNode, addNode, removeNode, setNodeActiveIndex } from '../actions/index';
 
-import PopupPanel from '../components/PopupPanel';
-
 class NodePanel extends React.Component {
   renderItems() {
     return this.props.items.map((item, index) => {

@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import { CYAN500, GREY300, GREY500 } from '../styles/colors';
+
 export default class Input extends Component {
     constructor(props) {
         super(props);
@@ -41,9 +43,10 @@ export default class Input extends Component {
     }
 
     render() {
-        let defaultBorderColor = '#eee', activeBorderColor = 'rgb(0, 188, 212)';
+        let defaultBorderColor = GREY300, activeBorderColor = CYAN500;
 
         let style = {
+            color: GREY500,
             border: 'none',
             borderBottom: 'solid',
             borderWidth: this.state.active ? 2 : 1,

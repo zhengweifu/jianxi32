@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import { CYAN500, GREY300 } from '../styles/colors';
+
 import SetToRange from '../utils/SetToRange';
 
 function getStyles(props) {
@@ -107,9 +109,9 @@ export default class Slider extends Component {
 	};
 
 	static defaultProps = {
-		barBgColor: '#ccc',
+		barBgColor: GREY300,
 		barHeight: 3,
-		dotBgColor: 'rgb(0, 188, 212)',
+		dotBgColor: CYAN500,
 		dotRadius: 6,
 		defaultValue: 0.5,
 		max: 1,
@@ -118,11 +120,14 @@ export default class Slider extends Component {
 	};
 
 	handleMouseDown(e) {
+
 		this.setState({isMoved: true});
 		this.setPercentAndValue(e);
 		if(document) {
 			document.addEventListener('mousemove', this.dragMouseHandler, false);
 			document.addEventListener('mouseup', this.dragMouseEndHandler, false);
+
+			e.preventDefault();
 		}
 
 		if(this.props.onDragStart) {

@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
-import ColorGroup from '../components/ColorGroup';
+import ColorGroup from '../../../Common/components/ColorGroup';
 
 import { Popover } from 'material-ui';
 
-import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
+import InputNumberSlider from '../../../Common/components/InputNumberSlider';
 
 export default class TextStrokePanel extends Component {
   constructor(props) {
@@ -55,7 +55,7 @@ export default class TextStrokePanel extends Component {
           }}
           items={this.props.items}/>
         <div style={{paddingLeft: 5, paddingRight: 3}}>
-          <InputNumberSliderGroup defaultValue={this.props.size} max={10} min={0} type='INT' label='描边大小' onChange={(e, v) => {
+          <InputNumberSlider defaultValue={this.props.size} max={10} min={0} type='INT' label='大小' labelWidth={50} labelFontSize={14} onChange={(e, v) => {
             if(this.props.onChangeSize) {
               this.props.onChangeSize(e, v);
             }

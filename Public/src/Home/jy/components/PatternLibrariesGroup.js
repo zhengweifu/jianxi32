@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageItem from '../components/ImageItem';
+import ImageItem from '../../../Common/components/ImageItem';
 
 export default class PatternLibrariesGroup extends React.Component {
   constructor(props) {

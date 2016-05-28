@@ -2,9 +2,13 @@ import React, { Component, PropTypes } from 'react';
 
 import ReactDOM from 'react-dom';
 
-import PopupPanel from '../components/PopupPanel';
+import VerticalSeparation from '../../../Common/components/VerticalSeparation';
 
-import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
+import InputNumberSlider from '../../../Common/components/InputNumberSlider';
+
+import Grid from '../../../Common/components/Grid';
+
+import Col from '../../../Common/components/Col';
 
 import TextColorPanel from './TextColorPanel';
 
@@ -12,11 +16,11 @@ import TextStrokePanel from './TextStrokePanel';
 
 import TextShadowPanel from './TextShadowPanel';
 
-import ColorItem from '../components/ColorItem';
+import ColorItem from '../../../Common/components/ColorItem';
 
-import { GridList, RaisedButton, TextField, SelectField, MenuItem } from 'material-ui';
+import { RaisedButton, TextField, SelectField, MenuItem } from 'material-ui';
 
-import ReactGridLayout from 'react-grid-layout';
+// import ReactGridLayout from 'react-grid-layout';
 
 import { bindActionCreators } from 'redux';
 
@@ -377,44 +381,41 @@ class TextPropertiesPanel extends Component {
     // console.log(this.textColorPanel);
 
     return (
-      <div>
-        <ReactGridLayout
-          layout={layout1}
-          width={400}
-          rowHeight={50}
-          cols={8}>
-          <div key='0'>
-            <TextField
-              hintText='www.janexi.com'
-              value={this.props.textProps.text ? this.props.textProps.text : ''}
-              fullWidth={true}
-              onChange={(e, v) => {
-                this.setTextProp('text', v);
-              }}/>
-          </div>
-          <div key='1'>
+      <VerticalSeparation gutter={25}>
+        <TextField
+          hintText='www.janexi.com'
+          value={this.props.textProps.text ? this.props.textProps.text : ''}
+          fullWidth={true}
+          onChange={(e, v) => {
+            this.setTextProp('text', v);
+          }}/>
+        <Grid>
+          <Col width={ 5 / 8}>
             <div>字体</div>
             {this.renderFontFamilies()}
-          </div>
-          {this.renderColorPanel()}
-          {this.renderStrokePanel()}
-          {this.renderShadowPanel()}
-        </ReactGridLayout>
-        <div style={{paddingLeft: 5, paddingRight: 5, marginBottom: 20}}>
-          <InputNumberSliderGroup defaultValue={this.props.textProps.fontSize ? this.props.textProps.fontSize : 10}
-            max={50} min={5} type='INT' label='字号' onChange={ (e, v) => {
-              this.setTextProp('fontSize', v);
-            }}/>
-          <InputNumberSliderGroup defaultValue={this.props.textProps.spacing ? this.props.textProps.spacing : 1} 
-            max={20} min={0} type='INT' label='间距' onChange={ (e, v) => {
-              this.setTextProp('spacing', v);
-            }}/>
-          <InputNumberSliderGroup defaultValue={this.getTextAngle()} max={360} min={-360} type='INT' label='弧度' onChange={ (e, v) => {
-              this.setTextRadius(v);
-            }}/>
-        </div>
-
-      </div>
+          </Col>
+          <Col width={ 1 / 8}>
+            {this.renderColorPanel()}
+          </Col>
+          <Col width={ 1 / 8}>
+            {this.renderStrokePanel()}
+          </Col>
+          <Col width={ 1 / 8}>
+            {this.renderShadowPanel()}
+          </Col>
+        </Grid>
+      <InputNumberSlider defaultValue={this.props.textProps.fontSize ? this.props.textProps.fontSize : 10}
+      max={50} min={5} type='INT' label='字号' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
+        this.setTextProp('fontSize', v);
+      }}/>
+      <InputNumberSlider defaultValue={this.props.textProps.spacing ? this.props.textProps.spacing : 1} 
+        max={20} min={0} type='INT' label='间距' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
+          this.setTextProp('spacing', v);
+        }}/>
+      <InputNumberSlider defaultValue={this.getTextAngle()} max={360} min={-360} type='INT' label='弧度' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
+          this.setTextRadius(v);
+        }}/>
+      </VerticalSeparation>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, RaisedButton, List, ListItem, AppBar, GridList, GridTile } from 'material-ui';
+import { Dialog, RaisedButton, List, ListItem } from 'material-ui';
 
 import PatternLibrariesGroup from '../components/PatternLibrariesGroup';
 

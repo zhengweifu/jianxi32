@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dialog, RaisedButton, AppBar, GridList, GridTile } from 'material-ui';
 
-import ImageItem from '../components/ImageItem';
+import ImageItem from '../../../Common/components/ImageItem';
 
 import { connect } from 'react-redux';
 

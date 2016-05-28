@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 
-import ColorGroup from '../components/ColorGroup';
+import ColorGroup from '../../../Common/components/ColorGroup';
 
 import { Popover } from 'material-ui';
 
-import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
+import InputNumberSlider from '../../../Common/components/InputNumberSlider';
+
+import VerticalSeparation from '../../../Common/components/VerticalSeparation';
 
 export default class TextShadowPanel extends Component {
   constructor(props) {
@@ -46,31 +48,33 @@ export default class TextShadowPanel extends Component {
         }}
         style={{padding: '10px 5px', marginTop: 5, width: 400}}
         >
-        <ColorGroup
-          activeIndex={this.props.activeIndex}
-          onClick={(e, item, index) => {
-            if(this.props.onClick) {
-              this.props.onClick(e, item, index);
-            }
-          }}
-          items={this.props.items}/>
-        <div style={{paddingLeft: 5, paddingRight: 3}}>
-          <InputNumberSliderGroup defaultValue={this.props.hShadow} max={20} min={-20} type='INT' label='水平阴影' onChange={(e, v) => {
+        <VerticalSeparation>
+          <ColorGroup
+            activeIndex={this.props.activeIndex}
+            onClick={(e, item, index) => {
+              if(this.props.onClick) {
+                this.props.onClick(e, item, index);
+              }
+            }}
+            items={this.props.items}/>
+
+          <InputNumberSlider defaultValue={this.props.hShadow} max={20} min={-20} type='INT' label='水平' labelWidth={50} labelFontSize={14} onChange={(e, v) => {
             if(this.props.onChangeHShadow) {
               this.props.onChangeHShadow(e, v);
             }
           }}/>
-          <InputNumberSliderGroup defaultValue={this.props.vShadow} max={20} min={-20} type='INT' label='垂直阴影' onChange={(e, v) => {
+          <InputNumberSlider defaultValue={this.props.vShadow} max={20} min={-20} type='INT' label='垂直' labelWidth={50} labelFontSize={14} onChange={(e, v) => {
             if(this.props.onChangeHShadow) {
               this.props.onChangeVShadow(e, v);
             }
           }}/>
-          <InputNumberSliderGroup defaultValue={this.props.blur} max={10} min={0} type='INT' label='模糊' onChange={(e, v) => {
+          <InputNumberSlider defaultValue={this.props.blur} max={10} min={0} type='INT' label='模糊' labelWidth={50} labelFontSize={14} onChange={(e, v) => {
             if(this.props.onChangeHShadow) {
               this.props.onChangeBlur(e, v);
             }
           }}/>
-        </div>
+        </VerticalSeparation>
+
       </Popover>
     );
   }

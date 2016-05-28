@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-import { GridList, RaisedButton } from 'material-ui';
+import GridList from '../../../Common/components/GridList';
+
+import { RaisedButton } from 'material-ui';
 
 import { EditorTitle } from 'material-ui/svg-icons';
 
@@ -29,10 +31,7 @@ export default class CreateNodePanel extends Component {
 
   render() {
     return (
-      <GridList
-        cols={2}
-        cellHeight={36}
-        >
+      <GridList cols={2}>
         <div>
           <ButtonMenu
             bgColor={this.props.bgColor}
@@ -58,7 +57,7 @@ export default class CreateNodePanel extends Component {
             wrappedInstance.setState({open: true});
           }}
           icon={<EditorTitle/>}
-          style={{width: 182, marginLeft: 15}}
+          style={{width: 182, marginLeft: 12}}
           backgroundColor={this.props.bgColor}
           labelColor={this.props.fbColor}/>
           <CreateTextInitPanel ref='createTextInitPanel'/>

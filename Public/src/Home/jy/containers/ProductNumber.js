@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import InputNumber from '../components/InputNumber';
 
-import { IconButton, GridList, GridTile } from 'material-ui';
+import InputNumber from '../../../Common/components/InputNumber';
+
+import GridList from '../../../Common/components/GridList';
+
+import { IconButton } from 'material-ui';
 
 import { ContentAddCircle, ContentRemoveCircle} from 'material-ui/svg-icons/index';
 
@@ -14,9 +17,7 @@ export default class ProductNumber extends Component {
   }
   render() {
     return (
-      <GridList
-        cols={4}
-        cellHeight={48}>
+      <GridList cols={4}>
         <div style={{padding: '15px 0px 0px 3px', color: '#aaa'}}>{this.props.name}</div>
         <IconButton onTouchTap={e => {
           if(this.state.value > 1) {

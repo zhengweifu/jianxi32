@@ -9,7 +9,8 @@ var config = {
 
     entry: {
         // react: './src/react/App.js',
-        jy: './src/Home/jy/index.js'
+        jy: './src/Home/jy/index.js',
+        testing: './src/Common/testing/testing.js'
     },
 
     output: {

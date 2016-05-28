@@ -4,6 +4,7 @@
   "description": "This is a www.janexi.com project",
   "main": "index.js",
   "scripts": {
+    "component_testing": "browser-sync start --proxy \"localhost/jianxi32/Public/src/common/testing/grid_testing.html\" --files \"./dist/**/*.*\"",
     "start": "browser-sync start --proxy \"localhost/jianxi32/index.php/Home/JY\" --files \"./dist/**/*.*\"",
     "build": "set NODE_ENV=production && webpack -p --progress --profile --colors",
     "test": "echo \"Error: no test specified\" && exit 1"

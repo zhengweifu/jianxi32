@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import ColorGroup from '../components/ColorGroup';
+import ColorGroup from '../../../Common/components/ColorGroup';
 
 import { Popover, PopoverAnimationVertical } from 'material-ui';
 

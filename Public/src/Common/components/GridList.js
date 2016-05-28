@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import { GUTTER } from '../styles/constants';
+
 import Is from '../utils/Is';
 
 require('../sasses/clearfix.scss');
@@ -7,15 +9,15 @@ require('../sasses/clearfix.scss');
 function getStyles(props) {
 	return {
 		root: {
-			marginLeft: -props.gutterWidth,
-			marginRight: -props.gutterWidth,
+			marginLeft: -props.gutter / 2,
+			marginRight: -props.gutter / 2,
 		},
 
 		item: {
 			float: 'left',
 			boxSizing: 'border-box',
-			paddingLeft: props.gutterWidth,
-			paddingRight: props.gutterWidth,
+			paddingLeft: props.gutter / 2,
+			paddingRight: props.gutter / 2,
 		},
 	};
 }
@@ -24,13 +26,13 @@ export default class GridList extends Component {
 	static propTypes = {
 		children: PropTypes.node,
 		cols: PropTypes.number,
-		gutterWidth: PropTypes.number,
+		gutter: PropTypes.number,
 		style: PropTypes.object,
 	};
 
 	static defaultProps = {
 		cols: 2,
-		gutterWidth: 5
+		gutter: GUTTER
 	};
 
 	render() {

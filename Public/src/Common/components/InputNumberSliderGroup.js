@@ -6,8 +6,11 @@ import SvgIcon from './SvgIcon';
 
 import SetToRange from '../utils/SetToRange';
 
-const lockColor = 'rgb(0, 188, 212)';
-const unLockColor = 'rgb(200, 200, 200)';
+import { CYAN500, GREY500 } from '../styles/colors';
+
+const lockColor = CYAN500;
+
+const unLockColor = GREY500;
 
 const lockIconPath = <path d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z'/>;
 
@@ -35,10 +38,10 @@ function getStyles(props, state) {
 		},
 		topLine: {
 			position: 'absolute',
-			top: 12,
+			top: 14,
 			right: props.iconSize / 2,
 			width: 3,
-			height: (height - props.iconSize - 26) / 2,
+			height: (height - props.iconSize - 28) / 2,
 			borderColor: borderColor,
 			borderStyle: 'solid',
 			borderTopWidth: 1,
@@ -84,6 +87,7 @@ export default class InputNumberSliderGroup extends Component {
 		defaults: PropTypes.arrayOf(PropTypes.number).isRequired,
 		labels: PropTypes.arrayOf(PropTypes.string),
 		labelWidth: PropTypes.number,
+		labelColor: PropTypes.string,
 		max: PropTypes.number.isRequired,
 		min: PropTypes.number.isRequired
 	};
@@ -96,7 +100,7 @@ export default class InputNumberSliderGroup extends Component {
 
 	renderItems() {
 		const { lock, values } = this.state;
-		const { max, min, type, labels, labelWidth } = this.props;
+		const { max, min, type, labels, labelWidth, labelColor } = this.props;
 		return values.map((value, index) => {
 			const label = labels && labels.length > index ? labels[index] : undefined;
 			return (
@@ -123,6 +127,7 @@ export default class InputNumberSliderGroup extends Component {
 					label={label}
 					type={type}
 					labelWidth={labelWidth}
+					labelColor={labelColor}
 					key={'inputNumberSliderGroup_' + index} 
 					max={max} min={min} 
 					defaultValue={value} />

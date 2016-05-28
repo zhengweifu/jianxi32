@@ -1,10 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 
-import PopupPanel from '../components/PopupPanel';
+import InputNumberSlider from '../../../Common/components/InputNumberSlider';
+import InputNumberSliderGroup from '../../../Common/components/InputNumberSliderGroup';
 
-import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
+import VerticalSeparation from '../../../Common/components/VerticalSeparation';
 
-import { GridList, RaisedButton } from 'material-ui';
+import GridList from '../../../Common/components/GridList';
+
+import Grid from '../../../Common/components/Grid';
+
+import Col from '../../../Common/components/Col';
+
+import { GREY500, ORANGE700 } from '../../../Common/styles/colors';
+
+import { RaisedButton } from 'material-ui';
 
 import { ToCenterV, ToCenterH } from '../core';
 
@@ -17,46 +26,70 @@ export default class GeneralPropertiesPanel extends Component {
     let buttonBgColor = '#eee';
     return (
       <div>
-        <div style={{paddingLeft: 5, paddingRight: 5, marginBottom: 20}}>
-          <InputNumberSliderGroup defaultValue={0} max={360} min={-360} type='INT' label='位置 (x)'/>
-          <InputNumberSliderGroup defaultValue={0} max={360} min={-360} type='INT' label='位置 (y)'/>
-          <InputNumberSliderGroup defaultValue={0} max={360} min={-360} type='INT' label='旋转'/>
-
-          <InputNumberSliderGroup defaultValue={1} max={5} min={-5} type='NUMBER' label='缩放 (x)'/>
-          <InputNumberSliderGroup defaultValue={1} max={5} min={-5} type='NUMBER' label='缩放 (y)'/>
-        </div>
-        <GridList
-          cols={4}
-          padding={10}
-          cellHeight={40}
-          >
-          <RaisedButton
-            label='上移一层'
-            backgroundColor={buttonBgColor}
-            style={buttonStyle}
-          />
-          <RaisedButton
-            label='下移一层'
-            backgroundColor={buttonBgColor}
-            style={buttonStyle}
-          />
-          <RaisedButton
-            label='水平居中'
-            backgroundColor={buttonBgColor}
-            style={buttonStyle}
-            onTouchTap={e => {
-              ToCenterH();
-            }}
-          />
-          <RaisedButton
-            label='垂直居中'
-            backgroundColor={buttonBgColor}
-            style={buttonStyle}
-            onTouchTap={e => {
-              ToCenterV();
-            }}
-          />
-        </GridList>
+          <VerticalSeparation gutter={25}>
+            <Grid>
+              <Col width={1 / 8}><div style={{marginTop: 16, color: GREY500, fontSize: 14, fontFamily: '"Times New Roman",Georgia,Serif'}}>位置</div></Col>
+              <Col width={7 / 8}>
+                <InputNumberSliderGroup
+                  max={360}
+                  min={-360}
+                  labels={['x', 'y']}
+                  labelWidth={10}
+                  labelColor={ORANGE700}
+                  defaults={[0, 0]}
+                />
+              </Col>
+            </Grid>
+            <InputNumberSlider 
+              defaultValue={0} 
+              max={360} min={-360} 
+              type='INT'
+              labelFontSize={14} 
+              label='旋转' labelWidth={60}/>
+            <Grid>
+              <Col width={1 / 8}><div style={{marginTop: 16, color: GREY500, fontSize: 14, fontFamily: '"Times New Roman",Georgia,Serif'}}>缩放</div></Col>
+              <Col width={7 / 8}>
+                <InputNumberSliderGroup
+                  lock={true}
+                  max={5}
+                  min={-5}
+                  labels={['x', 'y']}
+                  labelWidth={10}
+                  labelColor={ORANGE700}
+                  defaults={[1, 1]}
+                />
+              </Col>
+            </Grid>
+          
+          <GridList cols={4}>
+            <RaisedButton
+              label='上移一层'
+              backgroundColor={buttonBgColor}
+              style={buttonStyle}
+            />
+            <RaisedButton
+              label='下移一层'
+              backgroundColor={buttonBgColor}
+              style={buttonStyle}
+            />
+            <RaisedButton
+              label='水平居中'
+              backgroundColor={buttonBgColor}
+              style={buttonStyle}
+              onTouchTap={e => {
+                ToCenterH();
+              }}
+            />
+            <RaisedButton
+              label='垂直居中'
+              backgroundColor={buttonBgColor}
+              style={buttonStyle}
+              onTouchTap={e => {
+                ToCenterV();
+              }}
+            />
+          </GridList>
+        </VerticalSeparation>
       </div>
     );
   }

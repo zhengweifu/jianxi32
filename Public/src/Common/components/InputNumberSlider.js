@@ -3,6 +3,8 @@ import React, { Component, PropTypes } from 'react';
 import InputNumber from './InputNumber';
 import Slider from './Slider';
 
+import { GREY500 } from '../styles/colors';
+
 import SetToRange from '../utils/SetToRange';
 
 function getStyles(props) {
@@ -51,7 +53,7 @@ export default class InputNumberSlider extends Component {
 	static defaultProps = {
 		fixed: 2,
 		type: 'NUMBER',
-		labelColor: '#f5f',
+		labelColor: GREY500,
 		labelFontSize: 12,
 		labelFontFamily: '"Times New Roman",Georgia,Serif',
 		labelWidth: 30,

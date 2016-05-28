@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GridList } from 'material-ui';
+import GridList from '../../../Common/components/GridList';
 
 export default class BuyerShowPanel extends React.Component {
   renderItems() {
@@ -19,10 +19,7 @@ export default class BuyerShowPanel extends React.Component {
       <div style={{textAlign: 'center'}}>
       <span>人气买家秀</span>
       <span />
-      <GridList
-        cols={6}
-        colHeight={100}
-        >
+      <GridList cols={6}>
         {this.renderItems()}
       </GridList>
       </div>

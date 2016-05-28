@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import PopupPanel from '../components/PopupPanel';
+import PopupPanel from '../../../Common/components/PopupPanel';
 
 export default class PopupGroup extends Component {
   constructor(props) {

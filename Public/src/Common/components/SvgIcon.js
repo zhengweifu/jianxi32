@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+
+import { GREY100 } from '../styles/colors';
+
 import { lighten } from '../utils/colorManipulator';
 
 function getStyles(props, state) {
@@ -37,7 +40,7 @@ export default class SvgIcon extends Component {
     };
 
     static defaultProps = {
-        color: '#666',
+        color: GREY100,
         viewBox: '0 0 24 24'
     };
 

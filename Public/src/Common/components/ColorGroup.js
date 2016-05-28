@@ -2,7 +2,7 @@ import React from 'react';
 
 import ColorItem from './ColorItem';
 
-import { GridList } from 'material-ui';
+import GridList from './GridList';
 
 export default class ColorGroup extends React.Component {
   constructor(props) {
@@ -48,10 +48,7 @@ export default class ColorGroup extends React.Component {
 
   render() {
     return (
-      <GridList
-        cols={10}
-        padding={0}
-        cellHeight={38}>
+      <GridList cols={10}>
         {this.renderList()}
       </GridList>
     );

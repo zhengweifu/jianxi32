@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 
 import { fade, lighten } from '../utils/colorManipulator';
 
+import { GREY100, GREY400 } from '../styles/colors';
+
 import Paper from './Paper';
 
 function getStyles(props) {
@@ -53,10 +55,10 @@ export default class RaisedButton extends Component {
 	};
 
 	static defaultProps = {
-		bgColor: '#ccc',
+		bgColor: GREY400,
 		fullWidth: false,
 		label: 'RaisedButton',
-		labelColor: '#333'
+		labelColor: GREY100
 	};
 
 	handleMouseEnter(e) {

@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-import PopupPanel from '../components/PopupPanel';
+import ImageItem from '../../../Common/components/ImageItem';
 
-import ImageItem from '../components/ImageItem';
-
-import { GridList } from 'material-ui';
+import GridList from '../../../Common/components/GridList';
 
 import { bindActionCreators } from 'redux';
 
@@ -33,9 +31,7 @@ class ColorSchemesPanel extends Component {
 
   render() {
     return (
-      <GridList
-        cellHeight={100}
-        cols={4}>
+      <GridList cols={4}>
         {this.renderItems()}
       </GridList>
     );

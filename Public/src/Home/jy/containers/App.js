@@ -3,13 +3,11 @@ import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import InputNumberSliderGroup from '../components/InputNumberSliderGroup';
-
 import ProductNumber from './ProductNumber';
 
-import { Popover, RaisedButton, Menu, MenuItem, GridList, SvgIcon } from 'material-ui';
+import GridList from '../../../Common/components/GridList';
 
-import ColorGroup from '../components/ColorGroup';
+import { Popover, RaisedButton, Menu, MenuItem, SvgIcon } from 'material-ui';
 
 import ProductHeaderPanel from './ProductHeaderPanel';
 
@@ -19,9 +17,9 @@ import BuyerShowPanel from './BuyerShowPanel';
 
 import PopupGroup from './PopupGroup';
 
-import ImageItem from '../components/ImageItem';
+import ImageItem from '../../../Common/components/ImageItem';
 
-import ColorItem from '../components/ColorItem';
+import ColorItem from '../../../Common/components/ColorItem';
 
 import GeneralPropertiesPanel from './GeneralPropertiesPanel';
 
