@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 
 import ColorGroup from '../../../Common/components/ColorGroup';
 
-import { Popover } from 'material-ui';
+// import { Popover } from 'material-ui';
+import Popover from '../../../Common/components/Popover';
 
 import InputNumberSlider from '../../../Common/components/InputNumberSlider';
 
@@ -34,9 +35,6 @@ export default class TextShadowPanel extends Component {
     return (
       <Popover
         open={this.state.open}
-        anchorEl={this.state.anchorEl}
-        anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
-        targetOrigin={{horizontal: 'middle', vertical: 'top'}}
         onRequestClose={e => {
           this.setState({
             open: false,

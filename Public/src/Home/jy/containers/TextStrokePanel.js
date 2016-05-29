@@ -2,9 +2,12 @@ import React, { Component, PropTypes } from 'react';
 
 import ColorGroup from '../../../Common/components/ColorGroup';
 
-import { Popover } from 'material-ui';
+// import { Popover } from 'material-ui';
+import Popover from '../../../Common/components/Popover';
 
 import InputNumberSlider from '../../../Common/components/InputNumberSlider';
+
+import VerticalSeparation from '../../../Common/components/VerticalSeparation';
 
 export default class TextStrokePanel extends Component {
   constructor(props) {
@@ -32,9 +35,6 @@ export default class TextStrokePanel extends Component {
     return (
       <Popover
         open={this.state.open}
-        anchorEl={this.state.anchorEl}
-        anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
-        targetOrigin={{horizontal: 'middle', vertical: 'top'}}
         onRequestClose={e => {
           this.setState({
             open: false,
@@ -46,21 +46,23 @@ export default class TextStrokePanel extends Component {
         }}
         style={{padding: '10px 5px', marginTop: 5, width: 400}}
         >
-        <ColorGroup
-          activeIndex={this.props.activeIndex}
-          onClick={(e, item, index) => {
-            if(this.props.onClick) {
-              this.props.onClick(e, item, index);
-            }
-          }}
-          items={this.props.items}/>
-        <div style={{paddingLeft: 5, paddingRight: 3}}>
-          <InputNumberSlider defaultValue={this.props.size} max={10} min={0} type='INT' label='大小' labelWidth={50} labelFontSize={14} onChange={(e, v) => {
-            if(this.props.onChangeSize) {
-              this.props.onChangeSize(e, v);
-            }
-          }}/>
-        </div>
+        <VerticalSeparation>
+          <ColorGroup
+            activeIndex={this.props.activeIndex}
+            onClick={(e, item, index) => {
+              if(this.props.onClick) {
+                this.props.onClick(e, item, index);
+              }
+            }}
+            items={this.props.items}/>
+          <div style={{paddingLeft: 5, paddingRight: 3}}>
+            <InputNumberSlider defaultValue={this.props.size} max={10} min={0} type='INT' label='大小' labelWidth={50} labelFontSize={14} onChange={(e, v) => {
+              if(this.props.onChangeSize) {
+                this.props.onChangeSize(e, v);
+              }
+            }}/>
+          </div>
+        </VerticalSeparation>
       </Popover>
     );
   }

@@ -4,6 +4,8 @@ import { SvgIcon } from 'material-ui';
 
 import { NavigationCheck } from 'material-ui/svg-icons';
 
+import { CYAN500, GREY300, ORANGE700 } from '../styles/colors';
+
 export default class ColorItem extends React.Component {
   constructor(props) {
     super(props);
@@ -52,7 +54,7 @@ export default class ColorItem extends React.Component {
           borderRadius: 5,
           border: '1px solid',
           margin: 'auto',
-          borderColor: this.state.active ? this.props.activeColor : this.props.defaultColor,
+          borderColor: this.state.active ? ORANGE700 : this.props.defaultColor,
           backgroundColor: this.props.defaultBgColor
         }, this.props.style)}
         onClick={e => {
@@ -77,8 +79,8 @@ ColorItem.defaultProps = {
   width: 30,
   height: 30,
   defaultBgColor: '#fff',
-  defaultColor: '#ccc',
-  activeColor: '#5d9be7',
+  defaultColor: GREY300,
+  activeColor: CYAN500,
   active: false,
   style: {}
 };

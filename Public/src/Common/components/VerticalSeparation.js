@@ -7,8 +7,7 @@ import Is from '../utils/Is';
 function getStyles(props) {
 	return {
 		root: {
-			marginBottom: -props.gutter,
-			overflow: 'hidden'
+			marginBottom: -props.gutter
 		},
 
 		item: {

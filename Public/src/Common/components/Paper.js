@@ -5,7 +5,7 @@ function getStyles(props) {
 		root: {
 			backgroundColor: props.bgColor,
 			boxSizing: 'border-box',
-			boxShadow: 'rgba(0, 0, 0, 0.1) 0px 2px 6px',
+			boxShadow: 'rgba(0, 0, 0, 0.1) 0px 2px 3px',
 			borderRadius: props.roundSize
 		}
 	};
@@ -21,7 +21,7 @@ export default class Paper extends Component {
 
 	static defaultProps = {
 		bgColor: '#fff',
-		roundSize: 4
+		roundSize: 2
 	};
 
 	render() {

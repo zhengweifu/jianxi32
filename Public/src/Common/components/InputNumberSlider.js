@@ -7,20 +7,27 @@ import { GREY500 } from '../styles/colors';
 
 import SetToRange from '../utils/SetToRange';
 
+import { FONT_SIZE_SMALL, FONT_FAMILY_DEFAULT } from '../styles/constants';
+
 function getStyles(props) {
-	const { label, labelWidth, inputWidth, labelColor, labelFontSize, labelFontFamily } = props;
+	const { height, dotRadius, label, labelWidth, inputWidth, labelColor, labelFontSize, labelFontFamily } = props;
 	const gutter = 5;
+	// const height = dotRadius * 2;
 	return {
 		root: {
 			position: 'relative',
-			height: 24
+			// backgroundColor: '#f00',
+			height: height
 		},
 		label: {
 			position: 'absolute',
 			left: 0,
 			top: 0,
 			bottom: 0,
-			height: labelFontSize,
+			// backgroundColor: '#ff0',
+			verticalAlign: 'middle',
+			height: height,
+			lineHeight: `${height}px`,
 			margin: 'auto',
 			width: labelWidth,
 			color: labelColor,
@@ -28,14 +35,16 @@ function getStyles(props) {
 			fontFamily: labelFontFamily
 		},
 		input: {
+			overflow: 'hidden',
 			position: 'absolute',
 			left: label ? (labelWidth + gutter) : 0,
 			top: 0,
-			width: inputWidth
+			width: inputWidth,
+			height: height
 		},
 		slider: {
 			position: 'absolute',
-			top: 8,
+			top: height / 2 - dotRadius,
 			left: label ? (labelWidth + inputWidth + gutter * 2) : (inputWidth + gutter),
 			right: 0
 		}
@@ -51,11 +60,13 @@ export default class InputNumberSlider extends Component {
 	}
 
 	static defaultProps = {
+		height: 30,
+		dotRadius: 6,
 		fixed: 2,
 		type: 'NUMBER',
 		labelColor: GREY500,
-		labelFontSize: 12,
-		labelFontFamily: '"Times New Roman",Georgia,Serif',
+		labelFontSize: FONT_SIZE_SMALL,
+		labelFontFamily: FONT_FAMILY_DEFAULT,
 		labelWidth: 30,
 		inputWidth: 55,
 		defaultValue: 0,
@@ -64,6 +75,8 @@ export default class InputNumberSlider extends Component {
 	};
 
 	static propTypes = {
+		height: PropTypes.number,
+		dotRadius: PropTypes.number,
 		fixed: PropTypes.number,
 		label: PropTypes.string,
 		labelColor: PropTypes.string,
@@ -84,6 +97,12 @@ export default class InputNumberSlider extends Component {
 		if (value === undefined) {
 			value = this.props.defaultValue !== undefined ? this.props.defaultValue : this.props.min;
 		}
+
+		const halfHeight = this.props.height / 2;
+		if(this.props.dotRadius > halfHeight) {
+			throw new Error('this.props.dotRadius 不能大于 this.props.height / 2.');
+		}
+
 		this.setState({value: value});
 	}
 
@@ -113,7 +132,7 @@ export default class InputNumberSlider extends Component {
 	}
 
 	render() {
-		const { label, min, max, type } = this.props;
+		const { height, dotRadius, label, min, max, type } = this.props;
 
 		let sliderValue = SetToRange(this.state.value, min, max);
 
@@ -124,12 +143,14 @@ export default class InputNumberSlider extends Component {
 				{labelDiv}
 				<div style={styles.input}>
 					<InputNumber
+						style={{height: height}}
 						value={Number(this.state.value.toFixed(this.props.fixed))}
 						onChange={this.onInputHandleChange.bind(this)}
 						type={type}/>
 				</div>
 
 				<Slider
+					dotRadius={dotRadius}
 					value={sliderValue}
 					onChange={this.onSliderHandleChange.bind(this)}
 					max={max}

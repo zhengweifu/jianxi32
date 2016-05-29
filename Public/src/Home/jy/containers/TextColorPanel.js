@@ -2,15 +2,15 @@ import React, { Component, PropTypes } from 'react';
 
 import ColorGroup from '../../../Common/components/ColorGroup';
 
-import { Popover, PopoverAnimationVertical } from 'material-ui';
+// import { Popover, PopoverAnimationVertical } from 'material-ui';
+import Popover from '../../../Common/components/Popover';
 
 export default class TextColorPanel extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      open: props.open,
-      anchorEl: props.anchorEl
+      open: props.open
     };
   }
 
@@ -20,30 +20,20 @@ export default class TextColorPanel extends Component {
     }
   }
 
-  handleRequestClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
   render() {
     return (
       <Popover
         open={this.state.open}
-        anchorEl={this.state.anchorEl}
-        anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
-        targetOrigin={{horizontal: 'middle', vertical: 'top'}}
         onRequestClose={e => {
-          this.setState({
-            open: false,
-          });
+          // this.setState({
+          //   open: false,
+          // });
 
           if(this.props.onRequestClose) {
             this.props.onRequestClose(e);
           }
         }}
         style={{padding: '10px 5px', marginTop: 5, width: 400}}
-        animation={PopoverAnimationVertical}
         >
       <ColorGroup
         activeIndex={this.props.activeIndex}
@@ -59,13 +49,11 @@ export default class TextColorPanel extends Component {
 }
 
 TextColorPanel.defaultProps = {
-  open: false,
-  anchorEl: null
+  open: false
 };
 
 TextColorPanel.propTypes = {
   open: PropTypes.bool,
-  anchorEl: PropTypes.object,
   activeIndex: PropTypes.number.isRequired,
   items: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   onClick: PropTypes.func.isRequired,

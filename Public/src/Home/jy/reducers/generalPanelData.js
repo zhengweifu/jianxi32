@@ -5,7 +5,7 @@
 import { SET_GENERAL_PANEL_PROPS, SET_GENERAL_PANEL_VISIBLE } from '../actions/actionTypes';
 
 const initState = {
-  visible: false,
+  visible: true,
   props: {}
 };
 

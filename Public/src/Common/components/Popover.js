@@ -1,17 +1,36 @@
 import React, { Component, PropTypes } from 'react';
 
+import ReactDOM from 'react-dom';
+
 import { GUTTER } from '../styles/constants';
 
 import Paper from './Paper';
 
-function getStyles(props) {
+import { GREY300 } from '../styles/colors';
+
+import Dom from '../utils/dom';
+
+function getStyles(props, state) {
+	const {
+		zDepth
+	} = props;
 	return {
 		root: {
+			position: 'relative',
+			top: 0,
+			left: 0,
+			width: '100%',
+			display: state.open ? 'block' : 'none'
+		},
+		self: {
+			// backgroundColor: '#f00',
+			border: `1px solid ${GREY300}`,
 			position: 'absolute',
 			top: 0,
 			left: 0,
 			padding: GUTTER,
-			width: 100,
+			width: '100%',
+			zIndex: zDepth,
 		}
 	};
 }
@@ -25,7 +44,6 @@ export default class Popover extends Component {
 	}
 	static propTypes = {
 		children: PropTypes.node,
-		anchorEl: PropTypes.object,
 		onRequestClose: PropTypes.func,
 		open: PropTypes.bool,
  		style: PropTypes.object,
@@ -33,18 +51,45 @@ export default class Popover extends Component {
 	};
 
 	static defaultProps = {
-		onRequestClose: () => {},
 		open: false,
-		zDepth: 1
+		zDepth: 10
 	};
 
+	handleRequestClose = (e) => {
+		// console.log( Dom.isDescendant(this.element, e.target), document.documentElement.contains(e.target));
+		if(!(e.target == this.element || Dom.isDescendant(this.element, e.target))) {
+			if(this.state.open) {
+				this.setState({open : false});
+			}
+			if(this.props.onRequestClose) {
+				this.props.onRequestClose(e);
+			}
+			window.removeEventListener('mouseup', this.handleRequestClose, false);
+		}
+
+	};
+
+	componentWillReceiveProps(newProps) {
+		if(newProps.open !== this.state.open ) {
+			this.setState({open: newProps.open});
+		}
+	}
+
 	render() {
+		if(this.state.open) {
+			setTimeout(() => {
+				window.addEventListener('mouseup', this.handleRequestClose, false);
+			}, 0);
+		}
+
 		const { children } = this.props;
-		const styles = getStyles(this.props);
+		const styles = getStyles(this.props, this.state);
 		return (
-			<Paper style={styles.root}>
-				{children}
-			</Paper>
+			<div style={styles.root}>
+				<Paper style={styles.self} ref={ref => this.element = ReactDOM.findDOMNode(ref)}>
+					{children}
+				</Paper>
+			</div>
 		);
 	}
 

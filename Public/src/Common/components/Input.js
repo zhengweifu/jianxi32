@@ -46,6 +46,7 @@ export default class Input extends Component {
         let defaultBorderColor = GREY300, activeBorderColor = CYAN500;
 
         let style = {
+            boxSizing: 'border-box',
             color: GREY500,
             border: 'none',
             borderBottom: 'solid',

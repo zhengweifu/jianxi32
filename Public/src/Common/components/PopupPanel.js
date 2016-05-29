@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from 'react';
 
 import { HardwareKeyboardArrowDown, HardwareKeyboardArrowRight} from 'material-ui/svg-icons';
 
+import { GREY300, GREY200 } from '../styles/colors';
+
+import Paper from './Paper';
+
 export default class PopupPanel extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +23,9 @@ export default class PopupPanel extends Component {
 
   render() {
     let style = {
-      boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.05)'
+      position: 'relative',
+      // boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.05)',
+      zIndex: this.props.zDepth
     };
 
     let headerStyle = {
@@ -53,8 +59,15 @@ export default class PopupPanel extends Component {
       transformOrigin: '0 0',
       transition: 'all 0.3s ease-in-out'
     };
+
+    const arrowStyle = {
+      position: 'absolute',
+      right: 0,
+      top: this.props.padding,
+      zIndex: this.props.zDepth + 1
+    };
     return (
-      <div style={Object.assign(style, this.props.style)}>
+      <Paper style={Object.assign(style, this.props.style)}>
         <div style={Object.assign(headerStyle, this.props.headerStyle)} onTouchTap={e => {
           // this.setState({open: !this.state.open});
           let open = this.state.open;
@@ -92,12 +105,12 @@ export default class PopupPanel extends Component {
             this.props.onTouchTap(e);
           }
         }}>{this.props.label}
-          {this.state.open ? <HardwareKeyboardArrowDown style={{float: 'right'}}/> : <HardwareKeyboardArrowRight style={{float: 'right'}}/>}
+          {this.state.open ? <HardwareKeyboardArrowDown style={arrowStyle}/> : <HardwareKeyboardArrowRight style={arrowStyle}/>}
         </div>
         <div style={Object.assign(bodyStyle, this.props.bodyStyle)}>
           {this.props.children}
         </div>
-      </div>
+      </Paper>
     );
   }
 }
@@ -105,16 +118,17 @@ export default class PopupPanel extends Component {
 PopupPanel.defaultProps = {
   open: false,
   overflow: 'auto',
-  borderColor: '#ccc',
+  borderColor: GREY300,
   headerHeight: 26,
-  headerBgColor: '#eee',
+  headerBgColor: GREY200,
   bodyHeight: 100,
   bodyBgColor: '#fff',
   radius: 2,
   padding: 5,
   style: {},
   headerStyle: {},
-  bodyStyle: {}
+  bodyStyle: {},
+  zDepth: 1,
 };
 
 PopupPanel.propTypes = {
@@ -131,4 +145,5 @@ PopupPanel.propTypes = {
   style: PropTypes.object,
   headerStyle: PropTypes.object,
   bodyStyle: PropTypes.object,
+  zDepth: PropTypes.number,
 };

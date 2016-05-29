@@ -72,26 +72,27 @@ let App = (props) => {
 					</Grid>
 				</Col>
 			</Grid>
-			<GridList cols={2}>
-				<InputNumberSliderGroup
-					lock={true}
-					max={10}
-					min={0}
-					labels={['x', 'y']}
-					labelWidth={10}
-					defaults={[0, 5]}
-				/>
-				<InputNumberSliderGroup
-					max={100}
-					min={0}
-					type='INT'
-					labels={['x', 'y', 'z']}
-					labelWidth={10}
-					defaults={[0, 5, 20]}
-				/>
-			</GridList>
+			<div style={{height: 20, overflow: 'visible'}}>
+				<Popover>aaasada<br/>aaasada<br/>aaasada<br/>aaasada<br/>aaasada<br/></Popover>
+			</div>
+			<InputNumberSliderGroup
+				lock={true}
+				max={10}
+				min={0}
+				labels={['x', 'y']}
+				labelWidth={10}
+				defaults={[0, 5]}
+			/>
+			<InputNumberSliderGroup
+				max={100}
+				min={0}
+				type='INT'
+				labels={['x', 'y', 'z']}
+				labelWidth={10}
+				defaults={[0, 5, 20]}
+			/>
 
-			<Popover>aaasada</Popover>
+			
 		</div>
 	);
 };

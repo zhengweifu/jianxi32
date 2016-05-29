@@ -20,9 +20,10 @@ export default class PopupGroup extends Component {
 
       return (
         <PopupPanel
+          zDepth={item.zDepth}
           key={'PopupPanel_' + index}
           bodyHeight={item.height}
-          overflow='hidden'
+          overflow='visible'
           style={{
             marginTop: 10,
             display: visible ? 'block' : 'none'

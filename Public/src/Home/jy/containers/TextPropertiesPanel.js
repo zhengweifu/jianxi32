@@ -107,36 +107,115 @@ class TextPropertiesPanel extends Component {
     return `${hShadow}px ${vShadow}px ${blur}px ${color}`;
   }
 
-  renderColorPanel() {
-    let currentTextColorString = this.props.activeColorIndex >= 0 ? this.props.colorItems[this.props.activeColorIndex] : this.props.textProps.fill;
-    return <div key='2' style={{textAlign: 'center'}}>
-      <div style={{marginBottom: 10}}>颜色</div>
-      <ColorItem defaultBgColor={currentTextColorString}
+  renderColorItem() {
+    let currentTextColorString = this.props.activeColorIndex >= 0 ? 
+      this.props.colorItems[this.props.activeColorIndex] : 
+      this.props.textProps.fill;
+    return (
+      <div style={{textAlign: 'center'}}>
+        <div style={{marginBottom: 10}}>颜色</div>
+        <ColorItem defaultBgColor={currentTextColorString}
+          ref={ref => {
+            this.textColorItem = ref;
+            this.colorPanelAnchorEl = ReactDOM.findDOMNode(ref);
+          }}
+          active={this.props.colorPanelVisible}
+          onClick={(e, color) => {
+            let index;
+            if(color !== 'transparent') {
+              index = this.props.colorItems.findIndex(item => item === color);
+              if(index === -1) {
+                this.props.addTextColor(color);
+                index = this.props.colorItems.length - 1;
+              }
+            } else {
+              index = this.props.colorItems.length - 1;
+            }
+            this.props.setTextColorActiveIndex(index);
+            this.props.setTextColorPanelVisible(!this.props.colorPanelVisible);
+          }}/>
+      </div>
+    );
+  }
+
+  renderStrokeColorItem() {
+    let currentTextStrokeColorString = this.props.activeStrokeColorIndex >= 0 ? 
+      this.props.strokeColorItems[this.props.activeStrokeColorIndex] : 
+      this.props.textProps.stroke;
+    return (
+      <div style={{textAlign: 'center'}}>
+        <div style={{marginBottom: 10}}>描边</div>
+        <ColorItem defaultBgColor={currentTextStrokeColorString}
+          ref={ref => {
+            this.textStrokeColorItem = ref;
+            this.strokePanelAnchorEl = ReactDOM.findDOMNode(ref);
+          }}
+          active={this.props.strokePanelVisible}
+          onClick={(e, color) => {
+            let index;
+            if(color !== 'transparent') {
+              index = this.props.strokeColorItems.findIndex(item => item === color);
+              if(index === -1) {
+                this.props.addTextStroke(color);
+                index = this.props.strokeColorItems.length - 1;
+              }
+            } else {
+              index = this.props.strokeColorItems.length - 1;
+            }
+
+            this.props.setTextStrokeActiveIndex(index);
+
+            this.props.setTextStrokePanelVisible(!this.props.strokePanelVisible);
+
+            // if(this.strokePanelAnchorEl) {
+            //   this.textStrokePanel.setState({anchorEl: this.strokePanelAnchorEl});
+            // }
+          }}/>
+      </div>
+    );
+  }
+
+  renderShadowColorItem(shadowProps) {
+    let currentTextShadowColorString = this.props.activeShadowColorIndex >= 0 ? 
+      this.props.shadowColorItems[this.props.activeShadowColorIndex] : 
+      shadowProps.color;
+    return (
+      <div style={{textAlign: 'center'}}>
+        <div style={{marginBottom: 10}}>阴影</div>
+        <ColorItem defaultBgColor={currentTextShadowColorString}
         ref={ref => {
-          this.textColorItem = ref;
-          this.colorPanelAnchorEl = ReactDOM.findDOMNode(ref);
+          this.textShadowColorItem = ref;
+          this.shadowPanelAnchorEl = ReactDOM.findDOMNode(ref);
         }}
-        active={this.props.colorPanelVisible}
+        active={this.props.shadowPanelVisible}
         onClick={(e, color) => {
           let index;
           if(color !== 'transparent') {
-            index = this.props.colorItems.findIndex(item => item === color);
+            index = this.props.shadowColorItems.findIndex(item => item === color);
+            console.log(index);
             if(index === -1) {
-              this.props.addTextColor(color);
-              index = this.props.colorItems.length - 1;
+              this.props.addTextShadow(color);
+              index = this.props.shadowColorItems.length - 1;
             }
           } else {
-            index = this.props.colorItems.length - 1;
+            index = this.props.shadowColorItems.length - 1;
           }
-          this.props.setTextColorActiveIndex(index);
 
-          this.props.setTextColorPanelVisible(!this.props.colorPanelVisible);
+          this.props.setTextShadowActiveIndex(index);
 
+          this.props.setTextShadowPanelVisible(!this.props.shadowPanelVisible);
 
-          if(this.colorPanelAnchorEl) {
-            this.textColorPanel.setState({anchorEl: this.colorPanelAnchorEl});
-          }
+          // if(this.shadowPanelAnchorEl) {
+          //   this.textShadowPanel.setState({anchorEl: this.shadowPanelAnchorEl});
+          // }
         }}/>
+      </div>
+    );
+  }
+
+  renderColorPanel() {
+    // console.log(this.props);
+    return (
       <TextColorPanel
         onClick={(e, color, index) => {
           this.props.setTextColorActiveIndex(index);
@@ -144,53 +223,24 @@ class TextPropertiesPanel extends Component {
           this.setTextProp('fill', color);
         }}
         ref={ref => this.textColorPanel = ref}
-        anchorEl = {this.colorPanelAnchorEl}
         open={this.props.colorPanelVisible}
         activeIndex={this.props.activeColorIndex}
         onRequestClose={e => {
           this.props.setTextColorPanelVisible(false);
         }}
         items={this.props.colorItems}/>
-    </div>;
+    );
   }
+  // open={this.props.colorPanelVisible}
 
   renderStrokePanel() {
-    let currentTextStrokeColorString = this.props.activeStrokeColorIndex >= 0 ? this.props.strokeColorItems[this.props.activeStrokeColorIndex] : this.props.textProps.stroke;
-    return <div key='3' style={{textAlign: 'center'}}>
-      <div style={{marginBottom: 10}}>描边</div>
-      <ColorItem defaultBgColor={currentTextStrokeColorString}
-      ref={ref => {
-        this.textStrokeColorItem = ref;
-        this.strokePanelAnchorEl = ReactDOM.findDOMNode(ref);
-      }}
-      active={this.props.strokePanelVisible}
-      onClick={(e, color) => {
-        let index;
-        if(color !== 'transparent') {
-          index = this.props.strokeColorItems.findIndex(item => item === color);
-          if(index === -1) {
-            this.props.addTextStroke(color);
-            index = this.props.strokeColorItems.length - 1;
-          }
-        } else {
-          index = this.props.strokeColorItems.length - 1;
-        }
-
-        this.props.setTextStrokeActiveIndex(index);
-
-        this.props.setTextStrokePanelVisible(!this.props.strokePanelVisible);
-
-        if(this.strokePanelAnchorEl) {
-          this.textStrokePanel.setState({anchorEl: this.strokePanelAnchorEl});
-        }
-      }}/>
+    return (
       <TextStrokePanel
         onClick={(e, color, index) => {
           this.props.setTextStrokeActiveIndex(index);
           this.setTextProp('stroke', color);
         }}
         ref={ref => this.textStrokePanel = ref}
-        anchorEl = {this.strokePanelAnchorEl}
         open={this.props.strokePanelVisible}
         activeIndex={this.props.activeStrokeColorIndex}
         onRequestClose={e => {
@@ -201,41 +251,11 @@ class TextPropertiesPanel extends Component {
           this.setTextProp('strokeWidth', v);
         }}
         items={this.props.strokeColorItems}/>
-    </div>;
+    );
   }
 
-  renderShadowPanel() {
-    let shadowProps = this.separationShadow(this.props.textProps.shadow);
-    let currentTextShadowColorString = this.props.activeShadowColorIndex >= 0 ? this.props.shadowColorItems[this.props.activeShadowColorIndex] : shadowProps.color;
-    return <div key='4' style={{textAlign: 'center'}}>
-      <div style={{marginBottom: 10}}>阴影</div>
-      <ColorItem defaultBgColor={currentTextShadowColorString}
-      ref={ref => {
-        this.textShadowColorItem = ref;
-        this.shadowPanelAnchorEl = ReactDOM.findDOMNode(ref);
-      }}
-      active={this.props.shadowPanelVisible}
-      onClick={(e, color) => {
-        let index;
-        if(color !== 'transparent') {
-          index = this.props.shadowColorItems.findIndex(item => item === color);
-          console.log(index);
-          if(index === -1) {
-            this.props.addTextShadow(color);
-            index = this.props.shadowColorItems.length - 1;
-          }
-        } else {
-          index = this.props.shadowColorItems.length - 1;
-        }
-
-        this.props.setTextShadowActiveIndex(index);
-
-        this.props.setTextShadowPanelVisible(!this.props.shadowPanelVisible);
-
-        if(this.shadowPanelAnchorEl) {
-          this.textShadowPanel.setState({anchorEl: this.shadowPanelAnchorEl});
-        }
-      }}/>
+  renderShadowPanel(shadowProps) {
+    return (
       <TextShadowPanel
         onClick={(e, color, index) => {
           this.props.setTextShadowActiveIndex(index);
@@ -248,7 +268,6 @@ class TextPropertiesPanel extends Component {
           ));
         }}
         ref={ref => this.textShadowPanel = ref}
-        anchorEl = {this.shadowPanelAnchorEl}
         open={this.props.shadowPanelVisible}
         activeIndex={this.props.activeShadowColorIndex}
         onRequestClose={e => {
@@ -258,7 +277,6 @@ class TextPropertiesPanel extends Component {
         vShadow={shadowProps.vShadow}
         blur={shadowProps.blur}
         onChangeHShadow={(e, v) => {
-
           this.setTextProp('shadow', this.mergeShadow(
             v,
             shadowProps.vShadow,
@@ -283,7 +301,7 @@ class TextPropertiesPanel extends Component {
           ));
         }}
         items={this.props.shadowColorItems}/>
-    </div>;
+    );
   }
 
   renderFontFamilies() {
@@ -371,17 +389,11 @@ class TextPropertiesPanel extends Component {
 
     let buttonBgColor = '#eee';
 
-    let layout1 = [
-      {i: '0', x: 0, y: 0, w: 8, h: 1, static: true},
-      {i: '1', x: 0, y: 1, w: 5, h: 1, static: true},
-      {i: '2', x: 5, y: 1, w: 1, h: 1, static: true},
-      {i: '3', x: 6, y: 1, w: 1, h: 1, static: true},
-      {i: '4', x: 7, y: 1, w: 1, h: 1, static: true},
-    ];
-    // console.log(this.textColorPanel);
 
+    // console.log(this.textColorPanel);
+    let shadowProps = this.separationShadow(this.props.textProps.shadow);
     return (
-      <VerticalSeparation gutter={25}>
+      <VerticalSeparation gutter={20}>
         <TextField
           hintText='www.janexi.com'
           value={this.props.textProps.text ? this.props.textProps.text : ''}
@@ -389,33 +401,40 @@ class TextPropertiesPanel extends Component {
           onChange={(e, v) => {
             this.setTextProp('text', v);
           }}/>
-        <Grid>
-          <Col width={ 5 / 8}>
-            <div>字体</div>
-            {this.renderFontFamilies()}
-          </Col>
-          <Col width={ 1 / 8}>
-            {this.renderColorPanel()}
-          </Col>
-          <Col width={ 1 / 8}>
-            {this.renderStrokePanel()}
-          </Col>
-          <Col width={ 1 / 8}>
-            {this.renderShadowPanel()}
-          </Col>
-        </Grid>
-      <InputNumberSlider defaultValue={this.props.textProps.fontSize ? this.props.textProps.fontSize : 10}
-      max={50} min={5} type='INT' label='字号' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
-        this.setTextProp('fontSize', v);
-      }}/>
-      <InputNumberSlider defaultValue={this.props.textProps.spacing ? this.props.textProps.spacing : 1} 
-        max={20} min={0} type='INT' label='间距' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
-          this.setTextProp('spacing', v);
+        <div>
+          <Grid>
+            <Col width={ 5 / 8}>
+              <div>字体</div>
+              {this.renderFontFamilies()}
+            </Col>
+            <Col width={ 1 / 8}>
+              {this.renderColorItem()}
+            </Col>
+            <Col width={ 1 / 8}>
+              {this.renderStrokeColorItem()}
+            </Col>
+            <Col width={ 1 / 8}>
+              {this.renderShadowColorItem(shadowProps)}
+            </Col>
+          </Grid>
+          {this.renderColorPanel()}
+          {this.renderStrokePanel()}
+          {this.renderShadowPanel(shadowProps)}
+        </div>
+        
+        <InputNumberSlider defaultValue={this.props.textProps.fontSize ? this.props.textProps.fontSize : 10}
+        max={50} min={5} type='INT' label='字号' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
+          this.setTextProp('fontSize', v);
         }}/>
-      <InputNumberSlider defaultValue={this.getTextAngle()} max={360} min={-360} type='INT' label='弧度' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
-          this.setTextRadius(v);
-        }}/>
+        <InputNumberSlider defaultValue={this.props.textProps.spacing ? this.props.textProps.spacing : 1} 
+          max={20} min={0} type='INT' label='间距' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
+            this.setTextProp('spacing', v);
+          }}/>
+        <InputNumberSlider defaultValue={this.getTextAngle()} max={360} min={-360} type='INT' label='弧度' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
+            this.setTextRadius(v);
+          }}/>
       </VerticalSeparation>
+
     );
   }
 }

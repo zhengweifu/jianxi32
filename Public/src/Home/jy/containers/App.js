@@ -165,10 +165,10 @@ class App extends React.Component {
           <CreateNodePanel bgColor={this.props.tangerine} fbColor={this.props.grayeee}/>
           <div style={{marginTop: 10}}></div>
           <PopupGroup items={[
-            {title: '一般属性', height: 315, visible: this.props.generalPanelVisible, content: <GeneralPropertiesPanel />},
-            {title: '文字属性', height: 315, visible: this.props.textPanelVisible, content: <TextPropertiesPanel />},
-            {title: '色彩风格', height: 315, visible: this.props.imgPanelVisible, content: <ColorSchemesPanel />},
-            {title: '节点面板', height: 315, visible: true, content: <NodePanel />}
+            {title: '一般属性', height: 310, visible: this.props.generalPanelVisible, content: <GeneralPropertiesPanel />, zDepth: 8},
+            {title: '文字属性', height: 310, visible: this.props.textPanelVisible, content: <TextPropertiesPanel />, zDepth: 4},
+            {title: '色彩风格', height: 310, visible: this.props.imgPanelVisible, content: <ColorSchemesPanel />, zDepth: 4},
+            {title: '节点面板', height: 310, visible: true, content: <NodePanel />, zDepth: 1}
           ]}/>
         </div>
       </div>
