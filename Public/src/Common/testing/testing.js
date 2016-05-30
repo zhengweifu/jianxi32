@@ -26,6 +26,10 @@ import Popover from '../components/Popover';
 
 import VerticalSeparation from '../components/VerticalSeparation';
 
+import Modal from '../components/Modal';
+
+import Overlay from '../components/Overlay';
+
 let App = (props) => {
 	return (
 		<div>
@@ -92,7 +96,7 @@ let App = (props) => {
 				defaults={[0, 5, 20]}
 			/>
 
-			
+			<Modal open={true}>....</Modal>
 		</div>
 	);
 };

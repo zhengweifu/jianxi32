@@ -22,3 +22,9 @@ export const FONT_SIZE_DEFAULT = 14;
 export const FONT_SIZE_BIG = 16;
 
 export const FONT_FAMILY_DEFAULT = '"Times New Roman",Georgia,Serif';
+
+export const OVERLAY_ZINDEX = 1500;
+
+export const MODAL_ZINDEX = 1501;
+
+export const MODAL_MAX_WIDTH = 768;

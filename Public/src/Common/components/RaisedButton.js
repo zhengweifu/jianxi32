@@ -40,6 +40,7 @@ export default class RaisedButton extends Component {
 	}
 
 	static propTypes = {
+		style: PropTypes.object,
 		bgColor: PropTypes.string,
 		fullWidth: PropTypes.bool,
 		label: PropTypes.string,
@@ -51,7 +52,8 @@ export default class RaisedButton extends Component {
 		onMouseEnter: PropTypes.func,
 		onMouseLeave: PropTypes.func,
 		onTouchEnd: PropTypes.func,
-		onTouchStart: PropTypes.func
+		onTouchStart: PropTypes.func,
+		onClick: PropTypes.func
 	};
 
 	static defaultProps = {
@@ -95,10 +97,15 @@ export default class RaisedButton extends Component {
 		}
 
 		return (
-			<Paper style={Object.assign({}, styles.root)} bgColor={bgColor}>
+			<Paper style={Object.assign({}, styles.root, this.props.style)} bgColor={bgColor}>
 				<div style={styles.button} 
 					onMouseLeave={this.handleMouseLeave.bind(this)}
-					onMouseEnter={this.handleMouseEnter.bind(this)}>
+					onMouseEnter={this.handleMouseEnter.bind(this)}
+					onClick={e => {
+						if(this.props.onClick) {
+							this.props.onClick(e);
+						}
+					}}>
 					<div style={styles.item}>
 						<div style={iconLeftStyle}>{this.props.leftIcon}</div>
 						<span style={labelStyle}>{this.props.label}</span>
