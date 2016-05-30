@@ -80,7 +80,6 @@ export default class Modal extends Component {
 	static defaultProps = {
 		open: false,
 		overlayStyle: {},
-		title: 'Modal',
 		useActions: true
 	};
 
@@ -115,20 +114,23 @@ export default class Modal extends Component {
 					</div></div>
 				</div> : '';
 
+		const header = title && title.length > 0 ?
+				<div style={styles.modalHeader}>
+					{title}
+					<div style={styles.close} onClick={e => {
+						this.setState({open: false});
+					}}>
+						<SvgIcon color={GREY300} hoverColor={PINK300}>
+							<path d={clear}/>
+						</SvgIcon>
+					</div>
+				</div> : '';
+
 		return (
 			<div>
 				<div style={styles.modal}>
 					<Paper>
-						<div style={styles.modalHeader}>
-							{title}
-							<div style={styles.close} onClick={e => {
-								this.setState({open: false});
-							}}>
-								<SvgIcon color={GREY300} hoverColor={PINK300}>
-									<path d={clear}/>
-								</SvgIcon>
-							</div>
-						</div>
+						{header}
 						<div style={styles.modalBody}>{children}</div>
 						{footer}
 					</Paper>

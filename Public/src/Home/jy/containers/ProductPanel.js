@@ -1,5 +1,7 @@
 import React from 'react';
-import { Dialog, RaisedButton, AppBar, GridList, GridTile } from 'material-ui';
+import { RaisedButton } from 'material-ui';
+
+import Modal from '../../../Common/components/Modal';
 
 import ImageItem from '../../../Common/components/ImageItem';
 
@@ -79,29 +81,10 @@ class ProductPanel extends React.Component {
   }
 
   render() {
-    const actions = [
-      <RaisedButton
-        label='取消'
-        secondary={true}
-        style={{marginRight: 10}}
-        onTouchTap={this.onHandleClose.bind(this)}
-      />,
-      <RaisedButton
-        label='确定'
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.onHandleClose.bind(this)}
-      />,
-    ];
     return (
-      <Dialog
-        actions={actions}
-        modal={false}
-        open={this.state.open}
-        bodyStyle={{overflow: 'auto', maxHeight: 500}}
-        onRequestClose={this.onHandleClose.bind(this)}>
+      <Modal open={this.state.open}>
         {this.renderList()}
-      </Dialog>
+      </Modal>
     );
   }
 }

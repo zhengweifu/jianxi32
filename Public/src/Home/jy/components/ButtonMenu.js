@@ -1,8 +1,10 @@
 import React from 'react';
-import { RaisedButton, Popover, Menu, MenuItem } from 'material-ui';
+import { RaisedButton, Popover } from 'material-ui';
 import PopoverAnimationVertical from 'material-ui/Popover/PopoverAnimationVertical';
 
-import { ImageImage } from 'material-ui/svg-icons';
+// import { ImageImage } from 'material-ui/svg-icons';
+import SvgIcon from '../../../Common/components/SvgIcon';
+import { image } from '../../../Common/svgIcons/google/Image';
 
 export default class ButtonMenu extends React.Component {
   constructor(props) {
@@ -51,7 +53,7 @@ export default class ButtonMenu extends React.Component {
             label={this.props.name}
             backgroundColor={this.props.bgColor}
             labelColor={this.props.fbColor}
-            icon={<ImageImage/>}
+            icon={<SvgIcon><path d={image}/></SvgIcon>}
           />
           <Popover
             open={this.state.open}

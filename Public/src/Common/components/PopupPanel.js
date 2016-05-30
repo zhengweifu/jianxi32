@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 
-import { HardwareKeyboardArrowDown, HardwareKeyboardArrowRight} from 'material-ui/svg-icons';
+// import { HardwareKeyboardArrowDown, HardwareKeyboardArrowRight} from 'material-ui/svg-icons';
+import SvgIcon from './SvgIcon';
+
+import { keyboardArrowDown, keyboardArrowRight } from '../svgIcons/google/Hardware';
 
 import { GREY300, GREY200 } from '../styles/colors';
 
@@ -105,7 +108,7 @@ export default class PopupPanel extends Component {
             this.props.onTouchTap(e);
           }
         }}>{this.props.label}
-          {this.state.open ? <HardwareKeyboardArrowDown style={arrowStyle}/> : <HardwareKeyboardArrowRight style={arrowStyle}/>}
+          {this.state.open ? <SvgIcon style={arrowStyle} color='#000'><path d={keyboardArrowDown}/></SvgIcon> : <SvgIcon style={arrowStyle} color='#000'><path d={keyboardArrowRight}/></SvgIcon>}
         </div>
         <div style={Object.assign(bodyStyle, this.props.bodyStyle)}>
           {this.props.children}

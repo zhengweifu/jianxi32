@@ -4,7 +4,9 @@ import GridList from '../../../Common/components/GridList';
 
 import { RaisedButton } from 'material-ui';
 
-import { EditorTitle } from 'material-ui/svg-icons';
+// import { EditorTitle } from 'material-ui/svg-icons';
+import SvgIcon from '../../../Common/components/SvgIcon';
+import { title } from '../../../Common/svgIcons/google/Editor';
 
 import ButtonMenu from '../components/ButtonMenu';
 
@@ -56,7 +58,7 @@ export default class CreateNodePanel extends Component {
             console.log(wrappedInstance);
             wrappedInstance.setState({open: true});
           }}
-          icon={<EditorTitle/>}
+          icon={<SvgIcon><path d={title}/></SvgIcon>}
           style={{width: 182, marginLeft: 12}}
           backgroundColor={this.props.bgColor}
           labelColor={this.props.fbColor}/>

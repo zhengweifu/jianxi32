@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-import { RaisedButton, Dialog, TextField } from 'material-ui';
+import { RaisedButton, TextField } from 'material-ui';
+
+import Modal from '../../../Common/components/Modal';
 
 import { bindActionCreators } from 'redux';
 
@@ -30,17 +32,10 @@ class CreateTextInitPanel extends Component {
   }
 
   render() {
-    const actions = [
-      <RaisedButton
-        label='取消'
-        secondary={true}
-        style={{marginRight: 10}}
-        onTouchTap={this.onHandleClose.bind(this)}/>,
-      <RaisedButton
-        label='确定'
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={e => {
+    return (
+      <Modal
+        open={this.state.open}
+        onOkClick={e => {
           let v = this.textHint;
 
           if(this.textValue) {
@@ -52,15 +47,7 @@ class CreateTextInitPanel extends Component {
           this.props.addNode({id: nodeId, kind: '文字', describtion: v});
 
           this.onHandleClose();
-        }}/>
-    ];
-    return (
-      <Dialog
-        actions={actions}
-        modal={false}
-        open={this.state.open}
-        bodyStyle={{overflow: 'auto', maxHeight: 500}}
-        onRequestClose={this.onHandleClose.bind(this)}>
+        }}>
         <TextField
           hintText={this.textHint}
           floatingLabelText='文字内容'
@@ -68,7 +55,7 @@ class CreateTextInitPanel extends Component {
           fullWidth={true}
           onChange={(e, value) => this.textValue = value}
         />
-      </Dialog>
+      </Modal>
     );
   }
 }

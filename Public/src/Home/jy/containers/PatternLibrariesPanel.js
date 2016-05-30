@@ -1,5 +1,11 @@
 import React from 'react';
-import { Dialog, RaisedButton, List, ListItem } from 'material-ui';
+import { RaisedButton, List, ListItem } from 'material-ui';
+
+import Modal from '../../../Common/components/Modal';
+
+import Grid from '../../../Common/components/Grid';
+
+import Col from '../../../Common/components/Col';
 
 import PatternLibrariesGroup from '../components/PatternLibrariesGroup';
 
@@ -85,26 +91,21 @@ class PatternLibrariesPanel extends React.Component {
 
     let mactiveIndex = (this.state.currentActiveTitleIndex == mindex) ? this.state.currentActiveItemIndex : -1;
     return (
-      <Dialog
-        actions={actions}
-        modal={false}
-        open={this.state.open}
-        bodyStyle={{maxHeight: 500, padding: 0, paddingTop: 0}}
-        onRequestClose={this.onHandleClose.bind(this)}>
-        <div className='row' style={{marginRight: 0, marginLeft: 0, borderBottom: '1px solid #ccc'}}>
-          <div className='col-sm-2' style={{paddingLeft: 0, paddingRight: 0}}>
+      <Modal open={this.state.open}>
+        <Grid>
+          <Col width={1 / 5}>
             <List style={{borderRight: '1px solid #ccc'}}>
               {this.renderList()}
             </List>
-          </div>
-          <div className='col-sm-10'>
+          </Col>
+          <Col width={4 / 5}>
             <PatternLibrariesGroup
               activeIndex={mactiveIndex}
               onItemClick={this.onHandleItemClick.bind(this)}
               items={patternItems}/>
-          </div>
-        </div>
-      </Dialog>
+          </Col>
+        </Grid>
+      </Modal>
     );
   }
 }
