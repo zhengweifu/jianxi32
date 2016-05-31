@@ -30,6 +30,10 @@ import Modal from '../components/Modal';
 
 import Overlay from '../components/Overlay';
 
+import List from '../components/List';
+
+import { visibility, highlightOff } from '../svgIcons/google/Action';
+
 let App = (props) => {
 	return (
 		<div>
@@ -96,7 +100,14 @@ let App = (props) => {
 				defaults={[0, 5, 20]}
 			/>
 
-			<Modal open={true}>....</Modal>
+			<Modal open={false}>....</Modal>
+
+			<List items={[
+				{leftIcon: <SvgIcon><path d={visibility}/></SvgIcon>, title: '张三', rightIcon: <SvgIcon><path d={highlightOff}/></SvgIcon>},
+				{title: '李四'},
+				{title: '王五'},
+				{title: '赵六'}
+			]}/>
 		</div>
 	);
 };
