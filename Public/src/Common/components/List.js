@@ -52,7 +52,7 @@ export default class List extends Component {
 		this.state = {
 			items: props.items,
 			hoverIndex: -1,
-			activeIndex: -1
+			activeIndex: props.activeIndex
 		};
 
 		this.placeholder = document.createElement('li');
@@ -64,9 +64,9 @@ export default class List extends Component {
 
 	static propsTypes = {
 		items: PropTypes.arrayOf(PropTypes.objectOf({
-			leftIcon: PropTypes.node,
+			left: PropTypes.node,
 			title: PropTypes.string,
-			rightIcon: PropTypes.node
+			right: PropTypes.node
 		})),
 		style: PropTypes.object,
 		itemStyle: PropTypes.object,
@@ -79,7 +79,8 @@ export default class List extends Component {
 		onClick: PropTypes.func,
 		gutter: PropTypes.number,
 		fontSize: PropTypes.number,
-		fontFamily: PropTypes.string
+		fontFamily: PropTypes.string,
+		activeIndex: PropTypes.number
 	};
 
 	static defaultProps = {
@@ -88,11 +89,13 @@ export default class List extends Component {
 		activeColor: CYAN200,
 		fontSize: FONT_SIZE_DEFAULT,
 		fontFamily: FONT_FAMILY_DEFAULT,
-		gutter: GUTTER
+		gutter: GUTTER,
+		activeIndex: -1
 	};
 
 	dragStart = (e) => {
 		this.dragged = e.currentTarget;
+		
 		e.dataTransfer.effectAllowed = 'move';
 
 		// Firefox requires calling dataTransfer.setData
@@ -118,10 +121,10 @@ export default class List extends Component {
 
 	dragOver = (e) => {
 		e.preventDefault();
-		this.dragged.style.display = 'none';
-		if(e.target.className == 'placeholder') {
+		if(e.target.tagName !== 'LI') {
 			return;
 		}
+		this.dragged.style.display = 'none';
 		this.over = e.target;
 		e.target.parentNode.insertBefore(this.placeholder, e.target);
 	};
@@ -148,22 +151,24 @@ export default class List extends Component {
 					let centerStyle = {};
 
 					let leftElement = '', rightElement = '';
-
-					if(item.leftIcon) {
+					// console.log(item.left, item.title);
+					if(item.left) {
 						centerStyle.marginLeft = 30;
-						const leftIconCloned = React.cloneElement(item.leftIcon, {
+						const leftCloned = React.cloneElement(item.left, {
+							padding: 0,
 							color: color
 						});
-						leftElement = <div style={styles.itemLeft}>{leftIconCloned}</div>;
+						leftElement = <div style={styles.itemLeft}>{leftCloned}</div>;
 					}
 
 					const centerElement = <div style={centerStyle}>{item.title}</div>;
 
-					if(item.rightIcon) {
-						const rightIconCloned = React.cloneElement(item.rightIcon, {
+					if(item.right) {
+						const rightCloned = React.cloneElement(item.right, {
+							padding: 0,
 							color: color
 						});
-						rightElement = <div style={styles.itemRight}>{rightIconCloned}</div>;
+						rightElement = <div style={styles.itemRight}>{rightCloned}</div>;
 					}
 
 					return (
@@ -192,9 +197,11 @@ export default class List extends Component {
 									onClick(e, item.title, index);
 								}
 							}}>
-							{leftElement}
-							{centerElement}
-							{rightElement}
+							<div>
+								{leftElement}
+								{centerElement}
+								{rightElement}
+							</div>
 						</li>
 					);
 				})}

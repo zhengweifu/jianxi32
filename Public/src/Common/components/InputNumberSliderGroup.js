@@ -6,6 +6,8 @@ import VerticalSeparation from './VerticalSeparation';
 
 import SvgIcon from './SvgIcon';
 
+import IconButton from './IconButton';
+
 import SetToRange from '../utils/SetToRange';
 
 import { CYAN500, GREY500 } from '../styles/colors';
@@ -68,7 +70,7 @@ function getStyles(props, state) {
 			position: 'absolute',
 			backgroundColor: '#fff',
 			height: iconSize + 2,
-			top: (height - iconSize - 4) / 2,
+			top: (height - iconSize - 6) / 2,
 			right: 0
 		},
 		line: {
@@ -173,19 +175,37 @@ export default class InputNumberSliderGroup extends Component {
 	render() {
 		const { iconSize, gutterY, title } = this.props;
 
+		const mstyle = {
+			paddingBottom: 2,
+			backgroundColor: '#fff'
+		};
+
 		const icon = this.state.lock ?
-			<SvgIcon color={lockColor}
-				width={iconSize}
-				height={iconSize}
-				onClick={this.onIconClick}>
-				{lockIconPath}
-			</SvgIcon> :
-			<SvgIcon color={unLockColor}
-				width={iconSize}
-				height={iconSize}
-				onClick={this.onIconClick}>
-				{unLockIconPath}
-			</SvgIcon>;
+			<IconButton
+				padding={0}
+				color={lockColor}
+				onClick={this.onIconClick}
+				style={mstyle}
+				icon={
+					<SvgIcon 
+						width={iconSize}
+						height={iconSize}>
+						{lockIconPath}
+					</SvgIcon>
+				} /> :
+			<IconButton
+				padding={0}
+				color={unLockColor}
+				onClick={this.onIconClick}
+				style={mstyle}
+				icon={
+					<SvgIcon
+						width={iconSize}
+						height={iconSize}
+						onClick={this.onIconClick}>
+						{unLockIconPath}
+					</SvgIcon>
+				} />;
 
 		const styles = getStyles(this.props, this.state);
 

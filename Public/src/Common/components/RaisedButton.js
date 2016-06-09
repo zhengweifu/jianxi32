@@ -78,9 +78,19 @@ export default class RaisedButton extends Component {
 	}
 
 	render() {
+		const {
+			label,
+			labelColor,
+			bgColor,
+			leftIcon,
+			rightIcon,
+			style,
+			onClick
+		} = this.props;
+
 		const styles = getStyles(this.props);
 
-		const bgColor = this.state.hovered ? lighten(this.props.bgColor, 0.2) : this.props.bgColor;
+		const nbgColor = this.state.hovered ? lighten(bgColor, 0.2) : bgColor;
 
 		let iconLeftStyle = Object.assign({}, styles.icon);
 
@@ -88,28 +98,32 @@ export default class RaisedButton extends Component {
 
 		let iconRightStyle = Object.assign({}, styles.icon);
 
-		if(this.props.leftIcon && this.props.label) {
+		if(leftIcon && label) {
 			iconLeftStyle['paddingRight'] = 5;
 		}
 
-		if(this.props.rightIcon && this.props.label) {
+		if(rightIcon && label) {
 			iconRightStyle['paddingLeft'] = 5;
 		}
 
+		const leftElement = leftIcon ? <div style={iconLeftStyle}>{React.cloneElement(leftIcon, {color: labelColor})}</div> : null;
+		const centerElement = <span style={labelStyle}>{label}</span>;
+		const rightElement = rightIcon ? <div style={iconRightStyle}>{React.cloneElement(rightIcon, {color: labelColor})}</div> : null;
+
 		return (
-			<Paper style={Object.assign({}, styles.root, this.props.style)} bgColor={bgColor}>
+			<Paper style={Object.assign({}, styles.root, style)} bgColor={nbgColor}>
 				<div style={styles.button} 
 					onMouseLeave={this.handleMouseLeave.bind(this)}
 					onMouseEnter={this.handleMouseEnter.bind(this)}
 					onClick={e => {
-						if(this.props.onClick) {
-							this.props.onClick(e);
+						if(onClick) {
+							onClick(e);
 						}
 					}}>
 					<div style={styles.item}>
-						<div style={iconLeftStyle}>{this.props.leftIcon}</div>
-						<span style={labelStyle}>{this.props.label}</span>
-						<div style={iconRightStyle}>{this.props.rightIcon}</div>
+						{leftElement}
+						{centerElement}
+						{rightElement}
 					</div>
 				</div>
 			</Paper>

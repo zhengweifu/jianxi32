@@ -1,7 +1,15 @@
 import React from 'react';
-import { List, ListItem, IconButton } from 'material-ui';
+// import { List, ListItem, IconButton } from 'material-ui';
 
-import { ImageImage, EditorTitle, EditorInsertEmoticon, ActionHighlightOff } from 'material-ui/svg-icons';
+import List from '../../../Common/components/List';
+import IconButton from '../../../Common/components/IconButton';
+import SvgIcon from '../../../Common/components/SvgIcon';
+
+import { image } from '../../../Common/svgIcons/google/Image';
+
+import { visibility, highlightOff } from '../../../Common/svgIcons/google/Action';
+
+// import { ImageImage, EditorTitle, EditorInsertEmoticon, ActionHighlightOff } from 'material-ui/svg-icons';
 
 import { bindActionCreators } from 'redux';
 
@@ -10,64 +18,35 @@ import { connect } from 'react-redux';
 import { setNode, addNode, removeNode, setNodeActiveIndex } from '../actions/index';
 
 class NodePanel extends React.Component {
-  renderItems() {
-    return this.props.items.map((item, index) => {
-      let mLeftIcon = <EditorInsertEmoticon />;
-      switch (item.kind) {
-        case '图片':
-          mLeftIcon = <ImageImage />;
-          break;
-        case '文字':
-          mLeftIcon = <EditorTitle />;
-          break;
-        default:
-      }
-
-      let bgColor = this.props.activeIndex === index ? this.props.activeColor : this.props.defaultColor;
-
+  getItems() {
+    return this.props.items.map((item) => {
       let describtion = item.describtion, subsize = 20;
       if(describtion.length > subsize) {
         describtion = describtion.substr(0, subsize - 2) + '...';
       }
-
-      return (
-        <ListItem
-          onTouchTap={e => {
-            console.log('click ...', index);
-            // this.setState({activeIndex: index});
-            this.props.setNodeActiveIndex(index);
-            if(this.props.onItemClick) {
-              this.props.onItemClick(e, item, index);
-            }
-          }}
-          key={index}
-          style={{
-            marginBottom: 5,
-            backgroundColor: bgColor}}
-          leftIcon={mLeftIcon}
-          primaryText={describtion}
-          rightIconButton={
-            <IconButton
-              onTouchTap={e => {
-                console.log('delete ...', index);
-                this.props.removeNode(index);
-                if(this.props.onRemoveClick) {
-                  this.props.onRemoveClick(e, item, index);
-                }
-              }}
-              >
-              <ActionHighlightOff color='#7c2905'/>
-            </IconButton>}>
-        </ListItem>
-      );
+      return {
+        left: <IconButton 
+          icon={<SvgIcon><path d={visibility}/></SvgIcon>}
+          />, 
+        title: describtion, 
+        right: <IconButton 
+          icon={<SvgIcon><path d={highlightOff}/></SvgIcon>}
+          />
+      };
     });
   }
 
   render() {
+    const items = this.getItems();
     return (
-      <List>
-        {this.renderItems()}
-      </List>
+      <List items={items}
+        onClick={(e, title, index) => {
+          console.log('click ...', index);
+          this.props.setNodeActiveIndex(index);
+          if(this.props.onItemClick) {
+            this.props.onItemClick(e, title, index);
+          }
+        }}/>
     );
   }
 }

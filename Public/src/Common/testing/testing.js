@@ -34,6 +34,8 @@ import List from '../components/List';
 
 import { visibility, highlightOff } from '../svgIcons/google/Action';
 
+import IconButton from '../components/IconButton';
+
 let App = (props) => {
 	return (
 		<div>
@@ -101,9 +103,26 @@ let App = (props) => {
 			/>
 
 			<Modal open={false}>....</Modal>
-
+			<IconButton
+				color='#f00'
+				padding={5}
+				icon={<SvgIcon><path d={visibility}/></SvgIcon>}
+				/>
+			<IconButton
+				color='#f0f'
+				padding={5}
+				icon={<SvgIcon><path d={visibility}/></SvgIcon>}
+				/>
 			<List items={[
-				{leftIcon: <SvgIcon><path d={visibility}/></SvgIcon>, title: '张三', rightIcon: <SvgIcon><path d={highlightOff}/></SvgIcon>},
+				{
+					left: <IconButton 
+							icon={<SvgIcon><path d={visibility}/></SvgIcon>}
+							/>, 
+					title: '张三', 
+					right: <IconButton 
+							icon={<SvgIcon><path d={highlightOff}/></SvgIcon>}
+							/>
+				},
 				{title: '李四'},
 				{title: '王五'},
 				{title: '赵六'}
