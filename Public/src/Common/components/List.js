@@ -93,6 +93,14 @@ export default class List extends Component {
 		activeIndex: -1
 	};
 
+	componentWillReceiveProps(newProps) {
+        if(newProps.items !== undefined) {
+            this.setState({
+                items: newProps.items
+            });
+        }
+    }
+
 	dragStart = (e) => {
 		this.dragged = e.currentTarget;
 		

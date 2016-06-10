@@ -1,5 +1,4 @@
 import React from 'react';
-import { RaisedButton } from 'material-ui';
 
 import Modal from '../../../Common/components/Modal';
 

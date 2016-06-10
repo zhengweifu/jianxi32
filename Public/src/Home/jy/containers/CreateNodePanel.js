@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react';
 
 import GridList from '../../../Common/components/GridList';
 
-import { RaisedButton } from 'material-ui';
+import RaisedButton from '../../../Common/components/RaisedButton';
+
+// import { RaisedButton } from 'material-ui';
 
 // import { EditorTitle } from 'material-ui/svg-icons';
 import SvgIcon from '../../../Common/components/SvgIcon';
@@ -50,17 +52,18 @@ export default class CreateNodePanel extends Component {
         <div>
           <RaisedButton
           label='添加文字'
-          onTouchTap={e => {
+          onClick={e => {
             console.log('添加文字');
             // AddText('abc');
             //
             let wrappedInstance = this.refs.createTextInitPanel.getWrappedInstance();
-            console.log(wrappedInstance);
+            console.log('1: ', wrappedInstance.state.open);
             wrappedInstance.setState({open: true});
+            console.log('2: ', wrappedInstance.state.open);
           }}
-          icon={<SvgIcon><path d={title}/></SvgIcon>}
-          style={{width: 182, marginLeft: 12}}
-          backgroundColor={this.props.bgColor}
+          fullWidth={true}
+          leftIcon={<SvgIcon><path d={title}/></SvgIcon>}
+          bgColor={this.props.bgColor}
           labelColor={this.props.fbColor}/>
           <CreateTextInitPanel ref='createTextInitPanel'/>
         </div>

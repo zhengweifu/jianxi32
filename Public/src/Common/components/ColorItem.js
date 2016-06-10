@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { SvgIcon } from 'material-ui';
+import SvgIcon from './SvgIcon';
 
-import { NavigationCheck } from 'material-ui/svg-icons';
+import { check } from '../svgIcons/google/Navigation';
 
 import { CYAN500, GREY300, ORANGE700 } from '../styles/colors';
 
@@ -33,7 +33,7 @@ export default class ColorItem extends React.Component {
   renderActive() {
     if(this.state.active) {
       return (
-        <NavigationCheck color={this.props.activeColor}/>
+        <SvgIcon color={this.props.activeColor}><path d={check} /></SvgIcon>
       );
     }
   }

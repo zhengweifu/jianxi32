@@ -23,8 +23,8 @@ var config = {
     },
 
     externals: {
-        // 'react': 'React',
-        // 'react-dom': 'ReactDOM',
+        'react': 'React',
+        'react-dom': 'ReactDOM',
         'three': 'THREE',
         'fabric': 'fabric'
     },

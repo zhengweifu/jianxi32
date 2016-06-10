@@ -38,6 +38,7 @@ class NodePanel extends React.Component {
 
   render() {
     const items = this.getItems();
+    console.log(items);
     return (
       <List items={items}
         onClick={(e, title, index) => {

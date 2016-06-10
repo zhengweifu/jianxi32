@@ -8,9 +8,11 @@ import { OVERLAY_ZINDEX, MODAL_ZINDEX, MODAL_MAX_WIDTH } from '../styles/constan
 
 import { CYAN500, GREY300, PINK300 } from '../styles/colors';
 
+import IconButton from './IconButton';
+
 import SvgIcon from './SvgIcon';
 
-import { clear } from '../svgIcons/google/Conten';
+import { clear } from '../svgIcons/google/Content';
 
 require('../sasses/clearfix.scss');
 
@@ -83,7 +85,7 @@ export default class Modal extends Component {
 		useActions: true
 	};
 
-	omponentWillReceiveProps(newProps) {
+	componentWillReceiveProps(newProps) {
 		if(newProps !== undefined && newProps.open !== this.state.open) {
 			this.setState({open: newProps.open});
 		}
@@ -94,10 +96,10 @@ export default class Modal extends Component {
 
 		if(React.Children.count(actions) <= 0 && useActions) {
 			actions = [
-				<RaisedButton label='取消' style={{marginRight: 10}} bgColor={PINK300} onClick={e => {
+				<RaisedButton label='取消' style={{marginRight: 10, padding: '0px 20px'}} bgColor={PINK300} onClick={e => {
 					this.setState({open : false});
 				}}/>,
-				<RaisedButton label='确定' bgColor={CYAN500} obClick={e => {
+				<RaisedButton label='确定' style={{padding: '0px 20px'}} bgColor={CYAN500} onClick={e => {
 					if(onOkClick) {
 						onOkClick(e);
 					}
@@ -120,12 +122,11 @@ export default class Modal extends Component {
 					<div style={styles.close} onClick={e => {
 						this.setState({open: false});
 					}}>
-						<SvgIcon color={GREY300} hoverColor={PINK300}>
+						<IconButton color={GREY300} hoverColor={PINK300} padding={0}><SvgIcon>
 							<path d={clear}/>
-						</SvgIcon>
+						</SvgIcon></IconButton>
 					</div>
 				</div> : '';
-
 		return (
 			<div>
 				<div style={styles.modal}>

@@ -71,7 +71,7 @@ export default class PopupPanel extends Component {
     };
     return (
       <Paper style={Object.assign(style, this.props.style)}>
-        <div style={Object.assign(headerStyle, this.props.headerStyle)} onTouchTap={e => {
+        <div style={Object.assign(headerStyle, this.props.headerStyle)} onClick={e => {
           // this.setState({open: !this.state.open});
           let open = this.state.open;
           this.setState({open: !open});
@@ -104,8 +104,8 @@ export default class PopupPanel extends Component {
           //   }
           // }, 20);
 
-          if(this.props.onTouchTap) {
-            this.props.onTouchTap(e);
+          if(this.props.onClick) {
+            this.props.onClick(e);
           }
         }}>{this.props.label}
           {this.state.open ? <SvgIcon style={arrowStyle} color='#000'><path d={keyboardArrowDown}/></SvgIcon> : <SvgIcon style={arrowStyle} color='#000'><path d={keyboardArrowRight}/></SvgIcon>}

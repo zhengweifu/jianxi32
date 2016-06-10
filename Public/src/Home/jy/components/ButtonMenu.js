@@ -1,10 +1,18 @@
 import React from 'react';
-import { RaisedButton, Popover } from 'material-ui';
-import PopoverAnimationVertical from 'material-ui/Popover/PopoverAnimationVertical';
+// import { RaisedButton, Popover } from 'material-ui';
+// import PopoverAnimationVertical from 'material-ui/Popover/PopoverAnimationVertical';
+import VerticalSeparation from '../../../Common/components/VerticalSeparation';
+
+import RaisedButton from '../../../Common/components/RaisedButton';
+
+import Popover from '../../../Common/components/Popover';
 
 // import { ImageImage } from 'material-ui/svg-icons';
 import SvgIcon from '../../../Common/components/SvgIcon';
+
 import { image } from '../../../Common/svgIcons/google/Image';
+
+import { CYAN500, GREY500 } from '../../../Common/styles/colors';
 
 export default class ButtonMenu extends React.Component {
   constructor(props) {
@@ -38,9 +46,10 @@ export default class ButtonMenu extends React.Component {
   renderItem(items) {
     return items.map((item, index) => {
       return <div key={index}><RaisedButton
-              style={{width: this.props.width}}
+              fullWidth={true}
               label={item}
-              onTouchTap={this.onItemClick.bind(this, event, index)}
+              bgColor={CYAN500}
+              onClick={this.onItemClick.bind(this, event, index)}
               /></div>;
     });
   }
@@ -48,22 +57,21 @@ export default class ButtonMenu extends React.Component {
   render() {
     return (
       <div>
-          <RaisedButton style={{width: this.props.width}}
-            onTouchTap={this.onHandleTouchTap.bind(this)}
+          <RaisedButton
+            fullWidth={true}
+            onClick={this.onHandleTouchTap.bind(this)}
             label={this.props.name}
-            backgroundColor={this.props.bgColor}
+            bgColor={this.props.bgColor}
             labelColor={this.props.fbColor}
-            icon={<SvgIcon><path d={image}/></SvgIcon>}
+            leftIcon={<SvgIcon><path d={image}/></SvgIcon>}
           />
           <Popover
             open={this.state.open}
-            anchorEl={this.state.anchorEl}
-            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-            targetOrigin={{horizontal: 'left', vertical: 'top'}}
             onRequestClose={this.onHandleRequestClose.bind(this)}
-            animation={PopoverAnimationVertical}
           >
+          <VerticalSeparation>
             {this.renderItem(this.props.items)}
+          </VerticalSeparation>
           </Popover>
         </div>
       );

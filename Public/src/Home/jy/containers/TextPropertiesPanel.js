@@ -18,7 +18,11 @@ import TextShadowPanel from './TextShadowPanel';
 
 import ColorItem from '../../../Common/components/ColorItem';
 
-import { RaisedButton, TextField, SelectField, MenuItem } from 'material-ui';
+// import { SelectField, MenuItem } from 'material-ui';
+
+import Select from '../../../Common/components/Select';
+
+import Input from '../../../Common/components/Input';
 
 // import ReactGridLayout from 'react-grid-layout';
 
@@ -33,7 +37,7 @@ import { setTextColorActiveIndex, addTextColor, setTextColorPanelVisible,
 
 import { SetTextProps, GetTextWidth } from '../core';
 
-import IS from '../../../Common/utils/IS';
+import Is from '../../../Common/utils/Is';
 
 class TextPropertiesPanel extends Component {
 
@@ -75,7 +79,7 @@ class TextPropertiesPanel extends Component {
     };
 
     if(shadow) {
-      if(IS(shadow, 'String')) {
+      if(Is(shadow, 'String')) {
         let split = shadow.split(/px /g);
         if(split.length > 0) {
           result.hShadow = parseInt(split[0]);
@@ -92,7 +96,7 @@ class TextPropertiesPanel extends Component {
         if(split.length > 3) {
           result.color = split[3];
         }
-      } else if(IS(shadow, 'Object')) {
+      } else if(Is(shadow, 'Object')) {
         result.hShadow = shadow.offsetX;
         result.vShadow = shadow.offsetY;
         result.blur = shadow.blur;
@@ -341,19 +345,12 @@ class TextPropertiesPanel extends Component {
       'Sherwood'
     ];
 
-    let fonts = fontFamilies.map((item, index) => {
-      return <MenuItem key={'fontFamily_' + index} value={item} primaryText={item} />;
-    });
-
     return (
-      <SelectField
-        value={this.props.textProps.fontFamily ? this.props.textProps.fontFamily : fontFamilies[0]}
-        fullWidth={true}
+      <Select 
+        items={fontFamilies}
         onChange={(e, valueIndex) => {
           this.setTextProp('fontFamily', fontFamilies[valueIndex]);
-        }}>
-        {fonts}
-      </SelectField>
+        }}/>
     );
 
   }
@@ -394,8 +391,9 @@ class TextPropertiesPanel extends Component {
     let shadowProps = this.separationShadow(this.props.textProps.shadow);
     return (
       <VerticalSeparation gutter={20}>
-        <TextField
-          hintText='www.janexi.com'
+        <Input
+          placeholder='www.janexi.com'
+          height={40}
           value={this.props.textProps.text ? this.props.textProps.text : ''}
           fullWidth={true}
           onChange={(e, v) => {
@@ -404,7 +402,7 @@ class TextPropertiesPanel extends Component {
         <div>
           <Grid>
             <Col width={ 5 / 8}>
-              <div>字体</div>
+              <div style={{marginBottom: 10}}>字体</div>
               {this.renderFontFamilies()}
             </Col>
             <Col width={ 1 / 8}>

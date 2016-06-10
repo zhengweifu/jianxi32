@@ -11,20 +11,15 @@ import Grid from '../../../Common/components/Grid';
 
 import Col from '../../../Common/components/Col';
 
-import { GREY500, ORANGE700 } from '../../../Common/styles/colors';
+import { GREY500, ORANGE700, CYAN500 } from '../../../Common/styles/colors';
 
-import { RaisedButton } from 'material-ui';
+// import { RaisedButton } from 'material-ui';
+import RaisedButton from '../../../Common/components/RaisedButton';
 
 import { ToCenterV, ToCenterH } from '../core';
 
 export default class GeneralPropertiesPanel extends Component {
   render() {
-    let buttonStyle = {
-      width: '100%',
-    };
-
-    let buttonBgColor = '#eee';
-
     return (
       <div>
         <VerticalSeparation gutter={30}>
@@ -57,27 +52,27 @@ export default class GeneralPropertiesPanel extends Component {
           <GridList cols={4}>
             <RaisedButton
               label='上移一层'
-              backgroundColor={buttonBgColor}
-              style={buttonStyle}
+              bgColor={CYAN500}
+              fullWidth={true}
             />
             <RaisedButton
               label='下移一层'
-              backgroundColor={buttonBgColor}
-              style={buttonStyle}
+              bgColor={CYAN500}
+              fullWidth={true}
             />
             <RaisedButton
               label='水平居中'
-              backgroundColor={buttonBgColor}
-              style={buttonStyle}
-              onTouchTap={e => {
+              bgColor={CYAN500}
+              fullWidth={true}
+              onClick={e => {
                 ToCenterH();
               }}
             />
             <RaisedButton
               label='垂直居中'
-              backgroundColor={buttonBgColor}
-              style={buttonStyle}
-              onTouchTap={e => {
+              bgColor={CYAN500}
+              fullWidth={true}
+              onClick={e => {
                 ToCenterV();
               }}
             />

@@ -25,6 +25,7 @@ function getStyles(props) {
 export default class GridList extends Component {
 	static propTypes = {
 		children: PropTypes.node,
+		center: PropTypes.bool,
 		cols: PropTypes.number,
 		gutter: PropTypes.number,
 		style: PropTypes.object,
@@ -32,6 +33,7 @@ export default class GridList extends Component {
 
 	static defaultProps = {
 		cols: 2,
+		center: false,
 		gutter: GUTTER
 	};
 
@@ -39,7 +41,7 @@ export default class GridList extends Component {
 
 		const styles = getStyles(this.props);
 
-		let { children, cols } = this.props;
+		let { children, cols, center } = this.props;
 
 		if(!Is(children, 'Array')) {
 			children = [children];
@@ -47,7 +49,8 @@ export default class GridList extends Component {
 
 		const wrappedChildren = children.map((child, index) => {
 			const itemStyle = Object.assign({}, styles.item, {
-				width: `${(100 / cols)}%`
+				width: `${(100 / cols)}%`,
+				textAlign: center ? 'center' : 'left'
 			});
 			return (
 				<div key={'grid_' + index} style={Object.assign({}, itemStyle)}>{child}</div>

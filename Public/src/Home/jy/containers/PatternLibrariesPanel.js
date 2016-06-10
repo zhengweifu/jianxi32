@@ -1,5 +1,7 @@
 import React from 'react';
-import { RaisedButton, List, ListItem } from 'material-ui';
+// import { RaisedButton, List, ListItem } from 'material-ui';
+import RaisedButton from '../../../Common/components/RaisedButton';
+import List from '../../../Common/components/List';
 
 import Modal from '../../../Common/components/Modal';
 
@@ -45,18 +47,19 @@ class PatternLibrariesPanel extends React.Component {
   }
 
   renderList() {
-    return this.props.tilesData.map((data, index) => {
-      let mstyle = (this.state.currentActiveTitleIndex == index) ? {backgroundColor: 'rgb(0, 188, 212)'} : {};
-      return (
-        <ListItem
-          key={index}
-          primaryText={data.title}
-          style={mstyle}
-          onTouchTap={e => {
-            this.setState({currentShowTitleIndex : index});
-          }}/>
-      );
+    let items = this.props.tilesData.map((data, index) => {
+      //let mstyle = (this.state.currentActiveTitleIndex == index) ? {backgroundColor: 'rgb(0, 188, 212)'} : {};
+      return {
+        title: data.title
+      };
     });
+    return (
+      <List 
+        items={items} 
+        onTouchTap={e => {
+          this.setState({currentShowTitleIndex : index});
+        }}/>
+      );
   }
 
   componentWillReceiveProps(newProps) {
@@ -70,20 +73,6 @@ class PatternLibrariesPanel extends React.Component {
   }
 
   render() {
-    const actions = [
-      <RaisedButton
-        label='取消'
-        secondary={true}
-        style={{marginRight: 10}}
-        onTouchTap={this.onHandleClose.bind(this)}
-      />,
-      <RaisedButton
-        label='确定'
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.onHandleClose.bind(this)}
-      />,
-    ];
 
     let mindex = this.state.currentShowTitleIndex;
 
@@ -94,9 +83,7 @@ class PatternLibrariesPanel extends React.Component {
       <Modal open={this.state.open}>
         <Grid>
           <Col width={1 / 5}>
-            <List style={{borderRight: '1px solid #ccc'}}>
-              {this.renderList()}
-            </List>
+            {this.renderList()}
           </Col>
           <Col width={4 / 5}>
             <PatternLibrariesGroup

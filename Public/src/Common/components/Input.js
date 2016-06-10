@@ -13,20 +13,22 @@ export default class Input extends Component {
     }
 
     static propTypes = {
-        floatingLabelText: PropTypes.string,
+        placeholder: PropTypes.string,
+        height: PropTypes.number,
         value: PropTypes.any,
         onChange: PropTypes.func,
         style: PropTypes.object,
     };
 
     static defaultProps = {
-        floatingLabelText: '',
+        placeholder: '',
+        height: 20,
         style: {}
     };
 
     onHandleChange(event) {
         let val = event.target.value;
-
+        console.log(val);
         this.setState({value: val});
 
         if(this.props.onChange) {
@@ -47,12 +49,13 @@ export default class Input extends Component {
 
         let style = {
             boxSizing: 'border-box',
-            color: GREY500,
+            color: this.state.active ? CYAN500 : GREY500,
             border: 'none',
             borderBottom: 'solid',
             borderWidth: this.state.active ? 2 : 1,
             borderColor: this.state.active ? activeBorderColor : defaultBorderColor,
             minHeight: 20,
+            height: this.props.height,
             width: '100%',
             outline: 'none'
         };
@@ -60,6 +63,7 @@ export default class Input extends Component {
         return (
             <input
                 style={Object.assign(style, this.props.style)}
+                placeholder={this.props.placeholder}
                 value={this.state.value}
                 onFocus={e => this.setState({active: true})}
                 onBlur={e => this.setState({active: false})}

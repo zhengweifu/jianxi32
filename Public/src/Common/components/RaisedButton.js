@@ -12,7 +12,7 @@ function getStyles(props) {
 			display: props.fullWidth ? 'block' : 'inline-block'
 		},
 		button: {
-			padding: '0px 20px',
+			padding: '0px 10px',
 			textAlign: 'center'
 		},
 		item: {

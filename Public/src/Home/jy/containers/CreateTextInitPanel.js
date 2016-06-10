@@ -1,6 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 
-import { RaisedButton, TextField } from 'material-ui';
+// import { TextField } from 'material-ui';
+import Grid from '../../../Common/components/Grid';
+
+import Col from '../../../Common/components/Col';
+
+import Label from '../../../Common/components/Label';
+
+import Input from '../../../Common/components/Input';
 
 import Modal from '../../../Common/components/Modal';
 
@@ -22,6 +29,13 @@ class CreateTextInitPanel extends Component {
       open: false
     };
   }
+  static propTypes = {
+    open: PropTypes.bool
+  };
+
+  static defaultProps = {
+    open: false
+  };
 
   onHandleOpen(event) {
     this.setState({open: true});
@@ -48,13 +62,13 @@ class CreateTextInitPanel extends Component {
 
           this.onHandleClose();
         }}>
-        <TextField
-          hintText={this.textHint}
-          floatingLabelText='文字内容'
-          floatingLabelFixed={true}
-          fullWidth={true}
-          onChange={(e, value) => this.textValue = value}
-        />
+        <Grid>
+          <Col width={1 / 10}><Label content='文字内容' height={40}/></Col>
+          <Col width={9 / 10}><Input
+            height={40}
+            placeholder={this.textHint}
+            onChange={(e, value) => this.textValue = value}/></Col>
+        </Grid>
       </Modal>
     );
   }
