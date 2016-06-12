@@ -7,7 +7,6 @@ export default class Input extends Component {
         super(props);
 
         this.state = {
-            value : props.value,
             active: false
         };
     }
@@ -28,8 +27,8 @@ export default class Input extends Component {
 
     onHandleChange(event) {
         let val = event.target.value;
-        console.log(val);
-        this.setState({value: val});
+        // console.log(val);
+        // this.setState({value: val});
 
         if(this.props.onChange) {
             this.props.onChange(event, val);
@@ -64,7 +63,7 @@ export default class Input extends Component {
             <input
                 style={Object.assign(style, this.props.style)}
                 placeholder={this.props.placeholder}
-                value={this.state.value}
+                value={this.props.value}
                 onFocus={e => this.setState({active: true})}
                 onBlur={e => this.setState({active: false})}
                 onChange={this.onHandleChange.bind(this)}

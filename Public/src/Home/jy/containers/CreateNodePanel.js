@@ -57,9 +57,7 @@ export default class CreateNodePanel extends Component {
             // AddText('abc');
             //
             let wrappedInstance = this.refs.createTextInitPanel.getWrappedInstance();
-            console.log('1: ', wrappedInstance.state.open);
             wrappedInstance.setState({open: true});
-            console.log('2: ', wrappedInstance.state.open);
           }}
           fullWidth={true}
           leftIcon={<SvgIcon><path d={title}/></SvgIcon>}

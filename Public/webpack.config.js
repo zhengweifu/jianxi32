@@ -5,7 +5,7 @@
 
 var config = {
     // cache: true,
-    // devtool: 'inline-source-map',
+    // devtool: 'eval-source-map',// devtool: 'inline-source-map',
 
     entry: {
         // react: './src/react/App.js',

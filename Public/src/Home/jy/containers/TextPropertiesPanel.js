@@ -45,26 +45,6 @@ class TextPropertiesPanel extends Component {
     let newTextProps = JSON.parse(JSON.stringify(this.props.textProps));
     newTextProps[key] = value;
 
-    switch(key) {
-      case 'radius':
-        newTextProps[key] = Math.abs(value);
-        if(value < 0) {
-          newTextProps['reverse'] = true;
-        } else {
-          newTextProps['reverse'] = false;
-        }
-        break;
-      case 'text':
-      case 'fontFamily':
-      case 'fontSize':
-      case 'strokeWidth':
-      case 'spacing':
-        newTextProps[key] = value;
-        break;
-      default:
-        newTextProps[key] = value;
-    }
-
     this.props.setTextPanelProps(newTextProps);
 
     SetTextProps(newTextProps);
@@ -344,39 +324,17 @@ class TextPropertiesPanel extends Component {
       'Terminator Cyr',
       'Sherwood'
     ];
-
+    const { textProps } = this.props;
     return (
       <Select 
         items={fontFamilies}
-        onChange={(e, valueIndex) => {
+        defaultValue={textProps.fontFamily}
+        onChange={(e, value, valueIndex) => {
+          // console.log(fontFamilies[valueIndex]);
           this.setTextProp('fontFamily', fontFamilies[valueIndex]);
         }}/>
     );
 
-  }
-
-  getTextAngle() {
-    let textWidth = GetTextWidth(this.props.textProps.text, this.props.textProps.fontSize, this.props.textProps.fontFamily, this.props.textProps.strokeWidth, this.props.textProps.spacing);
-
-    let textAngle = 0;
-
-    if(textWidth > 0) {
-      textAngle = Math.floor(textWidth / this.props.textProps.radius  * 180 / Math.PI);
-    }
-
-    if(this.props.textProps.reverse) {
-      textAngle *= -1;
-    }
-
-
-    return textAngle;
-  }
-
-  setTextRadius(v) {
-    v = v !== 0 ? v : 0.01;
-    let textWidth = GetTextWidth(this.props.textProps.text, this.props.textProps.fontSize, this.props.textProps.fontFamily, this.props.textProps.strokeWidth, this.props.textProps.spacing);
-    let r = textWidth * 180 / (Math.PI * v);
-    this.setTextProp('radius', r);
   }
 
   render() {
@@ -428,8 +386,8 @@ class TextPropertiesPanel extends Component {
           max={20} min={0} type='INT' label='间距' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
             this.setTextProp('spacing', v);
           }}/>
-        <InputNumberSlider defaultValue={this.getTextAngle()} max={360} min={-360} type='INT' label='弧度' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
-            this.setTextRadius(v);
+        <InputNumberSlider defaultValue={this.props.textProps.bendAngle} max={360} min={-360} type='INT' label='弧度' labelWidth={50} labelFontSize={14} onChange={ (e, v) => {
+            this.setTextProp('bendAngle', v);
           }}/>
       </VerticalSeparation>
 

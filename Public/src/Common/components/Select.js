@@ -3,18 +3,9 @@ import React, { Component, PropTypes } from 'react';
 import { GREY300 } from '../styles/colors';
 
 class Select extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeIndex: props.activeIndex,
-      items: props.items
-    };
-  }
-
   static propTypes = {
     items: PropTypes.array,
-    activeIndex: PropTypes.number,
+    defaultValue: PropTypes.string,
     style: PropTypes.object
   };
 
@@ -24,26 +15,18 @@ class Select extends Component {
   };
 
   renderItems() {
-    return this.state.items.map((item, index) => {
+    return this.props.items.map((item, index) => {
       return (
         <option key={index} value={item}>{item}</option>
       );
     });
   }
 
-  componentWillReceiveProps(newProps) {
-    if(newProps.activeIndex !== undefined) {
-      this.setState({activeIndex: newProps.activeIndex});
-    }
-
-    if(newProps.items !== undefined) {
-      this.setState({items: newProps.items});
-    }
-  }
-
   render() {
-
-    let mvalue = this.state.items[this.state.activeIndex] ? this.state.items[this.state.activeIndex] : '';
+    const {
+      items,
+      defaultValue
+    } = this.props;
     const defaultStyle = {
       width: '100%',
       height: 30,
@@ -54,10 +37,10 @@ class Select extends Component {
       borderRadius: 4
     };
     return (
-      <select style={Object.assign({}, defaultStyle, this.props.style)} value={mvalue} onChange={e => {
+      <select style={Object.assign({}, defaultStyle, this.props.style)} defaultValue={defaultValue} onChange={e => {
         let val = e.target.value;
-        let index = this.state.items.findIndex(item => item == val);
-        this.setState({activeIndex: index});
+        let index = items.findIndex(item => item == val);
+
         if(this.props.onChange) {
           this.props.onChange(e, val, index);
         }

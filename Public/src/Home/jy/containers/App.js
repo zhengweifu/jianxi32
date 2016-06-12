@@ -44,7 +44,7 @@ import fabric from 'fabric';
 import { GetActiveObjectProps } from '../core';
 
 // console.log(PatternLibrariesPanel.getWrappedInstance());
-
+import { AddText } from '../core'; 
 class App extends React.Component {
   componentDidMount() {
     console.log('componentDidMount');
@@ -53,7 +53,7 @@ class App extends React.Component {
       width: this.props.canvasWidth,
       height: this.props.canvasHeight
     });
-
+    // AddText('mynameiszhengweifu');
     window.JYCANVAS.on({
       'object:selected': options => {
         // console.log('selected: ', options);

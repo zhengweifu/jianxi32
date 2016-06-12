@@ -83,9 +83,9 @@ export function AddText(content) {
   let defaultSpacing = 5;
   let defaultStorkeWidth = 1;
 
-  let defaultWidth = GetTextWidth(content, defaultFontSize, defaultFamily, defaultStorkeWidth, defaultSpacing);
-  
-  let defaultRadius = defaultWidth * 180 / (Math.PI * 0.01);
+  // let defaultWidth = GetTextWidth(content, defaultFontSize, defaultFamily, defaultStorkeWidth, defaultSpacing);
+
+  // let defaultRadius = defaultWidth * 180 / (Math.PI * 0.01);
 
   let text = new fabric.CurvedText(content, {
     mid: canvas.mid++,
@@ -93,7 +93,8 @@ export function AddText(content) {
     top: 0,
     fontFamily: defaultFamily,
     fontSize: defaultFontSize,
-    radius: defaultRadius,
+    bendAngle: 0,
+    effect: 'bend',
     fill: '#ccc',
     stroke: '#999',
     shadow: '5px 5px 5px transparent',
@@ -138,7 +139,7 @@ export function ToCenterH() {
  */
 function GetTextProps(text) {
   let props = {};
-  let propNames = ['text', 'fontSize', 'fontFamily', 'fill', 'stroke', 'strokeWidth', 'shadow', 'radius', 'reverse', 'spacing'];
+  let propNames = ['text', 'fontSize', 'fontFamily', 'fill', 'stroke', 'strokeWidth', 'shadow', 'bendAngle', 'spacing'];
   for(let propName of propNames) {
     props[propName] = text.get(propName);
     if(propName === 'shadow' && props[propName]) {
@@ -162,7 +163,9 @@ export function SetTextProps(props) {
   let canvas = GetCanvas();
   let active = GetActiveObject();
   if(active && active.type === 'curvedText') {
+    active.setText(props.text); // CurvedText bug 
     active.set(props);
+    // active.set('text', props.text);
     canvas.renderAll();
   }
 }
