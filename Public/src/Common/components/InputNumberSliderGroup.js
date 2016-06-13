@@ -118,6 +118,7 @@ export default class InputNumberSliderGroup extends Component {
 		labels: PropTypes.arrayOf(PropTypes.string),
 		labelWidth: PropTypes.number,
 		labelColor: PropTypes.string,
+		onChange: PropTypes.func,
 		max: PropTypes.number.isRequired,
 		min: PropTypes.number.isRequired
 	};
@@ -136,15 +137,16 @@ export default class InputNumberSliderGroup extends Component {
 
 	renderItems() {
 		const { lock, values } = this.state;
-		const { cellHeight, max, min, type, labels, labelWidth, labelColor } = this.props;
+		const { cellHeight, max, min, type, labels, labelWidth, labelColor, onChange } = this.props;
 		return values.map((value, index) => {
 			const label = labels && labels.length > index ? labels[index] : undefined;
 			return (
 				<InputNumberSlider
 					onChange={(e, v) => {
+						let newValues;
 						if(lock) {
 							const scale = (v - value) / (max - min);
-							let newValues = [...values];
+							newValues = [...values];
 	
 							for(let i = 0; i < newValues.length; i++) {
 								newValues[i] += scale * (max - min);
@@ -154,9 +156,13 @@ export default class InputNumberSliderGroup extends Component {
 
 							this.setState({values: newValues});
 						} else {
-							let newValues = [...values];
+							newValues = [...values];
 							newValues[index] = v;
 							this.setState({values: newValues});
+						}
+
+						if(onChange) {
+							onChange(e, newValues);
 						}
 						
 					}}
@@ -170,6 +176,19 @@ export default class InputNumberSliderGroup extends Component {
 					defaultValue={value} />
 			);
 		});
+	}
+
+	componentWillReceiveProps(newProps) {
+		if(newProps.defaults !== undefined) {
+			this.setState({
+				values: newProps.defaults
+			});
+		}
+		// if(newProps.lock !== undefined) {
+		// 	this.setState({
+		// 		lock: newProps.lock
+		// 	});
+		// }
 	}
 
 	render() {

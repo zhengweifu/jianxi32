@@ -141,7 +141,9 @@
 				for(var i = 0; i < text.length; i++){
 					//I need to pass the options from the main options
 					if(this.letters.item(i) === undefined){
-						this.letters.add(new fabric.Text(text[i]));
+						this.letters.add(new fabric.Text(text[i], {
+            				originY: 'center'
+            			}));
 					}else{
 						this.letters.item(i).setText(text[i]);
 					}
@@ -192,9 +194,30 @@
 					fixedLetterAngle = ((this.letters.item(0).fontSize + space) / this.radius) / (Math.PI / 180);
 					textWidth = ((this.text.length + 1) * (this.letters.item(0).fontSize + space));
 				}
-				if(this.effect === 'bend') { 
+				var mradius = 0,
+					width = 0,
+					multiplier = this.reverse ? -1 : 1,
+					thisLetterAngle = 0,
+					lastLetterAngle = 0;
+
+				if(this.effect === 'bend') {
+					var maxAngle = 360 * (1 - space / textWidth);
+					var mangle = Math.abs(this.bendAngle);
+					if(mangle > maxAngle) {
+						mangle = maxAngle;
+					}
+					if(mangle == 0) {
+						mangle = 0.001;
+					}
+					multiplier = this.bendAngle >= 0 ? 1 : -1;
+
+					mradius = textWidth * 180 / (Math.PI * mangle);
+
 					curAngle = this.bendAngle * -0.5;
 				} else {
+					if(this.effect === 'curved') { 
+						mradius = this.radius;
+					}
 					// Text align
 					if(this.get('textAlign') === 'right'){
 						curAngle = 90 - (((textWidth / 2) / this.radius) / (Math.PI / 180));
@@ -209,10 +232,6 @@
 					}
 				}
 
-				var width = 0,
-						multiplier = this.reverse ? -1 : 1,
-						thisLetterAngle = 0,
-						lastLetterAngle = 0;
 
 				for(var i = 0, len = this.text.length; i < len; i++){
 					if(renderingCode !== this._isRendering) {
@@ -228,33 +247,25 @@
 					this.letters.item(i).setAngle(0);
 					this.letters.item(i).set('padding', 0);
 
-					if(this.effect === 'curved'){
-						thisLetterAngle = ((this.letters.item(i).width + space) / this.radius) / (Math.PI / 180);
-						curAngle = multiplier * ((multiplier * curAngle) + lastLetterAngle);
-						angleRadians = curAngle * (Math.PI / 180);
-						lastLetterAngle = thisLetterAngle;
-
-						this.letters.item(i).setAngle(curAngle);
-						this.letters.item(i).set('top', multiplier * -1 * (Math.cos(angleRadians) * this.radius));
-						this.letters.item(i).set('left', multiplier * (Math.sin(angleRadians) * this.radius));
-						this.letters.item(i).set('padding', 0);
-						this.letters.item(i).set('selectable', false);
-					} else if(this.effect === 'bend') {// bend
-						var mangle = Math.abs(this.bendAngle);
-						if(mangle == 0) {
-							mangle = 0.001;
-						}
-						multiplier = this.bendAngle >= 0 ? 1 : -1;
-
-						var mlength = this.getWidth() + (this.text.length - 1) * space;
-						var mradius = textWidth * 180 / (Math.PI * mangle);
-
+					if(this.effect === 'curved' || this.effect === 'bend') {// bend
 						thisLetterAngle = ((this.letters.item(i).width + space) / mradius) / (Math.PI / 180);
 						curAngle = multiplier * ((multiplier * curAngle) + lastLetterAngle);
 						angleRadians = curAngle * (Math.PI / 180);
 						lastLetterAngle = thisLetterAngle;
 
-						this.letters.item(i).setAngle(curAngle);
+						// if(multiplier > 0 && this.letters.item(i).originY !== 'center') {
+						// 	this.letters.item(i).set('originY', 'center');
+						// } else if(multiplier < 0 && this.letters.item(i).originY !== 'center') {
+						// 	this.letters.item(i).set('originY', 'center');
+						// }
+
+						if(i == 0) {
+							var aa = (this.letters.item(i).width / 2 / mradius) / (Math.PI / 180);
+							this.letters.item(i).setAngle(curAngle + aa * multiplier);
+						} else {
+							this.letters.item(i).setAngle(curAngle);
+						}
+						
 						this.letters.item(i).set('top', multiplier * -1 * (Math.cos(angleRadians) * mradius));
 						this.letters.item(i).set('left', multiplier * (Math.sin(angleRadians) * mradius));
 						this.letters.item(i).set('padding', 0);

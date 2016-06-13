@@ -46,6 +46,27 @@ import { GetActiveObjectProps } from '../core';
 // console.log(PatternLibrariesPanel.getWrappedInstance());
 import { AddText } from '../core'; 
 class App extends React.Component {
+  setObjectProps(object) {
+    let props = GetActiveObjectProps();
+    // console.log('fefef: ', object.type);
+    switch (object.type) {
+      case 'curvedText':
+        this.props.setImgPanelVisible(false);
+        this.props.setGeneralPanelVisible(true);
+        this.props.setTextPanelVisible(true);
+        this.props.setGeneralPanelProps(props.generalProps);
+        this.props.setTextPanelProps(props.textProps);
+        break;
+      case 'image':
+        this.props.setImgPanelVisible(true);
+        this.props.setGeneralPanelVisible(true);
+        this.props.setTextPanelVisible(false);
+        this.props.setGeneralPanelProps(props.generalProps);
+        break;
+      default:
+    }
+  }
+
   componentDidMount() {
     console.log('componentDidMount');
 
@@ -53,7 +74,7 @@ class App extends React.Component {
       width: this.props.canvasWidth,
       height: this.props.canvasHeight
     });
-    // AddText('mynameiszhengweifu');
+    AddText('mynameiszhengweifu');
     window.JYCANVAS.on({
       'object:selected': options => {
         // console.log('selected: ', options);
@@ -64,19 +85,8 @@ class App extends React.Component {
         let nodeId  = currentObject.mid;
         let aId = this.props.nodeData.items.findIndex(item => item.id === nodeId);
         this.props.setNodeActiveIndex(aId);
-        let props = GetActiveObjectProps();
-        switch (currentObject.type) {
-          case 'curvedText':
-            this.props.setImgPanelVisible(false);
-            this.props.setGeneralPanelVisible(true);
-            this.props.setTextPanelVisible(true);
-            this.props.setGeneralPanelProps(props.generalProps);
-            this.props.setTextPanelProps(props.textProps);
-            break;
-          default:
-        }
 
-
+        this.setObjectProps(currentObject);
       },
 
       'selection:cleared': options => {
@@ -86,6 +96,11 @@ class App extends React.Component {
         this.props.setImgPanelVisible(false);
         this.props.setGeneralPanelVisible(false);
         this.props.setTextPanelVisible(false);
+      },
+
+      'object:modified': options => {
+        let currentObject = options.target;
+        this.setObjectProps(currentObject);
       }
     });
   }

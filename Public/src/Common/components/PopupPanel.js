@@ -14,19 +14,22 @@ export default class PopupPanel extends Component {
     super(props);
     this.state = {
       open: props.open,
+      scaleY: props.open ? 1 : 0,
       bodyHeight: props.bodyHeight
     };
   }
 
   componentWillReceiveProps(newProps) {
     if(newProps.open !== undefined) {
-      this.setState({open: newProps.open});
+      this.setState({open: newProps.open, scaleY: newProps.open ? 1 : 0});
     }
   }
 
   render() {
+    
     let style = {
       position: 'relative',
+      // height: this.state.open ? 'auto' : this.props.headerHeight + 2 * this.props.padding,
       // boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.05)',
       zIndex: this.props.zDepth
     };
@@ -50,17 +53,23 @@ export default class PopupPanel extends Component {
       borderRight: `1px solid ${this.props.borderColor}`,
       borderBottom: this.state.open ? `1px solid ${this.props.borderColor}` : 'none',
       broderTop: 'none',
-      height: this.state.open ? this.state.bodyHeight + 2 * this.props.padding : 0,
+      
+      
       backgroundColor: this.props.bodyBgColor,
       borderBottomLeftRadius: this.props.radius,
       borderBottomRightRadius: this.props.radius,
-      padding: this.state.open ? this.props.padding : 0,
       overflow: this.props.overflow,
-      opacity: this.state.open ? 1 : 0,
-      // display: this.state.open ? 'block' : 'none',
-      transform: this.state.open ? 'scaley(1)' : 'scaley(0)',
+      height: this.props.bodyHeight + 2 * this.props.padding,
+      // display: this.state.scaleY > 0 ? 'block' : 'none',
+      // transform: `scaleY(${this.state.scaleY})`,
+      display: this.state.open ? 'block' : 'none',
+      padding: this.state.open ? this.props.padding : 0,
+      // opacity: this.state.open ? 1 : 0,
+      
+      // width: this.state.open ? '100%' : 0,
+      // transform: this.state.open ? 'scaleY(1)' : 'scaleY(0)',
       transformOrigin: '0 0',
-      transition: 'all 0.3s ease-in-out'
+      // transition: 'all 0.3s ease-in-out'
     };
 
     const arrowStyle = {
@@ -73,40 +82,41 @@ export default class PopupPanel extends Component {
       <Paper style={Object.assign(style, this.props.style)}>
         <div style={Object.assign(headerStyle, this.props.headerStyle)} onClick={e => {
           // this.setState({open: !this.state.open});
+          
           let open = this.state.open;
           this.setState({open: !open});
-          // let step = Math.floor(this.props.bodyHeight / 10);
+          // let scaleY = this.state.scaleY;
 
+          // console.log('cx***: ', this.state);
+          // // let step = Math.floor(this.props.bodyHeight / 10);
+          // let step = 0.01;
           // let timer = setInterval(() => {
+          //   console.log(open, scaleY);
           //   if(open) {
-          //     if(this.state.bodyHeight < step) {
-          //       step = this.state.bodyHeight;
-          //     }
-          //     if (this.state.bodyHeight > 0) {
-          //       this.setState({bodyHeight: this.state.bodyHeight - step});
-          //     } else {
-          //       this.setState({open: !this.state.open});
+          //     if(scaleY < step) {
           //       clearInterval(timer);
+          //     } else {
+          //       scaleY -= step;
+          //       this.setState({scaleY: scaleY});
           //     }
           //   } else {
-          //     if(!this.state.open) {
-          //       this.setState({open: !this.state.open});
-          //     }
-          //
-          //     if(this.props.bodyHeight - this.state.bodyHeight < step) {
-          //       step = this.props.bodyHeight - this.state.bodyHeight;
-          //     }
-          //     if (this.state.bodyHeight < this.props.bodyHeight) {
-          //       this.setState({bodyHeight: this.state.bodyHeight + step});
-          //     } else {
+          //     if(scaleY > (1 - step)) {
           //       clearInterval(timer);
+          //     } else {
+          //       scaleY += step;
+          //       // console.log('dfefe');
+          //       this.setState({scaleY: scaleY});
           //     }
+              
           //   }
-          // }, 20);
+          // }, 0);
 
           if(this.props.onClick) {
             this.props.onClick(e);
           }
+
+          // e.preventDefault();
+          // e.stopPropagation();
         }}>{this.props.label}
           {this.state.open ? <SvgIcon style={arrowStyle} color='#000'><path d={keyboardArrowDown}/></SvgIcon> : <SvgIcon style={arrowStyle} color='#000'><path d={keyboardArrowRight}/></SvgIcon>}
         </div>

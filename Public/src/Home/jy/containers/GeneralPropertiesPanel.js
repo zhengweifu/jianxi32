@@ -13,13 +13,38 @@ import Col from '../../../Common/components/Col';
 
 import { GREY500, ORANGE700, CYAN500 } from '../../../Common/styles/colors';
 
-// import { RaisedButton } from 'material-ui';
 import RaisedButton from '../../../Common/components/RaisedButton';
 
-import { ToCenterV, ToCenterH } from '../core';
+import { bindActionCreators } from 'redux';
 
-export default class GeneralPropertiesPanel extends Component {
+import { connect } from 'react-redux';
+
+import { setGeneralPanelProps } from '../actions';
+
+import { ToCenterV, ToCenterH, SetGeneralProps, GetActiveObjectProps } from '../core';
+
+class GeneralPropertiesPanel extends Component {
+  setGeneralProp(key, value) {
+    if(key) {
+      SetGeneralProps(key, value);
+    }
+
+    let newGeneralProps = GetActiveObjectProps().generalProps;//JSON.parse(JSON.stringify(this.props.generalProps));
+    this.props.setGeneralPanelProps(newGeneralProps);
+  }
   render() {
+    const {
+      generalProps
+    } = this.props;
+    // console.log(generalProps);
+    const left = generalProps.left || 0,
+      top = generalProps.top || 0,
+      multiplierX =  generalProps.flipX ? -1 : 1, 
+      multiplierY = generalProps.flipY ? -1 : 1,
+      scaleX = (generalProps.scaleX || 1) * multiplierX,
+      scaleY = (generalProps.scaleY || 1) * multiplierY,
+      angle = generalProps.angle || 0;
+
     return (
       <div>
         <VerticalSeparation gutter={30}>
@@ -30,14 +55,23 @@ export default class GeneralPropertiesPanel extends Component {
             labelWidth={10}
             labelColor={ORANGE700}
             title='位置'
-            defaults={[0, 0]}
+            defaults={[left, top]}
+            onChange={(e, values) => {
+              // console.log(values);
+              this.setGeneralProp({left: values[0], top: values[1]});
+            }}
           />
           <InputNumberSlider 
-            defaultValue={0} 
+            defaultValue={angle} 
             max={360} min={-360} 
-            type='INT'
+            // type='INT'
             labelFontSize={14} 
-            label='旋转' labelWidth={60}/>
+            label='旋转' labelWidth={60}
+            onChange={(e, value) => {
+              console.log(value);
+              this.setGeneralProp('angle', value);
+            }}
+          />
 
           <InputNumberSliderGroup
             lock={true}
@@ -47,7 +81,17 @@ export default class GeneralPropertiesPanel extends Component {
             labelWidth={10}
             labelColor={ORANGE700}
             title='缩放'
-            defaults={[1, 1]}
+            defaults={[scaleX, scaleY]}
+            onChange={(e, values) => {
+              // console.log(values);
+              const opts = {
+                flipX: values[0] >= 0 ? false : true,
+                flipY: values[1] >= 0 ? false : true,
+                scaleX: Math.abs(values[0]), 
+                scaleY: Math.abs(values[1])
+              };
+              this.setGeneralProp(opts);
+            }}
           />
           <GridList cols={4}>
             <RaisedButton
@@ -66,6 +110,7 @@ export default class GeneralPropertiesPanel extends Component {
               fullWidth={true}
               onClick={e => {
                 ToCenterH();
+                this.setGeneralProp();
               }}
             />
             <RaisedButton
@@ -74,6 +119,7 @@ export default class GeneralPropertiesPanel extends Component {
               fullWidth={true}
               onClick={e => {
                 ToCenterV();
+                this.setGeneralProp();
               }}
             />
           </GridList>
@@ -82,3 +128,17 @@ export default class GeneralPropertiesPanel extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    generalProps: state.generalPanelData.props,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    setGeneralPanelProps
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, null, {withRef: true})(GeneralPropertiesPanel);

@@ -16,13 +16,16 @@ import PatternLibrariesPanel from './PatternLibrariesPanel';
 
 import CreateTextInitPanel from './CreateTextInitPanel';
 
-import { AddText } from '../core';
+import { AddText, AddImage } from '../core';
+
+import OpenFile from '../../../Common/utils/OpenFile';
 
 export default class CreateNodePanel extends Component {
   onHandleItemClick(event, index) {
     switch (index) {
       case 0:
         console.log('This is 0.');
+        this.uploadImage.click();
         break;
       case 1:
         console.log('This is 1.');
@@ -37,6 +40,11 @@ export default class CreateNodePanel extends Component {
     return (
       <GridList cols={2}>
         <div>
+          <input type='file' ref={ref => this.uploadImage = ref} style={{display: 'none'}} onChange={e => {
+            OpenFile(e.target.files[0], data => {
+              AddImage(data);
+            });
+          }}/>
           <ButtonMenu
             bgColor={this.props.bgColor}
             fbColor={this.props.fbColor}

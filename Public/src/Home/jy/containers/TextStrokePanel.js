@@ -56,7 +56,7 @@ export default class TextStrokePanel extends Component {
             }}
             items={this.props.items}/>
           <div style={{paddingLeft: 5, paddingRight: 3}}>
-            <InputNumberSlider defaultValue={this.props.size} max={10} min={0} type='INT' label='大小' labelWidth={50} labelFontSize={14} onChange={(e, v) => {
+            <InputNumberSlider defaultValue={this.props.size} max={2} min={0} label='大小' labelWidth={50} labelFontSize={14} onChange={(e, v) => {
               if(this.props.onChangeSize) {
                 this.props.onChangeSize(e, v);
               }

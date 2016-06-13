@@ -4,13 +4,13 @@
  * onLoad   ［ 加载完成调用 ］
  */
 export default (file, onLoad) => {
-    var reader = new FileReader();
+    let reader = new FileReader();
 
     reader.readAsDataURL(file);
 
-    reader.onload = function() {
+    reader.onload = e => {
         if(onLoad) {
-            onLoad(this.result);
+            onLoad(e.target.result);
         }
     };
 };

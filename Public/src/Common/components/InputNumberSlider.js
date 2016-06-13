@@ -92,26 +92,31 @@ export default class InputNumberSlider extends Component {
 		min: PropTypes.number
 	};
 
-	componentWillMount() {
-		let value = this.props.value;
+	init(props) {
+		let value = props.value;
 		if (value === undefined) {
-			value = this.props.defaultValue !== undefined ? this.props.defaultValue : this.props.min;
+			value = props.defaultValue !== undefined ? props.defaultValue : props.min;
 		}
 
-		const halfHeight = this.props.height / 2;
-		if(this.props.dotRadius > halfHeight) {
-			throw new Error('this.props.dotRadius 不能大于 this.props.height / 2.');
+		const halfHeight = props.height / 2;
+		if(props.dotRadius > halfHeight) {
+			throw new Error('props.dotRadius 不能大于 props.height / 2.');
 		}
 
 		this.setState({value: value});
 	}
 
+	componentWillMount() {
+		this.init(this.props);
+	}
+
 	componentWillReceiveProps(newProps) {
-		if(newProps.defaultValue !== undefined) {
-			this.setState({
-				value: newProps.defaultValue
-			});
-		}
+		this.init(newProps);
+		// if(newProps.defaultValue !== undefined) {
+		// 	this.setState({
+		// 		value: newProps.defaultValue
+		// 	});
+		// }
 	}
 
 	onSliderHandleChange(event, value) {
