@@ -116,7 +116,7 @@ export function AddImage(url, maxSize = 200) {
   const id = canvas.mid++;
   fabric.Image.fromURL(url, img => {
     const width = img.getWidth();
-    const height = img.getWidth();
+    const height = img.getHeight();
     let scale = 1;
     if(width >= height) {
       if(width > maxSize) {
