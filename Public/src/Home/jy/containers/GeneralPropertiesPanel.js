@@ -47,7 +47,7 @@ class GeneralPropertiesPanel extends Component {
 
     return (
       <div>
-        <VerticalSeparation gutter={30}>
+        <VerticalSeparation gutter={20}>
           <InputNumberSliderGroup
             max={360}
             min={-360}
