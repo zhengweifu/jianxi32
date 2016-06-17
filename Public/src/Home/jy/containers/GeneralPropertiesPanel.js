@@ -11,7 +11,7 @@ import Grid from '../../../Common/components/Grid';
 
 import Col from '../../../Common/components/Col';
 
-import { GREY500, ORANGE700, CYAN500 } from '../../../Common/styles/colors';
+import { GREY500, ORANGE700, CYAN500, REDA100 } from '../../../Common/styles/colors';
 
 import RaisedButton from '../../../Common/components/RaisedButton';
 
@@ -19,9 +19,9 @@ import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
 
-import { setGeneralPanelProps } from '../actions';
+import { setGeneralPanelProps, removeNode } from '../actions';
 
-import { ToCenterV, ToCenterH, SetGeneralProps, GetActiveObjectProps } from '../core';
+import { ToCenterV, ToCenterH, SetGeneralProps, GetActiveObjectProps, RemoveObject } from '../core';
 
 class GeneralPropertiesPanel extends Component {
   setGeneralProp(key, value) {
@@ -47,7 +47,7 @@ class GeneralPropertiesPanel extends Component {
 
     return (
       <div>
-        <VerticalSeparation gutter={20}>
+        <VerticalSeparation gutter={10}>
           <InputNumberSliderGroup
             max={360}
             min={-360}
@@ -123,6 +123,16 @@ class GeneralPropertiesPanel extends Component {
               }}
             />
           </GridList>
+          <RaisedButton
+              label='删除'
+              bgColor={REDA100}
+              fullWidth={true}
+              onClick={e => {
+                const nodeId = RemoveObject();
+                // console.log(this.porps.removeNode, this.props.activeNodeIndex);
+                this.props.removeNode(this.props.activeNodeIndex);
+              }}
+            />
         </VerticalSeparation>
       </div>
     );
@@ -132,12 +142,14 @@ class GeneralPropertiesPanel extends Component {
 function mapStateToProps(state) {
   return {
     generalProps: state.generalPanelData.props,
+    activeNodeIndex: state.nodeData.activeIndex
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    setGeneralPanelProps
+    setGeneralPanelProps,
+    removeNode
   }, dispatch);
 }
 

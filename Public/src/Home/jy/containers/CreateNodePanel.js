@@ -16,11 +16,17 @@ import PatternLibrariesPanel from './PatternLibrariesPanel';
 
 import CreateTextInitPanel from './CreateTextInitPanel';
 
-import { AddText, AddImage } from '../core';
+import { bindActionCreators } from 'redux';
+
+import { connect } from 'react-redux';
+
+import { addNode } from '../actions';
+
+import { AddImage } from '../core';
 
 import OpenFile from '../../../Common/utils/OpenFile';
 
-export default class CreateNodePanel extends Component {
+class CreateNodePanel extends Component {
   onHandleItemClick(event, index) {
     switch (index) {
       case 0:
@@ -42,7 +48,8 @@ export default class CreateNodePanel extends Component {
         <div>
           <input type='file' ref={ref => this.uploadImage = ref} style={{display: 'none'}} onChange={e => {
             OpenFile(e.target.files[0], data => {
-              AddImage(data);
+              const nodeId = AddImage(data);
+              this.props.addNode({id: nodeId, kind: '图片', describtion: data});
             });
           }}/>
           <ButtonMenu
@@ -62,8 +69,6 @@ export default class CreateNodePanel extends Component {
           label='添加文字'
           onClick={e => {
             console.log('添加文字');
-            // AddText('abc');
-            //
             let wrappedInstance = this.refs.createTextInitPanel.getWrappedInstance();
             wrappedInstance.setState({open: true});
           }}
@@ -85,3 +90,11 @@ CreateNodePanel.propTypes = {
   bgColor: PropTypes.string.isRequired,
   fbColor: PropTypes.string.isRequired
 };
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    addNode
+  }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps, null, {withRef: true})(CreateNodePanel);

@@ -11,11 +11,15 @@ import { visibility, highlightOff } from '../../../Common/svgIcons/google/Action
 
 // import { ImageImage, EditorTitle, EditorInsertEmoticon, ActionHighlightOff } from 'material-ui/svg-icons';
 
+import { GREY200 } from '../../../Common/styles/colors';
+
 import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
 
 import { setNode, addNode, removeNode, setNodeActiveIndex } from '../actions/index';
+
+import { RemoveObject, GetObjectFromId, RemoveObjectFromId } from '../core';
 
 class NodePanel extends React.Component {
   getItems() {
@@ -29,7 +33,7 @@ class NodePanel extends React.Component {
           icon={<SvgIcon><path d={visibility}/></SvgIcon>}
           />, 
         title: describtion, 
-        right: <IconButton 
+        right: <IconButton
           icon={<SvgIcon><path d={highlightOff}/></SvgIcon>}
           />
       };
@@ -40,7 +44,11 @@ class NodePanel extends React.Component {
     const items = this.getItems();
     // console.log(items);
     return (
-      <List items={items}
+      <List items={items} activeIndex={this.props.activeIndex}
+        onRightIconClick={(e, index) => {
+          this.props.removeNode(index);
+          RemoveObjectFromId(this.props.items[index]['id']);
+        }}
         onClick={(e, title, index) => {
           console.log('click ...', index);
           this.props.setNodeActiveIndex(index);

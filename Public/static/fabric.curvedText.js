@@ -122,6 +122,7 @@
 			this.callSuper('complexity');
 		},
 		initialize: function (text, options){
+			this.id = fabric.Object.__uid++;
 			options || (options = {});
 			this.letters = new fabric.Group([], {
 				selectable: false,

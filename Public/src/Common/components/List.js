@@ -77,6 +77,8 @@ export default class List extends Component {
 		onMouseLeave: PropTypes.func,
 		onMouseEnterv: PropTypes.func,
 		onClick: PropTypes.func,
+		onLeftIconClick: PropTypes.func,
+		onRightIconClick: PropTypes.func,
 		gutter: PropTypes.number,
 		fontSize: PropTypes.number,
 		fontFamily: PropTypes.string,
@@ -98,6 +100,11 @@ export default class List extends Component {
             this.setState({
                 items: newProps.items
             });
+        }
+        if(newProps.activeIndex !== undefined) {
+        	this.setState({
+        		activeIndex: newProps.activeIndex
+        	});
         }
     }
 
@@ -138,7 +145,19 @@ export default class List extends Component {
 	};
 
 	render() {
-		const { style, itemStyle, color, bgColor, hoverColor, activeColor, onMouseEnter, onMouseLeave, onClick } = this.props;
+		const { 
+			style, 
+			itemStyle, 
+			color, 
+			bgColor, 
+			hoverColor, 
+			activeColor, 
+			onMouseEnter, 
+			onMouseLeave, 
+			onClick,
+			onLeftIconClick,
+			onRightIconClick
+		} = this.props;
 
 		let styles = getStyles(this.props);
 		return (
@@ -164,7 +183,13 @@ export default class List extends Component {
 						centerStyle.marginLeft = 30;
 						const leftCloned = React.cloneElement(item.left, {
 							padding: 0,
-							color: color
+							color: color,
+							onClick: (e) => {
+								e.stopPropagation();
+								if(onLeftIconClick) {
+									onLeftIconClick(e, index);
+								}
+							}
 						});
 						leftElement = <div style={styles.itemLeft}>{leftCloned}</div>;
 					}
@@ -174,7 +199,13 @@ export default class List extends Component {
 					if(item.right) {
 						const rightCloned = React.cloneElement(item.right, {
 							padding: 0,
-							color: color
+							color: color,
+							onClick: (e) => {
+								e.stopPropagation();
+								if(onRightIconClick) {
+									onRightIconClick(e, index);
+								}
+							}
 						});
 						rightElement = <div style={styles.itemRight}>{rightCloned}</div>;
 					}
