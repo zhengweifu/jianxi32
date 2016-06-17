@@ -3,6 +3,7 @@ import React from 'react';
 import ProductNumber from './ProductNumber';
 
 import Grid from '../../../Common/components/Grid';
+import Col from '../../../Common/components/Col';
 
 import GridList from '../../../Common/components/GridList';
 
@@ -10,7 +11,7 @@ import SvgIcon from '../../../Common/components/SvgIcon';
 
 import { heart } from '../../../Common/svgIcons/janexi/Basic';
 
-import { CYAN500, GREY500 } from '../../../Common/styles/colors';
+import { CYAN500, GREY500, GREY200 } from '../../../Common/styles/colors';
 
 import ProductHeaderPanel from './ProductHeaderPanel';
 
@@ -71,8 +72,8 @@ class App extends React.Component {
     console.log('componentDidMount');
 
     window.JYCANVAS = new fabric.Canvas('viewport-2d', {
-      width: this.props.canvasWidth,
-      height: this.props.canvasHeight
+      width: this.props.canvasWidth - 2,
+      height: this.props.canvasHeight - 2
     });
     AddText('mynameiszhengweifu');
     window.JYCANVAS.on({
@@ -113,96 +114,110 @@ class App extends React.Component {
       viewBox='0 0 512 512' >
       <path d={heart} />
     </SvgIcon>;
+    // style={{width: this.props.canvasWidth + this.props.controllerWidth + 15, margin: 'auto'}}
     return (
-      <div style={{width: this.props.canvasWidth + this.props.controllerWidth + 15, margin: 'auto'}}>
-        <div style={{
-          float: 'left'}}>
-          <canvas
-            id='viewport-2d'
-            style={{
-              width: this.props.canvasWidth,
-              height: this.props.canvasHeight,
-              border: `1px solid ${this.props.grayeee}`,
-              boxSizing: 'border-box'}}></canvas>
+    <div>
+      <Grid gutter={15} style={{width: this.props.canvasWidth + this.props.controllerWidth + 15, margin: 'auto'}}>
+        <Col width={3 / 5}>
+          <div style={{
+            border: `1px solid ${this.props.grayeee}`,
+            boxSizing: 'border-box'
+            }}>
+            <canvas
+              id='viewport-2d'
+              style={{
+                width: this.props.canvasWidth - 2,
+                height: this.props.canvasHeight - 2,
+                borderBottom: `1px solid ${this.props.grayeee}`,
+                boxSizing: 'border-box'
+                }}>
+            </canvas>
 
-          <div style={{width: '50%', margin: 'auto'}}>
-            <GridList
-              cellHeight={100}
-              cols={3}>
-              <ImageItem
-                defaultBorderColor={this.props.grayeee}
-                activeColor={this.props.tangerine}
-                img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
-              <ImageItem
-                defaultBorderColor={this.props.grayeee}
-                activeColor={this.props.tangerine}
-                img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
-              <ImageItem
-                defaultBorderColor={this.props.grayeee}
-                activeColor={this.props.tangerine}
-                img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
-            </GridList>
+            <div style={{width: '50%', margin: '10px auto'}}>
+              <GridList
+                cellHeight={100}
+                cols={3}>
+                <ImageItem
+                  defaultBorderColor={this.props.grayeee}
+                  activeColor={this.props.tangerine}
+                  img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
+                <ImageItem
+                  defaultBorderColor={this.props.grayeee}
+                  activeColor={this.props.tangerine}
+                  img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
+                <ImageItem
+                  defaultBorderColor={this.props.grayeee}
+                  activeColor={this.props.tangerine}
+                  img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
+              </GridList>
+            </div>
           </div>
-          <BuyerShowPanel items={[1, 2, 3, 4, 5, 6]}/>
-        </div>
-        <div style={{
-          float: 'left',
-          marginLeft: 15,
-          width: this.props.controllerWidth}}>
-          <ProductHeaderPanel bgColor={this.props.tangerine} productDescribtion='AIR100000000圆领 女款'/>
+        </Col>
+        <Col width={2 / 5}>
+          <div style={{
+            border: `1px solid ${this.props.grayeee}`,
+            boxSizing: 'border-box',
+            height: this.props.controllerHeight
+            }}>
+            <ProductHeaderPanel bgColor={this.props.tangerine} productDescribtion='AIR100000000圆领 女款'/>
 
-          <div>
-            <span style={{
-              marginRight: 10,
-              fontSize: 25,
-              color: this.props.tangerine}}>
-              $59
-            </span>
-            {heartSvg}
-            {heartSvg}
-            {heartSvg}
-            {heartSvg}
-            {heartSvg}
-            <span style={{
-              padding: '0px 20px 0px 5px',
-              fontSize: 16,
-              color: this.props.tangerine}}>4.7</span>
-            <span>(
-              <a >96个评价</a>
-            )</span>
-          </div>
+            <div>
+              <span style={{
+                marginRight: 10,
+                fontSize: 25,
+                color: this.props.tangerine}}>
+                $59
+              </span>
+              {heartSvg}
+              {heartSvg}
+              {heartSvg}
+              {heartSvg}
+              {heartSvg}
+              <span style={{
+                padding: '0px 20px 0px 5px',
+                fontSize: 16,
+                color: this.props.tangerine}}>4.7</span>
+              <span>(
+                <a >96个评价</a>
+              )</span>
+            </div>
 
-          <div style={{marginTop: 10}}></div>
+            <div style={{marginTop: 10}}></div>
 
-          <GridList gutter={35}>
-            <ProductNumber />
-            <GridList cols={5}>
-              <div style={{color: GREY500, lineHeight: '24px', height: 24, verticalAlign: 'middle'}}>颜色</div>
-              <ColorItem width={24} height={24}/> 
+            <GridList gutter={35}>
+              <ProductNumber />
+              <GridList cols={5}>
+                <div style={{color: GREY500, lineHeight: '24px', height: 24, verticalAlign: 'middle'}}>颜色</div>
+                <ColorItem width={24} height={24}/> 
+              </GridList>
             </GridList>
-          </GridList>
-          <div style={{marginTop: 10}}></div>
-          <CreateNodePanel bgColor={this.props.tangerine} fbColor={this.props.grayeee}/>
-          <div style={{marginTop: 10}}></div>
-          <PopupGroup items={[
-            {title: '一般属性', height: 310, visible: this.props.generalPanelVisible, content: <GeneralPropertiesPanel />, zDepth: 8},
-            {title: '文字属性', height: 310, visible: this.props.textPanelVisible, content: <TextPropertiesPanel />, zDepth: 4},
-            {title: '色彩风格', height: 310, visible: this.props.imgPanelVisible, content: <ColorSchemesPanel />, zDepth: 4},
-            {title: '节点面板', height: 310, visible: true, content: <NodePanel />, zDepth: 1}
-          ]}/>
-        </div>
+            <div style={{marginTop: 10}}></div>
+            <CreateNodePanel bgColor={this.props.tangerine} fbColor={this.props.grayeee}/>
+            <div style={{marginTop: 10}}></div>
+            <PopupGroup items={[
+              {title: '一般属性', height: 280, visible: this.props.generalPanelVisible, content: <GeneralPropertiesPanel />, zDepth: 8},
+              {title: '文字属性', height: 280, visible: this.props.textPanelVisible, content: <TextPropertiesPanel />, zDepth: 4},
+              {title: '色彩风格', height: 280, visible: this.props.imgPanelVisible, content: <ColorSchemesPanel />, zDepth: 4},
+              {title: '节点面板', height: 280, visible: true, content: <NodePanel />, zDepth: 1}
+            ]}/>
+          </div>
+        </Col>
+      </Grid>
+      <div style={{margin: '0px 20px'}}>
+        <BuyerShowPanel items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}/>
       </div>
+    </div> 
     );
   }
 }
 
 App.defaultProps = {
   tangerine: '#ff8d5c',
-  grayeee: '#eee',
+  grayeee: GREY200,
   canvasWidth: 600,
-  canvasHeight: 425,
+  canvasHeight: 480,
   controllerWidth: 400,
-  controllerHeight: 800
+  controllerHeight: 590
 };
 
 App.propTypes = {
