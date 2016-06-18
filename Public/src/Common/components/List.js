@@ -75,7 +75,10 @@ export default class List extends Component {
 		hoverColor: PropTypes.string,
 		activeColor: PropTypes.string,
 		onMouseLeave: PropTypes.func,
-		onMouseEnterv: PropTypes.func,
+		onMouseEnter: PropTypes.func,
+		onDragStart: PropTypes.func,
+		onDragEnd: PropTypes.func,
+		onDragOver: PropTypes.func,
 		onClick: PropTypes.func,
 		onLeftIconClick: PropTypes.func,
 		onRightIconClick: PropTypes.func,
@@ -132,6 +135,10 @@ export default class List extends Component {
 
 		items.splice(to, 0, items.splice(from, 1)[0]);
 		this.setState({items: items, hoverIndex: to, activeIndex: to});
+
+		if(this.props.onDragEnd) {
+			this.props.onDragEnd(e, from, to);
+		}
 	};
 
 	dragOver = (e) => {

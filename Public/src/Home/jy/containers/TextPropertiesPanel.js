@@ -35,7 +35,7 @@ import { setTextColorActiveIndex, addTextColor, setTextColorPanelVisible,
          setTextShadowActiveIndex, addTextShadow, setTextShadowPanelVisible, setTextShadowSize,
          setTextPanelProps } from '../actions';
 
-import { SetTextProps, GetTextWidth } from '../core';
+// import { SetTextProps, GetTextWidth } from '../core';
 
 import Is from '../../../Common/utils/Is';
 
@@ -47,7 +47,7 @@ class TextPropertiesPanel extends Component {
 
     this.props.setTextPanelProps(newTextProps);
 
-    SetTextProps(newTextProps);
+    window.PRODUCT.SetTextProps(newTextProps);
   }
 
   separationShadow(shadow) {

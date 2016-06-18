@@ -42,13 +42,14 @@ import { setGeneralPanelVisible, setTextPanelVisible, setImgPanelVisible, setNod
 
 import fabric from 'fabric';
 
-import { GetActiveObjectProps } from '../core';
+// import { GetActiveObjectProps } from '../core';
+import Product from '../Product';
 
 // console.log(PatternLibrariesPanel.getWrappedInstance());
 import { AddText } from '../core'; 
 class App extends React.Component {
     setObjectProps(object) {
-        let props = GetActiveObjectProps();
+        let props = window.PRODUCT.GetActiveObjectProps();
         // console.log('fefef: ', object.type);
         switch (object.type) {
             case 'curvedText':
@@ -70,13 +71,10 @@ class App extends React.Component {
 
     componentDidMount() {
         console.log('componentDidMount');
+        let product = window.PRODUCT = new Product('viewport-2d', this.props.canvasWidth - 2, this.props.canvasHeight - 2);
 
-        window.JYCANVAS = new fabric.Canvas('viewport-2d', {
-            width: this.props.canvasWidth - 2,
-            height: this.props.canvasHeight - 2
-        });
         // AddText('mynameiszhengweifu');
-        window.JYCANVAS.on({
+        window.PRODUCT.canvas.on({
             'object:selected': options => {
                 // console.log('selected: ', options);
                 // console.log(GetActiveObjectProps());
@@ -159,7 +157,7 @@ class App extends React.Component {
                 </Col>
                 <Col gutter={0} width={(this.props.controllerWidth + centerSpace) / mlenght}>
                     <div style={{
-                            border: `1px solid ${this.props.grayeee}`,
+                            // border: `1px solid ${this.props.grayeee}`,
                             boxSizing: 'border-box',
                             height: this.props.controllerHeight,
                             paddingLeft: centerSpace

@@ -27,6 +27,7 @@ export const REMOVE_NODE = 'REMOVE_NODE';
 export const SET_NODE = 'SET_NODE';
 export const SET_NODE_ACTIVE_INDEX = 'SET_NODE_ACTIVE_INDEX';
 export const SET_NODE_PANEL_VISIBLE = 'SET_NODE_PANEL_VISIBLE';
+export const MOVE_NODE = 'MOVE_NODE';
 
 
 export const ADD_COLOR_SCHEME = 'ADD_COLOR_SCHEME';

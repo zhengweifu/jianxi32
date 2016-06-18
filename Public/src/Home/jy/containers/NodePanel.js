@@ -17,9 +17,9 @@ import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
 
-import { setNode, addNode, removeNode, setNodeActiveIndex } from '../actions/index';
+import { setNode, addNode, removeNode, setNodeActiveIndex, moveNode } from '../actions/index';
 
-import { RemoveObject, GetObjectFromId, RemoveObjectFromId } from '../core';
+// import { RemoveObject, GetObjectFromId, RemoveObjectFromId } from '../core';
 
 class NodePanel extends React.Component {
   getItems() {
@@ -45,13 +45,20 @@ class NodePanel extends React.Component {
     // console.log(items);
     return (
       <List items={items} activeIndex={this.props.activeIndex}
+        onDragEnd={(e, from, to) => {
+          this.props.moveNode(from, to);
+          window.PRODUCT.MoveTo(from, to);
+        }}
         onRightIconClick={(e, index) => {
           this.props.removeNode(index);
-          RemoveObjectFromId(this.props.items[index]['id']);
+          window.PRODUCT.RemoveObjectFromId(this.props.items[index]['id']);
         }}
         onClick={(e, title, index) => {
           console.log('click ...', index);
-          this.props.setNodeActiveIndex(index);
+          if(this.props.activeIndex !== index) {
+            this.props.setNodeActiveIndex(index);
+            window.PRODUCT.SelectFromIndex(index);
+          }
           if(this.props.onItemClick) {
             this.props.onItemClick(e, title, index);
           }
@@ -95,7 +102,8 @@ function mapDispatchToProps(dispatch) {
     setNode,
     removeNode,
     addNode,
-    setNodeActiveIndex
+    setNodeActiveIndex,
+    moveNode
   }, dispatch);
 }
 

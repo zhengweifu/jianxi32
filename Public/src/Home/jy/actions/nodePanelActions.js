@@ -1,4 +1,10 @@
-import { ADD_NODE, SET_NODE, SET_NODE_ACTIVE_INDEX, REMOVE_NODE } from './actionTypes';
+import { 
+  ADD_NODE, 
+  SET_NODE, 
+  SET_NODE_ACTIVE_INDEX, 
+  REMOVE_NODE, 
+  MOVE_NODE 
+} from './actionTypes';
 /**
  * [default 添加 Node 数据]
  * @param  {[type]} data [description]
@@ -30,5 +36,13 @@ export function removeNode(index) {
   return {
     type: REMOVE_NODE,
     index: index
+  };
+}
+
+export function moveNode(from, to) {
+  return {
+    type: MOVE_NODE,
+    from: from,
+    to: to
   };
 }

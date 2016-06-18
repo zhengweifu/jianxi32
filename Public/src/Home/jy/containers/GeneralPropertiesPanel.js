@@ -19,17 +19,17 @@ import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
 
-import { setGeneralPanelProps, removeNode } from '../actions';
+import { setGeneralPanelProps, removeNode, moveNode } from '../actions';
 
-import { ToCenterV, ToCenterH, SetGeneralProps, GetActiveObjectProps, RemoveObject } from '../core';
+// import { ToCenterV, ToCenterH, SetGeneralProps, GetActiveObjectProps, RemoveObject } from '../core';
 
 class GeneralPropertiesPanel extends Component {
   setGeneralProp(key, value) {
     if(key) {
-      SetGeneralProps(key, value);
+      window.PRODUCT.SetGeneralProps(key, value);
     }
 
-    let newGeneralProps = GetActiveObjectProps().generalProps;//JSON.parse(JSON.stringify(this.props.generalProps));
+    let newGeneralProps = window.PRODUCT.GetActiveObjectProps().generalProps;//JSON.parse(JSON.stringify(this.props.generalProps));
     this.props.setGeneralPanelProps(newGeneralProps);
   }
   render() {
@@ -98,18 +98,31 @@ class GeneralPropertiesPanel extends Component {
               label='上移一层'
               bgColor={CYAN500}
               fullWidth={true}
+              onClick={e => {
+                const result = window.PRODUCT.ToDownLayer();
+                if(result) {
+                  console.log(result);
+                  this.props.moveNode(result.from, result.to);
+                }
+              }}
             />
             <RaisedButton
               label='下移一层'
               bgColor={CYAN500}
               fullWidth={true}
+              onClick={e => {
+                const result = window.PRODUCT.ToUpLayer();
+                if(result) {
+                  this.props.moveNode(result.from, result.to);
+                }
+              }}
             />
             <RaisedButton
               label='水平居中'
               bgColor={CYAN500}
               fullWidth={true}
               onClick={e => {
-                ToCenterH();
+                window.PRODUCT.ToCenterH();
                 this.setGeneralProp();
               }}
             />
@@ -118,7 +131,7 @@ class GeneralPropertiesPanel extends Component {
               bgColor={CYAN500}
               fullWidth={true}
               onClick={e => {
-                ToCenterV();
+                window.PRODUCT.ToCenterV();
                 this.setGeneralProp();
               }}
             />
@@ -128,7 +141,7 @@ class GeneralPropertiesPanel extends Component {
               bgColor={REDA100}
               fullWidth={true}
               onClick={e => {
-                const nodeId = RemoveObject();
+                const nodeId = window.PRODUCT.RemoveObject();
                 // console.log(this.porps.removeNode, this.props.activeNodeIndex);
                 this.props.removeNode(this.props.activeNodeIndex);
               }}
@@ -149,7 +162,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     setGeneralPanelProps,
-    removeNode
+    removeNode,
+    moveNode
   }, dispatch);
 }
 

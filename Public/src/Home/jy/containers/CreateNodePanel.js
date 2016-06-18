@@ -22,7 +22,7 @@ import { connect } from 'react-redux';
 
 import { addNode } from '../actions';
 
-import { AddImage } from '../core';
+// import { AddImage } from '../core';
 
 import OpenFile from '../../../Common/utils/OpenFile';
 
@@ -48,7 +48,7 @@ class CreateNodePanel extends Component {
         <div>
           <input type='file' ref={ref => this.uploadImage = ref} style={{display: 'none'}} onChange={e => {
             OpenFile(e.target.files[0], data => {
-              const nodeId = AddImage(data);
+              const nodeId = window.PRODUCT.AddImage(data);
               this.props.addNode({id: nodeId, kind: '图片', describtion: data});
             });
           }}/>

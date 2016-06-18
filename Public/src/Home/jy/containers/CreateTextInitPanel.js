@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 
 import { addNode } from '../actions';
 
-import { AddText } from '../core';
+// import { AddText } from '../core';
 
 class CreateTextInitPanel extends Component {
   constructor(props) {
@@ -56,7 +56,7 @@ class CreateTextInitPanel extends Component {
             v = this.textValue;
           }
 
-          let nodeId = AddText(v);
+          let nodeId = window.PRODUCT.AddText(v);
 
           this.props.addNode({id: nodeId, kind: '文字', describtion: v});
 
