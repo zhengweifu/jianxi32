@@ -27,6 +27,7 @@ class Select extends Component {
       items,
       defaultValue
     } = this.props;
+    console.log(this.props);
     const defaultStyle = {
       width: '100%',
       height: 30,

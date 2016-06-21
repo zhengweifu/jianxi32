@@ -39,6 +39,8 @@ import { setTextColorActiveIndex, addTextColor, setTextColorPanelVisible,
 
 import Is from '../../../Common/utils/Is';
 
+import { separationShadow, mergeShadow } from '../Product';
+
 class TextPropertiesPanel extends Component {
 
   setTextProp(key, value) {
@@ -48,47 +50,6 @@ class TextPropertiesPanel extends Component {
     this.props.setTextPanelProps(newTextProps);
 
     window.PRODUCT.SetTextProps(newTextProps);
-  }
-
-  separationShadow(shadow) {
-    let result = {
-      hShadow: 0,
-      vShadow: 0,
-      blur: 0,
-      color: 'transparent'
-    };
-
-    if(shadow) {
-      if(Is(shadow, 'String')) {
-        let split = shadow.split(/px /g);
-        if(split.length > 0) {
-          result.hShadow = parseInt(split[0]);
-        }
-
-        if(split.length > 1) {
-          result.vShadow = parseInt(split[1]);
-        }
-
-        if(split.length > 2) {
-          result.blur = parseInt(split[2]);
-        }
-
-        if(split.length > 3) {
-          result.color = split[3];
-        }
-      } else if(Is(shadow, 'Object')) {
-        result.hShadow = shadow.offsetX;
-        result.vShadow = shadow.offsetY;
-        result.blur = shadow.blur;
-        result.color = shadow.color;
-      }
-    }
-
-    return result;
-  }
-
-  mergeShadow(hShadow, vShadow, blur, color) {
-    return `${hShadow}px ${vShadow}px ${blur}px ${color}`;
   }
 
   renderColorItem() {
@@ -244,7 +205,7 @@ class TextPropertiesPanel extends Component {
         onClick={(e, color, index) => {
           this.props.setTextShadowActiveIndex(index);
 
-          this.setTextProp('shadow', this.mergeShadow(
+          this.setTextProp('shadow', mergeShadow(
             shadowProps.hShadow,
             shadowProps.vShadow,
             shadowProps.blur,
@@ -261,7 +222,7 @@ class TextPropertiesPanel extends Component {
         vShadow={shadowProps.vShadow}
         blur={shadowProps.blur}
         onChangeHShadow={(e, v) => {
-          this.setTextProp('shadow', this.mergeShadow(
+          this.setTextProp('shadow', mergeShadow(
             v,
             shadowProps.vShadow,
             shadowProps.blur,
@@ -269,7 +230,7 @@ class TextPropertiesPanel extends Component {
           ));
         }}
         onChangeVShadow={(e, v) => {
-          this.setTextProp('shadow', this.mergeShadow(
+          this.setTextProp('shadow', mergeShadow(
             shadowProps.hShadow,
             v,
             shadowProps.blur,
@@ -277,7 +238,7 @@ class TextPropertiesPanel extends Component {
           ));
         }}
         onChangeBlur={(e, v) => {
-          this.setTextProp('shadow', this.mergeShadow(
+          this.setTextProp('shadow', mergeShadow(
             shadowProps.hShadow,
             shadowProps.vShadow,
             v,
@@ -325,6 +286,7 @@ class TextPropertiesPanel extends Component {
       'Sherwood'
     ];
     const { textProps } = this.props;
+    console.log(textProps.fontFamily);
     return (
       <Select 
         items={fontFamilies}
@@ -346,7 +308,7 @@ class TextPropertiesPanel extends Component {
 
 
     // console.log(this.textColorPanel);
-    let shadowProps = this.separationShadow(this.props.textProps.shadow);
+    let shadowProps = separationShadow(this.props.textProps.shadow);
     return (
       <VerticalSeparation gutter={20}>
         <Input

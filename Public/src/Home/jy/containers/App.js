@@ -37,8 +37,18 @@ import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
 
-import { setGeneralPanelVisible, setTextPanelVisible, setImgPanelVisible, setNodeActiveIndex,
-                 setGeneralPanelProps, setTextPanelProps, setImgPanelProps} from '../actions';
+import { 
+    setGeneralPanelVisible, 
+    setTextPanelVisible, 
+    setImgPanelVisible, 
+    setNodeActiveIndex,
+    setGeneralPanelProps, 
+    setTextPanelProps, 
+    setImgPanelProps,
+    setTextColorActiveIndex,
+    setTextStrokeActiveIndex,
+    setTextShadowActiveIndex
+} from '../actions';
 
 import fabric from 'fabric';
 
@@ -46,7 +56,9 @@ import fabric from 'fabric';
 import Product from '../Product';
 
 // console.log(PatternLibrariesPanel.getWrappedInstance());
-import { AddText } from '../core'; 
+// import { AddText } from '../core'; 
+import { separationShadow } from '../Product';
+
 class App extends React.Component {
     setObjectProps(object) {
         let props = window.PRODUCT.GetActiveObjectProps();
@@ -58,6 +70,11 @@ class App extends React.Component {
                 this.props.setTextPanelVisible(true);
                 this.props.setGeneralPanelProps(props.generalProps);
                 this.props.setTextPanelProps(props.textProps);
+                this.props.setTextColorActiveIndex(this.props.colorItems.findIndex(item => item == props.textProps.fill));
+                this.props.setTextStrokeActiveIndex(this.props.strokeColorItems.findIndex(item => item == props.textProps.stroke));
+                this.props.setTextShadowActiveIndex(
+                    this.props.shadowColorItems.findIndex(item => item == separationShadow(props.textProps.shadow).color)
+                );
                 break;
             case 'image':
                 this.props.setImgPanelVisible(true);
@@ -237,7 +254,10 @@ function mapStateToProps(state) {
         generalPanelVisible: state.generalPanelData.visible,
         textPanelVisible: state.textPanelData.visible,
         imgPanelVisible: state.imgPanelData.visible,
-        nodeData: state.nodeData
+        nodeData: state.nodeData,
+        colorItems: state.textColorPanelData.colors,
+        strokeColorItems: state.textStrokePanelData.colors,
+        shadowColorItems: state.textShadowPanelData.colors
     };
 }
 
@@ -249,7 +269,10 @@ function mapDispatchToProps(dispatch) {
         setGeneralPanelProps,
         setTextPanelProps,
         setImgPanelProps,
-        setNodeActiveIndex
+        setNodeActiveIndex,
+        setTextColorActiveIndex,
+        setTextStrokeActiveIndex,
+        setTextShadowActiveIndex
     }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,6 +1,47 @@
 import fabric from 'fabric';
 import Is from '../../Common/utils/Is';
 
+export function separationShadow(shadow) {
+    let result = {
+        hShadow: 0,
+        vShadow: 0,
+        blur: 0,
+        color: 'transparent'
+    };
+
+    if(shadow) {
+        if(Is(shadow, 'String')) {
+            let split = shadow.split(/px /g);
+            if(split.length > 0) {
+                result.hShadow = parseInt(split[0]);
+            }
+
+            if(split.length > 1) {
+                result.vShadow = parseInt(split[1]);
+            }
+
+            if(split.length > 2) {
+                result.blur = parseInt(split[2]);
+            }
+
+            if(split.length > 3) {
+                result.color = split[3];
+            }
+        } else if(Is(shadow, 'Object')) {
+            result.hShadow = shadow.offsetX;
+            result.vShadow = shadow.offsetY;
+            result.blur = shadow.blur;
+            result.color = shadow.color;
+        }
+    }
+
+    return result;
+}
+
+export function mergeShadow(hShadow, vShadow, blur, color) {
+    return `${hShadow}px ${vShadow}px ${blur}px ${color}`;
+}
+
 class Product {
     constructor(idName, width, height) {
         this.canvas = new fabric.Canvas(idName, {
