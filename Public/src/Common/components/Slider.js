@@ -88,11 +88,11 @@ export default class Slider extends Component {
 			percent: percent,
 			value: value
 		});
-  	}
+	}
 
-  	componentDidMount() {
-  		console.log('render end');
-  	}
+	componentDidMount() {
+		console.log('render end');
+	}
 
 	static propTypes = {
 		barBgColor: PropTypes.string,
@@ -126,7 +126,8 @@ export default class Slider extends Component {
 		if(document) {
 			document.addEventListener('mousemove', this.dragMouseHandler, false);
 			document.addEventListener('mouseup', this.dragMouseEndHandler, false);
-
+			document.addEventListener('touchmove', this.dragMouseHandler, false);
+			document.addEventListener('touchend', this.dragMouseEndHandler, false);
 			e.preventDefault();
 		}
 
@@ -145,6 +146,8 @@ export default class Slider extends Component {
 		if(document) {
 			document.removeEventListener('mousemove', this.dragMouseHandler, false);
 			document.removeEventListener('mouseup', this.dragMouseEndHandler, false);
+			document.removeEventListener('touchmove', this.dragMouseHandler, false);
+			document.removeEventListener('touchend', this.dragMouseEndHandler, false);
 		}
 
 		this.setState({isMoved: false});
@@ -155,7 +158,10 @@ export default class Slider extends Component {
 	}
 
 	setPercentAndValue(event) {
-		const positionX = event.clientX;
+		let positionX = event.clientX;
+		if(event.type == 'touchstart' || event.type == 'touchmove') {
+			positionX  = event.touches[0].clientX;;
+		}
 
 		const width = this.sliderBar.clientWidth;
 
@@ -207,7 +213,8 @@ export default class Slider extends Component {
 
 		return (
 			<div style={Object.assign({}, styles.root, this.props.style)}
-				onMouseDown={this.handleMouseDown.bind(this)}>
+				onMouseDown={this.handleMouseDown.bind(this)}
+				onTouchStart={this.handleMouseDown.bind(this)}>
 				<div style={Object.assign({}, styles.bar, this.props.barStyle)}>
 					<div style={styles.track}
 						ref={(ref) => this.sliderBar = ref}>

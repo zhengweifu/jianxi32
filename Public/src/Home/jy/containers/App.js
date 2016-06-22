@@ -62,9 +62,10 @@ import { separationShadow } from '../Product';
 class App extends React.Component {
     setObjectProps(object) {
         let props = window.PRODUCT.GetActiveObjectProps();
-        // console.log('fefef: ', object.type);
+        // console.log('fefef: ', );
         switch (object.type) {
             case 'curvedText':
+                this.propertiesPanelGroup.setState({'opens': [false, true, false, false]});
                 this.props.setImgPanelVisible(false);
                 this.props.setGeneralPanelVisible(true);
                 this.props.setTextPanelVisible(true);
@@ -77,12 +78,14 @@ class App extends React.Component {
                 );
                 break;
             case 'image':
+                this.propertiesPanelGroup.setState({'opens': [false, false, true, false]});
                 this.props.setImgPanelVisible(true);
                 this.props.setGeneralPanelVisible(true);
                 this.props.setTextPanelVisible(false);
                 this.props.setGeneralPanelProps(props.generalProps);
                 break;
             default:
+                this.propertiesPanelGroup.setState({'opens': [false, false, false, false]});
         }
     }
 
@@ -186,7 +189,7 @@ class App extends React.Component {
                                 marginRight: 10,
                                 fontSize: 25,
                                 color: this.props.tangerine}}>
-                                $59
+                                ¥59
                             </span>
                             {heartSvg}
                             {heartSvg}
@@ -219,7 +222,7 @@ class App extends React.Component {
                             {title: '文字属性', height: 280, visible: this.props.textPanelVisible, content: <TextPropertiesPanel />, zDepth: 4},
                             {title: '色彩风格', height: 280, visible: this.props.imgPanelVisible, content: <ColorSchemesPanel />, zDepth: 4},
                             {title: '节点面板', height: 280, visible: true, content: <NodePanel />, zDepth: 1}
-                        ]}/>
+                        ]} ref={ref => this.propertiesPanelGroup = ref }/>
                     </div>
                 </Col>
             </Grid>

@@ -10,7 +10,6 @@ class Select extends Component {
   };
 
   static defaultProps = {
-    activeIndex: 0,
     style: {}
   };
 
@@ -23,11 +22,11 @@ class Select extends Component {
   }
 
   render() {
-    const {
+    let {
       items,
       defaultValue
     } = this.props;
-    console.log(this.props);
+
     const defaultStyle = {
       width: '100%',
       height: 30,
@@ -37,8 +36,13 @@ class Select extends Component {
       backgroundColor: '#fff',
       borderRadius: 4
     };
+
+    if(!defaultValue) {
+      defaultValue = items[3];
+    }
+
     return (
-      <select style={Object.assign({}, defaultStyle, this.props.style)} defaultValue={defaultValue} onChange={e => {
+      <select style={Object.assign({}, defaultStyle, this.props.style)} value={defaultValue} onChange={e => {
         let val = e.target.value;
         let index = items.findIndex(item => item == val);
 

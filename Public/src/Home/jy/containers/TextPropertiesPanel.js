@@ -137,7 +137,7 @@ class TextPropertiesPanel extends Component {
           let index;
           if(color !== 'transparent') {
             index = this.props.shadowColorItems.findIndex(item => item === color);
-            console.log(index);
+
             if(index === -1) {
               this.props.addTextShadow(color);
               index = this.props.shadowColorItems.length - 1;
@@ -286,7 +286,7 @@ class TextPropertiesPanel extends Component {
       'Sherwood'
     ];
     const { textProps } = this.props;
-    console.log(textProps.fontFamily);
+
     return (
       <Select 
         items={fontFamilies}
