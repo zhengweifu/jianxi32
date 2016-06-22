@@ -17,3 +17,5 @@ export { setTextPanelProps, setTextPanelVisible } from './textPanelActions';
 export { setImgPanelProps, setImgPanelVisible } from './imgPanelActions';
 
 export { setGeneralPanelProps, setGeneralPanelVisible } from './generalPanelActions';
+
+export { addCanvas, setCanvasActiveIndex } from './canvasActions';

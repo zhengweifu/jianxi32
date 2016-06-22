@@ -18,6 +18,8 @@ import { imgPanelData } from './imgPanelData';
 
 import { generalPanelData } from './generalPanelData';
 
+import { canvasData } from './canvasData';
+
 import { combineReducers } from 'redux';
 
 export default combineReducers({
@@ -30,5 +32,6 @@ export default combineReducers({
   textShadowPanelData,
   textPanelData,
   imgPanelData,
-  generalPanelData
+  generalPanelData,
+  canvasData
 });

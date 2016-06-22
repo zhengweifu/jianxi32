@@ -37,7 +37,8 @@ export default class SimpleItem extends Component {
         style={{
           padding: this.state.active || this.props.defaultBorderColor ? 4 : 5,
           textAlign: 'center',
-          border: border
+          border: border,
+          display: 'inline-block'
         }}>
         {this.props.children}
         {this.props.title ? <div style={{fontSize: 12}}>{this.props.title}</div> : ''}

@@ -141,7 +141,7 @@ class Product {
             bendAngle: 0,
             effect: 'bend',
             fill: '#ccc',
-            stroke: '#666',
+            stroke: '#ff8d5c',
             shadow: '5px 5px 5px transparent',
             strokeWidth: defaultStorkeWidth,
             textAlign: 'center',

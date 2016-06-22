@@ -124,6 +124,7 @@ class TextPropertiesPanel extends Component {
     let currentTextShadowColorString = this.props.activeShadowColorIndex >= 0 ? 
       this.props.shadowColorItems[this.props.activeShadowColorIndex] : 
       shadowProps.color;
+
     return (
       <div style={{textAlign: 'center'}}>
         <div style={{marginBottom: 10}}>阴影</div>

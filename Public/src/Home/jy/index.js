@@ -13,76 +13,94 @@ import reducer from './reducers/index';
 
 import axios from 'axios';
 
+import { WEB_ROOT } from '../../config';
+
 // import co from 'co';
 
 // require('babel-polyfill');
 
-import { addNode, addProductItemData, addPatternItemData, addColorScheme, addTextColor, addTextStroke, addTextShadow  } from './actions';
+import { 
+  addNode, 
+  addProductItemData, 
+  addPatternItemData, 
+  addColorScheme, 
+  addTextColor, 
+  addTextStroke, 
+  addTextShadow,
+  addCanvas
+} from './actions';
 
 let store = createStore(reducer);
 
 // test data
+store.dispatch(addCanvas({
+  img: WEB_ROOT + 'Public/src/Home/jy/images/bg01.jpg',
+  genius: WEB_ROOT + 'Public/src/Home/jy/images/genius01_04.jpg',
+  clipSvg: WEB_ROOT + 'Public/src/Home/jy/images/genius01_04.svg'
+}));
+// 
+// 
 store.dispatch(addProductItemData('ATR1000系列短袖', {
-  img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
+  img: WEB_ROOT + 'Public/src/Home/jy/images/tx01.jpg',
   describtion: 'AIR1000男款'
 }));
 
 store.dispatch(addProductItemData('ATR1000系列短袖', {
-  img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
+  img: WEB_ROOT + 'Public/src/Home/jy/images/tx01.jpg',
   describtion: 'AIR1000女款'
 }));
 
 store.dispatch(addProductItemData('FLY996系列长袖', {
-  img: '/jianxi32/Public/src/Home/jy/images/cs01.jpg',
+  img: WEB_ROOT + 'Public/src/Home/jy/images/cs01.jpg',
   describtion: 'FLY996男款'
 }));
 
 store.dispatch(addProductItemData('FLY996系列长袖', {
-  img: '/jianxi32/Public/src/Home/jy/images/cs01.jpg',
+  img: WEB_ROOT + 'Public/src/Home/jy/images/cs01.jpg',
   describtion: 'FLY996女款'
 }));
 
 store.dispatch(addProductItemData('ATR3000系列短袖', {
-  img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
+  img: WEB_ROOT + 'Public/src/Home/jy/images/tx01.jpg',
   describtion: 'AIR3000女款'
 }));
 
 // store.dispatch(addProductItemData('ATR4000系列短袖', {
-//   img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
+//   img: WEB_ROOT + 'Public/src/Home/jy/images/tx01.jpg',
 //   describtion: 'AIR4000女款'
 // }));
 
 store.dispatch(addPatternItemData('动物', {
-  img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
+  img: WEB_ROOT + 'Public/src/Home/jy/images/tx01.jpg',
   describtion: '小狗'
 }));
 
 store.dispatch(addPatternItemData('动物', {
-  img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
+  img: WEB_ROOT + 'Public/src/Home/jy/images/tx01.jpg',
   describtion: '小猫'
 }));
 
 store.dispatch(addPatternItemData('动物', {
-  img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
+  img: WEB_ROOT + 'Public/src/Home/jy/images/tx01.jpg',
   describtion: '小鸡'
 }));
 
 store.dispatch(addPatternItemData('植物', {
-  img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
+  img: WEB_ROOT + 'Public/src/Home/jy/images/tx01.jpg',
   describtion: '小树'
 }));
 
 store.dispatch(addPatternItemData('书法', {
-  img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
+  img: WEB_ROOT + 'Public/src/Home/jy/images/tx01.jpg',
   describtion: '小树'
 }));
 
 store.dispatch(addPatternItemData('建筑', {
-  img: '/jianxi32/Public/src/Home/jy/images/tx01.jpg',
+  img: WEB_ROOT + 'Public/src/Home/jy/images/tx01.jpg',
   describtion: '小树'
 }));
 
-axios.get('/jianxi32/index.php/Home/JY/getInitData')
+axios.get(WEB_ROOT + '/index.php/Home/JY/getInitData')
   .then(response => {
     let mcolors = response.data.text_colors;
     for(let mcolor of mcolors) {
@@ -104,7 +122,7 @@ axios.get('/jianxi32/index.php/Home/JY/getInitData')
 
 
 // co(function *() {
-//   let response = yield axios.get('/jianxi32/index.php/Home/JY/getInitData');
+//   let response = yield axios.get(WEB_ROOT + '/index.php/Home/JY/getInitData');
 //   let mColors = response.data.text_colors;
 
 //   for(let mColor of mColors) {

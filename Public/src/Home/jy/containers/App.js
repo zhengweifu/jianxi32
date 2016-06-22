@@ -37,6 +37,8 @@ import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
 
+import { WEB_ROOT } from '../../../config';
+
 import { 
     setGeneralPanelVisible, 
     setTextPanelVisible, 
@@ -47,7 +49,8 @@ import {
     setImgPanelProps,
     setTextColorActiveIndex,
     setTextStrokeActiveIndex,
-    setTextShadowActiveIndex
+    setTextShadowActiveIndex,
+    setCanvasActiveIndex
 } from '../actions';
 
 import fabric from 'fabric';
@@ -60,6 +63,12 @@ import Product from '../Product';
 import { separationShadow } from '../Product';
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.clipStrokDefaultColor = 'rgba(255, 141, 92, 0.3)';
+        this.clipStrokActiveColor = 'rgba(255, 141, 92, 1)';
+    }
+
     setObjectProps(object) {
         let props = window.PRODUCT.GetActiveObjectProps();
         // console.log('fefef: ', );
@@ -89,40 +98,148 @@ class App extends React.Component {
         }
     }
 
+    setClipStroke(color) {
+        if(this.shapes) {
+            for(let shape of this.shapes) {
+                for(let s of shape.paths) {
+                    s.set({
+                        stroke: color
+                    });
+                }
+            }
+            window.PRODUCT.canvas.renderAll();
+        }
+    }
+
+    createProducts() {
+        this.products = [];
+        for(let i = 0, l = this.props.canvasItems.length; i < l; i++) {
+            let product = new Product('viewport-2d-' + i, this.props.canvasWidth - 2, this.props.canvasHeight - 2);
+            fabric.loadSVGFromURL(this.props.canvasItems[i]['clipSvg'], (objects, options) => {
+                // console.log(objects);
+                let shape = fabric.util.groupSVGElements(objects, options);
+                // product.canvas.add(shape);
+                if(!this.shapes) {
+                    this.shapes = [];
+                }
+                this.shapes.push(shape);
+                // console.log(this.shapes);
+                this.setClipStroke(this.clipStrokDefaultColor);
+                
+                product.canvas.clipTo = function (ctx) {
+                    shape.render(ctx);
+                };
+                product.canvas.renderAll();
+            });
+            product.canvas.on({
+                'object:selected': options => {
+                    // console.log('selected: ', options);
+                    // console.log(GetActiveObjectProps());
+
+                    let currentObject = options.target;
+
+                    let nodeId  = currentObject.mid;
+                    let aId = this.props.nodeData.items.findIndex(item => item.id === nodeId);
+                    console.log(nodeId, aId, this.props.nodeData.items);
+                    this.props.setNodeActiveIndex(aId);
+
+                    this.setObjectProps(currentObject);
+                },
+
+                'selection:cleared': options => {
+                    // console.log('unselected: ', options);
+                    this.props.setNodeActiveIndex(-1);
+
+                    this.props.setImgPanelVisible(false);
+                    this.props.setGeneralPanelVisible(false);
+                    this.props.setTextPanelVisible(false);
+                },
+
+                'object:modified': options => {
+                    let currentObject = options.target;
+                    this.setObjectProps(currentObject);
+                },
+
+                'mouse:down': options => {
+                    this.setClipStroke(this.clipStrokActiveColor);
+                },
+
+                'mouse:up': options => {
+                    this.setClipStroke(this.clipStrokDefaultColor);
+                }
+            });
+            this.products.push(product);
+        }
+    }
+
+    setProductFromIndex(index) {
+        window.PRODUCT = this.products[index];
+        this.props.setCanvasActiveIndex(index);
+    }
+
     componentDidMount() {
         console.log('componentDidMount');
-        let product = window.PRODUCT = new Product('viewport-2d', this.props.canvasWidth - 2, this.props.canvasHeight - 2);
 
-        // AddText('mynameiszhengweifu');
-        window.PRODUCT.canvas.on({
-            'object:selected': options => {
-                // console.log('selected: ', options);
-                // console.log(GetActiveObjectProps());
+        this.createProducts();
+        this.setProductFromIndex(0);
+    }
 
-                let currentObject = options.target;
+    renderCanvasItems() {
+        const cols = this.props.canvasItems.length;
 
-                let nodeId  = currentObject.mid;
-                let aId = this.props.nodeData.items.findIndex(item => item.id === nodeId);
-                console.log(nodeId, aId, this.props.nodeData.items);
-                this.props.setNodeActiveIndex(aId);
-
-                this.setObjectProps(currentObject);
-            },
-
-            'selection:cleared': options => {
-                // console.log('unselected: ', options);
-                this.props.setNodeActiveIndex(-1);
-
-                this.props.setImgPanelVisible(false);
-                this.props.setGeneralPanelVisible(false);
-                this.props.setTextPanelVisible(false);
-            },
-
-            'object:modified': options => {
-                let currentObject = options.target;
-                this.setObjectProps(currentObject);
-            }
+        const imgItems = this.props.canvasItems.map((item, index) => {
+            const active = this.props.canvasActiveIndex === index ? true : false;
+            return (
+                <div key={'img-item-' + index} style={{textAlign: 'center'}}><ImageItem
+                    active={active}
+                    defaultBorderColor={this.props.grayeee}
+                    activeColor={this.props.tangerine}
+                    img={item.genius}
+                    onClick={e => {
+                        this.setProductFromIndex(index);
+                    }}
+                /></div>
+            );
         });
+
+        const canvasItems = this.props.canvasItems.map((item, index) => {
+            return (
+                <div key={'canvas-item-' + index} style={{display: this.props.canvasActiveIndex === index ? 'block' : 'none'}}>
+                <canvas
+                    id={'viewport-2d-' + index}
+                    style={{
+                        width: this.props.canvasWidth,
+                        height: this.props.canvasHeight,
+                        borderBottom: `1px solid ${this.props.grayeee}`,
+                        boxSizing: 'border-box'
+                    }}>
+                </canvas>
+                </div>
+            );
+        });
+
+        const currentBGImageURL = this.props.canvasItems[this.props.canvasActiveIndex] ? this.props.canvasItems[this.props.canvasActiveIndex].img : '';
+
+        return (
+            <div style={{
+                border: `1px solid ${this.props.grayeee}`,
+                boxSizing: 'border-box'
+                }}>
+                <div style={{
+                    backgroundImage: currentBGImageURL ? `url('${currentBGImageURL}')` : ''
+                    }}>
+                    {canvasItems}
+                </div>
+                <div style={{textAlign: 'center', margin: '6px 0px'}}>
+                    <GridList
+                        style={{display: 'inline-block'}}
+                        cellHeight={100}
+                        cols={0}>
+                        {imgItems}
+                    </GridList>
+                </div>
+            </div>
+        );
     }
 
     render() {
@@ -142,37 +259,10 @@ class App extends React.Component {
             <Grid gutter={0} style={{width: mlenght, margin: 'auto'}}>
                 <Col gutter={0} width={this.props.canvasWidth / mlenght}>
                     <div style={{
-                        border: `1px solid ${this.props.grayeee}`,
+                        // border: `1px solid ${this.props.grayeee}`,
                         boxSizing: 'border-box'
                         }}>
-                        <canvas
-                            id='viewport-2d'
-                            style={{
-                                width: this.props.canvasWidth - 2,
-                                height: this.props.canvasHeight - 2,
-                                borderBottom: `1px solid ${this.props.grayeee}`,
-                                boxSizing: 'border-box'
-                                }}>
-                        </canvas>
-
-                        <div style={{width: '50%', margin: '10px auto'}}>
-                            <GridList
-                                cellHeight={100}
-                                cols={3}>
-                                <ImageItem
-                                    defaultBorderColor={this.props.grayeee}
-                                    activeColor={this.props.tangerine}
-                                    img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
-                                <ImageItem
-                                    defaultBorderColor={this.props.grayeee}
-                                    activeColor={this.props.tangerine}
-                                    img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
-                                <ImageItem
-                                    defaultBorderColor={this.props.grayeee}
-                                    activeColor={this.props.tangerine}
-                                    img='/jianxi32/Public/src/Home/jy/images/tx01.jpg'/>
-                            </GridList>
-                        </div>
+                        {this.renderCanvasItems()}
                     </div>
                 </Col>
                 <Col gutter={0} width={(this.props.controllerWidth + centerSpace) / mlenght}>
@@ -182,7 +272,7 @@ class App extends React.Component {
                             height: this.props.controllerHeight,
                             paddingLeft: centerSpace
                         }}>
-                        <ProductHeaderPanel bgColor={this.props.tangerine} productDescribtion='AIR100000000圆领 女款'/>
+                        <ProductHeaderPanel bgColor={this.props.tangerine} productDescribtion='AIR100000000音响'/>
 
                         <div>
                             <span style={{
@@ -218,10 +308,10 @@ class App extends React.Component {
                         <CreateNodePanel bgColor={this.props.tangerine} fbColor={this.props.grayeee}/>
                         <div style={{marginTop: 10}}></div>
                         <PopupGroup items={[
-                            {title: '一般属性', height: 280, visible: this.props.generalPanelVisible, content: <GeneralPropertiesPanel />, zDepth: 8},
-                            {title: '文字属性', height: 280, visible: this.props.textPanelVisible, content: <TextPropertiesPanel />, zDepth: 4},
-                            {title: '色彩风格', height: 280, visible: this.props.imgPanelVisible, content: <ColorSchemesPanel />, zDepth: 4},
-                            {title: '节点面板', height: 280, visible: true, content: <NodePanel />, zDepth: 1}
+                            {title: '一般属性', height: 290, visible: this.props.generalPanelVisible, content: <GeneralPropertiesPanel />, zDepth: 8},
+                            {title: '文字属性', height: 290, visible: this.props.textPanelVisible, content: <TextPropertiesPanel />, zDepth: 4},
+                            {title: '色彩风格', height: 290, visible: this.props.imgPanelVisible, content: <ColorSchemesPanel />, zDepth: 4},
+                            {title: '节点面板', height: 290, visible: true, content: <NodePanel />, zDepth: 1}
                         ]} ref={ref => this.propertiesPanelGroup = ref }/>
                     </div>
                 </Col>
@@ -237,8 +327,8 @@ class App extends React.Component {
 App.defaultProps = {
     tangerine: '#ff8d5c',
     grayeee: GREY200,
-    canvasWidth: 600,
-    canvasHeight: 480,
+    canvasWidth: 602,
+    canvasHeight: 482,
     controllerWidth: 400,
     controllerHeight: 590
 };
@@ -260,7 +350,9 @@ function mapStateToProps(state) {
         nodeData: state.nodeData,
         colorItems: state.textColorPanelData.colors,
         strokeColorItems: state.textStrokePanelData.colors,
-        shadowColorItems: state.textShadowPanelData.colors
+        shadowColorItems: state.textShadowPanelData.colors,
+        canvasActiveIndex: state.canvasData.activeIndex,
+        canvasItems: state.canvasData.items
     };
 }
 
@@ -275,7 +367,8 @@ function mapDispatchToProps(dispatch) {
         setNodeActiveIndex,
         setTextColorActiveIndex,
         setTextStrokeActiveIndex,
-        setTextShadowActiveIndex
+        setTextShadowActiveIndex,
+        setCanvasActiveIndex
     }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
