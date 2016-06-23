@@ -16,12 +16,12 @@ class JYController extends Controller {
         'text_colors' => array(),
         'product_colors' => array(),
         'color_scheme_datas' => array(
-          array(describtion => '正常', img => '/jianxi32/Public/src/Home/jy/images/ps/normal.jpg'),
-          array(describtion => '素描', img => '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'),
-          array(describtion => '美肤', img => '/jianxi32/Public/src/Home/jy/images/ps/softEnhancement.png'),
-          array(describtion => '素描', img => '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'),
-          array(describtion => '美肤', img => '/jianxi32/Public/src/Home/jy/images/ps/softEnhancement.png'),
-          array(describtion => '素描', img => '/jianxi32/Public/src/Home/jy/images/ps/sketch.png')
+          // array(describtion => '正常', img => '/jianxi32/Public/src/Home/jy/images/ps/normal.jpg'),
+          // array(describtion => '素描', img => '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'),
+          // array(describtion => '美肤', img => '/jianxi32/Public/src/Home/jy/images/ps/softEnhancement.png'),
+          // array(describtion => '素描', img => '/jianxi32/Public/src/Home/jy/images/ps/sketch.png'),
+          // array(describtion => '美肤', img => '/jianxi32/Public/src/Home/jy/images/ps/softEnhancement.png'),
+          // array(describtion => '素描', img => '/jianxi32/Public/src/Home/jy/images/ps/sketch.png')
         )
       );
 

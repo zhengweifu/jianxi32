@@ -1,21 +1,21 @@
- var webpack = require('webpack');
- var path = require('path');
+var webpack = require('webpack');
+var path = require('path');
 
- var env = process.env.NODE_ENV;
+var htmlWebpackPlugin = require('html-webpack-plugin');
+
+var env = process.env.NODE_ENV;
 
 var config = {
     // cache: true,
-    // devtool: 'eval-source-map',// devtool: 'inline-source-map',
-
     entry: {
         // react: './src/react/App.js',
         jy: './src/Home/jy/index.js',
-        testing: './src/Common/testing/testing.js'
+        // testing: './src/Common/testing/testing.js'
     },
 
     output: {
         path: __dirname + '/dist',
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js?[hash]'
     },
 
     resolve: {
@@ -53,10 +53,13 @@ var config = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(env)
         }),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        // new htmlWebpackPlugin({
+        //     titile: '简易工具'
+        // })
     ]
 };
-
+console.log('*********', env);
 if (env === 'production') {
   config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
@@ -69,6 +72,8 @@ if (env === 'production') {
       }
     })
   );
+} else {
+    config['devtool'] = 'eval-source-map';// devtool: 'inline-source-map',
 }
 
 module.exports = config;

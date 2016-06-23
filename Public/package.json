@@ -6,7 +6,7 @@
   "scripts": {
     "component_testing": "browser-sync start --proxy \"localhost/jianxi32/Public/src/common/testing/grid_testing.html\" --files \"./dist/**/*.*\"",
     "start": "browser-sync start --proxy \"localhost/jianxi32/index.php/Home/JY\" --files \"./dist/**/*.*\"",
-    "build": "set NODE_ENV=production && webpack -p --progress --profile --colors",
+    "build": "export NODE_ENV=production && webpack -p --progress --profile --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -30,6 +30,7 @@
     "eslint-plugin-react": "^5.0.1",
     "fabric": "^1.6.1",
     "file-loader": "^0.8.5",
+    "html-webpack-plugin": "^2.21.0",
     "material-ui": "^0.15.0",
     "node-sass": "^3.5.3",
     "react": "^15.0.2",

@@ -115,22 +115,24 @@ class App extends React.Component {
         this.products = [];
         for(let i = 0, l = this.props.canvasItems.length; i < l; i++) {
             let product = new Product('viewport-2d-' + i, this.props.canvasWidth - 2, this.props.canvasHeight - 2);
-            fabric.loadSVGFromURL(this.props.canvasItems[i]['clipSvg'], (objects, options) => {
-                // console.log(objects);
-                let shape = fabric.util.groupSVGElements(objects, options);
-                // product.canvas.add(shape);
-                if(!this.shapes) {
-                    this.shapes = [];
-                }
-                this.shapes.push(shape);
-                // console.log(this.shapes);
-                this.setClipStroke(this.clipStrokDefaultColor);
-                
-                product.canvas.clipTo = function (ctx) {
-                    shape.render(ctx);
-                };
-                product.canvas.renderAll();
-            });
+            if(this.props.canvasItems[i]['clipSvg']) {
+                fabric.loadSVGFromURL(this.props.canvasItems[i]['clipSvg'], (objects, options) => {
+                    // console.log(objects);
+                    let shape = fabric.util.groupSVGElements(objects, options);
+                    // product.canvas.add(shape);
+                    if(!this.shapes) {
+                        this.shapes = [];
+                    }
+                    this.shapes.push(shape);
+                    // console.log(this.shapes);
+                    this.setClipStroke(this.clipStrokDefaultColor);
+                    
+                    product.canvas.clipTo = function (ctx) {
+                        shape.render(ctx);
+                    };
+                    product.canvas.renderAll();
+                });
+            }
             product.canvas.on({
                 'object:selected': options => {
                     // console.log('selected: ', options);
@@ -140,7 +142,7 @@ class App extends React.Component {
 
                     let nodeId  = currentObject.mid;
                     let aId = this.props.nodeData.items.findIndex(item => item.id === nodeId);
-                    console.log(nodeId, aId, this.props.nodeData.items);
+                    // console.log(nodeId, aId, this.props.nodeData.items);
                     this.props.setNodeActiveIndex(aId);
 
                     this.setObjectProps(currentObject);
