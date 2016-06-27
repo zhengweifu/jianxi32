@@ -143,7 +143,8 @@ class GeneralPropertiesPanel extends Component {
               onClick={e => {
                 const nodeId = window.PRODUCT.RemoveObject();
                 // console.log(this.porps.removeNode, this.props.activeNodeIndex);
-                this.props.removeNode(this.props.activeNodeIndex);
+                const index = state.canvasData.nodeData[this.props.activeCanvasIndex].activeIndex;
+                this.props.removeNode(index);
               }}
             />
         </VerticalSeparation>
@@ -155,7 +156,7 @@ class GeneralPropertiesPanel extends Component {
 function mapStateToProps(state) {
   return {
     generalProps: state.generalPanelData.props,
-    activeNodeIndex: state.nodeData.activeIndex
+    activeCanvasIndex: state.canvasData.activeIndex
   };
 }
 

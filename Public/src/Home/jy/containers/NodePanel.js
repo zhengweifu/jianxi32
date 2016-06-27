@@ -23,7 +23,10 @@ import { setNode, addNode, removeNode, setNodeActiveIndex, moveNode } from '../a
 
 class NodePanel extends React.Component {
   getItems() {
-    return this.props.items.map((item) => {
+    const { nodeData, activeCanvasIndex } = this.props;
+
+    let tempItems = nodeData[activeCanvasIndex] ? nodeData[activeCanvasIndex].items : [];
+    return tempItems.map((item) => {
       let describtion = item.describtion, subsize = 20;
       if(describtion.length > subsize) {
         describtion = describtion.substr(0, subsize - 2) + '...';
@@ -42,16 +45,19 @@ class NodePanel extends React.Component {
 
   render() {
     const items = this.getItems();
+
+    let {nodeData, activeIndex, activeCanvasIndex } = this.props;
+     activeIndex = nodeData[activeCanvasIndex] ? nodeData[activeCanvasIndex].activeIndex : -1;
     // console.log(items);
     return (
-      <List items={items} activeIndex={this.props.activeIndex}
+      <List items={items} activeIndex={activeIndex}
         onDragEnd={(e, from, to) => {
           this.props.moveNode(from, to);
           window.PRODUCT.MoveTo(from, to);
         }}
         onRightIconClick={(e, index) => {
           this.props.removeNode(index);
-          window.PRODUCT.RemoveObjectFromId(this.props.items[index]['id']);
+          window.PRODUCT.RemoveObjectFromId(index);
         }}
         onClick={(e, title, index) => {
           console.log('click ...', index);
@@ -92,8 +98,10 @@ NodePanel.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    activeIndex: state.nodeData.activeIndex,
-    items: state.nodeData.items
+    activeCanvasIndex: state.canvasData.activeIndex,
+    nodeData: state.canvasData.nodeData
+    // activeIndex: state.nodeData.activeIndex,
+    // items: state.nodeData.items
   };
 }
 

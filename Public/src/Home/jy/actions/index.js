@@ -4,7 +4,7 @@ export { setTextStrokeActiveIndex, addTextStroke, setTextStrokePanelVisible, set
 
 export { setTextShadowActiveIndex, addTextShadow, setTextShadowPanelVisible, setTextShadowSize } from './textShadowPanelActions';
 
-export { addNode, removeNode, setNode, setNodeActiveIndex, moveNode } from './nodePanelActions';
+// export { addNode, removeNode, setNode, setNodeActiveIndex, moveNode } from './nodePanelActions';
 
 export { addPatternItemData, setPatternItemData } from './patternPanelActions';
 
@@ -18,4 +18,4 @@ export { setImgPanelProps, setImgPanelVisible } from './imgPanelActions';
 
 export { setGeneralPanelProps, setGeneralPanelVisible } from './generalPanelActions';
 
-export { addCanvas, setCanvasActiveIndex } from './canvasActions';
+export { addCanvas, setCanvasActiveIndex, addNodeData, addNode, removeNode, setNode, setNodeActiveIndex, moveNode } from './canvasActions';

@@ -50,7 +50,8 @@ import {
     setTextColorActiveIndex,
     setTextStrokeActiveIndex,
     setTextShadowActiveIndex,
-    setCanvasActiveIndex
+    setCanvasActiveIndex,
+    addNodeData
 } from '../actions';
 
 import fabric from 'fabric';
@@ -141,7 +142,7 @@ class App extends React.Component {
                     let currentObject = options.target;
 
                     let nodeId  = currentObject.mid;
-                    let aId = this.props.nodeData.items.findIndex(item => item.id === nodeId);
+                    let aId = this.props.nodeData[this.props.canvasActiveIndex].items.findIndex(item => item.id === nodeId);
                     // console.log(nodeId, aId, this.props.nodeData.items);
                     this.props.setNodeActiveIndex(aId);
 
@@ -151,7 +152,6 @@ class App extends React.Component {
                 'selection:cleared': options => {
                     // console.log('unselected: ', options);
                     this.props.setNodeActiveIndex(-1);
-
                     this.props.setImgPanelVisible(false);
                     this.props.setGeneralPanelVisible(false);
                     this.props.setTextPanelVisible(false);
@@ -171,10 +171,18 @@ class App extends React.Component {
                 }
             });
             this.products.push(product);
+            this.props.addNodeData();
         }
     }
 
     setProductFromIndex(index) {
+        if(window.PRODUCT) {
+            window.PRODUCT.UnselectAll();
+            this.props.setNodeActiveIndex(-1);
+            this.props.setImgPanelVisible(false);
+            this.props.setGeneralPanelVisible(false);
+            this.props.setTextPanelVisible(false);
+        }
         window.PRODUCT = this.products[index];
         this.props.setCanvasActiveIndex(index);
     }
@@ -349,7 +357,7 @@ function mapStateToProps(state) {
         generalPanelVisible: state.generalPanelData.visible,
         textPanelVisible: state.textPanelData.visible,
         imgPanelVisible: state.imgPanelData.visible,
-        nodeData: state.nodeData,
+        nodeData: state.canvasData.nodeData,
         colorItems: state.textColorPanelData.colors,
         strokeColorItems: state.textStrokePanelData.colors,
         shadowColorItems: state.textShadowPanelData.colors,
@@ -370,7 +378,8 @@ function mapDispatchToProps(dispatch) {
         setTextColorActiveIndex,
         setTextStrokeActiveIndex,
         setTextShadowActiveIndex,
-        setCanvasActiveIndex
+        setCanvasActiveIndex,
+        addNodeData
     }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
