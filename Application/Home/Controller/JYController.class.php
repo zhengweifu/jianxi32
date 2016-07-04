@@ -46,4 +46,8 @@ class JYController extends Controller {
 
       echo json_encode($output);
     }
+
+    public function test() {
+      var_dump(json_decode(file_get_contents('php://input')));
+    }
 }

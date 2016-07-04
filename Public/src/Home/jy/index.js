@@ -123,6 +123,15 @@ axios.get(INTERFACE_ROOT + 'Home/JY/getInitData')
     }
   });
   
+axios.post(INTERFACE_ROOT + 'Home/JY/test', {
+  name: 'fun.zheng',
+  age: 30
+}, {
+
+})
+  .then(response => {
+    console.log(response);
+  });
 
 
 // co(function *() {
