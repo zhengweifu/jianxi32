@@ -48,6 +48,13 @@ class JYController extends Controller {
     }
 
     public function test() {
-      var_dump(json_decode(file_get_contents('php://input')));
+      // var_dump(json_decode(file_get_contents('php://input')));
+      // var_dump(curl_file_get_contents('http://www.janexi.com/Home/JY/getInitData'));
+      // var_dump(curl_file_get_contents('http://www.baidu.com'));
+      // var_dump(curl_post('http://www.janexi.com/Home/JY/getInitData', 'name=zhengweifu&age=30'));
+      var_dump(curl_post('http://www.janexi.com/Home/JY/getInitData', array(
+        'name' => 'fun.zheng',
+        'age' => 30
+      )));
     }
 }

@@ -85,14 +85,42 @@ function getPage(&$m, $where, $pagesize=10){
     return $p;
 }
 
-function curl_file_get_contents($durl){
+function curl_file_get_contents($url){
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $durl);
+
+    curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);
     curl_setopt($ch, CURLOPT_USERAGENT, _USERAGENT_);
-    curl_setopt($ch, CURLOPT_REFERER,_REFERER_);
+    curl_setopt($ch, CURLOPT_REFERER, _REFERER_);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $r = curl_exec($ch);
     curl_close($ch);
     return $r;
+}
+
+function curl_post($url, $post_data) {
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $url);
+
+    if(is_array($post_data)) {
+        $post_data = json_encode($post_data);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($post_data)
+        ));
+    }
+
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_USERAGENT, _USERAGENT_);
+    curl_setopt($ch, CURLOPT_REFERER, _REFERER_);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    //设置为post请求类型
+    curl_setopt($ch, CURLOPT_POST, 1);
+
+    //设置具体的post数据
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+    $r = curl_exec($ch);
+    curl_close($ch);
+    return $r;  
 }
