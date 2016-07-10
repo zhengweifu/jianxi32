@@ -46,7 +46,8 @@ class Product {
     constructor(idName, width, height) {
         this.canvas = new fabric.Canvas(idName, {
             width: width,
-            height: height
+            height: height,
+            controlsAboveOverlay: true
         });
 
         this.canvas.mid = 0;
