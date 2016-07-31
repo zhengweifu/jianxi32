@@ -37,7 +37,7 @@ export default class ImageItem extends Component {
             this.props.onClick(e, title, this.props.img);
           }
         }}>
-        <img src={this.props.img} style={{maxWidth: '100%'}}/>
+        <img src={this.props.img} style={{maxHeight: 90}}/>
       </SimpleItem>
     );
   }

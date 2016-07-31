@@ -17,7 +17,9 @@ import ProductHeaderPanel from './ProductHeaderPanel';
 
 import CreateNodePanel  from './CreateNodePanel';
 
-import BuyerShowPanel from './BuyerShowPanel';
+// import BuyerShowPanel from './BuyerShowPanel';
+
+import RaisedButton from '../../../Common/components/RaisedButton';
 
 import PopupGroup from './PopupGroup';
 
@@ -187,6 +189,17 @@ class App extends React.Component {
         this.props.setCanvasActiveIndex(index);
     }
 
+    saveProject() {
+        let outputData = {
+            projectDatas: []
+        };
+
+        for(let p of this.products) {
+            outputData.projectDatas.push(p.canvas.toJSON());
+        }
+
+    }
+
     componentDidMount() {
         console.log('componentDidMount');
 
@@ -204,7 +217,8 @@ class App extends React.Component {
                     active={active}
                     defaultBorderColor={this.props.grayeee}
                     activeColor={this.props.tangerine}
-                    img={item.genius}
+                    // img={item.genius}
+                    img={item.img}
                     onClick={e => {
                         this.setProductFromIndex(index);
                     }}
@@ -323,12 +337,15 @@ class App extends React.Component {
                             {title: '色彩风格', height: 290, visible: this.props.imgPanelVisible, content: <ColorSchemesPanel />, zDepth: 4},
                             {title: '节点面板', height: 290, visible: true, content: <NodePanel />, zDepth: 1}
                         ]} ref={ref => this.propertiesPanelGroup = ref }/>
+                        <RaisedButton
+                            label='放入购物袋'
+                            bgColor={CYAN500}
+                            fullWidth={true}
+                            onClick={this.saveProject.bind(this)}
+                        />
                     </div>
                 </Col>
             </Grid>
-            <div style={{margin: '0px 20px'}}>
-                <BuyerShowPanel items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}/>
-            </div>
         </div> 
         );
     }
