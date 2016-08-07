@@ -41,6 +41,8 @@ import { connect } from 'react-redux';
 
 import { WEB_ROOT } from '../../../config';
 
+import { DEFAULT_ACTIVE_COLOR, DEFAULT_GRAY_COLOR } from '../config';
+
 import { 
     setGeneralPanelVisible, 
     setTextPanelVisible, 
@@ -215,8 +217,8 @@ class App extends React.Component {
             return (
                 <div key={'img-item-' + index} style={{textAlign: 'center'}}><ImageItem
                     active={active}
-                    defaultBorderColor={this.props.grayeee}
-                    activeColor={this.props.tangerine}
+                    defaultBorderColor={DEFAULT_GRAY_COLOR}
+                    activeColor={DEFAULT_ACTIVE_COLOR}
                     // img={item.genius}
                     img={item.img}
                     onClick={e => {
@@ -234,7 +236,7 @@ class App extends React.Component {
                     style={{
                         width: this.props.canvasWidth,
                         height: this.props.canvasHeight,
-                        borderBottom: `1px solid ${this.props.grayeee}`,
+                        borderBottom: `1px solid ${DEFAULT_GRAY_COLOR}`,
                         boxSizing: 'border-box'
                     }}>
                 </canvas>
@@ -246,7 +248,7 @@ class App extends React.Component {
 
         return (
             <div style={{
-                border: `1px solid ${this.props.grayeee}`,
+                border: `1px solid ${DEFAULT_GRAY_COLOR}`,
                 boxSizing: 'border-box'
                 }}>
                 <div style={{
@@ -269,7 +271,7 @@ class App extends React.Component {
     render() {
         const heartSvg = <SvgIcon 
             style={{margin: '0px 2px 0px 2px'}}
-            color={this.props.tangerine}
+            color={DEFAULT_ACTIVE_COLOR}
             width={14} height={14} 
             viewBox='0 0 512 512' >
             <path d={heart} />
@@ -283,7 +285,7 @@ class App extends React.Component {
             <Grid gutter={0} style={{width: mlenght, margin: 'auto'}}>
                 <Col gutter={0} width={this.props.canvasWidth / mlenght}>
                     <div style={{
-                        // border: `1px solid ${this.props.grayeee}`,
+                        // border: `1px solid ${DEFAULT_GRAY_COLOR}`,
                         boxSizing: 'border-box'
                         }}>
                         {this.renderCanvasItems()}
@@ -291,18 +293,18 @@ class App extends React.Component {
                 </Col>
                 <Col gutter={0} width={(this.props.controllerWidth + centerSpace) / mlenght}>
                     <div style={{
-                            // border: `1px solid ${this.props.grayeee}`,
+                            // border: `1px solid ${DEFAULT_GRAY_COLOR}`,
                             boxSizing: 'border-box',
                             height: this.props.controllerHeight,
                             paddingLeft: centerSpace
                         }}>
-                        <ProductHeaderPanel bgColor={this.props.tangerine} productDescribtion='AIR100000000音响'/>
+                        <ProductHeaderPanel bgColor={DEFAULT_ACTIVE_COLOR} productDescribtion='AIR100000000音响'/>
 
                         <div>
                             <span style={{
                                 marginRight: 10,
                                 fontSize: 25,
-                                color: this.props.tangerine}}>
+                                color: DEFAULT_ACTIVE_COLOR}}>
                                 ¥59
                             </span>
                             {heartSvg}
@@ -313,7 +315,7 @@ class App extends React.Component {
                             <span style={{
                                 padding: '0px 20px 0px 5px',
                                 fontSize: 16,
-                                color: this.props.tangerine}}>4.7</span>
+                                color: DEFAULT_ACTIVE_COLOR}}>4.7</span>
                             <span>(
                                 <a >96个评价</a>
                             )</span>
@@ -329,7 +331,7 @@ class App extends React.Component {
                             </GridList>
                         </GridList>
                         <div style={{marginTop: 10}}></div>
-                        <CreateNodePanel bgColor={this.props.tangerine} fbColor={this.props.grayeee}/>
+                        <CreateNodePanel bgColor={DEFAULT_ACTIVE_COLOR} fbColor={DEFAULT_GRAY_COLOR}/>
                         <div style={{marginTop: 10}}></div>
                         <PopupGroup items={[
                             {title: '一般属性', height: 290, visible: this.props.generalPanelVisible, content: <GeneralPropertiesPanel />, zDepth: 8},
@@ -352,8 +354,6 @@ class App extends React.Component {
 }
 
 App.defaultProps = {
-    tangerine: '#ff8d5c',
-    grayeee: GREY200,
     canvasWidth: 602,
     canvasHeight: 482,
     controllerWidth: 400,
@@ -361,8 +361,6 @@ App.defaultProps = {
 };
 
 App.propTypes = {
-    tangerine: React.PropTypes.string,
-    grayeee: React.PropTypes.string,
     canvasWidth: React.PropTypes.number,
     canvasHeight: React.PropTypes.number,
     controllerWidth:React.PropTypes.number,

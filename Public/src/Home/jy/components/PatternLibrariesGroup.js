@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageItem from '../../../Common/components/ImageItem';
+import { DEFAULT_ACTIVE_COLOR, DEFAULT_GRAY_COLOR } from '../config';
 
 export default class PatternLibrariesGroup extends React.Component {
   constructor(props) {
@@ -18,6 +19,8 @@ export default class PatternLibrariesGroup extends React.Component {
           <ImageItem
             img={item.img}
             title={item.describtion}
+            defaultBorderColor={DEFAULT_GRAY_COLOR}
+            activeColor={DEFAULT_ACTIVE_COLOR}
             onClick={e => {
               this.setState({activeIndex: index});
               if(this.props.onItemClick) {

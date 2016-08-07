@@ -186,6 +186,18 @@ class Product {
         return id;
     }
 
+    AddSvg(url) {
+        const id = this.canvas.mid++;
+        fabric.loadSVGFromURL(url, (objects, options) => {
+            let obj = fabric.util.groupSVGElements(objects, options);
+            obj.set({mid: id});
+            this.canvas.centerObject(obj);
+            this.canvas.add(obj);
+            this.canvas.renderAll();
+        });
+        return id;
+    }
+
     /**
      * 删除当前激活的物体
      */

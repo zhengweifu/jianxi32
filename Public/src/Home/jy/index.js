@@ -74,35 +74,49 @@ store.dispatch(addProductItemData('ATR3000系列短袖', {
 //   describtion: 'AIR4000女款'
 // }));
 
-store.dispatch(addPatternItemData('动物', {
-  img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
-  describtion: '小狗'
-}));
 
-store.dispatch(addPatternItemData('动物', {
-  img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
-  describtion: '小猫'
-}));
+// store.dispatch(addPatternItemData('动物', {
+//   img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
+//   describtion: '小狗'
+// }));
 
-store.dispatch(addPatternItemData('动物', {
-  img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
-  describtion: '小鸡'
-}));
+// store.dispatch(addPatternItemData('动物', {
+//   img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
+//   describtion: '小猫'
+// }));
 
-store.dispatch(addPatternItemData('植物', {
-  img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
-  describtion: '小树'
-}));
+// store.dispatch(addPatternItemData('动物', {
+//   img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
+//   describtion: '小鸡'
+// }));
 
-store.dispatch(addPatternItemData('书法', {
-  img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
-  describtion: '小树'
-}));
+// store.dispatch(addPatternItemData('植物', {
+//   img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
+//   describtion: '小树'
+// }));
 
-store.dispatch(addPatternItemData('建筑', {
-  img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
-  describtion: '小树'
-}));
+// store.dispatch(addPatternItemData('书法', {
+//   img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
+//   describtion: '小树'
+// }));
+
+// store.dispatch(addPatternItemData('建筑', {
+//   img: WEB_ROOT + 'Public/uploads/jyimages/tx01.jpg',
+//   describtion: '小树'
+// }));
+axios.get(INTERFACE_ROOT + 'Home/JY/getShearPainting')
+  .then(response => {
+    let mShearPaintings = response.data;
+    for(let kind in mShearPaintings) {
+      for(let shearPainting of mShearPaintings[kind]) {
+        store.dispatch(addPatternItemData(kind, {
+          img: shearPainting.path,
+          describtion: shearPainting.title
+        }));
+      }
+    }
+    console.log(mShearPaintings);
+  });
 
 axios.get(INTERFACE_ROOT + 'Home/JY/getInitData')
   .then(response => {

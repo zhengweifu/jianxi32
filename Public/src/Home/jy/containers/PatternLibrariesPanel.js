@@ -56,7 +56,7 @@ class PatternLibrariesPanel extends React.Component {
     return (
       <List 
         items={items} 
-        onTouchTap={e => {
+        onClick={(e, title, index) => {
           this.setState({currentShowTitleIndex : index});
         }}/>
       );
@@ -73,14 +73,32 @@ class PatternLibrariesPanel extends React.Component {
   }
 
   render() {
+    const {
+      tilesData
+    } = this.props;
 
-    let mindex = this.state.currentShowTitleIndex;
+    const {
+      currentActiveTitleIndex,
+      currentActiveItemIndex,
+      currentShowTitleIndex,
+      open
+    } = this.state;
 
-    let patternItems = (mindex != -1) ? this.props.tilesData[mindex].items : [];
+    let mindex = currentShowTitleIndex;
 
-    let mactiveIndex = (this.state.currentActiveTitleIndex == mindex) ? this.state.currentActiveItemIndex : -1;
+    let patternItems = (mindex != -1) ? tilesData[mindex].items : [];
+
+    let mactiveIndex = (currentActiveTitleIndex == mindex) ? currentActiveItemIndex : -1;
     return (
-      <Modal open={this.state.open}>
+      <Modal 
+        open={open}
+        onOkClick={e => {
+          let svgUrl = tilesData[currentActiveTitleIndex]['items'][currentActiveItemIndex].img;
+          window.PRODUCT.AddSvg(svgUrl);
+          console.log(svgUrl);
+          // this.setState({open: false});
+        }}
+        >
         <Grid>
           <Col width={1 / 5}>
             {this.renderList()}
