@@ -76,7 +76,7 @@ class App extends React.Component {
 
     setObjectProps(object) {
         let props = window.PRODUCT.GetActiveObjectProps();
-        // console.log('fefef: ', );
+        console.log('fefef: ', object.type);
         switch (object.type) {
             case 'curvedText':
                 this.propertiesPanelGroup.setState({'opens': [false, true, false, false]});
@@ -94,6 +94,13 @@ class App extends React.Component {
             case 'image':
                 this.propertiesPanelGroup.setState({'opens': [false, false, true, false]});
                 this.props.setImgPanelVisible(true);
+                this.props.setGeneralPanelVisible(true);
+                this.props.setTextPanelVisible(false);
+                this.props.setGeneralPanelProps(props.generalProps);
+                break;
+            case 'path-group':
+                this.propertiesPanelGroup.setState({'opens': [true, false, false, false]});
+                this.props.setImgPanelVisible(false);
                 this.props.setGeneralPanelVisible(true);
                 this.props.setTextPanelVisible(false);
                 this.props.setGeneralPanelProps(props.generalProps);

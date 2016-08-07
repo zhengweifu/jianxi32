@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 
-import { setPatternItemData }from '../actions';
+import { setPatternItemData, addNode }from '../actions';
 
 class PatternLibrariesPanel extends React.Component {
   constructor(props) {
@@ -74,7 +74,8 @@ class PatternLibrariesPanel extends React.Component {
 
   render() {
     const {
-      tilesData
+      tilesData,
+      addNode
     } = this.props;
 
     const {
@@ -93,10 +94,14 @@ class PatternLibrariesPanel extends React.Component {
       <Modal 
         open={open}
         onOkClick={e => {
+          if(currentActiveTitleIndex == -1 || currentActiveItemIndex == -1) {
+            alert('请您选择一个图案再按确定按钮。');
+            return;
+          }
           let svgUrl = tilesData[currentActiveTitleIndex]['items'][currentActiveItemIndex].img;
-          window.PRODUCT.AddSvg(svgUrl);
-          console.log(svgUrl);
-          // this.setState({open: false});
+          let nodeId = window.PRODUCT.AddSvg(svgUrl);
+          addNode({id: nodeId, kind: '图片', describtion: svgUrl});
+          this.setState({open: false});
         }}
         >
         <Grid>
@@ -141,7 +146,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    setPatternItemData
+    setPatternItemData,
+    addNode
   }, dispatch);
 }
 

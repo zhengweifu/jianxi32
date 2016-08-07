@@ -65,7 +65,7 @@ class JYController extends Controller {
     $output_datas = Array();
     foreach ($shear_painting_datas as $sp_data) {
       $kindKey = JYController::$Number2Kind[$sp_data['kind']];
-      if(!array_key_exists($output_datas, $kindKey)) {
+      if(!array_key_exists($kindKey, $output_datas)) {
         $output_datas[$kindKey] = Array();
       }
       array_push($output_datas[$kindKey], Array(

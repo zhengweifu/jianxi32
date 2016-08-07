@@ -115,7 +115,7 @@ axios.get(INTERFACE_ROOT + 'Home/JY/getShearPainting')
         }));
       }
     }
-    console.log(mShearPaintings);
+    // console.log(mShearPaintings);
   });
 
 axios.get(INTERFACE_ROOT + 'Home/JY/getInitData')
@@ -132,7 +132,7 @@ axios.get(INTERFACE_ROOT + 'Home/JY/getInitData')
 
     let mColorSchemeDatas = response.data.color_scheme_datas;
     for(let mColorSchemeData of mColorSchemeDatas) {
-      console.log(mColorSchemeData);
+      // console.log(mColorSchemeData);
       store.dispatch(addColorScheme(mColorSchemeData));
     }
   });
