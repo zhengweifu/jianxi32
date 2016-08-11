@@ -1,6 +1,7 @@
 import React from 'react';
 import ImageItem from '../../../Common/components/ImageItem';
 import { DEFAULT_ACTIVE_COLOR, DEFAULT_GRAY_COLOR } from '../config';
+import GridList from '../../../Common/components/GridList';
 
 export default class PatternLibrariesGroup extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class PatternLibrariesGroup extends React.Component {
     return this.props.items.map((item, index) => {
       let mactive = (this.state.activeIndex == index) ? true : false;
       return (
-        <div key={index} className='col-sm-2' style={{margin: '5px 0'}}>
+        <div key={index} style={{margin: '5px 0'}}>
           <ImageItem
             img={item.img}
             title={item.describtion}
@@ -43,9 +44,9 @@ export default class PatternLibrariesGroup extends React.Component {
 
   render() {
     return (
-      <div className='row' style={{}}>
+      <GridList cols={5}>
         {this.renderItems()}
-      </div>
+      </GridList>
     );
   }
 }

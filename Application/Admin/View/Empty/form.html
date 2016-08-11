@@ -1,4 +1,4 @@
-<form action="{$b_post_url}" method="post">
+<form action="{$b_post_url}" method="post" onkeydown="if(event.keyCode==13){return false;}">
     <input type="hidden" name="id" value='<?php echo $data["id"];?>'>
 <foreach name="key_data_current" item="item">
     <div class="form-group">
@@ -58,6 +58,165 @@
 //                console.log(color);
             });
             jx_colorpicker.setColor('<?php echo "#" . $data[$item["name"]];?>');
+        })();
+    </script>
+    </if>
+    <if condition="$item.type eq 5">
+    <textarea name="{$item.name}" class="form-control" style="display: block" placeholder="{$item.tip}" id="jx-2d-diy-product-relative-value"><?php echo $data[$item["name"]];?></textarea>
+    <div style="border: 1px solid #ccc; padding: 5px; border-radius: 5px">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#jx-2d-diy-product-modal" id="jx-2d-add-color">添加颜色</button>
+        <div class="modal fade" id="jx-2d-diy-product-modal" tabindex="-1" role="dialog" aria-labelledby="jx-2d-diy-product-modal-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="form-group">
+                            <label>颜色</label>
+                            <input type="text" class="form-control" placeholder="#fff" id="jx-2d-diy-product-color-value" style="background-color: #fff"/>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <input type="file" id="jx-2d-diy-product-cimg-upload" style="display: none"/>
+                        <button type="button" class="btn btn-primary" id="jx-2d-diy-product-color-img-upload">上传视角图片</button>
+                        <div class="row" id="jx-2d-diy-product-color-img-group"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="jx-2d-diy-product-change-color-ok">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="jx-diy-product-color-group" class="row"></div>
+    </div>
+    <script>
+        (function() {
+            var data = '<?php echo $data[$item["name"]];?>';
+            data = JSON.parse(data);
+            // console.log(data);
+
+            var colorItemWidth = 50,
+                colorItemHeight = 50,
+                radius = 5;
+
+            function updateRelativeContent() {
+                $('#jx-2d-diy-product-relative-value').val(JSON.stringify(data));
+            }
+
+            function getStyle(bgColor) {
+                return 'width: ' + colorItemWidth + 'px; height: ' + colorItemHeight + 'px; background-color: ' + bgColor + '; border-radius: ' + radius + 'px; margin-top: 10px; position: relative';
+            }
+
+            function addColorItem(color) {
+                var colorElement = $('<div data-toggle="modal" data-target="#jx-2d-diy-product-modal" mbgcolor="' + color + '" style="' + getStyle(color) + '"><div>');
+                var colorClose = $('<span mbgcolor="' + color + '" class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 18px; position: absolute; top: -7px; right: -7px"></span>');
+
+                colorElement.append(colorClose);
+                var elementTop = $('<div class="col-xs-1"></div>');
+                elementTop.append(colorElement);
+
+                colorElement.bind('click', function(e) {
+                    var mcolor = $(this).attr('mbgcolor');
+                    $('#jx-2d-diy-product-color-value').val(mcolor);
+                    $('#jx-2d-diy-product-color-value').css({
+                        "background-color": mcolor
+                    });
+
+                    var imgs = data[mcolor];
+
+                    $('#jx-2d-diy-product-color-img-group').children().remove();
+
+                    for(var i = 0; i < imgs.length; i++) {
+                        addImgItem(imgs[i]);
+                    }
+                });
+
+                colorClose.bind('click', function(e) {
+                    e.stopPropagation();
+                    var mbgcolor = $(this).attr('mbgcolor');
+                    console.log(mbgcolor);
+                    if(data[mbgcolor]) {
+                        delete data[mbgcolor];
+                        updateRelativeContent();
+                    }
+                    $(this).parent().parent().remove();
+                });
+
+                $('#jx-diy-product-color-group').append(elementTop);
+            }
+
+            $('#jx-2d-diy-product-color-value').bind('change', function(e) {
+                var mvalue = $(this).val();
+                $(this).css('background-color', mvalue);
+                if(data[mvalue]) {
+
+                }
+
+            });
+
+            function addImgItem(url) {
+                var imgGroup = $('<div style="margin-top: 10px; position: relative"></div>');
+                var img = $('<img class="jx-2d-diy-product-img-item img-rounded" style="max-width: 100%; border: 1px solid #ccc" src='+ url + ' />');
+                var imgClose = $('<span class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 20px; position: absolute; top: -8px; right: -8px"></span>');
+                imgGroup.append(img, imgClose);
+                var elementTop = $('<div class="col-xs-3"></div>');
+                elementTop.append(imgGroup);
+                imgClose.bind('click', function(e) {
+                    // alert("fwfvvvvv");
+                    $(this).parent().parent().remove();
+                }); 
+
+                $('#jx-2d-diy-product-color-img-group').append(elementTop);
+            }
+
+            for(var each in data) {
+                console.log(each)
+                addColorItem(each);
+            }
+
+            $('#jx-2d-diy-product-change-color-ok').bind('click', function(e) {
+                var mvalue = $('#jx-2d-diy-product-color-value').val();
+
+                var imgs = [];
+                $('.jx-2d-diy-product-img-item').each(function() {
+                    imgs.push($(this).attr('src'));
+                });
+
+                if(mvalue) {
+                    data[mvalue] = imgs;
+                    updateRelativeContent();
+                } else {
+                    alert("请输入颜色值");
+                }
+            });
+
+            $('#jx-2d-add-color').bind('click', function(e) {
+                $('#jx-2d-diy-product-color-value').val('');
+                $('#jx-2d-diy-product-color-value').css('background-color', '#fff');
+            });
+
+            $('#jx-2d-diy-product-color-img-upload').bind('click', function(e) {
+                $('#jx-2d-diy-product-cimg-upload').click();
+            });
+
+            $('#jx-2d-diy-product-cimg-upload').bind('change', function(e) {
+                var reader = new FileReader();
+                reader.readAsDataURL(this.files[0]);
+
+                reader.onload = function() {
+                    var imgData = this.result;
+                    $.ajax({
+                        url: '{$P_2d_diy_upload_img_url}',
+                        type: 'POST',
+                        data: {imgData: imgData},
+                        success: function(data) {
+                            if(data) {
+                                addImgItem(data)
+                            }
+                        }
+                    });
+                };
+            });
+
         })();
     </script>
     </if>

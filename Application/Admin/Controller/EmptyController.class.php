@@ -44,6 +44,8 @@ class EmptyController extends PublicController {
             }
         }
 
+        $this->assign("P_2d_diy_upload_img_url", U(MODULE_NAME . '/Empty/uploadP2DDiyImg'));
+        // alert(WEB_ROOT_PATH);
         $this->display();
     }
 
@@ -181,5 +183,59 @@ class EmptyController extends PublicController {
         }
 
         $this->redirect(MODULE_NAME . "/Empty/index/tid/" . $table_id);
+    }
+
+    public function uploadP2DDiyImg() {
+        $imgData = I('imgData');
+
+        if($imgData) {
+            $php_path = dirname(__FILE__) . '/';
+            $save_path = $php_path . '../../../Public/uploads/';
+            $save_path = realpath($save_path) . '/';
+
+            //检查目录
+            if (@is_dir($save_path) === false) {
+                alert("上传目录不存在。");
+            }
+
+            //检查目录写权限
+            if (@is_writable($save_path) === false) {
+                alert("上传目录没有写权限。");
+            }
+
+            if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $imgData, $result)) {
+                $type = $result[2];
+                $save_path .= 'JY_imgs/';
+                $save_url = 'Public/uploads/JY_imgs/';
+                if (!file_exists($save_path)) {
+                    mkdir($save_path);
+                }
+
+                $ymd = date("Ymd");    
+                $save_path .= $ymd . '/';
+                $save_url .= $ymd . '/';
+
+                if (!file_exists($save_path)) {
+                    mkdir($save_path);
+                }
+
+                $new_file_name  = date("YmdHis") . '_' . rand(10000, 99999) . '.' . $type;
+                $file_path = $save_path . $new_file_name;
+
+                @chmod($file_path, 0644);
+                $file_url = $save_url . $new_file_name;
+
+                if (file_put_contents($file_path, base64_decode(str_replace($result[1], '', $imgData)))) {
+                    echo WEB_ROOT_PATH . $file_url;
+                } else {
+                    echo 0;
+                }
+            } else {
+                echo 0;
+            }
+        } else {
+            echo 0;
+        }
+        var_dump();
     }
 }
