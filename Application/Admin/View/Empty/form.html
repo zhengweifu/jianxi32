@@ -97,7 +97,7 @@
             var colorItemWidth = 50,
                 colorItemHeight = 50,
                 radius = 5;
-
+            var FUN_PARENT = null;
             function updateRelativeContent() {
                 $('#jx-2d-diy-product-relative-value').val(JSON.stringify(data));
             }
@@ -111,7 +111,7 @@
                 var colorClose = $('<span mbgcolor="' + color + '" class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 18px; position: absolute; top: -7px; right: -7px"></span>');
 
                 colorElement.append(colorClose);
-                var elementTop = $('<div class="col-xs-1"></div>');
+                var elementTop = $('<div class="col-xs-2"></div>');
                 elementTop.append(colorElement);
 
                 colorElement.bind('click', function(e) {
@@ -125,12 +125,15 @@
 
                     $('#jx-2d-diy-product-color-img-group').children().remove();
 
+                    FUN_PARENT = $(this);
+
                     for(var i = 0; i < imgs.length; i++) {
                         addImgItem(imgs[i]);
                     }
                 });
 
                 colorClose.bind('click', function(e) {
+                    console.log("ccccccc");
                     e.stopPropagation();
                     var mbgcolor = $(this).attr('mbgcolor');
                     console.log(mbgcolor);
@@ -147,6 +150,7 @@
             $('#jx-2d-diy-product-color-value').bind('change', function(e) {
                 var mvalue = $(this).val();
                 $(this).css('background-color', mvalue);
+
                 if(data[mvalue]) {
 
                 }
@@ -184,6 +188,12 @@
                 if(mvalue) {
                     data[mvalue] = imgs;
                     updateRelativeContent();
+                    console.log(FUN_PARENT);
+                    if(FUN_PARENT) {
+                        FUN_PARENT.attr('mbgcolor', mvalue);
+                        FUN_PARENT.children().attr('mbgcolor', mvalue);
+                        FUN_PARENT.css('background-color', mvalue);
+                    }
                 } else {
                     alert("请输入颜色值");
                 }
@@ -192,6 +202,7 @@
             $('#jx-2d-add-color').bind('click', function(e) {
                 $('#jx-2d-diy-product-color-value').val('');
                 $('#jx-2d-diy-product-color-value').css('background-color', '#fff');
+                FUN_PARENT = null;
             });
 
             $('#jx-2d-diy-product-color-img-upload').bind('click', function(e) {
