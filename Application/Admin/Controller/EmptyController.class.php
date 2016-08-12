@@ -45,7 +45,7 @@ class EmptyController extends PublicController {
         }
 
         $this->assign("P_2d_diy_upload_img_url", U(MODULE_NAME . '/Empty/uploadP2DDiyImg'));
-        // alert(WEB_ROOT_PATH);
+        // alert(md5_file('index.php'));
         $this->display();
     }
 
@@ -205,30 +205,56 @@ class EmptyController extends PublicController {
 
             if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $imgData, $result)) {
                 $type = $result[2];
-                $save_path .= 'JY_imgs/';
-                $save_url = 'Public/uploads/JY_imgs/';
-                if (!file_exists($save_path)) {
-                    mkdir($save_path);
-                }
+                $content = base64_decode(str_replace($result[1], '', $imgData));
+                $content_md5 = md5($content);
 
-                $ymd = date("Ymd");    
-                $save_path .= $ymd . '/';
-                $save_url .= $ymd . '/';
+                $m = M('2d_diy_image');
+                $mimg_data = $m -> where('hash="%s"', $content_md5) -> select();
 
-                if (!file_exists($save_path)) {
-                    mkdir($save_path);
-                }
+                // var_dump($mimg_data);
+                // exit;
+                $out_data = Array();
 
-                $new_file_name  = date("YmdHis") . '_' . rand(10000, 99999) . '.' . $type;
-                $file_path = $save_path . $new_file_name;
-
-                @chmod($file_path, 0644);
-                $file_url = $save_url . $new_file_name;
-
-                if (file_put_contents($file_path, base64_decode(str_replace($result[1], '', $imgData)))) {
-                    echo WEB_ROOT_PATH . $file_url;
+                if($mimg_data) {
+                    $out_data['id'] = $mimg_data[0]['id'];
+                    $out_data['path'] = $mimg_data[0]['path'];
+                    echo json_encode($out_data);
                 } else {
-                    echo 0;
+                    $save_path .= 'JY_imgs/';
+                    $save_url = 'Public/uploads/JY_imgs/';
+                    if (!file_exists($save_path)) {
+                        mkdir($save_path);
+                    }
+
+                    $ymd = date("Ymd");    
+                    $save_path .= $ymd . '/';
+                    $save_url .= $ymd . '/';
+
+                    if (!file_exists($save_path)) {
+                        mkdir($save_path);
+                    }
+
+                    $new_file_name  = date("YmdHis") . '_' . rand(10000, 99999) . '.' . $type;
+                    $file_path = $save_path . $new_file_name;
+
+                    @chmod($file_path, 0644);
+                    $file_url = $save_url . $new_file_name;
+
+                    if (file_put_contents($file_path, $content)) {
+                        $out_url = WEB_ROOT_PATH . $file_url;
+                        $save_data = Array(
+                            'path'=> $out_url,
+                            'hash'=> $content_md5
+                        );
+                        $out_id = $m -> add($save_data);
+
+                        $out_data['id'] = $out_id;
+                        $out_data['path'] = $out_url;
+
+                        echo json_encode($out_data);
+                    } else {
+                        echo 0;
+                    }
                 }
             } else {
                 echo 0;

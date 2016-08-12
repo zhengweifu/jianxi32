@@ -72,6 +72,7 @@
                         <div class="form-group">
                             <label>颜色</label>
                             <input type="text" class="form-control" placeholder="#fff" id="jx-2d-diy-product-color-value" style="background-color: #fff"/>
+                            <div id="jx-2d-diy-colorpicker"></div>
                         </div>
                     </div>
                     <div class="modal-body">
@@ -90,6 +91,16 @@
     </div>
     <script>
         (function() {
+            var jx_2d_diy_eq = $('#jx-2d-diy-product-color-value');
+            var jx_2d_diy_colorpicker = $.farbtastic('#jx-2d-diy-colorpicker');
+            jx_2d_diy_colorpicker.linkTo(function(color) {
+                jx_2d_diy_eq.css({backgroundColor: color});
+                jx_2d_diy_eq.val(color);
+               // console.log(color);
+            });
+
+            // jx_2d_diy_colorpicker.setColor('<?php echo "#" . $data[$item["name"]];?>');
+
             var data = '<?php echo $data[$item["name"]];?>';
             data = JSON.parse(data);
             // console.log(data);
@@ -103,7 +114,8 @@
             }
 
             function getStyle(bgColor) {
-                return 'width: ' + colorItemWidth + 'px; height: ' + colorItemHeight + 'px; background-color: ' + bgColor + '; border-radius: ' + radius + 'px; margin-top: 10px; position: relative';
+                // return 'width: ' + colorItemWidth + 'px; height: ' + colorItemHeight + 'px; background-color: ' + bgColor + '; border-radius: ' + radius + 'px; margin-top: 10px; position: relative';
+                return 'width: 100%; height: 0; padding-top: 100%; background-color: ' + bgColor + '; border-radius: ' + radius + 'px; margin-top: 10px; position: relative';
             }
 
             function addColorItem(color) {
@@ -111,24 +123,27 @@
                 var colorClose = $('<span mbgcolor="' + color + '" class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 18px; position: absolute; top: -7px; right: -7px"></span>');
 
                 colorElement.append(colorClose);
-                var elementTop = $('<div class="col-xs-2"></div>');
+                var elementTop = $('<div class="col-xs-1"></div>');
                 elementTop.append(colorElement);
 
                 colorElement.bind('click', function(e) {
                     var mcolor = $(this).attr('mbgcolor');
-                    $('#jx-2d-diy-product-color-value').val(mcolor);
-                    $('#jx-2d-diy-product-color-value').css({
+                    jx_2d_diy_colorpicker.setColor(mcolor);
+                    jx_2d_diy_eq.val(mcolor);
+                    jx_2d_diy_eq.css({
                         "background-color": mcolor
                     });
-
-                    var imgs = data[mcolor];
 
                     $('#jx-2d-diy-product-color-img-group').children().remove();
 
                     FUN_PARENT = $(this);
 
-                    for(var i = 0; i < imgs.length; i++) {
-                        addImgItem(imgs[i]);
+                    var mimgData = data[mcolor];
+
+
+                    for(var i = 0; i < mimgData.length; i++) {
+                        console.log(mimgData);
+                        // addImgItem(imgs[i]);
                     }
                 });
 
@@ -147,7 +162,7 @@
                 $('#jx-diy-product-color-group').append(elementTop);
             }
 
-            $('#jx-2d-diy-product-color-value').bind('change', function(e) {
+            jx_2d_diy_eq.bind('change', function(e) {
                 var mvalue = $(this).val();
                 $(this).css('background-color', mvalue);
 
@@ -157,9 +172,9 @@
 
             });
 
-            function addImgItem(url) {
+            function addImgItem(url, id) {
                 var imgGroup = $('<div style="margin-top: 10px; position: relative"></div>');
-                var img = $('<img class="jx-2d-diy-product-img-item img-rounded" style="max-width: 100%; border: 1px solid #ccc" src='+ url + ' />');
+                var img = $('<img mid="' + id + '" class="jx-2d-diy-product-img-item img-rounded" style="max-width: 100%; border: 1px solid #ccc" src='+ url + ' />');
                 var imgClose = $('<span class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 20px; position: absolute; top: -8px; right: -8px"></span>');
                 imgGroup.append(img, imgClose);
                 var elementTop = $('<div class="col-xs-3"></div>');
@@ -178,7 +193,7 @@
             }
 
             $('#jx-2d-diy-product-change-color-ok').bind('click', function(e) {
-                var mvalue = $('#jx-2d-diy-product-color-value').val();
+                var mvalue = jx_2d_diy_eq.val();
 
                 var imgs = [];
                 $('.jx-2d-diy-product-img-item').each(function() {
@@ -200,8 +215,9 @@
             });
 
             $('#jx-2d-add-color').bind('click', function(e) {
-                $('#jx-2d-diy-product-color-value').val('');
-                $('#jx-2d-diy-product-color-value').css('background-color', '#fff');
+                jx_2d_diy_eq.val('');
+                jx_2d_diy_eq.css('background-color', '#fff');
+                jx_2d_diy_colorpicker.setColor('#fff');
                 FUN_PARENT = null;
             });
 
@@ -220,8 +236,10 @@
                         type: 'POST',
                         data: {imgData: imgData},
                         success: function(data) {
-                            if(data) {
-                                addImgItem(data)
+                            if(data && data != 0) {
+                                console.log(data);
+                                var mdata = JSON.parse(data);
+                                addImgItem(mdata.path, mdata.id);
                             }
                         }
                     });
