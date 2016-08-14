@@ -45,6 +45,8 @@ class EmptyController extends PublicController {
         }
 
         $this->assign("P_2d_diy_upload_img_url", U(MODULE_NAME . '/Empty/uploadP2DDiyImg'));
+
+        $this->assign("P_2d_diy_data_2_data", U(MODULE_NAME . '/Empty/data2data'));
         // alert(md5_file('index.php'));
         $this->display();
     }
@@ -263,5 +265,22 @@ class EmptyController extends PublicController {
             echo 0;
         }
         var_dump();
+    }
+
+    public function data2data() {
+        $o_data = $_POST;
+        $n_data = Array();
+        $m = M('2d_diy_image');
+        foreach ($o_data as $key1 => $value1) {
+           $n_data[$key1] = Array(); 
+           foreach ($value1 as $key2 => $value2) {
+                $mimg_datas = $m -> where('id=' + $value2) -> select();
+                if($mimg_datas) {
+                    $a = Array($value2 => $mimg_datas[0]['path']);
+                    array_push($n_data[$key1], $a);
+                }
+           }
+        }
+        echo json_encode($n_data);
     }
 }

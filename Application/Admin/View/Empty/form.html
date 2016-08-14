@@ -101,153 +101,169 @@
 
             // jx_2d_diy_colorpicker.setColor('<?php echo "#" . $data[$item["name"]];?>');
 
-            var data = '<?php echo $data[$item["name"]];?>';
-            data = JSON.parse(data);
-            // console.log(data);
-
-            var colorItemWidth = 50,
-                colorItemHeight = 50,
-                radius = 5;
-            var FUN_PARENT = null;
-            function updateRelativeContent() {
-                $('#jx-2d-diy-product-relative-value').val(JSON.stringify(data));
-            }
-
-            function getStyle(bgColor) {
-                // return 'width: ' + colorItemWidth + 'px; height: ' + colorItemHeight + 'px; background-color: ' + bgColor + '; border-radius: ' + radius + 'px; margin-top: 10px; position: relative';
-                return 'width: 100%; height: 0; padding-top: 100%; background-color: ' + bgColor + '; border-radius: ' + radius + 'px; margin-top: 10px; position: relative';
-            }
-
-            function addColorItem(color) {
-                var colorElement = $('<div data-toggle="modal" data-target="#jx-2d-diy-product-modal" mbgcolor="' + color + '" style="' + getStyle(color) + '"><div>');
-                var colorClose = $('<span mbgcolor="' + color + '" class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 18px; position: absolute; top: -7px; right: -7px"></span>');
-
-                colorElement.append(colorClose);
-                var elementTop = $('<div class="col-xs-1"></div>');
-                elementTop.append(colorElement);
-
-                colorElement.bind('click', function(e) {
-                    var mcolor = $(this).attr('mbgcolor');
-                    jx_2d_diy_colorpicker.setColor(mcolor);
-                    jx_2d_diy_eq.val(mcolor);
-                    jx_2d_diy_eq.css({
-                        "background-color": mcolor
-                    });
-
-                    $('#jx-2d-diy-product-color-img-group').children().remove();
-
-                    FUN_PARENT = $(this);
-
-                    var mimgData = data[mcolor];
-
-                    var mid = null;
-                    for(var i = 0; i < mimgData.length; i++) {
-                        mid = mimgData[i];
-                        
-                        console.log(mimgData);
-                        // addImgItem(imgs[i]);
-                    }
-                });
-
-                colorClose.bind('click', function(e) {
-                    console.log("ccccccc");
-                    e.stopPropagation();
-                    var mbgcolor = $(this).attr('mbgcolor');
-                    console.log(mbgcolor);
-                    if(data[mbgcolor]) {
-                        delete data[mbgcolor];
-                        updateRelativeContent();
-                    }
-                    $(this).parent().parent().remove();
-                });
-
-                $('#jx-diy-product-color-group').append(elementTop);
-            }
-
-            jx_2d_diy_eq.bind('change', function(e) {
-                var mvalue = $(this).val();
-                $(this).css('background-color', mvalue);
-
-                if(data[mvalue]) {
-
-                }
-
-            });
-
-            function addImgItem(url, id) {
-                var imgGroup = $('<div style="margin-top: 10px; position: relative"></div>');
-                var img = $('<img mid="' + id + '" class="jx-2d-diy-product-img-item img-rounded" style="max-width: 100%; border: 1px solid #ccc" src='+ url + ' />');
-                var imgClose = $('<span class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 20px; position: absolute; top: -8px; right: -8px"></span>');
-                imgGroup.append(img, imgClose);
-                var elementTop = $('<div class="col-xs-3"></div>');
-                elementTop.append(imgGroup);
-                imgClose.bind('click', function(e) {
-                    // alert("fwfvvvvv");
-                    $(this).parent().parent().remove();
-                }); 
-
-                $('#jx-2d-diy-product-color-img-group').append(elementTop);
-            }
-
-            for(var each in data) {
-                console.log(each)
-                addColorItem(each);
-            }
-
-            $('#jx-2d-diy-product-change-color-ok').bind('click', function(e) {
-                var mvalue = jx_2d_diy_eq.val();
-
-                var imgs = [];
-                $('.jx-2d-diy-product-img-item').each(function() {
-                    imgs.push($(this).attr('src'));
-                });
-
-                if(mvalue) {
-                    data[mvalue] = imgs;
-                    updateRelativeContent();
-                    console.log(FUN_PARENT);
-                    if(FUN_PARENT) {
-                        FUN_PARENT.attr('mbgcolor', mvalue);
-                        FUN_PARENT.children().attr('mbgcolor', mvalue);
-                        FUN_PARENT.css('background-color', mvalue);
-                    }
-                } else {
-                    alert("请输入颜色值");
-                }
-            });
-
-            $('#jx-2d-add-color').bind('click', function(e) {
-                jx_2d_diy_eq.val('');
-                jx_2d_diy_eq.css('background-color', '#fff');
-                jx_2d_diy_colorpicker.setColor('#fff');
-                FUN_PARENT = null;
-            });
-
-            $('#jx-2d-diy-product-color-img-upload').bind('click', function(e) {
-                $('#jx-2d-diy-product-cimg-upload').click();
-            });
-
-            $('#jx-2d-diy-product-cimg-upload').bind('change', function(e) {
-                var reader = new FileReader();
-                reader.readAsDataURL(this.files[0]);
-
-                reader.onload = function() {
-                    var imgData = this.result;
-                    $.ajax({
-                        url: '{$P_2d_diy_upload_img_url}',
-                        type: 'POST',
-                        data: {imgData: imgData},
-                        success: function(data) {
-                            if(data && data != 0) {
-                                console.log(data);
-                                var mdata = JSON.parse(data);
-                                addImgItem(mdata.path, mdata.id);
+            $.ajax({
+                url: '{$P_2d_diy_data_2_data}',
+                type: 'POST',
+                data: JSON.parse('<?php echo $data[$item["name"]];?>'),
+            }).then(function(data) {
+                var data = JSON.parse(data);
+                var colorItemWidth = 50,
+                    colorItemHeight = 50,
+                    each, i, j,
+                    radius = 5;
+                var FUN_PARENT = null;
+                function updateRelativeContent() {
+                    var _data = {};
+                    for(i in data) {
+                        if(_data[i] === undefined) {
+                            _data[i] = [];
+                        }
+                        for(j in data[i]) {
+                            for(var e in data[i][j]) {
+                                _data[i].push(e);
                             }
                         }
-                    });
-                };
-            });
+                    }
+                    $('#jx-2d-diy-product-relative-value').val(JSON.stringify(_data));
+                }
 
+                function getStyle(bgColor) {
+                    // return 'width: ' + colorItemWidth + 'px; height: ' + colorItemHeight + 'px; background-color: ' + bgColor + '; border-radius: ' + radius + 'px; margin-top: 10px; position: relative';
+                    return 'width: 100%; height: 0; padding-top: 100%; background-color: ' + bgColor + '; border-radius: ' + radius + 'px; margin-top: 10px; position: relative';
+                }
+
+                function addColorItem(color) {
+                    var colorElement = $('<div data-toggle="modal" data-target="#jx-2d-diy-product-modal" mbgcolor="' + color + '" style="' + getStyle(color) + '"><div>');
+                    var colorClose = $('<span mbgcolor="' + color + '" class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 18px; position: absolute; top: -7px; right: -7px"></span>');
+
+                    colorElement.append(colorClose);
+                    var elementTop = $('<div class="col-xs-1"></div>');
+                    elementTop.append(colorElement);
+
+                    colorElement.bind('click', function(e) {
+                        var mcolor = $(this).attr('mbgcolor');
+                        jx_2d_diy_colorpicker.setColor(mcolor);
+                        jx_2d_diy_eq.val(mcolor);
+                        jx_2d_diy_eq.css({
+                            "background-color": mcolor
+                        });
+
+                        $('#jx-2d-diy-product-color-img-group').children().remove();
+
+                        FUN_PARENT = $(this);
+
+                        var mimgData = data[mcolor];
+
+                        var mitem = null;
+                        for(i = 0; i < mimgData.length; i++) {
+                            mitem = mimgData[i];
+
+                            for(j in mitem) {
+                                addImgItem(mitem[j], j);
+                            }
+                            
+                        }
+                    });
+
+                    colorClose.bind('click', function(e) {
+                        console.log("ccccccc");
+                        e.stopPropagation();
+                        var mbgcolor = $(this).attr('mbgcolor');
+                        console.log(mbgcolor);
+                        if(data[mbgcolor]) {
+                            delete data[mbgcolor];
+                            updateRelativeContent();
+                        }
+                        $(this).parent().parent().remove();
+                    });
+
+                    $('#jx-diy-product-color-group').append(elementTop);
+                }
+
+                function addImgItem(url, id) {
+                    var imgGroup = $('<div style="margin-top: 10px; position: relative"></div>');
+                    var img = $('<img mid="' + id + '" class="jx-2d-diy-product-img-item img-rounded" style="max-width: 100%; border: 1px solid #ccc" src='+ url + ' />');
+                    var imgClose = $('<span class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 20px; position: absolute; top: -8px; right: -8px"></span>');
+                    imgGroup.append(img, imgClose);
+                    var elementTop = $('<div class="col-xs-3"></div>');
+                    elementTop.append(imgGroup);
+                    imgClose.bind('click', function(e) {
+                        // alert("fwfvvvvv");
+                        $(this).parent().parent().remove();
+                    }); 
+
+                    $('#jx-2d-diy-product-color-img-group').append(elementTop);
+                }
+
+                for(each in data) {
+                    addColorItem(each);
+                }
+
+                jx_2d_diy_eq.bind('change', function(e) {
+                    var mvalue = $(this).val();
+                    $(this).css('background-color', mvalue);
+
+                    if(data[mvalue]) {
+
+                    }
+
+                });
+
+                $('#jx-2d-diy-product-change-color-ok').bind('click', function(e) {
+                    var mvalue = jx_2d_diy_eq.val();
+
+                    var imgs = [];
+                    $('.jx-2d-diy-product-img-item').each(function() {
+                        var eimg = {};
+                        eimg[$(this).attr('mid')] = $(this).attr('src');
+                        imgs.push(eimg);
+                    });
+
+                    if(mvalue) {
+                        data[mvalue] = imgs;
+                        updateRelativeContent();
+                        if(FUN_PARENT) {
+                            FUN_PARENT.attr('mbgcolor', mvalue);
+                            FUN_PARENT.children().attr('mbgcolor', mvalue);
+                            FUN_PARENT.css('background-color', mvalue);
+                        }
+                    } else {
+                        alert("请输入颜色值");
+                    }
+                });
+
+                $('#jx-2d-add-color').bind('click', function(e) {
+                    jx_2d_diy_eq.val('');
+                    jx_2d_diy_eq.css('background-color', '#fff');
+                    jx_2d_diy_colorpicker.setColor('#fff');
+                    FUN_PARENT = null;
+                });
+
+                $('#jx-2d-diy-product-color-img-upload').bind('click', function(e) {
+                    $('#jx-2d-diy-product-cimg-upload').click();
+                });
+
+                $('#jx-2d-diy-product-cimg-upload').bind('change', function(e) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(this.files[0]);
+
+                    reader.onload = function() {
+                        var imgData = this.result;
+                        $.ajax({
+                            url: '{$P_2d_diy_upload_img_url}',
+                            type: 'POST',
+                            data: {imgData: imgData},
+                            success: function(data) {
+                                if(data && data != 0) {
+                                    console.log(data);
+                                    var mdata = JSON.parse(data);
+                                    addImgItem(mdata.path, mdata.id);
+                                }
+                            }
+                        });
+                    };
+                });
+            });
         })();
     </script>
     </if>
