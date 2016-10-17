@@ -77,6 +77,7 @@
                     </div>
                     <div class="modal-body">
                         <input type="file" id="jx-2d-diy-product-cimg-upload" style="display: none"/>
+                        <input type="file" id="jx-2d-diy-product-csvg-upload" style="display: none"/>
                         <button type="button" class="btn btn-primary" id="jx-2d-diy-product-color-img-upload">上传视角图片</button>
                         <div class="row" id="jx-2d-diy-product-color-img-group"></div>
                     </div>
@@ -107,6 +108,7 @@
                 data: JSON.parse('<?php echo $data[$item["name"]];?>'),
             }).then(function(data) {
                 var data = JSON.parse(data);
+                // console.log('bb: ', data);
                 var colorItemWidth = 50,
                     colorItemHeight = 50,
                     each, i, j,
@@ -154,13 +156,23 @@
 
                         var mimgData = data[mcolor];
 
-                        var mitem = null;
+                        // console.log(mimgData);
+
+                        var mitem = null, imgUrl, imgId, svgUrl, svgId;
                         for(i = 0; i < mimgData.length; i++) {
                             mitem = mimgData[i];
-
-                            for(j in mitem) {
-                                addImgItem(mitem[j], j);
+                            if(mitem['img'] !== undefined) {
+                                imgUrl = mitem['img']['path'];
+                                imgId = mitem['img']['id'];
                             }
+
+                            if(mitem['svg'] !== undefined) {
+                                svgUrl = mitem['svg']['path'];
+                                svgId = mitem['svg']['id'];
+                            }
+
+                            addViewportItem(imgUrl, svgUrl, imgId, svgId);
+                            // addImgItem(mitem[j], j);
                             
                         }
                     });
@@ -178,6 +190,35 @@
                     });
 
                     $('#jx-diy-product-color-group').append(elementTop);
+                }
+
+                function addViewportItem(imgUrl, svgUrl, imgId, svgId) {
+                    var elementTop = $('<div class="col-xs-6"></div>');
+                    
+                    var elementGroup = $('<div style="margin-top: 10px; position: relative; border: 1px solid #ccc"></div>');
+                    elementTop.append(elementGroup);
+
+                    var elementConent = $('<div class="row"></div>');
+                    var img = $('<div class="col-xs-6"><img mid="' + imgId + '" class="jx-2d-diy-product-img-item" style="max-width: 100%; height: auto; border-right: 1px solid #eee" src='+ imgUrl + ' /></div>');
+                    var svg = $('<div class="col-xs-6"><img mid="' + svgId + '" class="jx-2d-diy-product-svg-item img-rounded" style="max-width: 100%; height: auto; border-left: 1px solid #eee" src='+ svgUrl + ' /></div>');
+                    elementConent.append(img, svg);
+
+                    var close = $('<span class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 20px; position: absolute; top: -8px; right: -8px"></span>');
+
+                    elementGroup.append(elementConent, close);
+
+                    svg.bind('click', function(e) {
+                        // alert('ddfwfwfwfw');
+                        $('#jx-2d-diy-product-csvg-upload').click();
+                    });
+
+                    close.bind('click', function(e) {
+                        // alert("fwfvvvvv");
+                        $(this).parent().parent().remove();
+                    });
+
+
+                    $('#jx-2d-diy-product-color-img-group').append(elementTop);
                 }
 
                 function addImgItem(url, id) {
@@ -257,7 +298,26 @@
                                 if(data && data != 0) {
                                     console.log(data);
                                     var mdata = JSON.parse(data);
-                                    addImgItem(mdata.path, mdata.id);
+                                    addViewportItem(mdata.path, undefined, mdata.id, undefined);
+                                }
+                            }
+                        });
+                    };
+                });
+
+                $('#jx-2d-diy-product-csvg-upload').bind('change', function(e) {
+                    var reader = new FileReader();
+                    reader.readAsText(this.files[0]);
+
+                    reader.onload = function() {
+                        var svgData = this.result;
+                        $.ajax({
+                            url: '{$P_2d_diy_upload_svg_url}',
+                            type: 'POST',
+                            data: {svgData: svgData},
+                            success: function(data) {
+                                if(data && data != 0) {
+                                    console.log(data);
                                 }
                             }
                         });

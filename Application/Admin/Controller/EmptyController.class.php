@@ -46,6 +46,8 @@ class EmptyController extends PublicController {
 
         $this->assign("P_2d_diy_upload_img_url", U(MODULE_NAME . '/Empty/uploadP2DDiyImg'));
 
+        $this->assign("P_2d_diy_upload_svg_url", U(MODULE_NAME . '/Empty/uploadP2DDiySvg'));
+
         $this->assign("P_2d_diy_data_2_data", U(MODULE_NAME . '/Empty/data2data'));
         // alert(md5_file('index.php'));
         $this->display();
@@ -264,23 +266,114 @@ class EmptyController extends PublicController {
         } else {
             echo 0;
         }
-        var_dump();
+    }
+
+    public function uploadP2DDiySvg() {
+        $svgData = I('svgData');
+
+        if($svgData) {
+            $php_path = dirname(__FILE__) . '/';
+            $save_path = $php_path . '../../../Public/uploads/';
+            $save_path = realpath($save_path) . '/';
+
+            //检查目录
+            if (@is_dir($save_path) === false) {
+                alert("上传目录不存在。");
+            }
+
+            //检查目录写权限
+            if (@is_writable($save_path) === false) {
+                alert("上传目录没有写权限。");
+            }
+
+            if ($svgData) {
+                $type = 'svg';
+                $content = $svgData;
+                $content_md5 = md5($content);
+
+                $m = M('2d_diy_svg');
+                $mimg_data = $m -> where('hash="%s"', $content_md5) -> select();
+
+                // var_dump($mimg_data);
+                // exit;
+                $out_data = Array();
+
+                if($mimg_data) {
+                    $out_data['id'] = $mimg_data[0]['id'];
+                    $out_data['path'] = $mimg_data[0]['path'];
+                    echo json_encode($out_data);
+                } else {
+                    $save_path .= 'JY_svgs/';
+                    $save_url = 'Public/uploads/JY_svgs/';
+                    if (!file_exists($save_path)) {
+                        mkdir($save_path);
+                    }
+
+                    $ymd = date("Ymd");    
+                    $save_path .= $ymd . '/';
+                    $save_url .= $ymd . '/';
+
+                    if (!file_exists($save_path)) {
+                        mkdir($save_path);
+                    }
+
+                    $new_file_name  = date("YmdHis") . '_' . rand(10000, 99999) . '.' . $type;
+                    $file_path = $save_path . $new_file_name;
+
+                    @chmod($file_path, 0644);
+                    $file_url = $save_url . $new_file_name;
+
+                    if (file_put_contents($file_path, $content)) {
+                        $out_url = WEB_ROOT_PATH . $file_url;
+                        $save_data = Array(
+                            'path'=> $out_url,
+                            'hash'=> $content_md5
+                        );
+                        $out_id = $m -> add($save_data);
+
+                        $out_data['id'] = $out_id;
+                        $out_data['path'] = $out_url;
+
+                        echo json_encode($out_data);
+                    } else {
+                        echo 0;
+                    }
+                }
+            } else {
+                echo 0;
+            }
+        } else {
+            echo 0;
+        }
     }
 
     public function data2data() {
         $o_data = $_POST;
         $n_data = Array();
-        $m = M('2d_diy_image');
+        $mimg = M('2d_diy_image');
+        $msvg = M('2d_diy_svg');
         foreach ($o_data as $key1 => $value1) {
-           $n_data[$key1] = Array(); 
-           foreach ($value1 as $key2 => $value2) {
-                $mimg_datas = $m -> where('id=' + $value2) -> select();
-                if($mimg_datas) {
-                    $a = Array($value2 => $mimg_datas[0]['path']);
-                    array_push($n_data[$key1], $a);
+            $n_data[$key1] = Array(); 
+            foreach ($value1 as $key2 => $value2) {
+                $n_data[$key1][$key2] = Array();
+                if(count($value2) > 0) {
+                    $mimg_datas = $mimg -> where('id="%s"', $value2[0]) -> select();
+                    if($mimg_datas) {
+                        $a = Array("id" => $value2[0], "path" => $mimg_datas[0]['path']);
+                        $n_data[$key1][$key2]["img"] = $a;
+                    }
+                    if(count($value2) > 1) {
+                        $msvg_datas = $msvg -> where('id="%s"', $value2[1]) -> select();
+                        if($msvg_datas) {
+                            $b = Array("id" => $value2[1], "path" => $msvg_datas[0]['path']);
+                            $n_data[$key1][$key2]["svg"] = $b;
+                        }
+                    }
                 }
+                
            }
         }
+        // var_dump($n_data);
         echo json_encode($n_data);
     }
 }
