@@ -192,6 +192,7 @@
                     $('#jx-diy-product-color-group').append(elementTop);
                 }
 
+                var currentSvgElement;
                 function addViewportItem(imgUrl, svgUrl, imgId, svgId) {
                     var elementTop = $('<div class="col-xs-6"></div>');
                     
@@ -209,6 +210,8 @@
 
                     svg.bind('click', function(e) {
                         // alert('ddfwfwfwfw');
+                        currentSvgElement = $(this).children();
+                        console.log(currentSvgElement);
                         $('#jx-2d-diy-product-csvg-upload').click();
                     });
 
@@ -311,13 +314,17 @@
 
                     reader.onload = function() {
                         var svgData = this.result;
+                        // console.log(svgData);
                         $.ajax({
                             url: '{$P_2d_diy_upload_svg_url}',
                             type: 'POST',
-                            data: {svgData: svgData},
+                            data: {svgData: Base64.encode(svgData)},
                             success: function(data) {
                                 if(data && data != 0) {
                                     console.log(data);
+                                    var mdata = JSON.parse(data);
+                                    currentSvgElement.attr('mid', mdata.id);
+                                    currentSvgElement.attr('src', mdata.path);
                                 }
                             }
                         });

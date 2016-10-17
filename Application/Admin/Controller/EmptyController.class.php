@@ -270,7 +270,6 @@ class EmptyController extends PublicController {
 
     public function uploadP2DDiySvg() {
         $svgData = I('svgData');
-
         if($svgData) {
             $php_path = dirname(__FILE__) . '/';
             $save_path = $php_path . '../../../Public/uploads/';
@@ -288,7 +287,7 @@ class EmptyController extends PublicController {
 
             if ($svgData) {
                 $type = 'svg';
-                $content = $svgData;
+                $content = base64_decode($svgData);
                 $content_md5 = md5($content);
 
                 $m = M('2d_diy_svg');
@@ -322,7 +321,6 @@ class EmptyController extends PublicController {
 
                     @chmod($file_path, 0644);
                     $file_url = $save_url . $new_file_name;
-
                     if (file_put_contents($file_path, $content)) {
                         $out_url = WEB_ROOT_PATH . $file_url;
                         $save_data = Array(
