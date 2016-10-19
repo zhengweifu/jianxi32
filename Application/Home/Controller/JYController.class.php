@@ -14,6 +14,14 @@ class JYController extends Controller {
   }
 
   public function getInitData() {
+    $pid = I('pid');
+
+    $m_2d_diy_product = M('2d_diy_product');
+
+    $diy_product_data = $m_2d_diy_product->where('id=' . $pid) -> select();
+
+    var_dump($diy_product_data);
+
     $output = Array(
       'text_colors' => array(),
       'product_colors' => array(),
