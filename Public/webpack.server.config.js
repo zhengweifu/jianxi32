@@ -16,7 +16,7 @@ var config = {
 
     output: {
         path: __dirname + '/dist',
-        filename: '[name].bundle.js'
+        filename: '[name].server.bundle.js'
     },
 
     resolve: {

@@ -147,6 +147,28 @@
                     return 'width: 100%; height: 0; padding-top: 100%; background-color: ' + bgColor + '; border-radius: ' + radius + 'px; margin-top: 10px; position: relative';
                 }
 
+                function addViewportItemFromColor(color) {
+                    var mimgData = data[color];
+                    var mitem = null, imgUrl, imgId, svgUrl, svgId;
+                    for(i = 0; i < mimgData.length; i++) {
+                        imgUrl = undefined;
+                        imgId = undefined;
+                        svgUrl = undefined;
+                        svgId = undefined;
+                        mitem = mimgData[i];
+                        if(mitem['img'] !== undefined) {
+                            imgUrl = mitem['img']['path'];
+                            imgId = mitem['img']['id'];
+                        }
+                        if(mitem['svg'] !== undefined) {
+                            svgUrl = mitem['svg']['path'];
+                            svgId = mitem['svg']['id'];
+                        }
+
+                        addViewportItem(imgUrl, svgUrl, imgId, svgId);    
+                    }
+                }
+
                 function addColorItem(color) {
                     var colorElement = $('<div data-toggle="modal" data-target="#jx-2d-diy-product-modal" mbgcolor="' + color + '" style="' + getStyle(color) + '"><div>');
                     var colorClose = $('<span mbgcolor="' + color + '" class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 18px; position: absolute; top: -7px; right: -7px"></span>');
@@ -167,27 +189,7 @@
 
                         FUN_PARENT = $(this);
 
-                        var mimgData = data[mcolor];
-
-                        // console.log(mimgData);
-
-                        var mitem = null, imgUrl, imgId, svgUrl, svgId;
-                        for(i = 0; i < mimgData.length; i++) {
-                            mitem = mimgData[i];
-                            if(mitem['img'] !== undefined) {
-                                imgUrl = mitem['img']['path'];
-                                imgId = mitem['img']['id'];
-                            }
-
-                            if(mitem['svg'] !== undefined) {
-                                svgUrl = mitem['svg']['path'];
-                                svgId = mitem['svg']['id'];
-                            }
-
-                            addViewportItem(imgUrl, svgUrl, imgId, svgId);
-                            // addImgItem(mitem[j], j);
-                            
-                        }
+                        addViewportItemFromColor(mcolor);
                     });
 
                     colorClose.bind('click', function(e) {
@@ -205,14 +207,17 @@
 
                 var currentSvgElement, currentImgElement;
                 function addViewportItem(imgUrl, svgUrl, imgId, svgId) {
+                    var _imgUrl = imgUrl ? imgUrl : '__STATIC__/images/add_image_icon.png',
+                        _svgUrl = svgUrl ? svgUrl : '__STATIC__/images/add_mask_icon.png';
+
                     var elementTop = $('<div class="col-xs-6"></div>');
                     
                     var elementGroup = $('<div style="margin-top: 10px; position: relative; border: 1px solid #ccc"></div>');
                     elementTop.append(elementGroup);
 
                     var elementConent = $('<div class="row"></div>');
-                    var img = $('<div class="col-xs-6"><img mid="' + imgId + '" class="jx-2d-diy-product-img-item" style="max-width: 100%; height: auto; border-right: 1px solid #eee" src='+ imgUrl + ' /></div>');
-                    var svg = $('<div class="col-xs-6"><img mid="' + svgId + '" class="jx-2d-diy-product-svg-item" style="max-width: 100%; height: auto; border-left: 1px solid #eee" src='+ svgUrl + ' /></div>');
+                    var img = $('<div class="col-xs-6"><img mid="' + imgId + '" class="jx-2d-diy-product-img-item" style="max-width: 100%; height: auto; border-right: 1px solid #eee" src='+ _imgUrl + ' /></div>');
+                    var svg = $('<div class="col-xs-6"><img mid="' + svgId + '" class="jx-2d-diy-product-svg-item" style="max-width: 100%; height: auto; border-left: 1px solid #eee" src='+ _svgUrl + ' /></div>');
                     elementConent.append(img, svg);
 
                     var close = $('<span class="glyphicon glyphicon-remove-circle" style="color: #f00; font-size: 20px; position: absolute; top: -8px; right: -8px"></span>');
@@ -283,22 +288,40 @@
                     });
 
                     $('.jx-2d-diy-product-svg-item').each(function() {
-                        var eimg = imgs[ti++];
+                        // 将自己颜色的蒙版更新
+                        var eimg = imgs[ti];
                         if($(this).attr('mid') != 'undefined') {
                             eimg.svg = {};
                             eimg.svg.id = $(this).attr('mid');
                             eimg.svg.path = $(this).attr('src');
                         }
+                        // 将其他颜色的蒙版更新
+                        for(var mcolor in data) {
+                            eimg = data[mcolor][ti];
+                            if($(this).attr('mid') != 'undefined') {
+                                eimg.svg = {};
+                                eimg.svg.id = $(this).attr('mid');
+                                eimg.svg.path = $(this).attr('src');
+                            }
+                        }
+
+                        ti += 1;
                     });
 
                     if(mvalue) {
-                        data[mvalue] = imgs;
-                        updateRelativeContent();
                         if(FUN_PARENT) {
+                            var oldValue = FUN_PARENT.attr('mbgcolor');
+                            if(data[oldValue]) {
+                                delete data[oldValue]; // 删除旧的值
+                            }
                             FUN_PARENT.attr('mbgcolor', mvalue);
                             FUN_PARENT.children().attr('mbgcolor', mvalue);
                             FUN_PARENT.css('background-color', mvalue);
+                        } else {
+                            addColorItem(mvalue);
                         }
+                        data[mvalue] = imgs;
+                        updateRelativeContent();
                     } else {
                         alert("请输入颜色值");
                     }
@@ -309,6 +332,11 @@
                     jx_2d_diy_eq.css('background-color', '#fff');
                     jx_2d_diy_colorpicker.setColor('#fff');
                     FUN_PARENT = null;
+                    $('#jx-2d-diy-product-color-img-group').empty();
+                    var dataKeys = Object.keys(data);
+                    if(dataKeys.length > 0) {
+                        addViewportItemFromColor(dataKeys[0]);
+                    }
                 });
 
                 $('#jx-2d-diy-product-color-img-upload').bind('click', function(e) {
