@@ -1,8 +1,8 @@
-exports.WEB_ROOT = '/';
+exports.WEB_ROOT = '/jianxi32/';
 
-// exports.INTERFACE_ROOT = exports.WEB_ROOT + 'index.php/';
+exports.INTERFACE_ROOT = exports.WEB_ROOT + 'index.php/';
 
-exports.INTERFACE_ROOT = exports.WEB_ROOT; // 外网
+// exports.INTERFACE_ROOT = exports.WEB_ROOT; // 外网
 
 exports.PUBLIC_PATH = exports.WEB_ROOT + 'Public/diy/dist/';
 

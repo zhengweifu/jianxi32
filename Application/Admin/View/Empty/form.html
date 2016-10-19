@@ -298,7 +298,7 @@
                         // 将其他颜色的蒙版更新
                         for(var mcolor in data) {
                             eimg = data[mcolor][ti];
-                            if($(this).attr('mid') != 'undefined') {
+                            if($(this).attr('mid') != 'undefined' && eimg != undefined) {
                                 eimg.svg = {};
                                 eimg.svg.id = $(this).attr('mid');
                                 eimg.svg.path = $(this).attr('src');

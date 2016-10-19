@@ -15,9 +15,9 @@ import axios from 'axios';
 
 import { WEB_ROOT, INTERFACE_ROOT } from '../../config';
 
-// import co from 'co';
+import co from 'co';
 
-// require('babel-polyfill');
+require('babel-polyfill');
 
 import { 
   addNode, 
@@ -33,15 +33,15 @@ import {
 let store = createStore(reducer);
 
 // test data
-store.dispatch(addCanvas({
-  img: WEB_ROOT + 'Public/uploads/jyimages/bg01.jpg',
-  genius: WEB_ROOT + 'Public/uploads/jyimages/genius01_04.jpg',
-  clipSvg: WEB_ROOT + 'Public/uploads/jyimages/genius01_04.svg'
-}));
-store.dispatch(addCanvas({
-  img: WEB_ROOT + 'Public/uploads/jyimages/bg02.jpg',
-  genius: WEB_ROOT + 'Public/uploads/jyimages/genius01_05.jpg',
-}));
+// store.dispatch(addCanvas({
+//   img: WEB_ROOT + 'Public/uploads/jyimages/bg01.jpg',
+//   genius: WEB_ROOT + 'Public/uploads/jyimages/genius01_04.jpg',
+//   clipSvg: WEB_ROOT + 'Public/uploads/jyimages/genius01_04.svg'
+// }));
+// store.dispatch(addCanvas({
+//   img: WEB_ROOT + 'Public/uploads/jyimages/bg02.jpg',
+//   genius: WEB_ROOT + 'Public/uploads/jyimages/genius01_05.jpg',
+// }));
 // 
 // 
 store.dispatch(addProductItemData('ATR1000系列短袖', {
@@ -136,17 +136,6 @@ axios.get(INTERFACE_ROOT + 'Home/JY/getInitData')
       store.dispatch(addColorScheme(mColorSchemeData));
     }
   });
-  
-axios.post(INTERFACE_ROOT + 'Home/JY/test', {
-  name: 'fun.zheng',
-  age: 30
-}, {
-
-})
-  .then(response => {
-    console.log(response);
-  });
-
 
 // co(function *() {
 //   let response = yield axios.get(WEB_ROOT + '/index.php/Home/JY/getInitData');
@@ -174,10 +163,39 @@ axios.post(INTERFACE_ROOT + 'Home/JY/test', {
 //     return <h1>saaffwfw</h1>;
 //   }
 // }
-  
+co(function *() {
+  let pid = window.M_PROPS.pid || 1,
+    diyid = window.M_PROPS.diyid;
+  let response = yield axios.get(WEB_ROOT + '/index.php/Home/JY/getDiyData', {
+    params: {
+      pid: pid,
+      diyid: diyid
+    }}).then(response => {
+      const mData = response.data;
+      // console.log(mData);
+      const mProjects = mData.projects,
+        mMasks = mData.masks,
+        mColors = mData.colors,
+        mCols = Object.keys(mColors);
+      if(mProjects.length > 0) {
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('jy-app'));
+      } else if(mCols.length > 0) {
+        const mColorImages = mColors[mCols[0]];
+        for(let i = 0, l = mColorImages.length; i < l; i ++) {
+          console.log(mColorImages[i]);
+          store.dispatch(addCanvas({
+            img: mColorImages[i],
+            clipSvg: mMasks[i]
+          }));
+        }
+      }
+    }).catch((error) => {
+      console.log(error);
+    }); 
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('jy-app'));
+});
