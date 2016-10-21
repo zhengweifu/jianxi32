@@ -6,6 +6,8 @@ import { patternData } from './patternData';
 
 import { colorSchemeData } from './colorSchemeData';
 
+import { productColorPanelData } from './productColorPanelData';
+
 import { textColorPanelData } from './textColorPanelData';
 
 import { textStrokePanelData } from './textStrokePanelData';
@@ -27,6 +29,7 @@ export default combineReducers({
   patternData,
   // nodeData,
   colorSchemeData,
+  productColorPanelData,
   textColorPanelData,
   textStrokePanelData,
   textShadowPanelData,

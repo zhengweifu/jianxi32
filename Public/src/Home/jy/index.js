@@ -23,7 +23,9 @@ import {
   addNode, 
   addProductItemData, 
   addPatternItemData, 
-  addColorScheme, 
+  addColorScheme,
+  addProductColor,
+  setProductColorActiveIndex,
   addTextColor, 
   addTextStroke, 
   addTextShadow,
@@ -177,9 +179,17 @@ co(function *() {
         mMasks = mData.masks,
         mColors = mData.colors,
         mCols = Object.keys(mColors);
+
+      // 添加产品颜色
+      for(let mColor in mColors) {
+        console.log(mColor);
+        store.dispatch(addProductColor(mColor));
+      }
+
       if(mProjects.length > 0) {
 
       } else if(mCols.length > 0) {
+        store.dispatch(setProductColorActiveIndex(0)); // 设置当前激活的产品颜色ID
         const mColorImages = mColors[mCols[0]];
         for(let i = 0, l = mColorImages.length; i < l; i ++) {
           console.log(mColorImages[i]);

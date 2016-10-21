@@ -17,6 +17,8 @@ import ProductHeaderPanel from './ProductHeaderPanel';
 
 import CreateNodePanel  from './CreateNodePanel';
 
+import TextColorPanel from './TextColorPanel';
+
 // import BuyerShowPanel from './BuyerShowPanel';
 
 import RaisedButton from '../../../Common/components/RaisedButton';
@@ -51,6 +53,8 @@ import {
     setGeneralPanelProps, 
     setTextPanelProps, 
     setImgPanelProps,
+    setProductColorActiveIndex,
+    setProductColorPanelVisible,
     setTextColorActiveIndex,
     setTextStrokeActiveIndex,
     setTextShadowActiveIndex,
@@ -76,7 +80,6 @@ class App extends React.Component {
 
     setObjectProps(object) {
         let props = window.PRODUCT.GetActiveObjectProps();
-        console.log('fefef: ', object.type);
         switch (object.type) {
             case 'curvedText':
                 this.propertiesPanelGroup.setState({'opens': [false, true, false, false]});
@@ -275,6 +278,24 @@ class App extends React.Component {
         );
     }
 
+    renderProductColorPanel() {
+        // console.log(this.props);
+        return (
+            <TextColorPanel
+                onClick={(e, color, index) => {
+                    this.props.setProductColorActiveIndex(index);
+                    // this.setTextProp('fill', color);
+                }}
+                ref={ref => this.productColorPanel = ref}
+                open={this.props.productColorPanelVisible}
+                activeIndex={this.props.activeProductColorIndex}
+                onRequestClose={e => {
+                    this.props.setProductColorPanelVisible(false);
+                }}
+                items={this.props.productColorItems}/>
+        );
+    }
+
     render() {
         const heartSvg = <SvgIcon 
             style={{margin: '0px 2px 0px 2px'}}
@@ -286,6 +307,11 @@ class App extends React.Component {
         // style={{width: this.props.canvasWidth + this.props.controllerWidth + 15, margin: 'auto'}}
         const centerSpace = 15;
         const mlenght = this.props.canvasWidth + this.props.controllerWidth + centerSpace;
+
+        // 当前使用的产品颜色
+        let currentProductColorString = this.props.activeProductColorIndex >= 0 ? 
+          this.props.productColorItems[this.props.activeProductColorIndex] : 
+          '#ff0000';
 
         return (
         <div>
@@ -334,9 +360,22 @@ class App extends React.Component {
                             <ProductNumber />
                             <GridList cols={5}>
                                 <div style={{color: GREY500, lineHeight: '24px', height: 24, verticalAlign: 'middle'}}>颜色</div>
-                                <ColorItem width={24} height={24}/> 
+                                <ColorItem width={24} height={24}
+                                    defaultBgColor={currentProductColorString}
+                                    active={this.props.productColorPanelVisible}
+                                    onClick={(e, color) => {
+                                        let index = this.props.productColorItems.findIndex(item => item === color);
+                                        // if(index === -1) {
+                                        // this.props.addTextColor(color);
+                                        // index = this.props.colorItems.length - 1;
+                                        // }
+                                        
+                                        this.props.setProductColorActiveIndex(index);
+                                        this.props.setProductColorPanelVisible(!this.props.productColorPanelVisible);
+                                    }}/>
                             </GridList>
                         </GridList>
+                        {this.renderProductColorPanel()}
                         <div style={{marginTop: 10}}></div>
                         <CreateNodePanel bgColor={DEFAULT_ACTIVE_COLOR} fbColor={DEFAULT_GRAY_COLOR}/>
                         <div style={{marginTop: 10}}></div>
@@ -376,6 +415,9 @@ App.propTypes = {
 
 function mapStateToProps(state) {
     return {
+        activeProductColorIndex: state.productColorPanelData.currentColorIndex,
+        productColorPanelVisible: state.productColorPanelData.visible,
+        productColorItems: state.productColorPanelData.colors,
         generalPanelVisible: state.generalPanelData.visible,
         textPanelVisible: state.textPanelData.visible,
         imgPanelVisible: state.imgPanelData.visible,
@@ -397,6 +439,8 @@ function mapDispatchToProps(dispatch) {
         setTextPanelProps,
         setImgPanelProps,
         setNodeActiveIndex,
+        setProductColorActiveIndex,
+        setProductColorPanelVisible,
         setTextColorActiveIndex,
         setTextStrokeActiveIndex,
         setTextShadowActiveIndex,

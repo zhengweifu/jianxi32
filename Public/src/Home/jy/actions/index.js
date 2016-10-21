@@ -1,3 +1,5 @@
+export { setProductColorActiveIndex, addProductColor, setProductColorPanelVisible } from './productColorPanelActions';
+
 export { setTextColorActiveIndex, addTextColor, setTextColorPanelVisible } from './textColorPanelActions';
 
 export { setTextStrokeActiveIndex, addTextStroke, setTextStrokePanelVisible, setTextStrokeSize } from './textStrokePanelActions';
