@@ -20,4 +20,4 @@ export { setImgPanelProps, setImgPanelVisible } from './imgPanelActions';
 
 export { setGeneralPanelProps, setGeneralPanelVisible } from './generalPanelActions';
 
-export { addCanvas, setCanvasActiveIndex, addNodeData, addNode, removeNode, setNode, setNodeActiveIndex, moveNode } from './canvasActions';
+export { addCanvas, setCanvasImage, setCanvasActiveIndex, addNodeData, addNode, removeNode, setNode, setNodeActiveIndex, moveNode } from './canvasActions';

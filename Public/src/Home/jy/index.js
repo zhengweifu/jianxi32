@@ -168,12 +168,13 @@ axios.get(INTERFACE_ROOT + 'Home/JY/getInitData')
 co(function *() {
   let pid = window.M_PROPS.pid || 1,
     diyid = window.M_PROPS.diyid;
+  let mData;
   let response = yield axios.get(WEB_ROOT + '/index.php/Home/JY/getDiyData', {
     params: {
       pid: pid,
       diyid: diyid
     }}).then(response => {
-      const mData = response.data;
+      mData = response.data;
       // console.log(mData);
       const mProjects = mData.projects,
         mMasks = mData.masks,
@@ -205,7 +206,7 @@ co(function *() {
 
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <App productColorData={mData}/>
     </Provider>,
     document.getElementById('jy-app'));
 });

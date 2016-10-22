@@ -1,5 +1,7 @@
 import { 
-	ADD_CANVAS, 
+	ADD_CANVAS,
+	SET_CANVAS_IMAGE,
+	REMOVE_CANVAS,
 	SET_CANVAS_ACTIVE_INDEX,
 	ADD_NODE_DATA,
 	ADD_NODE, 
@@ -11,7 +13,7 @@ import {
 
 const initState = {
 	activeIndex: 0,
-	items: [], // {bg: 'xxx.jpg', genius: 'xxx.jpg', clipTo : function()}, ...
+	items: [], // {img: 'xxx.jpg', clipSvg: 'xxx.svg'}, ...
 	nodeData: [] // {activeIndex: -1, items: []}, ...
 };
 
@@ -21,6 +23,14 @@ export function canvasData(state = initState, action) {
 			return (() => {
 				let newState = copyState(state);
 				newState.items.push(action.data);
+				return newState;
+			})();
+		case SET_CANVAS_IMAGE:
+			return (() => {
+				let newState = copyState(state);
+				if(newState.items[action.index] !== undefined) {
+					newState.items[action.index]['img'] = action.image;
+				}
 				return newState;
 			})();
 		case SET_CANVAS_ACTIVE_INDEX:

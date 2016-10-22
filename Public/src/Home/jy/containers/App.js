@@ -59,6 +59,7 @@ import {
     setTextStrokeActiveIndex,
     setTextShadowActiveIndex,
     setCanvasActiveIndex,
+    setCanvasImage,
     addNodeData
 } from '../actions';
 
@@ -203,12 +204,24 @@ class App extends React.Component {
 
     saveProject() {
         let outputData = {
-            projectDatas: []
+            pid: window.M_PROPS.pid,
+            diyid: window.M_PROPS.diyid,
+            viewports: []
         };
 
-        for(let p of this.products) {
-            outputData.projectDatas.push(p.canvas.toJSON());
+        for(let i = 0; i < this.products.length; i++) {
+            const projectData = {
+                bgUrl: this.props.canvasItems[i]['img'],
+                maskUrl: this.props.canvasItems[i]['clipSvg'],
+                data: this.products[i].canvas.toJSON()
+            };
+            outputData.viewports.push({
+                imgData: this.products[i].canvas.toDataURL('image/png'),
+                projectData: JSON.stringify(projectData)
+            });
         }
+
+        console.log(outputData);
 
     }
 
@@ -279,20 +292,35 @@ class App extends React.Component {
     }
 
     renderProductColorPanel() {
-        // console.log(this.props);
+        const {
+            productColorData,
+            productColorPanelVisible,
+            activeProductColorIndex,
+            productColorItems,
+            setCanvasImage,
+            setProductColorActiveIndex,
+            setProductColorPanelVisible
+        } = this.props;
         return (
             <TextColorPanel
                 onClick={(e, color, index) => {
-                    this.props.setProductColorActiveIndex(index);
-                    // this.setTextProp('fill', color);
+                    setProductColorActiveIndex(index);
+                    if(productColorData && 
+                        productColorData['colors'] && 
+                        productColorData['colors'][color] !== undefined) {
+                        for(let i = 0; i < productColorData['colors'][color].length; i++) {
+                            // console.log(productColorData['colors'][color][i]);
+                            setCanvasImage(i, productColorData['colors'][color][i]);
+                        }
+                    }
                 }}
                 ref={ref => this.productColorPanel = ref}
-                open={this.props.productColorPanelVisible}
-                activeIndex={this.props.activeProductColorIndex}
+                open={productColorPanelVisible}
+                activeIndex={activeProductColorIndex}
                 onRequestClose={e => {
-                    this.props.setProductColorPanelVisible(false);
+                    setProductColorPanelVisible(false);
                 }}
-                items={this.props.productColorItems}/>
+                items={productColorItems}/>
         );
     }
 
@@ -386,7 +414,7 @@ class App extends React.Component {
                             {title: '节点面板', height: 290, visible: true, content: <NodePanel />, zDepth: 1}
                         ]} ref={ref => this.propertiesPanelGroup = ref }/>
                         <RaisedButton
-                            label='放入购物袋'
+                            label='保存我的方案'
                             bgColor={CYAN500}
                             fullWidth={true}
                             onClick={this.saveProject.bind(this)}
@@ -403,14 +431,16 @@ App.defaultProps = {
     canvasWidth: 602,
     canvasHeight: 482,
     controllerWidth: 400,
-    controllerHeight: 590
+    controllerHeight: 590,
+    productColorData: {}
 };
 
 App.propTypes = {
     canvasWidth: React.PropTypes.number,
     canvasHeight: React.PropTypes.number,
     controllerWidth:React.PropTypes.number,
-    controllerHeight: React.PropTypes.number
+    controllerHeight: React.PropTypes.number,
+    productColorData: React.PropTypes.object
 };
 
 function mapStateToProps(state) {
@@ -445,6 +475,7 @@ function mapDispatchToProps(dispatch) {
         setTextStrokeActiveIndex,
         setTextShadowActiveIndex,
         setCanvasActiveIndex,
+        setCanvasImage,
         addNodeData
     }, dispatch);
 }

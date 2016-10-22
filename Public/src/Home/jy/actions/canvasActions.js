@@ -1,5 +1,7 @@
 import { 
-	ADD_CANVAS, 
+	ADD_CANVAS,
+  SET_CANVAS_IMAGE,
+  REMOVE_CANVAS,
 	SET_CANVAS_ACTIVE_INDEX,
 	ADD_NODE_DATA,
 	ADD_NODE, 
@@ -16,6 +18,21 @@ export function addCanvas(data) { // data is {img: 'xxx.jpg', genius: 'xxx.jpg' 
 		data: data
 	};
 }
+
+export function setCanvasImage(index, image) {
+  return {
+    type: SET_CANVAS_IMAGE,
+    index: index,
+    image: image
+  };
+}
+
+export function removeCanvas(index) {
+  return {
+    type: REMOVE_CANVAS,
+    index: index
+  };
+} 
 
 export function setCanvasActiveIndex(index) {
 	return {
