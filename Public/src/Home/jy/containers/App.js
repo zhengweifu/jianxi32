@@ -41,7 +41,9 @@ import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
 
-import { WEB_ROOT } from '../../../config';
+import { WEB_ROOT, INTERFACE_ROOT } from '../../../config';
+
+import axios from 'axios';
 
 import { DEFAULT_ACTIVE_COLOR, DEFAULT_GRAY_COLOR } from '../config';
 
@@ -223,6 +225,11 @@ class App extends React.Component {
 
         console.log(outputData);
 
+        axios.post(WEB_ROOT + '/index.php/Home/JY/saveDiyData', outputData).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
     componentDidMount() {

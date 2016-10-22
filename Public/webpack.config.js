@@ -43,7 +43,7 @@ var config = {
                 test: /\.scss$/,
                 loader: 'style!css!sass'
             }, {
-                test: /\.(jpg|png)$/,
+                test: /\.(jpg|png|woff|woff2|eot|ttf|svg)$/,
                 loader: 'url?limit=8192?name=dist/[hash:8].[name].[ext]'
             }
         ]

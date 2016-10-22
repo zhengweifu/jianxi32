@@ -10,7 +10,9 @@ class JYController extends Controller {
   static $Number2Kind = Array('动物', '植物');
 
   public function index() {
-      $this->display();
+    $this->assign('PID', I('pid'));
+    $this->assign('DIYID', I('diyid'));
+    $this->display();
   }
 
   public function getInitData() {
@@ -57,9 +59,11 @@ class JYController extends Controller {
       projects => Array()
     );
     $pid = I('pid');
+    $diyid = I('diyid');
     $m_2d_diy_product = M('2d_diy_product');
     $m_2d_diy_image = M('2d_diy_image');
     $m_2d_diy_svg = M('2d_diy_svg');
+    $m_2d_diy_plan = M('2d_diy_plan');
 
     $diy_product_data = $m_2d_diy_product->where('id="' . $pid . '"')->select()[0];
     // var_dump($diy_product_data);
@@ -93,13 +97,70 @@ class JYController extends Controller {
           }
           $add_diy_svg = false;
         }
+        if(!empty($diyid)) {
+          $plan = $m_2d_diy_plan->where('id="' . $diyid . '"')->select()[0];
+          if(!empty($plan)) {
+            $output['projects'] = json_decode($plan['project_path']);
+          } 
+        }
       }
     }
+
     echo json_encode($output);
   }
 
   public function saveDiyData() {
-    
+    $php_path = dirname(__FILE__) . '/';
+    $save_path = $php_path . '../../../Public/uploads/';
+    $save_path = realpath($save_path) . '/JY_projects/';
+    if (!file_exists($save_path)) {
+      mkdir($save_path);
+    }
+
+    $file_path = WEB_ROOT_PATH . 'Public/uploads/JY_projects/';
+
+    $data = json_decode(file_get_contents('php://input'), true);
+    $uid = 0;
+    $pid = $data['pid'];
+    $diyid = $data['diyid'];
+    $viewports = $data['viewports'];
+
+    $projectPaths = Array();
+
+    $m = M('2d_diy_plan');
+
+    if(count($viewports) > 0) {
+      $ymd = date("Ymd");
+      $save_path .= $ymd . '/';
+      if (!file_exists($save_path)) {
+        mkdir($save_path);
+      }
+      $file_path .= $ymd . '/';
+      // var_dump($save_path);
+      foreach ($viewports as $index => $viewport) {
+        $projectData = $viewport['projectData'];
+        $uuid = generateUUID();
+        $save_url = $save_path . $uuid . '.json';
+        if(file_put_contents($save_url, $projectData)) {
+          array_push($projectPaths, $file_path  . $uuid . '.json');
+        }
+      }
+    }
+
+    if(!empty($diyid)) {
+      $plan = $m->where('id="' . $diyid . '"')->select()[0];
+      if(!empty($plan)) {
+        $plan['project_path'] = json_encode($projectPaths);
+        $m->where(array('id' => $diyid))->data($plan)->save();
+      }
+    } else {
+      $plan = Array(
+        'pid' => $pid,
+        'uid' => $uid,
+        'project_path' => json_encode($projectPaths),
+      );
+      $m->add($plan);
+    }
   }
 
   public function test() {

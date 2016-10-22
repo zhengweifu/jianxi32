@@ -170,39 +170,55 @@ co(function *() {
     diyid = window.M_PROPS.diyid;
   let mData;
   let response = yield axios.get(WEB_ROOT + '/index.php/Home/JY/getDiyData', {
-    params: {
-      pid: pid,
-      diyid: diyid
-    }}).then(response => {
-      mData = response.data;
-      // console.log(mData);
-      const mProjects = mData.projects,
-        mMasks = mData.masks,
-        mColors = mData.colors,
-        mCols = Object.keys(mColors);
-
-      // 添加产品颜色
-      for(let mColor in mColors) {
-        console.log(mColor);
-        store.dispatch(addProductColor(mColor));
-      }
-
-      if(mProjects.length > 0) {
-
-      } else if(mCols.length > 0) {
-        store.dispatch(setProductColorActiveIndex(0)); // 设置当前激活的产品颜色ID
-        const mColorImages = mColors[mCols[0]];
-        for(let i = 0, l = mColorImages.length; i < l; i ++) {
-          console.log(mColorImages[i]);
-          store.dispatch(addCanvas({
-            img: mColorImages[i],
-            clipSvg: mMasks[i]
-          }));
-        }
+      params: {
+        pid: pid,
+        diyid: diyid
       }
     }).catch((error) => {
       console.log(error);
     }); 
+    mData = response.data;
+    mData['pDatas'] = [];
+    // console.log(mData);
+    const mProjects = mData.projects,
+      mMasks = mData.masks,
+      mColors = mData.colors,
+      mCols = Object.keys(mColors);
+
+    // 添加产品颜色
+    for(let mColor in mColors) {
+      console.log(mColor);
+      store.dispatch(addProductColor(mColor));
+    }
+
+    if(mProjects.length > 0) {
+      store.dispatch(setProductColorActiveIndex(0)); // 设置当前激活的产品颜色ID
+      for(let mProject of mProjects) {
+        let res = yield axios.get(mProject).catch((error) => {
+          console.log(error);
+        });
+        let eData = res.data;
+
+        if(eData) {
+          store.dispatch(addCanvas({
+            img: eData['bgUrl'],
+            clipSvg: eData['maskUrl']
+          }));
+
+          mData['pDatas'].push(eData.data);
+        }
+      }
+    } else if(mCols.length > 0) {
+      store.dispatch(setProductColorActiveIndex(0)); // 设置当前激活的产品颜色ID
+      const mColorImages = mColors[mCols[0]];
+      for(let i = 0, l = mColorImages.length; i < l; i ++) {
+        console.log(mColorImages[i]);
+        store.dispatch(addCanvas({
+          img: mColorImages[i],
+          clipSvg: mMasks[i]
+        }));
+      }
+    }
 
   ReactDOM.render(
     <Provider store={store}>
