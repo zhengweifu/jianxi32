@@ -62,7 +62,8 @@ import {
     setTextShadowActiveIndex,
     setCanvasActiveIndex,
     setCanvasImage,
-    addNodeData
+    addNodeData,
+    addNode
 } from '../actions';
 
 import fabric from 'fabric';
@@ -148,6 +149,7 @@ class App extends React.Component {
                     product.canvas.clipTo = function (ctx) {
                         shape.render(ctx);
                     };
+
                     product.canvas.renderAll();
                 });
             }
@@ -187,8 +189,15 @@ class App extends React.Component {
                     this.setClipStroke(this.clipStrokDefaultColor);
                 }
             });
+
             this.products.push(product);
             this.props.addNodeData();
+
+            // 导入工程数据
+            if(this.props.productColorData.pDatas[i] !== undefined) {
+                this.setProductFromIndex(i);
+                this.loadProject(product, this.props.productColorData.pDatas[i]);
+            }
         }
     }
 
@@ -223,13 +232,30 @@ class App extends React.Component {
             });
         }
 
-        console.log(outputData);
+        // console.log(outputData);
 
         axios.post(WEB_ROOT + '/index.php/Home/JY/saveDiyData', outputData).then(response => {
             console.log(response);
         }).catch(error => {
             console.log(error);
         });
+    }
+
+    loadProject(product, json) {
+        if(json !== undefined && json['objects'] !== undefined) {
+            for(let object of json['objects']) {
+
+                switch(object.type) {
+                    case 'curvedText':
+                        this.props.addNode({id: product.AddText(object.text, object), kind: '文字', describtion: object.text});
+                        break;
+                    case 'image':
+                        this.props.addNode({id: product.AddImage(object.src, 200, object), kind: '图片', describtion: object.src});
+                        break;
+                }
+                // console.log(object.type);
+            }
+        }
     }
 
     componentDidMount() {
@@ -483,7 +509,8 @@ function mapDispatchToProps(dispatch) {
         setTextShadowActiveIndex,
         setCanvasActiveIndex,
         setCanvasImage,
-        addNodeData
+        addNodeData,
+        addNode
     }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

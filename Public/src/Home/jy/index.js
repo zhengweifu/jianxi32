@@ -206,6 +206,14 @@ co(function *() {
           }));
 
           mData['pDatas'].push(eData.data);
+
+          // 将界面产品颜色切换
+          for(let j = 0; j < mCols.length; j ++) {
+            if(mColors[mCols[j]][0] !== undefined && mColors[mCols[j]][0] === eData.bgUrl) {
+              store.dispatch(setProductColorActiveIndex(j));
+              break;
+            }
+          }
         }
       }
     } else if(mCols.length > 0) {

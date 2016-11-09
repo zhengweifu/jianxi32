@@ -111,7 +111,7 @@ class Product {
      * [AddText 添加文字]
      * @param {[type]} content [文字内容]
      */
-    AddText(content) {
+    AddText(content, props) {
         // let text = new fabric.Text(content, {
         //   mid: canvas.mid++,
         //   left: 0,
@@ -150,14 +150,18 @@ class Product {
             padding: 2
         });
 
-        this.canvas.centerObject(text);
+        if(props) {
+            text.set(props);
+        } else {
+           this.canvas.centerObject(text); 
+        }
 
         this.canvas.add(text);
 
         return text.mid;
     }
 
-    AddImage(url, maxSize = 200) {
+    AddImage(url, maxSize = 200, props) {
         const id = this.canvas.mid++;
         fabric.Image.fromURL(url, img => {
             const width = img.getWidth();
@@ -178,7 +182,13 @@ class Product {
                 height: height * scale,
                 padding: 2
             });
-            this.canvas.centerObject(img);
+
+            if(props) {
+                img.set(props);
+            } else {
+                this.canvas.centerObject(img);
+            }
+            
             this.canvas.add(img);
             this.canvas.renderAll();
         });
@@ -191,7 +201,13 @@ class Product {
         fabric.loadSVGFromURL(url, (objects, options) => {
             let obj = fabric.util.groupSVGElements(objects, options);
             obj.set({mid: id});
-            this.canvas.centerObject(obj);
+
+            if(props) {
+                obj.set(props);
+            } else {
+                this.canvas.centerObject(obj);
+            }
+            
             this.canvas.add(obj);
             this.canvas.renderAll();
         });
@@ -274,8 +290,8 @@ class Product {
      * [SetTextProps 设置文字属性]
      * @param {[type]} props [文字属性]
      */
-    SetTextProps(props) {
-        let active = this.GetActiveObject();
+    SetTextProps(props, object) {
+        let active = object || this.GetActiveObject();
         if(active && active.type === 'curvedText') {
             active.setText(props.text); // CurvedText bug 
             active.set(props);
@@ -299,8 +315,8 @@ class Product {
      * [SetGeneralProps 设置一般属性]
      * @param {[type]} key [一般属性]
      */
-    SetGeneralProps(key, value) {
-        let active = this.GetActiveObject();
+    SetGeneralProps(key, value, object) {
+        let active = object || this.GetActiveObject();
         if(active) {
             let opts = {};
             if(Is(key, 'Object')) {
