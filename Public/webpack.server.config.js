@@ -8,10 +8,9 @@ var env = process.env.NODE_ENV;
 var config = {
     // cache: true,
     entry: {
-        // react: './src/react/App.js',
+        index: './src/Home/index/index.js',
         jy: './src/Home/jy/index.js',
         dlz: './src/Home/dlz/index.js'
-        // testing: './src/Common/testing/testing.js'
     },
 
     output: {
