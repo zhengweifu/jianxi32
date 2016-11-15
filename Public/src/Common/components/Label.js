@@ -33,17 +33,23 @@ class Label extends Component {
 			style
 		} = this.props;
 
+		const parentStyle = {
+			display: 'table',
+			height: height
+		};
+
 		const defaultStyle = {
+			display: 'table-cell',
 			verticalAlign: 'middle',
-			height: height,
-			lineHeight: `${height}px`,
 			color: color,
 			fontSize: fontSize,
 			fontFamily: fontFamily
 		};
 
 		return (
-			<span style={Object.assign({}, defaultStyle, style)}>{content}</span>
+			<div style={{display: 'inline-block'}}><div style={parentStyle}>
+				<span style={Object.assign({}, defaultStyle, style)}>{content}</span>
+			</div></div>
 		);
 
 	}

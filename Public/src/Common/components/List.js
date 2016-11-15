@@ -75,13 +75,8 @@ export default class List extends Component {
 		hoverColor: PropTypes.string,
 		activeColor: PropTypes.string,
 		onMouseLeave: PropTypes.func,
-		onMouseEnter: PropTypes.func,
-		onDragStart: PropTypes.func,
-		onDragEnd: PropTypes.func,
-		onDragOver: PropTypes.func,
+		onMouseEnterv: PropTypes.func,
 		onClick: PropTypes.func,
-		onLeftIconClick: PropTypes.func,
-		onRightIconClick: PropTypes.func,
 		gutter: PropTypes.number,
 		fontSize: PropTypes.number,
 		fontFamily: PropTypes.string,
@@ -103,11 +98,6 @@ export default class List extends Component {
             this.setState({
                 items: newProps.items
             });
-        }
-        if(newProps.activeIndex !== undefined) {
-        	this.setState({
-        		activeIndex: newProps.activeIndex
-        	});
         }
     }
 
@@ -135,10 +125,6 @@ export default class List extends Component {
 
 		items.splice(to, 0, items.splice(from, 1)[0]);
 		this.setState({items: items, hoverIndex: to, activeIndex: to});
-
-		if(this.props.onDragEnd) {
-			this.props.onDragEnd(e, from, to);
-		}
 	};
 
 	dragOver = (e) => {
@@ -152,19 +138,7 @@ export default class List extends Component {
 	};
 
 	render() {
-		const { 
-			style, 
-			itemStyle, 
-			color, 
-			bgColor, 
-			hoverColor, 
-			activeColor, 
-			onMouseEnter, 
-			onMouseLeave, 
-			onClick,
-			onLeftIconClick,
-			onRightIconClick
-		} = this.props;
+		const { style, itemStyle, color, bgColor, hoverColor, activeColor, onMouseEnter, onMouseLeave, onClick } = this.props;
 
 		let styles = getStyles(this.props);
 		return (
@@ -190,13 +164,7 @@ export default class List extends Component {
 						centerStyle.marginLeft = 30;
 						const leftCloned = React.cloneElement(item.left, {
 							padding: 0,
-							color: color,
-							onClick: (e) => {
-								e.stopPropagation();
-								if(onLeftIconClick) {
-									onLeftIconClick(e, index);
-								}
-							}
+							color: color
 						});
 						leftElement = <div style={styles.itemLeft}>{leftCloned}</div>;
 					}
@@ -206,13 +174,7 @@ export default class List extends Component {
 					if(item.right) {
 						const rightCloned = React.cloneElement(item.right, {
 							padding: 0,
-							color: color,
-							onClick: (e) => {
-								e.stopPropagation();
-								if(onRightIconClick) {
-									onRightIconClick(e, index);
-								}
-							}
+							color: color
 						});
 						rightElement = <div style={styles.itemRight}>{rightCloned}</div>;
 					}

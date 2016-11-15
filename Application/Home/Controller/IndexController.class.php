@@ -3,7 +3,11 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
     public function index(){
-		$m = M('banner');
+        $this->display();
+    }
+
+    public function getInitData() {
+    	$m = M('banner');
 		$banners = $m->where("kind=0")->select();
 
 		$outBannerData = array();
@@ -23,17 +27,13 @@ class IndexController extends Controller {
 			}
 		}
 
-		$this->assign('jx_banners', $outBannerData);
-
 		$products = M('product')->where("status=1")->select();
 
 		if($products) {
 			multiArraySort($products, "sid", SORT_ASC);
 		}
 
-		$this->assign('jx_products', $products);
-
-        $this->display();
+		echo json_encode(Array(banners => $outBannerData, products => $products));
     }
 
     public function  test() {

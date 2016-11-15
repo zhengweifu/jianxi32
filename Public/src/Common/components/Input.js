@@ -5,12 +5,11 @@ import { CYAN500, GREY300, GREY500 } from '../styles/colors';
 export default class Input extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             active: false
         };
+        // console.log(this.state); //
     }
-
     static propTypes = {
         placeholder: PropTypes.string,
         height: PropTypes.number,
@@ -28,7 +27,7 @@ export default class Input extends Component {
     onHandleChange(event) {
         let val = event.target.value;
         // console.log(val);
-        // this.setState({value: val});
+        this.setState({value: val});
 
         if(this.props.onChange) {
             this.props.onChange(event, val);
@@ -58,8 +57,9 @@ export default class Input extends Component {
             width: '100%',
             outline: 'none'
         };
-
+        // console.log(this);
         return (
+
             <input
                 style={Object.assign(style, this.props.style)}
                 placeholder={this.props.placeholder}
@@ -69,6 +69,7 @@ export default class Input extends Component {
                 onChange={this.onHandleChange.bind(this)}
                 />
         );
+
     }
 }
 

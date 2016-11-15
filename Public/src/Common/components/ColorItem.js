@@ -20,7 +20,7 @@ export default class ColorItem extends React.Component {
       return (
         <SvgIcon color='#f00' style={{
           position: 'absolute',
-          zIndex: 1,
+          zIndex: -1,
           top: 0,
           left: 0,
           margin: this.props.width / 2 - 13}}>
@@ -33,12 +33,7 @@ export default class ColorItem extends React.Component {
   renderActive() {
     if(this.state.active) {
       return (
-        <SvgIcon color={this.props.activeColor} style={{
-          position: 'absolute',
-          zIndex: 2,
-          top: 0,
-          left: 0,
-          margin: this.props.width / 2 - 13}}><path d={check} /></SvgIcon>
+        <SvgIcon color={this.props.activeColor}><path d={check} /></SvgIcon>
       );
     }
   }

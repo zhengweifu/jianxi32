@@ -15,7 +15,7 @@ function getStyles(props) {
 		bar: {
 			// cursor: 'pointer',
 			backgroundColor: props.barBgColor,
-			width: '100%',
+			// width: '100%',
 			height: props.barHeight,
 			position: 'relative',
 			left: 0,

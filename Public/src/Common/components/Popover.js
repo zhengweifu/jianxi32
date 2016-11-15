@@ -82,11 +82,11 @@ export default class Popover extends Component {
 			}, 0);
 		}
 
-		const { children } = this.props;
+		const { children, style } = this.props;
 		const styles = getStyles(this.props, this.state);
 		return (
 			<div style={styles.root}>
-				<Paper style={styles.self} ref={ref => this.element = ReactDOM.findDOMNode(ref)}>
+				<Paper style={Object.assign({}, styles.self, style)} ref={ref => this.element = ReactDOM.findDOMNode(ref)}>
 					{children}
 				</Paper>
 			</div>
