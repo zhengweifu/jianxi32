@@ -101,7 +101,7 @@ class App extends Component {
         const profileImgStyle = {
             width: '100%',
             height: 350,
-            backgroundImage: `url(${WEB_ROOT}Public/imgs/tt01.png)`,
+            
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'contain'
@@ -127,7 +127,7 @@ class App extends Component {
 
         // 渲染公司简介元素
         const companyProfileElement = <div><GridList cols={2} gutter={40}>
-            <div style={profileImgStyle}></div>
+            <div style={Object.assign({}, profileImgStyle, {backgroundImage: `url(${WEB_ROOT}Public/imgs/tt01.png)`})}></div>
             <div>
                 <p style={titleStyle}>理想</p>
                 <p style={headerStyle}>简兮简兮.方将万舞</p>
@@ -139,7 +139,7 @@ class App extends Component {
                 <p style={headerStyle}>简兮简兮.方将万舞</p>
                 <p style={contentStyle}>上海简兮网络技术有限公司是一家专注Web开发应用的综合服务提供商。简兮科技主要致力于Web2D和Web3D开发应用。Web2D，主要是通过领先的H5技术完成在线图片编工具，辑被誉为线上的“PS”。该技术被广泛用于在线DIY定制服务，比如：在线DIY T恤图案定制、在线DIY手机壳定制、等等的图片在线DIY定制工具。Web3D，相比起目前网上主流的以图片、FLASH、动画的展示方式来说，WEB3D技术让用户有了浏览的自主感，可以以自己的角度去观察，还有许多虚拟特效和互动操作。使用Web3D实现网络上的虚拟现实展示（VR）对于建筑房地产虚拟漫游展示、产品模拟动态展示提供了优秀的解决方案。</p>
             </div>
-            <div style={profileImgStyle}></div>
+            <div style={Object.assign({}, profileImgStyle, {backgroundImage: `url(${WEB_ROOT}Public/imgs/tt02.png)`})}></div>
         </GridList></div>;
 
         
