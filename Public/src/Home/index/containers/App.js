@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import NavBar from '../../basic/components/NavBar';
 
+import ProductItem from '../../basic/components/ProductItem';
+
 import { WEB_ROOT, INTERFACE_ROOT, FONT_FAMILY } from '../../../config';
 
 import GridList from '../../../Common/components/GridList';
@@ -60,25 +62,30 @@ class App extends Component {
 
         // 渲染产品元素
         const productElements = this.state.products.map((product, index) => {
-            return <div key={`product_item_${index}`}>
-                <div style={{
-                    width: '100%', 
-                    height: 310,
-                    border: '1px solid #eee',
-                    margin: '10px 0px',
-                    backgroundImage: `url('${product.path}')`,
-                    backgroundPosition: 'center'
-                }}></div>
-                <div style={{margin: '10px 5px'}}><p style={{fontSize: 30}}>{product.labelheader}</p>
-                <p style={{fontSize: 16}}>{product.labelbody}</p></div>
-                <RaisedButton label='马上体验' bgColor={ActiveColor} fontSize={18} rightIcon={
-                    <SvgIcon>
-                        <path d={keyboardArrowRight} />
-                    </SvgIcon>
-                } onClick={e => {
-                    window.location.href = product.link;
-                }}/>
-            </div>;
+            return <ProductItem onButtonClick={e => {
+                window.location.href = product.link;
+            }} img={product.path} labelheader={product.labelheader} labelbody={product.labelbody}/>;
+            // return <div key={`product_item_${index}`} onMouseEnter={e => {
+
+            // }} onMouseLeave={e => {}}>
+            //     <div style={{
+            //         width: '100%', 
+            //         height: 310,
+            //         border: '1px solid #eee',
+            //         margin: '10px 0px',
+            //         backgroundImage: `url('${product.path}')`,
+            //         backgroundPosition: 'center'
+            //     }}></div>
+            //     <div style={{margin: '10px 5px'}}><p style={{fontSize: 30}}>{product.labelheader}</p>
+            //     <p style={{fontSize: 16}}>{product.labelbody}</p></div>
+            //     <RaisedButton label='马上体验' bgColor={ActiveColor} fontSize={18} rightIcon={
+            //         <SvgIcon>
+            //             <path d={keyboardArrowRight} />
+            //         </SvgIcon>
+            //     } onClick={e => {
+            //         window.location.href = product.link;
+            //     }}/>
+            // </div>;
         });
 
         const bannerElements = this.state.banners.map((banner, index) => {
