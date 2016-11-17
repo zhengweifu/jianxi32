@@ -47,17 +47,20 @@ export default class Popover extends Component {
 		onRequestClose: PropTypes.func,
 		open: PropTypes.bool,
  		style: PropTypes.object,
+ 		outClickClose: PropTypes.bool,
  		zDepth: PropTypes.number
 	};
 
 	static defaultProps = {
 		open: false,
-		zDepth: 10
+		zDepth: 10,
+		outClickClose: true
 	};
 
 	handleRequestClose = (e) => {
 		// console.log( Dom.isDescendant(this.element, e.target), document.documentElement.contains(e.target));
 		if(!(e.target == this.element || Dom.isDescendant(this.element, e.target))) {
+			// console.log('xx: ', this.state.open);
 			if(this.state.open) {
 				this.setState({open : false});
 			}
@@ -76,10 +79,10 @@ export default class Popover extends Component {
 	}
 
 	render() {
-		if(this.state.open) {
+		if(this.state.open && this.props.outClickClose) {
 			setTimeout(() => {
 				window.addEventListener('mouseup', this.handleRequestClose, false);
-			}, 0);
+			}, 1000);
 		}
 
 		const { children, style } = this.props;
