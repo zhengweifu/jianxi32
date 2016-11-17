@@ -4,6 +4,8 @@ import RaisedButton from '../../../Common/components/RaisedButton';
 
 import SvgIcon from '../../../Common/components/SvgIcon';
 
+import { FONT_FAMILY } from '../../../config';
+
 import { keyboardArrowRight } from '../../../Common/svgIcons/google/Hardware';
 
 class ProductItem extends Component {
@@ -49,7 +51,9 @@ class ProductItem extends Component {
                 height: 310,
                 marginBottom: 10,
                 backgroundImage: `url('${img}')`,
-                backgroundPosition: 'center'
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover'
             }}></div>
             <div style={{margin: '10px 5px'}}><p style={{fontSize: 30}}>{labelheader}</p>
             <p style={{fontSize: 16}}>{labelbody}</p></div>
@@ -61,6 +65,11 @@ class ProductItem extends Component {
                 if(onButtonClick) {
                 	onButtonClick(e);
                 }
+            }} fontFamily={FONT_FAMILY} style={{
+                boxShadow: 'none',
+                borderRadius: 0
+            }} styleButton={{
+                padding: '5px 15px'
             }}/>
         </div>;
 	}

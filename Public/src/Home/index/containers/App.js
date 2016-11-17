@@ -46,6 +46,10 @@ class App extends Component {
         window.addEventListener('resize', event => {
             this.setState({docWidth: GetDocumentSize().width});
         }, false );
+
+        document.addEventListener('wheel', (e) => {
+            console.log(window.pageYOffset, document.body.scrollTop);
+        }, false);
     }
 
     render() {
@@ -64,28 +68,7 @@ class App extends Component {
         const productElements = this.state.products.map((product, index) => {
             return <ProductItem onButtonClick={e => {
                 window.location.href = product.link;
-            }} img={product.path} labelheader={product.labelheader} labelbody={product.labelbody}/>;
-            // return <div key={`product_item_${index}`} onMouseEnter={e => {
-
-            // }} onMouseLeave={e => {}}>
-            //     <div style={{
-            //         width: '100%', 
-            //         height: 310,
-            //         border: '1px solid #eee',
-            //         margin: '10px 0px',
-            //         backgroundImage: `url('${product.path}')`,
-            //         backgroundPosition: 'center'
-            //     }}></div>
-            //     <div style={{margin: '10px 5px'}}><p style={{fontSize: 30}}>{product.labelheader}</p>
-            //     <p style={{fontSize: 16}}>{product.labelbody}</p></div>
-            //     <RaisedButton label='马上体验' bgColor={ActiveColor} fontSize={18} rightIcon={
-            //         <SvgIcon>
-            //             <path d={keyboardArrowRight} />
-            //         </SvgIcon>
-            //     } onClick={e => {
-            //         window.location.href = product.link;
-            //     }}/>
-            // </div>;
+            }} buttonBgColor={product.buttonclassname} img={product.path} labelheader={product.labelheader} labelbody={product.labelbody}/>;
         });
 
         const bannerElements = this.state.banners.map((banner, index) => {
@@ -95,7 +78,7 @@ class App extends Component {
                     backgroundImage: `url(${banner.url})`,
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'contain',
+                    backgroundSize: 'cover',
                     position: 'relative'
                 }}>
                 <div style={{
@@ -105,12 +88,17 @@ class App extends Component {
                     bottom: 120
                 }}><p style={{fontSize: 30, marginBottom: 10, fontFamily: FONT_FAMILY}}>{banner.labelheader}</p>
                 <p style={{fontSize: 16, marginBottom: 10, fontFamily: FONT_FAMILY}} dangerouslySetInnerHTML={{__html: banner.labelcontent}}></p>
-                <RaisedButton label='马上体验' bgColor={ActiveColor} fontSize={18} rightIcon={
+                <RaisedButton label='马上体验' bgColor={banner.buttonclassname} fontSize={18} rightIcon={
                     <SvgIcon>
                         <path d={keyboardArrowRight} />
                     </SvgIcon>
                 } onClick={e => {
                     window.location.href = banner.link;
+                }} fontFamily={FONT_FAMILY} style={{
+                    boxShadow: 'none',
+                    borderRadius: 0
+                }} styleButton={{
+                    padding: '5px 15px'
                 }}/></div>
             </div></div>;
         });
