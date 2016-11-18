@@ -79,12 +79,15 @@ class App extends Component {
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
-                    position: 'relative'
+                    position: 'relative',
+                    top: 0,
+                    left: 0
                 }}>
                 <div style={{
                     width: '100%',
                     textAlign: 'center',
                     position: 'absolute',
+                    left: 0,
                     bottom: 120
                 }}><p style={{fontSize: 30, marginBottom: 10, fontFamily: FONT_FAMILY}}>{banner.labelheader}</p>
                 <p style={{fontSize: 16, marginBottom: 10, fontFamily: FONT_FAMILY}} dangerouslySetInnerHTML={{__html: banner.labelcontent}}></p>
@@ -142,14 +145,14 @@ class App extends Component {
         };
 
         // 渲染公司简介元素
-        const companyProfileElement = <div><GridList cols={profileCount} gutter={40}>
+        const companyProfileElement = <div><GridList cols={profileCount} gutter={profileCount > 1 ? 40 : 0}>
             <div style={Object.assign({}, profileImgStyle, {backgroundImage: `url(${WEB_ROOT}Public/imgs/tt01.png)`})}></div>
             <div style={{margin: '10px 0px'}}>
                 <p style={titleStyle}>理想</p>
                 <p style={headerStyle}>简兮简兮.方将万舞</p>
                 <p style={contentStyle}>世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个舞台也许还不够庞大，但个性与精致在这里不停地生长，我们希望更多的人站上这个舞台，如诗经云：简兮简兮.方将万舞。这里是示例文案。世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个平台也许还不够庞大，但个性与精致在这里不停地生长。这里是示例文案。世界正在变的越来越多元化，简兮生活馆为多元化生活而生，这个平台也许还不够庞大，但个性与精致在这里不停地生长。这里是示例文案。</p>
             </div>
-        </GridList><GridList cols={profileCount} gutter={40}>
+        </GridList><GridList cols={profileCount} gutter={profileCount > 1 ? 40 : 0}>
             <div style={{margin: '10px 0px'}}>
                 <p style={titleStyle}>行动</p>
                 <p style={headerStyle}>简兮简兮.方将万舞</p>
@@ -163,7 +166,7 @@ class App extends Component {
         // 容器的样式
         const containerStyle = {
             width: this.state.docWidth >= 970 ? 970 : '90%',
-            padding: '100px 0px',
+            padding: '50px 0px',
             margin: 'auto'
         };
 
