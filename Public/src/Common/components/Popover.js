@@ -9,10 +9,14 @@ import Paper from './Paper';
 import { GREY300 } from '../styles/colors';
 
 import Dom from '../utils/dom';
+ 
+import { GetElementHeight } from '../utils/basic';
 
 function getStyles(props, state) {
 	const {
-		zDepth
+		zDepth,
+		maxHeight,
+		isUseSlideAnimation
 	} = props;
 	return {
 		root: {
@@ -20,7 +24,7 @@ function getStyles(props, state) {
 			top: 0,
 			left: 0,
 			width: '100%',
-			display: state.open ? 'block' : 'none'
+			display: isUseSlideAnimation ? 'block' : (state.open ? 'block' : 'none')
 		},
 		self: {
 			// backgroundColor: '#f00',
@@ -30,6 +34,9 @@ function getStyles(props, state) {
 			left: 0,
 			padding: GUTTER,
 			width: '100%',
+			maxHeight: isUseSlideAnimation ? (state.open ? maxHeight : 0) : maxHeight,
+			transition: `max-height ${maxHeight * 2}ms ease-out`,
+			overflow: 'hidden',
 			zIndex: zDepth,
 		}
 	};
@@ -46,15 +53,19 @@ export default class Popover extends Component {
 		children: PropTypes.node,
 		onRequestClose: PropTypes.func,
 		open: PropTypes.bool,
+		isUseSlideAnimation: PropTypes.bool,
  		style: PropTypes.object,
  		outClickClose: PropTypes.bool,
+ 		maxHeight: PropTypes.number,
  		zDepth: PropTypes.number
 	};
 
 	static defaultProps = {
 		open: false,
+		isUseSlideAnimation: false,
 		zDepth: 10,
-		outClickClose: true
+		outClickClose: true,
+		maxHeight: 300
 	};
 
 	handleRequestClose = (e) => {

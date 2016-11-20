@@ -26,3 +26,29 @@ export const GetDocumentSize = () => {
 		height: document.body.clientHeight
 	};
 };
+
+export const GetElementHeight = (el) => {
+    let elStyle      = window.getComputedStyle(el),
+        elDisplay    = elStyle.display,
+        elPosition   = elStyle.position,
+        elVisibility = elStyle.visibility,
+        elMaxHeight = elStyle.maxHeight.replace('px', '').replace('%', ''),
+
+        wantedHeight = 0;
+
+    if(elDisplay !== 'none' && elMaxHeight !== '0') {
+        return el.offsetHeight;
+    }
+
+    el.style.position   = 'absolute';
+    el.style.visibility = 'hidden';
+    el.style.display    = 'block';
+
+    wantedHeight     = el.offsetHeight;
+
+    el.style.display    = elDisplay;
+    el.style.position   = elPosition;
+    el.style.visibility = elVisibility;
+
+    return wantedHeight;
+};
