@@ -12,15 +12,11 @@ import VerticalMiddle from '../../../Common/components/VerticalMiddle';
 
 import Popover from '../../../Common/components/Popover';
 
+import ListCloseSwitch from './ListCloseSwitch';
+
 import { FONT_FAMILY } from '../../../config';
 
 import { SCREEN_SIZE, GetDocumentSize } from '../../../Common/utils/basic';
-
-import { dehaze, image } from '../../../Common/svgIcons/google/Image';
-
-import { close } from '../../../Common/svgIcons/google/Navigation';
-
-import { MorphReplace } from 'react-svg-morph';
 
 require('../../../Common/sasses/clearfix.scss');
 
@@ -135,59 +131,23 @@ class NavBar extends Component {
 
 		const pcElement = <div style={Object.assign({}, styles.root, rootStyle)}>
 			<div className='clearfix'>
-				<div style={styles.pcLeft}><VerticalMiddle height={height}><img src={logo}/></VerticalMiddle></div>
+				<div style={styles.pcLeft}><VerticalMiddle height={height}><img style={{verticalAlign: 'middle'}} src={logo}/></VerticalMiddle></div>
 				<div style={styles.pcRight}><GridList cols={items.length} center={true}>
 					{itemElements}
 				</GridList></div>
 			</div>
 		</div>;
-		console.log('xx:', this.state.open);
 
-		// const menuLineWidth = 20, menuLineHeight = 2;
-
-		// const menuItem = {
-		// 	position: 'relative',
-		// 	// height: 50,
-		// 	// width: 50
-		// 	// transform: 'rotate(45deg)'
-		// };
-
-		// const menuItemLine = {
-		// 	position: 'absolute',
-		// 	width: menuLineWidth,
-		// 	height: menuLineHeight,
-		// 	backgroundColor: activeBgColor,
-		// 	transition: 'transform 500ms ease-out'
-		// };
-
-		// const sin45 = this.state.open ? 0.8509 : 0;
-		// const cos45 = this.state.open ? 0.8509 : 1;
-
-		// <VerticalMiddle height={height}><div style={menuItem} onClick={e => {
-		// 	this.setState({open: !this.state.open});
-		// }}>
-		// 	<div style={Object.assign({}, menuItemLine, {
-		// 		transform: `matrix(${cos45}, ${sin45}, ${-sin45}, ${cos45}, 0, 0)`
-		// 	})}></div>
-		// 	<div style={Object.assign({}, menuItemLine, {
-		// 		transform: `matrix(${cos45}, ${-sin45}, ${sin45}, ${cos45}, 0, ${this.state.open ? 0 : 10})`
-		// 	})}></div>
-		// </div></VerticalMiddle>
 		const mobileElement = <div style={Object.assign({}, styles.root, rootStyle)}>
 			<div className='clearfix'>
-				<div style={styles.mobileLeft}><VerticalMiddle height={height}><img src={logo}/></VerticalMiddle></div>
+				<div style={styles.mobileLeft}><VerticalMiddle height={height}><img style={{verticalAlign: 'middle'}} src={logo}/></VerticalMiddle></div>
 				<div style={styles.mobileRight}>
-					
-					<VerticalMiddle height={height}><IconButton color={activeBgColor} icon={<MorphReplace rotation='none'>
-						<SvgIcon key={this.state.open ? 'icon_open' : 'icon_close'} width={height / 2} height={height / 2}>
-							<path fill={activeBgColor} d={this.state.open ? close : dehaze}/>
-						</SvgIcon>
-					</MorphReplace>} onClick={e => {
-						this.setState({open: !this.state.open});
-				}}/></VerticalMiddle>
+					<ListCloseSwitch isList={!this.state.open} height={height} onClick={(e, isList) => {
+						this.setState({open: !isList});
+					}}/>
 				</div>
 			</div>
-			<Popover open={this.state.open} isUseSlideAnimation={true} outClickClose={false} style={styles.popover} onRequestClose={e => this.setState({open: false})}>
+			<Popover open={this.state.open} isUseSlideAnimation={true} maxHeight={250} outClickClose={false} style={styles.popover} onRequestClose={e => this.setState({open: false})}>
 				{itemElements}
 			</Popover>
 		</div>;
