@@ -52,3 +52,39 @@ export const GetElementHeight = (el) => {
 
     return wantedHeight;
 };
+
+export const Animate = (element, props, time, callback) => {
+    const start = new Date().getTime();
+    let tempProps = {};
+    for(let p in props) {
+        props[p] = parseFloat(props[p].replace('px').replace('%'));
+        let cValue = parseFloat(element.style[p].replace('px').replace('%'));
+        tempProps[p] = {
+            value: cValue,
+            interval: props[p] - cValue,
+            unit: ''
+        };
+        if(element.style[p].match('%')) {
+           tempProps[p]['unit'] = '%';
+        } else if(element.style[p].match('px')) {
+            tempProps[p]['unit'] = 'px';
+        }
+    }
+    const timer = setInterval(() => {
+        const step = Math.min(1,(new Date().getTime() - start) / time);
+        for(let prop in props) {
+            if(tempProps[prop].unit !== '') {
+                element.style[prop] = paseInt(tempProps[prop].value + step * tempProps[prop].interval) + tempProps[prop].unit;
+            } else {
+                element.style[prop] = tempProps[prop].value + step * tempProps[prop].interval;
+            }
+        }
+        if(step == 1) {
+            clearInterval(timer);
+        }
+    }, 25);
+
+    if (typeof callback === 'function') {
+        setTimeout(callback, time);
+    }
+};
