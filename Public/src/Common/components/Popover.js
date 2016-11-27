@@ -35,7 +35,7 @@ function getStyles(props, state) {
 			padding: GUTTER,
 			width: '100%',
 			maxHeight: isUseSlideAnimation ? (state.open ? maxHeight : 0) : maxHeight,
-			transition: `max-height ${maxHeight * 2}ms ease-out`,
+			transition: `max-height ${maxHeight}ms ease-out`,
 			overflow: 'hidden',
 			zIndex: zDepth,
 		}
