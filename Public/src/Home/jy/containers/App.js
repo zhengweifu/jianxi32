@@ -312,11 +312,11 @@ class App extends React.Component {
                     }}>
                     {canvasItems}
                 </div>
-                <div style={{textAlign: 'center', margin: '6px 0px'}}>
+                <div style={{textAlign: 'center', margin: 'auto', width: '50%'}}>
                     <GridList
                         style={{display: 'inline-block'}}
-                        cellHeight={100}
-                        cols={0}>
+                        cellHeight='100%'
+                        cols={imgItems.length}>
                         {imgItems}
                     </GridList>
                 </div>
@@ -375,7 +375,18 @@ class App extends React.Component {
           '#ff0000';
 
         return (
-        <div>
+        <div><div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100%'
+        }}>
+            <canvas id='viewport-3d' style={{width: '100%', height: '100%'}}></canvas>
+        </div>    
+        <div style={{display: 'none'}}>
             <Grid gutter={0} style={{width: mlenght, margin: 'auto'}}>
                 <Col gutter={0} width={this.props.canvasWidth / mlenght}>
                     <div style={{
@@ -455,7 +466,7 @@ class App extends React.Component {
                     </div>
                 </Col>
             </Grid>
-        </div> 
+        </div></div> 
         );
     }
 }

@@ -49,5 +49,8 @@
     "three": "^0.76.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.0"
+  },
+  "dependencies": {
+    "three": "^0.76.1"
   }
 }
