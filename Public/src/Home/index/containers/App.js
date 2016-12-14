@@ -141,7 +141,9 @@ class App extends Component {
         // 公司简介文字内容的样式
         const contentStyle = {
             fontSize: 14,
-            fontFamily: FONT_FAMILY
+            fontFamily: FONT_FAMILY,
+            color: '#000',
+            textDecoration: 'none'
         };
 
         // 渲染公司简介元素
@@ -190,7 +192,7 @@ class App extends Component {
 
 
         const footElement = <div style={{textAlign: 'center'}}>
-            <p style={contentStyle}>© 2015-2018 简兮网络版权所有 沪ICP备05036958号</p>
+            <a style={contentStyle} href='http://www.miitbeian.gov.cn'>© 2015-2018 简兮网络版权所有 沪ICP备15055151号</a>
         </div>;
 
         
