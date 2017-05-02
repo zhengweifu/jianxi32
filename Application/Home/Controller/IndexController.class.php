@@ -27,7 +27,7 @@ class IndexController extends Controller {
 			}
 		}
 
-		$products = M('product')->where("status=1")->select();
+		$products = M('product')->where("status=1 AND showindex=1")->select();
 
 		if($products) {
 			multiArraySort($products, "sid", SORT_ASC);

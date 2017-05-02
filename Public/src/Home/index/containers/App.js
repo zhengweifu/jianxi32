@@ -70,7 +70,7 @@ class App extends Component {
                 window.location.href = product.link;
             }} buttonBgColor={product.buttonclassname} img={product.path} labelheader={product.labelheader} labelbody={product.labelbody}/>;
         });
-
+        
         const bannerElements = this.state.banners.map((banner, index) => {
             return <div key={`banner_item_${index}`}><div style={{
                     width: '100%',

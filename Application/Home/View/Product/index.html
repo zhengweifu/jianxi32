@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <assign name='mJquery' value='Public/static/jquery-2.1.4.min.js' />
+    <assign name='mReact' value='Public/static/react-15.0.2/react.min.js'/>
+    <assign name='mReactDom' value='Public/static/react-15.0.2/react-dom.min.js'/>
+    <assign name='mProduct' value='Public/dist/product.bundle.js'/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>简兮产品列表</title>
+    <script src="__ROOT__/{$mJquery}?{$mJquery|md5_file}"></script>
+    <style type="text/css">
+        * {padding: 0;margin: 0;}
+    </style>
+</head>
+<body>
+    <div id='app'></div>
+    <script src="__ROOT__/{$mReact}?{$mReact|md5_file}"></script>
+    <script src="__ROOT__/{$mReactDom}?{$mReactDom|md5_file}"></script>
+    <script src="__ROOT__/{$mProduct}?{$mProduct|md5_file}"></script>
+</body>
+</html>

@@ -9,6 +9,7 @@ var config = {
     // cache: true,
     entry: {
         index: './src/Home/index/index.js',
+        product: './src/Home/product/index.js',
         jy: './src/Home/jy/index.js',
         dlz: './src/Home/dlz/index.js'
     },
