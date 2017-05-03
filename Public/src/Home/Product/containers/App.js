@@ -42,13 +42,32 @@ class App extends Component {
             porductCount = 1;
         }
         const productElements = this.state.products.map((product, index) => {
-            return <ProductItem onButtonClick={e => {
+            return <div style={{marginBottom: 10}}><ProductItem onButtonClick={e => {
                 window.location.href = product.link;
-            }} buttonBgColor={product.buttonclassname} img={product.path} labelheader={product.labelheader} labelbody={product.labelbody}/>;
+            }} buttonBgColor={product.buttonclassname} img={product.path} labelheader={product.labelheader} labelbody={product.labelbody}/></div>;
         });
-        return <GridList cols={porductCount}>
-            {productElements}
-        </GridList>;
+
+        const count = productElements.length;
+
+        let elements = [];
+
+        for (let i = 0; i < Math.ceil(count / porductCount); i++) {
+            let tempElements = [];
+            for(let j = 0; j < porductCount; j ++) {
+                const pIndex = i * porductCount + j;
+                if(pIndex < count) {
+                    tempElements.push(productElements[pIndex]);
+                }
+            }
+            elements.push(
+                <GridList cols={porductCount}>
+                    {tempElements}
+                </GridList>
+            );
+        }
+        return <div>
+            {elements}
+        </div>;
     }
 }
 

@@ -10,7 +10,7 @@ function getStyles(props) {
 	return {
 		root: {
 			marginLeft: -props.gutter / 2,
-			marginRight: -props.gutter / 2,
+			marginRight: -props.gutter / 2
 		},
 
 		item: {
@@ -58,7 +58,10 @@ export default class GridList extends Component {
 		});
 
 		return (
-			<div style={Object.assign({}, styles.root, this.props.style)} className='clearfix'>{wrappedChildren}</div>
+			<div style={{overflow: 'hidden'}}><div style={Object.assign({}, styles.root, this.props.style)} className='clearfix'>
+				{wrappedChildren}
+				<div style={{clear: 'both'}}></div>
+			</div></div>
 		);
 	}
 }
