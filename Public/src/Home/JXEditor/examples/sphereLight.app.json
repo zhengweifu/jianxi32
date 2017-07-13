@@ -1,0 +1,62 @@
+{
+	"metadata": {
+		"type": "App"
+	},
+	"project": {
+		"shadows": false,
+		"vr": false
+	},
+	"camera": {
+		"metadata": {
+			"version": 4.4,
+			"type": "Object",
+			"generator": "Object3D.toJSON"
+		},
+		"object": {
+			"uuid": "B901700E-2B1B-4D74-9201-164193F8304E",
+			"type": "PerspectiveCamera",
+			"name": "Camera",
+			"matrix": [0.9522120356559753,4.608077919243669e-9,-0.3054378032684326,0,-0.17742955684661865,0.8139732480049133,-0.553142249584198,0,0.24861818552017212,0.5809023976325989,0.7750750780105591,0,18.645999908447266,43.56800079345703,58.13100051879883,1],
+			"focalLength": 10,
+			"zoom": 1,
+			"fov": 50,
+			"aspect": 1.3217270194986073,
+			"near": 0.1,
+			"far": 100000
+		}
+	},
+	"scene": {
+		"metadata": {
+			"version": 4.4,
+			"type": "Object",
+			"generator": "Object3D.toJSON"
+		},
+		"object": {
+			"uuid": "31517222-A9A7-4EAF-B5F6-60751C0BABA3",
+			"type": "Scene",
+			"name": "Scene",
+			"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+			"children": [
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086F0","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight1", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 9.999999999999998, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086F1","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight2", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 7.0888901782153715, 7.114094810420977, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086F2","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight3", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0000000000000004, 0.0, 0.0, 0.0, 0.0, 1.0000000000000004, 0.0, 0.0, 10.060849364905382, 0.06084936490540241, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086F3","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight4", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 7.174944175326362, -7.0280408133099765, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086F4","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight5", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.12169872981077931, -10.0, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086F5","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight6", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, -6.967191448404594, -7.114094810420967, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086F6","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight7", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0000000000000004, 0.0, 0.0, 0.0, 0.0, 1.0000000000000004, 0.0, 0.0, -9.939150635094604, -0.060849364905375763, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086F7","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight8", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, -7.053245445515585, 7.028040813309986, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086F8","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight9", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -7.0710678118654755, 0.0, 7.07106781186548, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086F9","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight10", "matrix": [1.0000000000000004, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0000000000000004, 0.0, -9.99999999999999, 0.0, 1.3322676295501875e-14, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086FA","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight11", "matrix": [0.9999999999999998, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.9999999999999998, 0.0, -7.071067811865481, 0.0, -7.07106781186548, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086FB","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight12", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 7.0710678118654755, 0.0, 7.07106781186548, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086FC","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight13", "matrix": [1.0000000000000004, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0000000000000004, 0.0, 9.99999999999999, 0.0, 1.3322676295501875e-14, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086FD","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight14", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 7.071067811865475, 0.0, -7.071067811865468, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086FE","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight15", "matrix": [1.0000000000000004, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -7.114094810420976, 7.0888901782153715, 8.894885672115267e-15, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF086FF","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight16", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 0.9999999999999998, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -7.02804081330998, -7.053245445515586, 5.304436450043882e-15, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF087F0","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight17", "matrix": [1.0, 0.0, 0.0, 0.0, 0.0, 1.0000000000000004, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 7.071067811865475, 7.131917176770866, 0.06084936490540108, 1.0]},
+{"uuid":"B47D0BFC-D63A-4CBB-985E-9C4DBDF087F1","color": 16777215, "intensity": 0.2, "type": "DirectionalLight", "name": "directionalLight18", "matrix": [1.0000000000000004, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 7.028040813309977, -7.053245445515577, 7.980504302187112e-15, 1.0]}]
+
+		}
+	},
+	"scripts": {}
+}
