@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import { GUTTER } from '../styles/constants';
 
-require('../sasses/clearfix.scss');
+require('../csses/clearfix.css');
 
 function getStyles(props) {
 	return {
@@ -28,7 +28,10 @@ export default class Grid extends Component {
 		const { children, style } = this.props;
 		const styles = getStyles(this.props);
 		return (
-			<div className='clearfix' style={Object.assign({}, styles.root, style)}>{children}</div>
+			<div className='clearfix' style={Object.assign({}, styles.root, style)}>
+				{children}
+				<div style={{clear: 'both'}}></div>
+			</div>
 		);
 	}
 }

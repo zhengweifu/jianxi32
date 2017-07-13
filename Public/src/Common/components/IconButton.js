@@ -38,7 +38,6 @@ class IconButton extends Component {
 		isLimitClickUp: PropTypes.bool,
         onMouseEnter: PropTypes.func,
         onMouseLeave: PropTypes.func,
-        onMouseUp: PropTypes.func,
         onClick: PropTypes.func,
         fullWidth: PropTypes.bool
 	};
@@ -104,7 +103,6 @@ class IconButton extends Component {
 				style={Object.assign({}, styles.root, style)}
 				onMouseEnter={this.handleMouseEnter.bind(this)}
                 onMouseLeave={this.handleMouseLeave.bind(this)}
-                onMouseUp={this.props.onMouseUp}
                 onClick={e => {
                 	// console.log(this.state.toggled);
                     if(toggle) {

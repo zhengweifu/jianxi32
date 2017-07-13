@@ -10,19 +10,21 @@ function getStyles(props) {
 		},
 
 		item: {
-			float: 'left',
+			float: props.float,
 			boxSizing: 'border-box',
 		},
 	};
 }
 
-class Left extends Component {
+class Float extends Component {
 	static propTypes = {
 		children: PropTypes.node,
-		style: PropTypes.object
+		style: PropTypes.object,
+		float: PropTypes.oneOf(['left', 'right']),
 	};
 
 	static defaultProps = {
+		float: 'left',
 		style: {}
 	};
 
@@ -49,4 +51,4 @@ class Left extends Component {
 	}
 }
 
-export default Left;
+export default Float;

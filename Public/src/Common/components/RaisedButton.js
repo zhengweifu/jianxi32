@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { fade, lighten } from '../utils/colorManipulator';
+import { fade, lighten, darken } from '../utils/colorManipulator';
 
 import { GREY100, GREY400 } from '../styles/colors';
 
@@ -8,14 +8,17 @@ import { FONT_SIZE_DEFAULT, FONT_FAMILY_DEFAULT } from '../styles/constants';
 
 import Paper from './Paper';
 
+import Overlay from './Overlay';
+
 import IsMobile from '../utils/IsMobile';
 
 const isMobile = IsMobile.Any();
 
-function getStyles(props) {
+function getStyles(props, state) {
 	return {
 		root: {
-			display: props.fullWidth ? 'block' : 'inline-block'
+			display: props.fullWidth ? 'block' : 'inline-block',
+			position: 'relative'
 		},
 		button: {
 			padding: '0px 10px',
@@ -34,6 +37,31 @@ function getStyles(props) {
 		icon: {
 			display: 'inline-block',
 			verticalAlign: 'middle'
+		},
+
+		loadingParent: {
+			position: 'absolute',
+			top: 0,
+			left: 0,
+			width: '100%',
+			height: '100%',
+			backgroundColor: 'rgba(0, 0, 0, 0.5)',
+		},
+
+		loading: {
+			boxSizing: 'border',
+			border: '3px solid #f3f3f3',
+		    borderTop: '3px solid #3498db',
+		    borderRadius: '50%',
+		    width: 14,
+		    height: 14,
+		    position: 'absolute',
+		    top: 0,
+		    bottom: 0,
+		    left: 0,
+		    right: 0,
+		    margin: 'auto',
+		    animation: `animation_${state.random} 2s linear infinite`
 		}
 	};
 }
@@ -44,8 +72,27 @@ export default class RaisedButton extends Component {
 
 		this.state = {
 			hovered: false,
-			toggled: props.toggled
+			toggled: props.toggled,
+			random: null,
+			isDown: false
 		};
+	}
+
+	generateLoadingAnimation() {
+		const random = Math.round(Math.random() * 10000000);
+
+		const style = document.createElement("style");
+		const css = `@keyframes animation_${random} {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}`;
+
+		style.type = "text/css";
+		style.appendChild(document.createTextNode(css));
+
+		document.getElementsByTagName("head")[0].appendChild(style);
+
+		return random;
 	}
 
 	static propTypes = {
@@ -69,7 +116,8 @@ export default class RaisedButton extends Component {
 		onMouseLeave: PropTypes.func,
 		onTouchEnd: PropTypes.func,
 		onTouchStart: PropTypes.func,
-		onClick: PropTypes.func
+		onClick: PropTypes.func,
+		isLoading: PropTypes.bool
 	};
 
 	static defaultProps = {
@@ -82,7 +130,8 @@ export default class RaisedButton extends Component {
 		toggle: false,
 		toggled: false,
 		fontSize: FONT_SIZE_DEFAULT,
-		fontFamily: FONT_FAMILY_DEFAULT
+		fontFamily: FONT_FAMILY_DEFAULT,
+		isLoading: false
 	};
 
 	handleMouseEnter(e) {
@@ -126,11 +175,19 @@ export default class RaisedButton extends Component {
 			onClick
 		} = this.props;
 
-		const styles = getStyles(this.props);
+		if(this.state.random === null && this.props.isLoading) {
+			this.setState({random: this.generateLoadingAnimation()});
+		}
+
+		const styles = getStyles(this.props, this.state);
 
         let nbgColor = toggle && this.state.toggled ? toggledColor ? toggledColor : lighten(bgColor, 0.2) : bgColor;
 
-		nbgColor = this.state.hovered ? hoverColor ? hoverColor : lighten(bgColor, 0.2) : nbgColor;
+		nbgColor = this.state.hovered ? hoverColor ? hoverColor : lighten(nbgColor, 0.2) : nbgColor;
+
+		if(this.state.isDown) {
+			nbgColor = darken(nbgColor, 0.2);
+		}
 
 		let iconLeftStyle = Object.assign({}, styles.icon);
 
@@ -149,12 +206,15 @@ export default class RaisedButton extends Component {
 		const leftElement = leftIcon ? <div style={iconLeftStyle}>{React.cloneElement(leftIcon, {color: labelColor})}</div> : null;
 		const centerElement = <span style={labelStyle}>{label}</span>;
 		const rightElement = rightIcon ? <div style={iconRightStyle}>{React.cloneElement(rightIcon, {color: labelColor})}</div> : null;
+		const loadingElement = this.props.isLoading ? <div style={styles.loadingParent}><div style={styles.loading}></div></div> : '';
 
 		return (
 			<Paper style={Object.assign({}, styles.root, style)} bgColor={nbgColor}>
 				<div style={Object.assign({}, styles.button, styleButton)} 
 					onMouseLeave={this.handleMouseLeave.bind(this)}
 					onMouseEnter={this.handleMouseEnter.bind(this)}
+					onMouseDown={e => this.setState({isDown: true})}
+					onMouseUp={e => this.setState({isDown: false})}
 					onClick={e => {
 						if(toggle) {
                             this.setState({toggled: !this.state.toggled});
@@ -169,6 +229,7 @@ export default class RaisedButton extends Component {
 						{rightElement}
 					</div>
 				</div>
+				{loadingElement}
 			</Paper>
 		);
 	}

@@ -8,13 +8,15 @@ import { OVERLAY_ZINDEX, MODAL_ZINDEX, MODAL_MAX_WIDTH } from '../styles/constan
 
 import { CYAN500, GREY300, PINK300 } from '../styles/colors';
 
+import { FONT_SIZE_DEFAULT, FONT_FAMILY_DEFAULT } from '../styles/constants';
+
 import IconButton from './IconButton';
 
 import SvgIcon from './SvgIcon';
 
-import { clear } from '../svgIcons/google/Content';
+import { gClear } from '../svgIcons/google/Content';
 
-require('../sasses/clearfix.scss');
+require('../csses/clearfix.css');
 
 import RaisedButton from './RaisedButton';
 
@@ -39,8 +41,11 @@ function getStyles(props, state) {
 
 		modalHeader: {
 			padding: padding,
-			borderBottom: `1px solid ${GREY300}`,
-			position: 'relative'
+			borderBottom: `1px solid ${props.splitColor}`,
+			position: 'relative',
+			color: props.titleColor,
+			fontFamily: props.fontFamily,
+			fontSize: props.titleFontSize
 		},
 
 		close: {
@@ -56,7 +61,7 @@ function getStyles(props, state) {
 
 		modalFooter: {
 			padding: `8px ${padding}px`,
-			borderTop: `1px solid ${GREY300}`,
+			borderTop: `1px solid ${props.splitColor}`,
 		}
 	};
 }
@@ -73,16 +78,27 @@ export default class Modal extends Component {
 		children: PropTypes.node,
 		open: PropTypes.bool,
 		overlayStyle: PropTypes.object,
+		style: PropTypes.object,
 		title: PropTypes.string,
+		titleColor: PropTypes.string,
+		splitColor: PropTypes.string,
+		fontFamily: PropTypes.string,
+		titleFontSize: PropTypes.number,
 		useActions: PropTypes.bool,
 		actions: PropTypes.node,
-		onOkClick: PropTypes.func
+		onOkClick: PropTypes.func,
+		onCancelClick: PropTypes.func
 	};
 
 	static defaultProps = {
 		open: false,
 		overlayStyle: {},
-		useActions: true
+		style: {},
+		useActions: true,
+		splitColor: GREY300,
+		titleColor: GREY300,
+		fontFamily: FONT_FAMILY_DEFAULT,
+		titleFontSize: FONT_SIZE_DEFAULT
 	};
 
 	componentWillReceiveProps(newProps) {
@@ -92,12 +108,15 @@ export default class Modal extends Component {
 	}
 
 	render() {
-		let { overlayStyle, title, actions, children, useActions, onOkClick } = this.props;
+		let { overlayStyle, style, title, actions, children, useActions, onOkClick, onCancelClick } = this.props;
 
 		if(React.Children.count(actions) <= 0 && useActions) {
 			actions = [
 				<RaisedButton label='取消' style={{marginRight: 10, padding: '0px 20px'}} bgColor={PINK300} onClick={e => {
 					this.setState({open : false});
+					if(onCancelClick) {
+						onCancelClick(e, false);
+					}
 				}}/>,
 				<RaisedButton label='确定' style={{padding: '0px 20px'}} bgColor={CYAN500} onClick={e => {
 					if(onOkClick) {
@@ -121,16 +140,19 @@ export default class Modal extends Component {
 					{title}
 					<div style={styles.close} onClick={e => {
 						this.setState({open: false});
+						if(onCancelClick) {
+							onCancelClick(e, false);
+						}
 					}}>
-						<IconButton color={GREY300} hoverColor={PINK300} padding={0}><SvgIcon>
-							<path d={clear}/>
-						</SvgIcon></IconButton>
+						<IconButton color={GREY300} hoverColor={PINK300} padding={0} icon={<SvgIcon>
+							<path d={gClear}/>
+						</SvgIcon>}/>
 					</div>
 				</div> : '';
 		return (
 			<div>
 				<div style={styles.modal}>
-					<Paper>
+					<Paper style={style}>
 						{header}
 						<div style={styles.modalBody}>{children}</div>
 						{footer}

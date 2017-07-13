@@ -10,7 +10,7 @@ function getStyles(props) {
 	return {
 		root: {
 			marginLeft: -props.gutter / 2,
-			marginRight: -props.gutter / 2
+			marginRight: -props.gutter / 2,
 		},
 
 		item: {
@@ -22,17 +22,28 @@ function getStyles(props) {
 	};
 }
 
-export default class GridList extends Component {
+class SpecialGridList extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			activeId: props.activeId
+		};
+	}
+
 	static propTypes = {
 		children: PropTypes.node,
 		center: PropTypes.bool,
 		cols: PropTypes.number,
+		specialRatio: PropTypes.number,
+		activeId: PropTypes.number,
 		gutter: PropTypes.number,
 		style: PropTypes.object,
 	};
 
 	static defaultProps = {
 		cols: 2,
+		specialRatio: 0.5,
+		activeId: 0,
 		center: false,
 		gutter: GUTTER
 	};
@@ -41,27 +52,33 @@ export default class GridList extends Component {
 
 		const styles = getStyles(this.props);
 
-		let { children, cols, center } = this.props;
+		let { children, cols, specialRatio, center } = this.props;
 
 		if(!Is(children, 'Array')) {
 			children = [children];
 		}
 
+		const eachWidth = 100 / (cols + specialRatio);
+
 		const wrappedChildren = children.map((child, index) => {
 			const itemStyle = Object.assign({}, styles.item, {
-				width: `${(100 / cols)}%`,
+				width: index === this.state.activeId ? `${eachWidth * ( 1 + specialRatio)}%` : `${eachWidth}%`,
+				// transition: 'width 0.2s',
 				textAlign: center ? 'center' : 'left'
 			});
 			return (
-				<div key={'grid_' + index} style={Object.assign({}, itemStyle)}>{child}</div>
+				<div key={'grid_' + index} style={Object.assign({}, itemStyle)} onClick = {e => {
+					if(this.state.activeId !== index) {
+						this.setState({activeId: index});
+					}
+				}}>{child}</div>
 			);
 		});
 
 		return (
-			<div style={{overflow: 'hidden'}}><div style={Object.assign({}, styles.root, this.props.style)} className='clearfix'>
-				{wrappedChildren}
-				<div style={{clear: 'both'}}></div>
-			</div></div>
+			<div style={Object.assign({}, styles.root, this.props.style)} className='clearfix'>{wrappedChildren}</div>
 		);
 	}
 }
+
+export default SpecialGridList;

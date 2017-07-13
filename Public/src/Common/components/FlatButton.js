@@ -64,6 +64,7 @@ export default class FlatButton extends Component {
 		};
 		return (
 			<RaisedButton style={Object.assign({}, rootStyle, style)}
+				fullWidth={fullWidth}
 				label={label}
 				labelColor={labelColor}
 				leftIcon={leftIcon}

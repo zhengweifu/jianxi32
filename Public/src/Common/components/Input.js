@@ -59,7 +59,6 @@ export default class Input extends Component {
         };
         // console.log(this);
         return (
-
             <input
                 style={Object.assign(style, this.props.style)}
                 placeholder={this.props.placeholder}

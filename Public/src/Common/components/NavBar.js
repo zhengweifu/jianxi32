@@ -1,31 +1,28 @@
 import React, { Component, PropTypes } from 'react';
 
-import GridList from '../../../Common/components/GridList';
+import GridList from './GridList';
 
-import Label from '../../../Common/components/Label';
+import Label from './Label';
 
-import IconButton from '../../../Common/components/IconButton';
+import IconButton from './IconButton';
 
-import SvgIcon from '../../../Common/components/SvgIcon';
+import SvgIcon from './SvgIcon';
 
-import VerticalMiddle from '../../../Common/components/VerticalMiddle';
+import VerticalMiddle from './VerticalMiddle';
 
-import Popover from '../../../Common/components/Popover';
+import Popover from './Popover';
 
 import ListCloseSwitch from './ListCloseSwitch';
 
-import { FONT_FAMILY } from '../../../config';
+import { SCREEN_SIZE, GetDocumentSize } from '../utils/basic';
 
-import { SCREEN_SIZE, GetDocumentSize } from '../../../Common/utils/basic';
-
-require('../../../Common/csses/clearfix.css');
+require('../csses/clearfix.css');
 
 function getStyles(props) {
 	const itemWidth = 150;
 	return {
 		root: {
-			width: '100%',
-			backgroundColor: 'rgba(230, 230, 230, 0.95)'
+			width: '100%'
 		},
 
 		popover: {
@@ -43,9 +40,9 @@ function getStyles(props) {
 		},
 
 		pcRight: {
-			float: 'right',
+			float: 'left',
 			width: itemWidth * props.items.length,
-			marginRight: 100
+			marginLeft: 50
 		},
 		mobileLeft: {
 			float: 'left',
@@ -57,26 +54,6 @@ function getStyles(props) {
 			marginRight: '10%'
 		}
 	};
-}
-
-class IconOpen extends React.Component {
-    render() {
-        return (
-            <svg width="24" fill="#00ea00" height="24" viewBox="0 0 24 24">
-                <path d={dehaze}/>
-            </svg>
-        );
-    }
-}
-
-class IconClose extends React.Component {
-    render() {
-        return (
-            <svg width="24" height="24" fill="#666666" viewBox="0 0 24 24">
-                <path d={close}/>
-            </svg>
-        );
-    }
 }
 
 class NavBar extends Component {
@@ -101,7 +78,9 @@ class NavBar extends Component {
 		defaultColor: PropTypes.string,
 		activeColor: PropTypes.string,
 		rootStyle: PropTypes.object,
-		onItemClick: PropTypes.fun
+		onItemClick: PropTypes.func,
+		fontFamily: PropTypes.string,
+		fontSize: PropTypes.number
 	};
 
 	static defaultProps = {
@@ -109,7 +88,9 @@ class NavBar extends Component {
 		activeBgColor: '#ff8d5c',
 		defaultColor: '#777777',
 		activeColor: '#ffffff',
-		rootStyle: {}
+		rootStyle: {},
+		fontFamily: '"Microsoft YaHei",arial,Georgia,Serif',
+		fontSize: 16
 	};
 
 	render() {
@@ -126,7 +107,7 @@ class NavBar extends Component {
 				if(onItemClick) {
 					onItemClick(e, item, index);
 				}
-			}}><Label style={{padding: '0px 10px'}} content={item} fontFamily={FONT_FAMILY} fontSize={16} color={this.state.activeIndex == index ? activeColor : defaultColor} height={height}/></div>;
+			}}><Label style={{padding: '0px 10px'}} content={item} fontFamily={this.props.fontFamily} fontSize={this.props.fontSize} color={this.state.activeIndex == index ? activeColor : defaultColor} height={height}/></div>;
 		});
 
 		const pcElement = <div style={Object.assign({}, styles.root, rootStyle)}>
